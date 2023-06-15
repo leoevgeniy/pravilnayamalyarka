@@ -1,1 +1,18 @@
 {% extends 'base.html' %}
+
+{% block index %}
+    <div class="container">
+        {% for key, value in catalog.items %}
+            <span class="fs-1">
+                        {{ key }}
+                    </span>
+            <div class="container ms-3">
+                {% for subcat in value %}
+                    <li>{{ subcat }}</li>
+
+                {% endfor %}
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}

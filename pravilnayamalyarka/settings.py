@@ -36,9 +36,11 @@ STATICFILES_FINDERS = [
     'sass_processor.finders.CssFinder',
     'compressor.finders.CompressorFinder',
 ]
+USE_DJANGO_JQUERY = True
 
 INSTALLED_APPS = [
     'main.apps.MainConfig',
+    'cms.apps.CmsConfig',
     'sass_processor',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -47,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'compressor',
+    'smart_selects',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block category %}
+    <p>{{ category }}</p>
+    <div class="jumbotron">
+        <ul>
+            {% for subcat in subcategory %}
+                <li>{{ subcat.name }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <a href="{% url 'index' %}">Назад</a>
+{% endblock %}
