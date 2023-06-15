@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
-
+{% block page-title %}
+    <title>{{ category }}</title>
+{% endblock %}
 {% block category %}
     <p>{{ category }}</p>
     <div class="jumbotron">

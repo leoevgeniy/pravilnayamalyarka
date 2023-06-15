@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
-
+{% block page-title %}
+    <title>Правильная Малярка</title>
+{% endblock %}
 {% block index %}
     <div class="container">
         {% for key, value in catalog.items %}
-            <span class="fs-1">
+            <a href="{% url 'category' category=key %}" class="fs-1">
                         {{ key }}
-                    </span>
-            <div class="container ms-3">
+                    </a>
+            <div class="container msc-3">
                 {% for subcat in value %}
                     <li>{{ subcat }}</li>
 

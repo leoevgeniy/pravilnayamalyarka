@@ -16,9 +16,6 @@ def index(request):
     dict = {
         'catalog': catalog
     }
-    for cat in catalog:
-        for subcat in catalog[cat]:
-            print(subcat)
     return render(request, 'index.html', dict)
 
 
