@@ -15,6 +15,47 @@
                 {% endfor %}
             </div>
         {% endfor %}
+        <!-- Кнопка-триггер модального окна -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Запустите демо модального окна
+        </button>
+    </div>
+    <!-- Модальное окно -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Как с Вами связаться?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" onsubmit="onsubmitaction()">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="modal-footer">
+                            {#                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>#}
+                            <button type="submit" class="btn btn-primary"  data-bs-target="#ThanksModal">Отправить заявку</button>
+                        </div>
+                    </form>
+                </div>
 
+            </div>
+        </div>
+    </div>
+    <!-- Модальное окно Спасибо -->
+    <div class="modal fade" id="ThanksModal" tabindex="-1" aria-labelledby="ThanksModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ThanksModalLabel">Спасибо!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Мы свяжемся с Вами в ближайшее время</p>
+                    <button type="submit" class="btn btn-primary"  data-bs-dismiss="modal">Закрыть</button>
+                </div>
+
+            </div>
+        </div>
     </div>
 {% endblock %}

@@ -41,6 +41,7 @@ USE_DJANGO_JQUERY = True
 INSTALLED_APPS = [
     'main.apps.MainConfig',
     'cms.apps.CmsConfig',
+    'crm.apps.CrmConfig',
     'sass_processor',
     'django.contrib.admin',
     'django.contrib.auth',

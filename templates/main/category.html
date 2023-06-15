@@ -7,7 +7,7 @@
     <div class="jumbotron">
         <ul>
             {% for subcat in subcategory %}
-                <li>{{ subcat.name }}</li>
+                <a href="{% url 'subcategory' category=category subcategory=subcat %}">{{ subcat.name }}</a><br/>
             {% endfor %}
         </ul>
     </div>
