@@ -1,7 +1,9 @@
 from django.shortcuts import render
+
+from crm.models import Order
 from .models import Category, SubCategory
 from crm.forms import OrderForm
-
+from telebot.sendmessage import send_telegram
 # Create your views here.
 
 def index(request):
@@ -39,3 +41,11 @@ def subcategory(request, category, subcategory):
         'subcategory': subCategory
     }
     return render(request, 'subcategory.html', dict)
+
+def thanks_page(request):
+    name = request.POST['name']
+    phone = request.POST['phone']
+    element = Order(order_name=name, order_phone=phone)
+    element.save()
+    send_telegram(name, phone)
+    return render(request, 'thanks_page.html', {'name': name})

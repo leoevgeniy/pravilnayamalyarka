@@ -1,0 +1,9 @@
+t.me/Malyarka_Shop_bot
+Use this token to access the HTTP API:
+5833494899:AAGT3bDKtzL5HRJ7l6ihiB474qO0cov2ksw
+Keep your token secure and store it safely, it can be used by anyone to control your bot.
+
+For a description of the Bot API, see this page: https://core.telegram.org/bots/api
+
+
+https://api.telegram.org/bot5833494899:AAGT3bDKtzL5HRJ7l6ihiB474qO0cov2ksw/sendMessage?chat_id=-801669549&text=test

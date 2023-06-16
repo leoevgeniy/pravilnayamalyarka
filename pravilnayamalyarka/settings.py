@@ -39,6 +39,7 @@ STATICFILES_FINDERS = [
 USE_DJANGO_JQUERY = True
 
 INSTALLED_APPS = [
+    'telebot.apps.TelebotConfig',
     'main.apps.MainConfig',
     'cms.apps.CmsConfig',
     'crm.apps.CrmConfig',

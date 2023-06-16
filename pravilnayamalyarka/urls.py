@@ -28,6 +28,7 @@ urlpatterns = [
     path('category/<str:category>', views.category, name='category'),
     path('category/<str:category>/<str:subcategory>', views.subcategory, name='subcategory'),
     path('chaining/', include('smart_selects.urls')),
+    path('thanks', views.thanks_page, name='thanks'),
     path('favicon.ico', RedirectView.as_view(url='/static/images/favicon.ico', permanent=True)),
 ]
 if settings.DEBUG:
