@@ -1,1 +1,6 @@
 venv
+*.jpq
+*.jpg
+*.png
+*.webp
+*.xlsx

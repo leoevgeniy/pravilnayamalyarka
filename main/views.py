@@ -1,5 +1,6 @@
 from django.shortcuts import render
 
+from cms.forms import UploadFileForm
 from crm.models import Order
 from .models import Category, SubCategory
 from crm.forms import OrderForm
@@ -10,6 +11,7 @@ def index(request):
     catalog = {}
     categories = Category.objects.all()
     form = OrderForm
+    up = UploadFileForm
     for category in categories:
         subCategory = SubCategory.objects.filter(category=category)
         subcat = []
@@ -19,6 +21,7 @@ def index(request):
     dict = {
         'catalog': catalog,
         'form': form,
+        'up': up,
     }
     return render(request, 'index.html', dict)
 

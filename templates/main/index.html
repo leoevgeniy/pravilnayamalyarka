@@ -20,6 +20,12 @@
             Запустите демо модального окна
         </button>
     </div>
+
+    <form method="post" enctype="multipart/form-data" action="{%url 'migratexlsx' %}">
+        {% csrf_token %}
+        {{up}}
+        <button type="submit">Upload</button>
+    </form>
     <!-- Модальное окно -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -29,7 +35,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="thanks_page.html" method="POST" onsubmit="onsubmitaction()">
+                    <form action="thanks" method="POST" onsubmit="onsubmitaction()">
                         {% csrf_token %}
                         {{ form.as_p }}
                         <div class="modal-footer">
