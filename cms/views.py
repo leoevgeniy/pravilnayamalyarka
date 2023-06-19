@@ -2,7 +2,7 @@ import os
 
 
 import xlrd
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 import openpyxl
 from openpyxl_image_loader import SheetImageLoader
@@ -23,7 +23,7 @@ def photomigrations(request):
             photo='images/donework/' + img,
         )
 
-    return render(request, 'thanks_page.html')
+    return render(request, 'main/thanks_page.html')
 
 
 def productsimport(request):
@@ -82,4 +82,4 @@ def productsimport(request):
                             )
                 # if Product.objects.get(vendor_code=)
 
-        return HttpResponse('готово')
+        return HttpResponseRedirect('/admin/')

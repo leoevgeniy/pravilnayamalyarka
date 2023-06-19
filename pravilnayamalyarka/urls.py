@@ -20,7 +20,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
 
-import cms.views as crmviews
+import cms.views as cmsviews
 import main.views as views
 
 urlpatterns = [
@@ -30,8 +30,8 @@ urlpatterns = [
     path('category/<str:category>/<str:subcategory>', views.subcategory, name='subcategory'),
     path('chaining/', include('smart_selects.urls')),
     path('thanks', views.thanks_page, name='thanks'),
-    path('migratephoto/', crmviews.photomigrations, name='photomigrations'),
-    path('migratexlsx/', crmviews.productsimport, name='migratexlsx'),
+    path('migratephoto/', cmsviews.photomigrations, name='photomigrations'),
+    path('migratexlsx/', cmsviews.productsimport, name='migratexlsx'),
     path('favicon.ico', RedirectView.as_view(url='/static/images/favicon.ico', permanent=True)),
 ]
 if settings.DEBUG:
