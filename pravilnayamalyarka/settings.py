@@ -14,7 +14,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR = Path(__file__).resolve().parent.parent
-import export as export
+# import export as export
 
 import pravilnayamalyarka
 
@@ -57,7 +57,7 @@ INSTALLED_APPS = [
     'django_webp',
     'compressor',
     'smart_selects',
-    'import_export',
+    # 'import_export',
 ]
 FILE_UPLOAD_HANDLERS = (
     'django.core.files.uploadhandler.TemporaryFileUploadHandler',
