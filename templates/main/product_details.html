@@ -10,13 +10,13 @@
         </div>
     </section>
 
-    <div class="container">
+    <div class="container row">
         <figure class="col-lg-7 col-sm-6 text-right wow fadeInUp delay-02s">
             <a href="{{ product.photo_url }}">
                 <img src="{{ product.photo_url }}" alt="{{ product.name }}">
             </a>
         </figure>
-        <div class="featured-box-col2 wow fadeInRight delay-02s">
+        <div class="col-lg-5 col-sm-6 featured-box-col2 wow fadeInRight delay-02s">
             <h3><strong>Цена товара:</strong>{{ product.price }}</h3>
             <h3><strong>Описание товара:</strong></h3>
             <p>{{ product.description }}</p>
