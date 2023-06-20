@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'django_webp',
     # 'compressor',
     'smart_selects',
+    'sorl.thumbnail',
     # 'import_export',
 ]
 FILE_UPLOAD_HANDLERS = (
