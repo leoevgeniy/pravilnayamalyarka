@@ -30,6 +30,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('category/<str:category>', views.category, name='category'),
     path('category/<str:category>/<str:subcategory>', views.subcategory, name='subcategory'),
+    path('product/<str:pk>', cmsviews.product_view, name='product_view'),
     path('chaining/', include('smart_selects.urls')),
     path('thanks', views.thanks_page, name='thanks'),
     path('migratephoto/', cmsviews.photomigrations, name='photomigrations'),

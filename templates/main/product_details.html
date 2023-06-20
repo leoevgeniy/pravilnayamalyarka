@@ -1,17 +1,42 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% block page-title %}
+    <title>{{ product.name }}</title>
+{% endblock %}
 {% block product_details %}
-    <div id="main" class="product-list">
-        <h1>{% if category %}{{ category.name }}{% else %}Products{% endif %}</h1>
-        {% for product in products %}
-            <div class="item">
-                <a href="{{ product.photo.url }}">
-                    <img src="{% if product.photo %}{{ product.photo.url }}{% else %}{% static "images/no_image.svg" %}{% endif %}" alt="">
-                </a>
-                <a href="{{ product.get_absolute_url }}">{{ product.name }}</a><br>
-                ${{ product.price }}
+    <section class="main-section" id="service">
+        <div class="container">
+            <h2>{{ product.name }}</h2>
+        </div>
+    </section>
+
+    <div class="container">
+        <figure class="col-lg-7 col-sm-6 text-right wow fadeInUp delay-02s">
+            <a href="{{ product.photo_url }}">
+                <img src="{{ product.photo_url }}" alt="{{ product.name }}">
+            </a>
+        </figure>
+        <div class="featured-box-col2 wow fadeInRight delay-02s">
+            <h3><strong>Цена товара:</strong>{{ product.price }}</h3>
+            <h3><strong>Описание товара:</strong></h3>
+            <p>{{ product.description }}</p>
+            <div>
+                <form id="form_buying_product" class="form-inline" action="">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="number" id="number">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" id="submit_btn" class="btn btn-success btn-bay"
+                                data-product_id = "{{ product.vendor_code }}"
+                                data-name = "{{ product.name }}"
+                                data-price = "{{ product.price }}"
+                                >
+                            Купить
+                        </button>
+                    </div>
+                </form>
             </div>
-        {% endfor %}
+        </div>
     </div>
 {% endblock %}

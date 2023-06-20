@@ -13,6 +13,17 @@ from cms.models import WorkPhoto, Product
 from main.models import SubCategory, Category
 from pravilnayamalyarka.settings import BASE_DIR, MEDIA_ROOT
 
+def product_view(request, pk):
+    product = Product.objects.get(vendor_code=pk)
+    session_key = request.session.session_key
+    if not session_key:
+        request.session["session_key"] = 123
+        request.session.cycle_key()
+        print(request.session.session_key)
+    context = {
+        "product": product
+    }
+    return render(request, 'main/product_details.html', context)
 
 def photomigrations(request):
     col_dir = BASE_DIR + '/materials/photo/'

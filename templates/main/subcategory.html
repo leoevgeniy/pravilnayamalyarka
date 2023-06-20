@@ -30,8 +30,10 @@
                                 <div class="card">
                                     {% if product.photo %}
                                         {% thumbnail product.photo 'x200'  as im %}
+                                            <a href="{% url 'product_view' pk=product.vendor_code %}">
                                             <img src="{{ im.url }}"
                                                  class="card-img-top img-responsive" alt="{{ product.name }}">
+                                            </a>
                                         {% endthumbnail %}
                                     {% else %}
                                         <img src="{% static "images/no_image.svg" %}"
