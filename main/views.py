@@ -23,7 +23,7 @@ def index(request):
         'form': form,
         'up': up,
     }
-    return render(request, 'index.html', dict)
+    return render(request, 'main/index.html', dict)
 
 
 def category(request, category):
@@ -33,7 +33,7 @@ def category(request, category):
         'category': category,
         'subcategory': subCategory
     }
-    return render(request, 'category.html', dict)
+    return render(request, 'main/category.html', dict)
 
 
 def subcategory(request, category, subcategory):
@@ -43,7 +43,7 @@ def subcategory(request, category, subcategory):
         'category': category,
         'subcategory': subCategory
     }
-    return render(request, 'subcategory.html', dict)
+    return render(request, 'main/subcategory.html', dict)
 
 def thanks_page(request):
     name = request.POST['name']
@@ -51,4 +51,4 @@ def thanks_page(request):
     element = Order(order_name=name, order_phone=phone)
     element.save()
     send_telegram(name, phone)
-    return render(request, 'thanks_page.html', {'name': name})
+    return render(request, 'main/thanks_page.html', {'name': name})
