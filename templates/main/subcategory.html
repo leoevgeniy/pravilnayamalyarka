@@ -25,34 +25,29 @@
                 <div class="col-10">
                     <h1>{% if category %}{{ category.name }}{% else %}Products{% endif %}</h1>
                     <div class="row">
-
                         {% for product in products %}
                             <div class="item col-12 col-md-4 col-lg-3 mb-3 mb-sm-0">
                                 <div class="card">
                                     {% if product.photo %}
-                                    {% thumbnail product.photo '100x100' as im %}
-                                    <img src="{{ im.url }}"
-                                         class="card-img-top img-responsive" alt="{{ product.name }}">
-                                    {% endthumbnail %}
+                                        {% thumbnail product.photo 'x200'  as im %}
+                                            <img src="{{ im.url }}"
+                                                 class="card-img-top img-responsive" alt="{{ product.name }}">
+                                        {% endthumbnail %}
                                     {% else %}
                                         <img src="{% static "images/no_image.svg" %}"
                                              class="card-img-top img-responsive" alt="{{ product.name }}">
                                     {% endif %}
                                     <div class="card-body" style="height: 200px">
                                         <span class='fw-bold card-name d-inline-block text-start py-0 mb-0 fs-6'
-                                        style="">
+                                              style="">
 
-                                        <span itemProp="name" class='card-name fw-bold text-dark '>{{ product.name }}</span>
+                                        <span itemProp="name"
+                                              class='card-name fw-bold text-dark '>{{ product.name }}</span>
 
 
                                         </span>
                                     </div>
                                 </div>
-                                {#                                <a href="">#}
-                                {#                                    <img src="{% if product.photo %}{{ product.photo_url }}{% else %}{% static "images/no_image.svg" %}{% endif %}" alt="{{ product.name }}">#}
-                                {#                                </a>#}
-                                {#                                <a href="{{ product.get_absolute_url }}">{{ product.name }}</a><br>#}
-                                {#                                ${{ product.price }}#}
                             </div>
                         {% endfor %}
                     </div>
