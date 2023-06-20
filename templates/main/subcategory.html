@@ -1,11 +1,48 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block page-title %}
     <title>{{ subcategory }}</title>
 {% endblock %}
 {% block category %}
-    <p>{{ category }}</p>
-    <div class="jumbotron">
-        <p>{{ subcategory }}</p>
-    </div>
+    {% if category and subcategory %}
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'category' category=category %}">{{ category }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ subcategory }}</li>
+            </ol>
+        </nav>
+    {% endif %}
     <a href="{% url 'index' %}">Назад</a>
+
+    {% block card %}
+        {% if products %}
+            <div class="row">
+                <div class="col-4">
+
+                </div>
+                <div class="col-12 col-md-9 col-lg-8">
+                    <h1>{% if category %}{{ category.name }}{% else %}Products{% endif %}</h1>
+                    <div class="row">
+
+                        {% for product in products %}
+                            <div class="item col-12 col-md-3 col-lg-2 mb-3 mb-sm-0">
+                                <div class="card">
+                                    <img src="{% if product.photo %}{{ product.photo_url }}{% else %}{% static "images/no_image.svg" %}{% endif %}" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">{{ product.name }}</p>
+                                    </div>
+                                </div>
+{#                                <a href="">#}
+{#                                    <img src="{% if product.photo %}{{ product.photo_url }}{% else %}{% static "images/no_image.svg" %}{% endif %}" alt="{{ product.name }}">#}
+{#                                </a>#}
+{#                                <a href="{{ product.get_absolute_url }}">{{ product.name }}</a><br>#}
+{#                                ${{ product.price }}#}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endblock %}
 {% endblock %}

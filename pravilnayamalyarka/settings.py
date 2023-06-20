@@ -38,7 +38,7 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'sass_processor.finders.CssFinder',
-    'compressor.finders.CompressorFinder',
+    # 'compressor.finders.CompressorFinder',
 ]
 USE_DJANGO_JQUERY = True
 
@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_webp',
-    'compressor',
+    # 'compressor',
     'smart_selects',
     # 'import_export',
 ]
@@ -75,6 +75,11 @@ COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
 
+CONTEXT_PROCESSORS = [
+    {
+        'django.template.context_processors.media'
+    }
+]
 ROOT_URLCONF = 'pravilnayamalyarka.urls'
 
 TEMPLATES = [
@@ -144,16 +149,14 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "main/static/"),
-]
-
 STATIC_URL = '/static/'
+STATIC_PATH = os.path.join(BASE_DIR,'static'),
+# STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
 SASS_PROCESSOR_ROOT = STATIC_ROOT
-
+MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 

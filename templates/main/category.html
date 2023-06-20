@@ -3,7 +3,14 @@
     <title>{{ category }}</title>
 {% endblock %}
 {% block category %}
-    <p>{{ category }}</p>
+    {% if category %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ category }}</li>
+        </ol>
+    </nav>
+    {% endif %}
     <div class="jumbotron">
         <ul>
             {% for subcat in subcategory %}

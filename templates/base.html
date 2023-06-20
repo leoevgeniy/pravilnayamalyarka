@@ -1,34 +1,35 @@
 {% load static %}
-{% load compress %}
+{% load sass_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" type="image/png" href="{% static "main/images/favicon.ico" %}">
+    <link rel="shortcut icon" type="image/png" href="{% static "images/favicon.ico" %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    {% compress css %}
-        <link rel="stylesheet" type="text/x-scss" href="{% static 'main/css/index.scss' %}">
-    {% endcompress %}
+    <link rel="stylesheet" type="text/css" href="{% sass_src 'css/index.scss' %}">
     {% block page-title %}
         <title>Правильная Малярка</title>
     {% endblock %}
 </head>
 <body>
-{% block header %}
-{% endblock %}
-{% block index %}
-    {% block thanks %}
+<div class="container">
+    {% block header %}
     {% endblock %}
+    {% block index %}
+        {% block thanks %}
+        {% endblock %}
 
-{% endblock %}
-{% block footer %}
-{% endblock %}
-{% block category %}
+    {% endblock %}
+    {% block footer %}
+    {% endblock %}
+    {% block category %}
 
-{% endblock %}
-
+    {% endblock %}
+    {% block product_details %}
+    {% endblock %}
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 from cms.forms import UploadFileForm
+from cms.models import Product
 from crm.models import Order
 from .models import Category, SubCategory
 from crm.forms import OrderForm
@@ -39,9 +40,11 @@ def category(request, category):
 def subcategory(request, category, subcategory):
     category = Category.objects.get(name=category)
     subCategory = SubCategory.objects.get(name=subcategory)
+    products = Product.objects.filter(subcategory=subCategory)
     dict = {
         'category': category,
-        'subcategory': subCategory
+        'subcategory': subCategory,
+        'products': products,
     }
     return render(request, 'main/subcategory.html', dict)
 

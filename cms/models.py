@@ -33,17 +33,25 @@ class Product(models.Model):
     rrc = models.DecimalField(decimal_places=0, max_digits=10, verbose_name='РРЦ', null=True, blank=True)
     availability = models.CharField(max_length=256, verbose_name='Наличие', null=True, blank=True)
     pack = models.ImageField()
-
+    # slug = models.SlugField(max_length=200, db_index=True)
     oldprice = models.DecimalField(decimal_places=0, max_digits=10, verbose_name='Старая цена', null=True, blank=True)
 
     def __str__(self):
         return self.name
 
     class Meta:
+        ordering = ('name',)
+        # index_together = (('id', 'slug'),)
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
 
+    @property
+    def photo_url(self):
+        if self.photo and hasattr(self.photo, 'url'):
+            return self.photo.url
 
+    # def get_absolute_url(self):
+    #     return reverse('product_detail', args=[self.id, self.slug])
 
 class WorkPhoto(models.Model):
     name = models.CharField(max_length=256, blank=True, null=True, verbose_name='Наименование')

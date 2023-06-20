@@ -10,7 +10,7 @@
                     </a>
             <div class="container msc-3">
                 {% for subcat in value %}
-                    <li>{{ subcat }}</li>
+                    <a href="{% url 'subcategory' category=key subcategory=subcat%}" class="fs-5">{{ subcat }}</a> <br>
 
                 {% endfor %}
             </div>
@@ -35,7 +35,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="thanks" method="POST" onsubmit="onsubmitaction()">
+                    <form action="{% url 'thanks' %}" method="POST" onsubmit="onsubmitaction()">
                         {% csrf_token %}
                         {{ form.as_p }}
                         <div class="modal-footer">
