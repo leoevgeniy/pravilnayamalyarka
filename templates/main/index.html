@@ -2,6 +2,8 @@
 {% block page-title %}
     <title>Правильная Малярка</title>
 {% endblock %}
+{% block header %}
+{% endblock %}
 {% block index %}
     <div class="container">
         {% for key, value in catalog.items %}
@@ -21,11 +23,7 @@
         </button>
     </div>
 
-    <form method="post" enctype="multipart/form-data" action="{%url 'migratexlsx' %}">
-        {% csrf_token %}
-        {{up}}
-        <button type="submit">Upload</button>
-    </form>
+
     <!-- Модальное окно -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -40,7 +38,7 @@
                         {{ form.as_p }}
                         <div class="modal-footer">
                             {#                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>#}
-                            <button type="submit" class="btn btn-primary"  data-bs-target="#ThanksModal">Отправить заявку</button>
+                            <button type="submit" class="btn btn-primary">Отправить заявку</button>
                         </div>
                     </form>
                 </div>

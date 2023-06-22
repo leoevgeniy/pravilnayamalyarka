@@ -1,4 +1,37 @@
 body {
   background-color: aqua; }
 
+#cart-btn {
+  border: none;
+  padding: 15px;
+  font-size: 22px;
+  background: #03A9F4;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 2px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  cursor: pointer;
+  margin-top: 20px; }
+
+button:focus {
+  outline: 0; }
+
+#cart-btn:active {
+  background-color: #6cff71;
+  box-shadow: none;
+  transform: translateY(4px); }
+
+#cart-wrap {
+  position: relative; }
+
+#cart {
+  position: absolute;
+  background: #ff0;
+  color: #000;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  font-size: 15px;
+  line-height: 1.7; }
+
 /*# sourceMappingURL=index.css.map */
