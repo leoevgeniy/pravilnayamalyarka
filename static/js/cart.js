@@ -59,12 +59,15 @@ const addToStorage = (product) => {
         if (exist) {
             // localStorage.removeItem('cart')
             localStorage.setItem('cart', JSON.stringify(cart))
+            document.cookie='cart='+JSON.stringify(cart) + ";path=/cart/"
         } else {
             cart.push(product)
             localStorage.setItem('cart', JSON.stringify(cart))
+            document.cookie='cart='+JSON.stringify(cart) + ";path=/cart/"
         }
    } else {
         localStorage.setItem('cart', JSON.stringify([product]))
+        document.cookie='cart='+JSON.stringify([product]) + ";path=/cart/"
     }
     updateQty()
 }
@@ -89,8 +92,30 @@ const removeFromStorage = (id) => {
         if (exist) {
             // localStorage.removeItem('cart')
             localStorage.setItem('cart', JSON.stringify(cart))
+            document.cookie='cart='+JSON.stringify(cart) + ";path=/cart/"
         }
    }
+}
+
+const deleteFromStorage = (id) => {
+    let exist = false
+    if (localStorage.getItem('cart') !== null) {
+        let cart = JSON.parse(localStorage.getItem('cart'))
+        let index = 0
+        for (let i in cart) {
+            if (cart[i].id === id) {
+                exist = true
+                cart.splice(index, 1)
+            }
+            index++
+        }
+        if (exist) {
+            // localStorage.removeItem('cart')
+            localStorage.setItem('cart', JSON.stringify(cart))
+            document.cookie='cart='+JSON.stringify(cart) + ";path=/cart/"
+        }
+    }
+
 }
 
 $('.cart-minus').click(function (e) {
@@ -114,7 +139,12 @@ $('.add-to-cart-btn').click(function (event) {
     updateQty()
 });
 
-
+$('.remove-from-cart').click(function (e) {
+    e.preventDefault()
+    console.log($(this).data('id'))
+    deleteFromStorage($(this).data('id'))
+    location.reload();
+})
 
 const getQty = (id) => {
     if (localStorage.getItem('cart') !== null) {

@@ -22,6 +22,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
+import cart.views
 import cms.views as cmsviews
 import main.views as views
 SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
@@ -35,6 +37,7 @@ urlpatterns = [
     path('thanks', views.thanks_page, name='thanks'),
     path('migratephoto/', cmsviews.photomigrations, name='photomigrations'),
     path('migratexlsx/', cmsviews.productsimport, name='migratexlsx'),
+    path('cart/', cart.views.cart, name='cart'),
     path('favicon.ico', RedirectView.as_view(url='/static/images/favicon.ico', permanent=True)),
     # path(r'^media/(?P<path>.*)$', 'django.views.static.serve',
     #     {'document_root': os.path.join(SITE_ROOT, 'static')})

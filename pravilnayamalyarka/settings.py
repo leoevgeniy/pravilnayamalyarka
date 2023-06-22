@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'cms.apps.CmsConfig',
     'crm.apps.CrmConfig',
+    'cart.apps.CartConfig',
     'sass_processor',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -57,7 +58,6 @@ INSTALLED_APPS = [
     'django_webp',
     # 'compressor',
     'smart_selects',
-    'sorl.thumbnail',
     # 'import_export',
 ]
 FILE_UPLOAD_HANDLERS = (
