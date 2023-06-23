@@ -3,6 +3,8 @@ const updateQty = () => {
         const id = $(this).data('id')
         $(this).text(getQty(id))
     })
+    $('.cart-amount').text(getAllQty())
+    console.log(getAllQty())
     $('.add-to-cart-btn').each(function () {
         const id = $(this).data('id')
         let exist = false
@@ -78,13 +80,20 @@ const removeFromStorage = (id) => {
         let index = 0
         for (let i in cart) {
             if (cart[i].id === id) {
-                exist = true
+
                 if (cart[index]['qty'] > 1) {
                     cart[index]['qty'] -= 1
+                    exist = true
                 } else if (cart[index]['qty'] === 1) {
                     cart.splice(index, 1)
+                    localStorage.setItem('cart', JSON.stringify(cart))
+                    document.cookie='cart='+JSON.stringify(cart) + ";path=/cart/"
+                    location.reload();
                 } else {
                     cart.splice(index, 1)
+                    localStorage.setItem('cart', JSON.stringify(cart))
+                    document.cookie='cart='+JSON.stringify(cart) + ";path=/cart/"
+                    location.reload();
                 }
             }
             index++
@@ -93,6 +102,7 @@ const removeFromStorage = (id) => {
             // localStorage.removeItem('cart')
             localStorage.setItem('cart', JSON.stringify(cart))
             document.cookie='cart='+JSON.stringify(cart) + ";path=/cart/"
+
         }
    }
 }
@@ -155,6 +165,18 @@ const getQty = (id) => {
             }
         }
         return 0
+    } else {
+        return 0
+    }
+}
+const getAllQty = () => {
+    if (localStorage.getItem('cart') !== null) {
+        let amount = 0
+        let cart = JSON.parse(localStorage.getItem('cart'))
+        for (let i in cart) {
+            amount += cart[i]['qty']
+        }
+        return amount
     } else {
         return 0
     }

@@ -26,14 +26,32 @@
                                     <a href="{% url 'product_view' pk=product.product.vendor_code %}">
                                         <img src="{{ product.product.photo_url }} "
                                              class="card-img-top img-thumbnail" alt="{{ product.name }}"
-                                             style="height: 200px; object-fit: contain"
+                                             style="height: 100px; object-fit: contain"
                                         >
                                     </a>
                                 {% else %}
                                 {% endif %}
                             </div>
-                            <div class="col-md-5">
-                                <a href="{% url 'product_view' pk=product.product.vendor_code %}">{{ product.product.name }}</a>
+                            <div class="col-md-7">
+                                <a href="{% url 'product_view' pk=product.product.vendor_code %}"
+                                   style="   overflow: hidden;
+                                               display: -webkit-box;
+                                               -webkit-line-clamp: 3; /* number of lines to show */
+                                                       line-clamp: 3;
+                                               -webkit-box-orient: vertical;">{{ product.product.name }}</a>
+                            </div>
+                            <div id="cart-wrap" class="col-md-2 text-center cart-qty-wrapper mb-3" data-id="{{ product.product.vendor_code }}">
+                                <button class="cart-minus" data-id="{{ product.product.vendor_code }}">-</button>
+                                <i class="bi bi-basket"></i>
+                                <span
+                                        class="cart-qty"
+                                        data-id="{{ product.product.vendor_code }}"
+                                ></span>
+                                <button class="cart-plus"
+                                        data-id="{{ product.product.vendor_code }}"
+                                        data-name="{{ product.product.name }}"
+                                        data-price="{{ product.product.price }}"
+                                >+</button>
                             </div>
                             <div class="col-md-1">
                                 <button class="remove-from-cart" data-id="{{ product.product.vendor_code }}"><i class="bi bi-trash-fill"></i></button>
