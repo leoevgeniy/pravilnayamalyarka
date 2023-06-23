@@ -51,7 +51,7 @@ def subcategory(request, category, subcategory):
 def thanks_page(request):
     name = request.POST['name']
     phone = request.POST['phone']
-    element = Order(order_name=name, order_phone=phone)
+    element = Order(order_name=name, order_phone=phone, order_type='Заказ обратного звонка')
     element.save()
     send_telegram(name, phone)
     return render(request, 'main/thanks_page.html', {'name': name})

@@ -1,5 +1,8 @@
 from django.db import models
 
+from cms.models import Product
+
+
 class StatusCrm(models.Model):
     status_name = models.CharField(max_length=200, verbose_name='Статус')
 
@@ -15,7 +18,15 @@ class Order(models.Model):
     order_dt = models.DateTimeField(auto_now=True)
     order_name = models.CharField(max_length=200, verbose_name='Имя')
     order_phone = models.CharField(max_length=200, verbose_name='Телефон')
+    order_type = models.CharField(max_length=200, verbose_name='Тип Заказа', null=True, blank=True)
     order_status = models.ForeignKey(StatusCrm, on_delete=models.PROTECT, null=True, blank=True, verbose_name='Статус')
+
+
+
+    @property
+    def number_of_items(self):
+        return self.orderitems.count()
+
 
     def __str__(self):
         return self.order_name
@@ -23,6 +34,24 @@ class Order(models.Model):
     class Meta:
         verbose_name = 'Заказ'
         verbose_name_plural = 'Заказы'
+
+
+class OrderItems(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.PROTECT, null=True, verbose_name='Товар')
+    order = models.ForeignKey(Order, on_delete=models.PROTECT, null=True, related_name='orderitems')
+    name = models.CharField(max_length=200, null=True, blank=True, verbose_name='Наименование')
+    qty = models.IntegerField(null=True, blank=True, default=0, verbose_name='Кол-во')
+    price = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True, verbose_name='Цена')
+    image = models.CharField(max_length=200, null=True, blank=True, verbose_name='Изображение')
+    vendor_code = models.CharField(max_length=256, verbose_name='Код от производителя', null=True, blank=True)
+    cost = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True, verbose_name='Стоимость')
+
+    def get_cost(self):
+        return self.price * self.qty
+
+
+    def __str__(self):
+        return str(self.name)
 
 
 class CommentCrm(models.Model):

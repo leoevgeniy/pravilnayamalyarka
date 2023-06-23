@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block page-title %}
-    <title>{{ subcategory }}</title>
+    {% csrf_token %}
+    <title xmlns="http://www.w3.org/1999/html">{{ subcategory }}</title>
 {% endblock %}
 
 {% block cart %}
@@ -61,9 +62,38 @@
 
 
                 </div>
+            <div class="col-12 col-lg-4">
+                <button
+                        type='button'
+                        class='btn w-100 mb-3 fs-4 cart-confirm-btn'
+                        data-bs-toggle="modal" data-bs-target="#exampleModal"
+                >
+                Перейти к оформлению
+                </button>
+            </div>
             </div>
         </div>
 
     </main>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Как с Вами связаться?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'orderconfirm' %}" method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="modal-footer">
+                            {#                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>#}
+                            <button type="submit" class="btn btn-primary" onclick={clearcart()}>Отправить заявку</button>
+                        </div>
+                    </form>
+                </div>
 
+            </div>
+        </div>
+    </div>
 {% endblock %}

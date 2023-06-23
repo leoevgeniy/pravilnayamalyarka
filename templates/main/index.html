@@ -33,7 +33,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{% url 'thanks' %}" method="POST" onsubmit="onsubmitaction()">
+                    <form action="{% url 'thanks' %}" method="POST">
                         {% csrf_token %}
                         {{ form.as_p }}
                         <div class="modal-footer">
