@@ -57,6 +57,7 @@ class Product(models.Model):
 class WorkPhoto(models.Model):
     name = models.CharField(max_length=256, blank=True, null=True, verbose_name='Наименование')
     photo = models.ImageField(upload_to="images/donework", null=True, blank=True, verbose_name="Фото Наших работ")
+    service_category = models.ForeignKey(ServiceCategory, on_delete=models.CASCADE, verbose_name="Категория", null=True, blank=True)
 
     # def __str__(self):
     #     return self.name

@@ -60,7 +60,8 @@ class ProductAdm(admin.ModelAdmin):
 
 
 class WorkPhotoAdm(admin.ModelAdmin):
-    list_display = ('get_img', 'name',)
+    list_display = ('get_img', 'name', 'service_category', )
+    list_editable = ('service_category', )
     list_per_page = 20
     list_max_show_all = 100
 
