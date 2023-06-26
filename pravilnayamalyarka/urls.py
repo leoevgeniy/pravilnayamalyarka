@@ -30,6 +30,8 @@ SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
+    path('goods/', views.goods, name='goods'),
+    path('services/', views.services, name='services'),
     path('category/<str:category>', views.category, name='category'),
     path('category/<str:category>/<str:subcategory>', views.subcategory, name='subcategory'),
     path('product/<str:pk>', cmsviews.product_view, name='product_view'),
@@ -37,6 +39,7 @@ urlpatterns = [
     path('thanks', views.thanks_page, name='thanks'),
     path('migratephoto/', cmsviews.photomigrations, name='photomigrations'),
     path('migratexlsx/', cmsviews.productsimport, name='migratexlsx'),
+    path('migrateservices/', cmsviews.services_import, name='migrateservices'),
     path('cart/', cart.views.cart, name='cart'),
     path('orderconfirm/', cart.views.orderCreate, name='orderconfirm'),
     path('order/<str:pk>', cart.views.orderView, name='orderView'),

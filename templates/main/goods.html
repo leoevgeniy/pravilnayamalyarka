@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block page-title %}
+    <title>Малярные товары</title>
+{% endblock %}
+{% block products %}
+    <div class="container">
+        {% for key, value in catalog.items %}
+            <a href="{% url 'category' category=key %}" class="fs-1">
+                {{ key }}
+            </a>
+            <div class="container msc-3">
+                {% for subcat in value %}
+                    <a href="{% url 'subcategory' category=key subcategory=subcat%}" class="fs-5">{{ subcat }}</a> <br>
+
+                {% endfor %}
+            </div>
+        {% endfor %}
+        <!-- Кнопка-триггер модального окна -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Запустите демо модального окна
+        </button>
+    </div>
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Как с Вами связаться?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'thanks' %}" method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="modal-footer">
+                            {#                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>#}
+                            <button type="submit" class="btn btn-primary">Отправить заявку</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

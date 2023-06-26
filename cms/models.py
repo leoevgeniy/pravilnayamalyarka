@@ -1,7 +1,8 @@
 from django.db import models
 from smart_selects.db_fields import ChainedForeignKey
 
-from main.models import Category, SubCategory
+from main.models import Category, SubCategory, ServiceCategory
+
 
 # Create your models here.
 
@@ -65,3 +66,19 @@ class WorkPhoto(models.Model):
         verbose_name_plural = 'Фото работ'
 
 
+
+
+
+class Service(models.Model):
+    name = models.CharField(max_length=256, blank=True, null=True, verbose_name='Наименование')
+    service_pc = models.CharField(max_length=20, blank=True, null=True, verbose_name='Единица измерения')
+    service_price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена за единицу')
+    service_category = models.ForeignKey(ServiceCategory, on_delete=models.CASCADE, verbose_name="Категория")
+    service_code = models.CharField(max_length=256, verbose_name='Код вида работ', null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Вид работ'
+        verbose_name_plural = 'Виды работ'

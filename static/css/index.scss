@@ -1,6 +1,9 @@
 @import "cart";
 body {
   background-color: aqua;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 #cart-btn {
@@ -39,4 +42,11 @@ button:focus {
   height: 25px;
   font-size: 15px;
   line-height: 1.7;
+}
+
+.main {
+  flex: 1 0 auto;
+}
+.footer {
+  flex: 0 0 auto;
 }

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block page-title %}
+    <title>Малярные работы</title>
+{% endblock %}
+
+{% block services %}
+    <table class="table table-striped-columns">
+        <thead>
+        <tr>
+            <th scope="col">
+                Наименование работ/материала
+            </th>
+            <th scope="col">
+                Единица измерения
+            </th>
+            <th scope="col">
+                Цена за единицу
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for cat, services in catalog.items %}
+            <tr>
+                <th colspan="3" class="text-center">{{ cat }}</th>
+            </tr>
+            {% for item in services %}
+
+                <tr>
+                    <th>{{ item.name }}</th>
+                    <th>{{ item.service_pc }}</th>
+                    <th>{{ item.service_price }}</th>
+                </tr>
+            {% endfor %}
+
+
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

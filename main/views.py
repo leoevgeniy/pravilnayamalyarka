@@ -1,14 +1,20 @@
 from django.shortcuts import render
 
 from cms.forms import UploadFileForm
-from cms.models import Product
+from cms.models import Product, Service
 from crm.models import Order, StatusCrm
-from .models import Category, SubCategory
+from .models import Category, SubCategory, ServiceCategory
 from crm.forms import OrderForm
 from telebot.sendmessage import send_telegram
+
+
 # Create your views here.
 
 def index(request):
+    return render(request, 'main/index.html')
+
+
+def goods(request):
     catalog = {}
     categories = Category.objects.all()
     form = OrderForm
@@ -24,7 +30,26 @@ def index(request):
         'form': form,
         'up': up,
     }
-    return render(request, 'main/index.html', dict)
+
+    return render(request, 'main/goods.html', dict)
+
+
+def services(request):
+    catalog = {}
+    categories = ServiceCategory.objects.all()
+    # form = OrderForm
+    # up = UploadFileForm
+    for category in categories:
+        services = Service.objects.filter(service_category=category)
+        currentservices = []
+        for ser in services:
+            currentservices.append(ser)
+        catalog.update({category.name: currentservices})
+    dict = {
+        'catalog': catalog,
+    }
+
+    return render(request, 'main/services.html', dict)
 
 
 def category(request, category):
@@ -48,11 +73,11 @@ def subcategory(request, category, subcategory):
     }
     return render(request, 'main/subcategory.html', dict)
 
+
 def thanks_page(request):
     name = request.POST['name']
     phone = request.POST['phone']
     status = StatusCrm.objects.get(status_name__exact='Новая')
-    print(status)
     element = Order(order_name=name, order_phone=phone, order_type='Заказ обратного звонка', order_status=status)
     element.save()
     send_telegram(name, phone)

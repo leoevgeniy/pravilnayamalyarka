@@ -4,7 +4,7 @@ from django.urls import path
 from django.utils.safestring import mark_safe
 # from import_export.admin import ImportExportActionModelAdmin
 from import_export import resources
-from .models import Product, WorkPhoto
+from .models import Product, WorkPhoto, Service
 from cms.forms import UploadFileForm
 
 
@@ -33,6 +33,12 @@ def upload_products(request):
     return render(request, "admin/upload_form.html", {'form': form})
 
 
+def upload_services(request):
+    form = UploadFileForm
+
+    return render(request, "admin/upload_services_form.html", {'form': form})
+
+
 class ProductAdm(admin.ModelAdmin):
     # change_list_template = 'admin/cms/product/change_list.html'
     list_display = ('get_img', 'name', 'vendor', 'price', 'oldprice', 'category', 'subcategory')
@@ -53,7 +59,6 @@ class ProductAdm(admin.ModelAdmin):
         return new_url + urls
 
 
-
 class WorkPhotoAdm(admin.ModelAdmin):
     list_display = ('get_img', 'name',)
     list_per_page = 20
@@ -68,3 +73,18 @@ class WorkPhotoAdm(admin.ModelAdmin):
 
 admin.site.register(Product, ProductAdm)
 admin.site.register(WorkPhoto, WorkPhotoAdm)
+
+
+@admin.register(Service)
+class ServicesAdm(admin.ModelAdmin):
+    list_display = ('name', 'service_category', 'service_pc', 'service_price',)
+    list_per_page = 20
+    list_max_show_all = 100
+    list_filter = ('service_category', )
+    list_editable = ('service_price', 'service_category',)
+
+
+    def get_urls(self):
+            urls = super().get_urls()
+            new_url = [path('upload_services/', upload_services, name='upload_services')]
+            return new_url + urls

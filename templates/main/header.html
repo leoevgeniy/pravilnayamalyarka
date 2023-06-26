@@ -2,8 +2,10 @@
 
 
 <nav class="navbar bg-body-tertiary">
-    <div class="container-fluid">
+    <div class="container-fluid d-flex justify-content-between">
         <a class="navbar-brand" href="{% url 'index' %}">Правильная Малярка</a>
+        <a class="navbar-brand" href="{% url 'goods' %}">Товары</a>
+        <a class="navbar-brand" href="{% url 'services' %}">Работы</a>
         <div class="position-relative">
             <a class="navbar-brand" href="{% url 'cart' %}">
                 <i class="bi bi-cart3">

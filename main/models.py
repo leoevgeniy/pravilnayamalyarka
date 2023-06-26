@@ -17,8 +17,8 @@ class Category(models.Model):
 
     class Meta:
         ordering = ('name',)
-        verbose_name = 'Категория'
-        verbose_name_plural = 'Категории'
+        verbose_name = 'Категория товаров'
+        verbose_name_plural = 'Категории товаров'
 
 
 class SubCategory(models.Model):
@@ -33,8 +33,19 @@ class SubCategory(models.Model):
 
     class Meta:
         ordering= ('name',)
-        verbose_name = 'Подкатегория'
-        verbose_name_plural = 'Подкатегории'
+        verbose_name = 'Подкатегория товаров'
+        verbose_name_plural = 'Подкатегории товаров'
 
     # def get_absolute_url(self):
     #     return reverse('shop:product_list_by_category', args=[self.slug])
+
+
+class ServiceCategory(models.Model):
+    name = models.CharField(max_length=256, blank=True, null=True, verbose_name='Наименование')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Категория работ'
+        verbose_name_plural = 'Категории работ'
