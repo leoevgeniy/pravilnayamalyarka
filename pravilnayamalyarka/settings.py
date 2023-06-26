@@ -31,6 +31,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'leoevgrv.beget.tech']
 
+AUTH_USER_MODEL = 'auth.User'
 
 # Application definition
 

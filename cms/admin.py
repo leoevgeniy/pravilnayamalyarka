@@ -38,8 +38,8 @@ class ProductAdm(admin.ModelAdmin):
     list_display = ('get_img', 'name', 'vendor', 'price', 'oldprice', 'category', 'subcategory')
     list_editable = ('price', 'oldprice', 'category', 'subcategory',)
     list_filter = ('vendor', 'category', 'subcategory',)
-    # list_per_page = 20
-    # list_max_show_all = 100
+    list_per_page = 20
+    list_max_show_all = 100
 
     def get_img(self, obj):
         try:
@@ -51,6 +51,7 @@ class ProductAdm(admin.ModelAdmin):
         urls = super().get_urls()
         new_url = [path('upload_products/', upload_products, name='upload_products')]
         return new_url + urls
+
 
 
 class WorkPhotoAdm(admin.ModelAdmin):

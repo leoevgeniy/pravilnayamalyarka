@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 from cms.forms import UploadFileForm
 from cms.models import Product
-from crm.models import Order
+from crm.models import Order, StatusCrm
 from .models import Category, SubCategory
 from crm.forms import OrderForm
 from telebot.sendmessage import send_telegram
@@ -51,7 +51,9 @@ def subcategory(request, category, subcategory):
 def thanks_page(request):
     name = request.POST['name']
     phone = request.POST['phone']
-    element = Order(order_name=name, order_phone=phone, order_type='Заказ обратного звонка')
+    status = StatusCrm.objects.get(status_name__exact='Новая')
+    print(status)
+    element = Order(order_name=name, order_phone=phone, order_type='Заказ обратного звонка', order_status=status)
     element.save()
     send_telegram(name, phone)
     return render(request, 'main/thanks_page.html', {'name': name})
