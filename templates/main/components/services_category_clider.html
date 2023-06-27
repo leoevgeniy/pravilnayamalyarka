@@ -1,0 +1,13 @@
+{% load static %}
+
+<h2 class="text-center">Виды работ</h2>
+<ul id="lightSlider">
+    {% for service in services_category %}
+    <li class="">
+        <img src="{% if service.photo %}{{ service.photo.url }}{% else %}{% static 'images/no_image.svg' %}{% endif %}" class="d-block w-100 object-fit-cover" style="height: 300px" alt="{{ service.name }}">
+        <h3 class="service_name">{{ service.name }}</h3>
+{#        <p>Lorem ipsum Cupidatat quis pariatur anim.</p>#}
+    </li>
+    {% endfor %}
+
+</ul>

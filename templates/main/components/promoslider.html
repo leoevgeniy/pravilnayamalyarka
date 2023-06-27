@@ -1,7 +1,9 @@
+{% load static %}
 {% if promoslider %}
 
 
-    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <ol class="carousel-indicators">
             {% for slide in promoslider %}
                 {% if forloop.first %}
@@ -16,16 +18,16 @@
         <div class="carousel-inner">
             {% for slide in promoslider %}
                 {% if forloop.first %}
-                    <div class="carousel-item active">
-                        <img src="{{ slide.photo.url }}" class="d-block w-100 object-fit-cover" style="height: 300px" alt="{{ slide.name }}">
+                    <div class="carousel-item active"  data-bs-interval="4000">
+                        <img src="{% if slide.photo %}{{ slide.photo.url }}{% else %}{% static 'images/no_image.svg' %}{% endif %}" class="d-block w-100 object-fit-cover" style="height: 300px" alt="{{ slide.name }}">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>{{ slide.name }}</h5>
                             {#                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>#}
                         </div>
                     </div>
                 {% else %}
-                    <div class="carousel-item">
-                        <img src="{{ slide.photo.url }}" class="d-block w-100 object-fit-cover"  style="height: 300px"alt="{{ slide.name }}">
+                    <div class="carousel-item"  data-bs-interval="4000">
+                        <img src="{% if slide.photo %}{{ slide.photo.url }}{% else %}{% static 'images/no_image.svg' %}{% endif %}" class="d-block w-100 object-fit-cover"  style="height: 300px"alt="{{ slide.name }}">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>{{ slide.name }}</h5>
                             {#                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>#}

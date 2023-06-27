@@ -289,6 +289,11 @@ a:hover {
 .added {
   margin: 0 -50px 0 0 !important; }
 
+#lightSlider .service_name {
+  bottom: 5%;
+  color: white;
+  margin: auto 0; }
+
 body {
   background-color: aqua;
   display: flex;

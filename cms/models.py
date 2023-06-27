@@ -37,6 +37,11 @@ class PromoSlider(models.Model):
     start_date = models.DateField(verbose_name='Дата начала акции', null=True, blank=True)
     expiration_date = models.DateField(verbose_name='Дата окончания акции', null=True, blank=True)
 
+    @property
+    def photo_url(self):
+        if self.photo and hasattr(self.photo, 'url'):
+            return self.photo.url
+
     # def __str__(self):
     #     return self.name
 
@@ -45,7 +50,6 @@ class PromoSlider(models.Model):
         # index_together = (('id', 'slug'),)
         verbose_name = 'Промо акция'
         verbose_name_plural = 'Промо акции'
-
 
 
 class Product(models.Model):

@@ -42,6 +42,12 @@ class SubCategory(models.Model):
 
 class ServiceCategory(models.Model):
     name = models.CharField(max_length=256, blank=True, null=True, verbose_name='Наименование')
+    photo = models.ImageField(upload_to="images/service_category", verbose_name="Фото", null=True, blank=True)
+
+    @property
+    def photo_url(self):
+        if self.photo and hasattr(self.photo, 'url'):
+            return self.photo.url
 
     def __str__(self):
         return self.name
