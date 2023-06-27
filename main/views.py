@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from cms.forms import UploadFileForm
-from cms.models import Product, Service
+from cms.models import Product, Service, PromoSlider
 from crm.models import Order, StatusCrm
 from .models import Category, SubCategory, ServiceCategory
 from crm.forms import OrderForm
@@ -11,7 +11,11 @@ from telebot.sendmessage import send_telegram
 # Create your views here.
 
 def index(request):
-    return render(request, 'main/index.html')
+    promos = PromoSlider.objects.all()
+    disc = {
+        'promoslider': promos
+    }
+    return render(request, 'main/index.html', disc)
 
 
 def goods(request):

@@ -4,10 +4,53 @@ from smart_selects.db_fields import ChainedForeignKey
 from main.models import Category, SubCategory, ServiceCategory
 
 
+class Vendor(models.Model):
+    name = models.CharField(max_length=256, verbose_name='Наименование', null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Производитель'
+        verbose_name_plural = 'Производители'
+
+
 # Create your models here.
+class PromoSlider(models.Model):
+    name = models.CharField(max_length=256, verbose_name='Наименование', null=True, blank=True)
+    photo = models.ImageField(upload_to="images/slider", verbose_name="Фото", null=True, blank=True)
+    vendor = models.ForeignKey(Vendor, on_delete=models.CASCADE, verbose_name='Производитель', null=True, blank=True)
+    vendor_code_list = models.CharField(max_length=256, verbose_name='Артикулы товаров', null=True, blank=True)
+    promo_category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='promos',
+                                       verbose_name='Категория', null=True, blank=True)
+    promo_subcategory = ChainedForeignKey(
+        SubCategory,
+        chained_field="promo_category",
+        chained_model_field="promo_category",
+        show_all=False,
+        auto_choose=True,
+        sort=True,
+        null=True,
+        blank=True,
+
+    )
+    start_date = models.DateField(verbose_name='Дата начала акции', null=True, blank=True)
+    expiration_date = models.DateField(verbose_name='Дата окончания акции', null=True, blank=True)
+
+    # def __str__(self):
+    #     return self.name
+
+    class Meta:
+        ordering = ('expiration_date',)
+        # index_together = (('id', 'slug'),)
+        verbose_name = 'Промо акция'
+        verbose_name_plural = 'Промо акции'
+
+
 
 class Product(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='categoryproducts', verbose_name='Категория', null=True, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='categoryproducts',
+                                 verbose_name='Категория', null=True, blank=True)
     subcategory = ChainedForeignKey(
         SubCategory,
         chained_field="category",
@@ -20,8 +63,8 @@ class Product(models.Model):
     )
     name = models.CharField(max_length=256, verbose_name='Наименование', null=True, blank=True)
     description = models.TextField(verbose_name='Описание', null=True, blank=True)
-    vendor_code = models.CharField(max_length=256, verbose_name='Код от производителя', null=True, blank=True)
-    vendor = models.CharField(max_length=256, verbose_name='Производитель', null=True, blank=True)
+    vendor_code = models.IntegerField(verbose_name='Код от производителя', null=True, blank=True)
+    vendor = models.ForeignKey(Vendor, on_delete=models.CASCADE, verbose_name='Производитель', null=True, blank=True)
     weight = models.CharField(max_length=50, verbose_name='Вес', null=True, blank=True)
     composition = models.CharField(max_length=256, verbose_name='Состав', null=True, blank=True)
     comments = models.TextField(verbose_name='Примечание', null=True, blank=True)
@@ -54,10 +97,12 @@ class Product(models.Model):
     # def get_absolute_url(self):
     #     return reverse('product_detail', args=[self.id, self.slug])
 
+
 class WorkPhoto(models.Model):
     name = models.CharField(max_length=256, blank=True, null=True, verbose_name='Наименование')
     photo = models.ImageField(upload_to="images/donework", null=True, blank=True, verbose_name="Фото Наших работ")
-    service_category = models.ForeignKey(ServiceCategory, on_delete=models.CASCADE, verbose_name="Категория", null=True, blank=True)
+    service_category = models.ForeignKey(ServiceCategory, on_delete=models.CASCADE, verbose_name="Категория", null=True,
+                                         blank=True)
 
     # def __str__(self):
     #     return self.name
@@ -65,9 +110,6 @@ class WorkPhoto(models.Model):
     class Meta:
         verbose_name = 'Фото работ'
         verbose_name_plural = 'Фото работ'
-
-
-
 
 
 class Service(models.Model):

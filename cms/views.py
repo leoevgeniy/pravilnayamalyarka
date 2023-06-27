@@ -8,7 +8,7 @@ from openpyxl_image_loader import SheetImageLoader
 
 # Create your views here.
 from cms.forms import UploadFileForm
-from cms.models import WorkPhoto, Product, Service
+from cms.models import WorkPhoto, Product, Service, Vendor
 from main.models import SubCategory, Category, ServiceCategory
 from pravilnayamalyarka.settings import BASE_DIR, MEDIA_ROOT
 
@@ -19,7 +19,6 @@ def product_view(request, pk):
     if not session_key:
         request.session["session_key"] = 123
         request.session.cycle_key()
-        print(request.session.session_key)
     context = {
         "product": product
     }
@@ -70,7 +69,7 @@ def productsimport(request):
                     line[worksheet.cell(row, 0).value] = params
                     rows.append(line)
                     # print(worksheet.cell(row, 0).value, line.keys())
-                    if Product.objects.filter(vendor_code=str(params[0])).exists():
+                    if Product.objects.filter(vendor_code=params[0]).exists():
                         product = Product.objects.get(vendor_code=str(params[0]))
                         image.save(MEDIA_ROOT + '/images/' + str(params[0]) + '.png', format='png')
                     else:
@@ -78,14 +77,18 @@ def productsimport(request):
                         if SubCategory.objects.filter(name=cat).exists:
                             subcategory = SubCategory.objects.get(name=cat)
                             category = Category.objects.get(name=subcategory.category)
+                            try:
+                                vendor = Vendor.objects.get(name='ROLLINGDOG')
+                            except:
+                                vendor = Vendor.objects.create(name='ROLLINGDOG')
                             product = Product.objects.create(
                                 category=category,
                                 subcategory=subcategory,
                                 photo='images/' + str(params[0]) + '.png',
                                 name=str(params[1]),
                                 description=str(params[3]),
-                                vendor='ROLLINGDOG',
-                                vendor_code=str(params[0]),
+                                vendor=vendor,
+                                vendor_code=int(params[0]),
                                 price=int(params[4]),
                                 rrc=int(params[5]),
                                 availability=str(params[6]),

@@ -155,7 +155,7 @@ STATIC_URL = '/static/'
 STATIC_PATH = os.path.join(BASE_DIR,'static'),
 # STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
-
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'templates/src')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 SASS_PROCESSOR_ROOT = STATIC_ROOT
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')

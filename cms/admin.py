@@ -4,7 +4,7 @@ from django.urls import path
 from django.utils.safestring import mark_safe
 # from import_export.admin import ImportExportActionModelAdmin
 from import_export import resources
-from .models import Product, WorkPhoto, Service
+from .models import Product, WorkPhoto, Service, PromoSlider
 from cms.forms import UploadFileForm
 
 
@@ -60,8 +60,8 @@ class ProductAdm(admin.ModelAdmin):
 
 
 class WorkPhotoAdm(admin.ModelAdmin):
-    list_display = ('get_img', 'name', 'service_category', )
-    list_editable = ('service_category', )
+    list_display = ('get_img', 'name', 'service_category',)
+    list_editable = ('service_category',)
     list_per_page = 20
     list_max_show_all = 100
 
@@ -81,11 +81,25 @@ class ServicesAdm(admin.ModelAdmin):
     list_display = ('name', 'service_category', 'service_pc', 'service_price',)
     list_per_page = 20
     list_max_show_all = 100
-    list_filter = ('service_category', )
+    list_filter = ('service_category',)
     list_editable = ('service_price', 'service_category',)
 
-
     def get_urls(self):
-            urls = super().get_urls()
-            new_url = [path('upload_services/', upload_services, name='upload_services')]
-            return new_url + urls
+        urls = super().get_urls()
+        new_url = [path('upload_services/', upload_services, name='upload_services')]
+        return new_url + urls
+
+
+@admin.register(PromoSlider)
+class PromoSliderAdm(admin.ModelAdmin):
+    list_display = ('get_img', 'name', 'vendor', 'vendor_code_list', 'start_date', 'expiration_date')
+    list_per_page = 20
+    list_max_show_all = 100
+    list_filter = ('vendor',)
+    list_editable = ('name', 'start_date', 'expiration_date',)
+
+    def get_img(self, obj):
+        try:
+            return mark_safe(f'<img src="{obj.photo.url}" width="80px"')
+        except:
+            return mark_safe(f'<img src="" width="80px"')
