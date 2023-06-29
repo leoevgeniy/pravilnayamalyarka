@@ -332,25 +332,20 @@ a:hover {
     background-color: #fff;
     margin: 1rem 0 1rem 2rem; }
 
-.third-row .search-input[type=text] {
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  border-radius: 20px;
-  border: 1px solid #2d9fd9;
-  color: #a0d18c;
-  width: 250px;
-  height: 30px;
-  padding-left: 10px; }
+.third-row .search-input {
+  border-radius: 20px; }
 
-.third-row .search-input[type=text]:focus {
-  outline: none;
-  border: 1px solid #a0d18c;
-  color: #2d9fd9; }
+.third-row .search-wrapper {
+  background-color: #1A4582; }
 
-.third-row .search-loop {
-  position: absolute;
-  top: 5%;
-  right: 5%; }
+.third-row .cart-wrapper {
+  background-color: #1A4582; }
+
+.third-row .cart {
+  background: url("../images/cart.svg") no-repeat center center/contain;
+  width: 60px;
+  height: 60px;
+  transform: translate(-50%, -10%); }
 
 @font-face {
   font-family: "Gotham Pro Medium";

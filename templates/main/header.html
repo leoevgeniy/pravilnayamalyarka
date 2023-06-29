@@ -12,13 +12,15 @@
             <a href="tel:89053483831"> 8 905 348 3831</a>
         </div>
         <div class="col-3 text-center call-back">
-            <span>ЗАКАЗАТЬ ЗВОНОК</span>
+            <span type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">ЗАКАЗАТЬ ЗВОНОК</span>
         </div>
     </div>
     <div class="row second-row">
         <div class="col-3">
             <div class="logo-wrapper text-center">
+                <a href="{% url 'index' %}">
                 <img class="w-75 my-2 object-fit-cover" src="{% static 'images/logo.svg' %}" alt="Logo">
+                </a>
             </div>
         </div>
         <div class="col-9 px-0">
@@ -31,38 +33,73 @@
         </div>
     </div>
     <div class="row third-row">
-        <div class="col-3">
-            <form class="d-flex" role="search">
-                <input class="form-control search-input" type="text" aria-label="Search">
-{#                <button class="btn btn-outline-success" type="submit">Search</button>#}
-                <i type="submit" class="bi bi-search search-loop"></i>
-            </form>
+        <div class="col-3 px-0">
+            <div class="text-center mx-auto py-2 search-wrapper text-center position-relative">
+                <label>
+                    <input type="search" class="search-input">
+                </label>
+                <span type='submit' class='position-absolute'
+                      style="top: 30%; right: 20%; font-size: 13px">
+                    <i class="bi bi-search"></i>
+                </span>
+            </div>
 
         </div>
-        <div class="col-6">
+        <div class="col-6 d-flex justify-content-around">
+            <a class="navbar-brand align-self-center" href="{% url 'services' %}">ВИДЫ РАБОТ</a>
+            <a class="navbar-brand align-self-center" href="{% url 'goods' %}">КАТАЛОГ ТОВАРОВ</a>
+            <a class="navbar-brand align-self-center" href="{% url 'index' %}">О КОМПАНИИ</a>
 
         </div>
-        <div class="col-3">
+        <div class="col-3 position-relative text-center cart-wrapper">
+            <a class="position-relative" href="{% url 'cart' %}">
+                <i class="position-absolute cart">
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-amount">
+                  <span class="visually-hidden">unread messages</span>
+                </span>
+                </i>
+            </a>
 
         </div>
     </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Как с Вами связаться?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'thanks' %}" method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="modal-footer">
+                            {#                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>#}
+                            <button type="submit" class="btn btn-primary">Отправить заявку</button>
+                        </div>
+                    </form>
+                </div>
 
-{#    <div class="container-fluid d-flex justify-content-between">#}
-{#        <a class="navbar-brand" href="{% url 'index' %}">Ульяновск</a>#}
-{#        <a class="navbar-brand" href="{% url 'goods' %}">Товары</a>#}
-{#        <a class="navbar-brand" href="{% url 'services' %}">Работы</a>#}
-{#        <div class="position-relative">#}
-{#            <a class="navbar-brand" href="{% url 'cart' %}">#}
-{#                <i class="bi bi-cart3">#}
-{#                          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-amount">#}
-{##}
-{#                              <span class="visually-hidden">unread messages</span>#}
-{#                          </span>#}
-{##}
-{#                </i>#}
-{#            </a>#}
-{##}
-{#        </div>#}
-{#    </div>#}
+            </div>
+        </div>
+    </div>
+
+    {#    <div class="container-fluid d-flex justify-content-between">#}
+    {#        <a class="navbar-brand" href="{% url 'index' %}">Ульяновск</a>#}
+    {#        <a class="navbar-brand" href="{% url 'goods' %}">Товары</a>#}
+    {#        <a class="navbar-brand" href="{% url 'services' %}">Работы</a>#}
+    {#        <div class="position-relative">#}
+    {#            <a class="navbar-brand" href="{% url 'cart' %}">#}
+    {#                <i class="bi bi-cart3">#}
+    {#                          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-amount">#}
+    {##}
+    {#                              <span class="visually-hidden">unread messages</span>#}
+    {#                          </span>#}
+    {##}
+    {#                </i>#}
+    {#            </a>#}
+    {##}
+    {#        </div>#}
+    {#    </div>#}
 </nav>
 
