@@ -27,11 +27,14 @@ def cart(request):
 
 
 def orderCreate(request):
+    print('ewqwetg', request.POST)
     if request.POST:
         name = request.POST['name']
         phone = request.POST['phone']
+        print(request.COOKIES.get('cart'), len(request.COOKIES.get('cart')) > 0)
         if request.COOKIES.get('cart') and len(request.COOKIES.get('cart')) > 0:
             cart = json.loads(request.COOKIES.get('cart'))
+            print(cart)
             status = StatusCrm.objects.get(status_name__exact='Новая')
             order = Order.objects.create(
                 order_name=name,

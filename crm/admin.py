@@ -8,6 +8,8 @@ class OrderItemsInline(admin.TabularInline):
     model = OrderItems
     extra = 0
     fields = ('name', 'qty', 'price', 'cost',)
+    readonly_fields = ('name', )
+    list_display_links = ('name', )
     verbose_name = 'Товар'
     verbose_name_plural = 'Товары'
 
@@ -57,8 +59,6 @@ class OrderAdm(admin.ModelAdmin):
         return super().save_related(request, form, formsets, change)
 
 
-
-# admin.site.register(Order)
 admin.site.register(OrderItems)
 admin.site.register(StatusCrm)
 

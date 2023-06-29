@@ -13,9 +13,11 @@ from telebot.sendmessage import send_telegram
 def index(request):
     promos = PromoSlider.objects.all()
     services_category = ServiceCategory.objects.all()
+    form = OrderForm
     disc = {
         'promoslider': promos,
         'services_category': services_category,
+        'form': form,
     }
     return render(request, 'main/index.html', disc)
 

@@ -12,7 +12,7 @@
             <a href="tel:89053483831"> 8 905 348 3831</a>
         </div>
         <div class="col-3 text-center call-back">
-            <span type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">ЗАКАЗАТЬ ЗВОНОК</span>
+            <span type="button" data-bs-toggle="modal" data-bs-target="#headercallback">ЗАКАЗАТЬ ЗВОНОК</span>
         </div>
     </div>
     <div class="row second-row">
@@ -62,27 +62,7 @@
 
         </div>
     </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Как с Вами связаться?</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="{% url 'thanks' %}" method="POST">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <div class="modal-footer">
-                            {#                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>#}
-                            <button type="submit" class="btn btn-primary">Отправить заявку</button>
-                        </div>
-                    </form>
-                </div>
 
-            </div>
-        </div>
-    </div>
 
     {#    <div class="container-fluid d-flex justify-content-between">#}
     {#        <a class="navbar-brand" href="{% url 'index' %}">Ульяновск</a>#}
@@ -102,4 +82,25 @@
     {#        </div>#}
     {#    </div>#}
 </nav>
+<div class="modal fade" id="headercallback" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Как с Вами связаться?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'thanks' %}" method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="modal-footer">
+                        {#                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>#}
+                        <button type="submit" class="btn btn-primary">Отправить заявку</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
 

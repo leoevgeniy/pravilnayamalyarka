@@ -1,0 +1,16 @@
+{% extends "admin/base.html" %}
+{% load sass_tags %}
+{% load static %}
+
+
+{% block branding %}
+    <link rel="stylesheet" type="text/css" href="{% sass_src 'css/index.scss' %}">
+    <a href="{% url 'index' %}">
+        <div style="background-color: #fff;border-radius: 50%;">
+            <img class="" style="width: 70px; margin: 1rem 2rem;" src="{% static 'images/logo.svg' %}" alt="Logo">
+        </div>
+    </a>
+
+    <h1 style="margin-left: 50px; font-size: xxx-large; color: white; font-weight: bolder; line-height: 8rem">Правильная
+        Малярка</h1>
+{% endblock %}

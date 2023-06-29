@@ -343,9 +343,10 @@ a:hover {
 
 .third-row .cart {
   background: url("../images/cart.svg") no-repeat center center/contain;
-  width: 60px;
-  height: 60px;
-  transform: translate(-50%, -10%); }
+  width: 70px;
+  height: 70px;
+  transform: translate(-50%, -18%);
+  z-index: 1001; }
 
 @font-face {
   font-family: "Gotham Pro Medium";
@@ -354,6 +355,9 @@ a:hover {
 @font-face {
   font-family: "Gotham Pro Black";
   src: url("./fonts/GothamPro-Black.woff") format("woff"); }
+
+#header {
+  background-color: #1A4582; }
 
 body {
   background-color: white;
