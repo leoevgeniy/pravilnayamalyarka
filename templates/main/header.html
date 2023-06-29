@@ -1,23 +1,68 @@
 {#{% extends 'base.html' %}#}
+{% load static %}
 
 
-<nav class="navbar bg-body-tertiary">
-    <div class="container-fluid d-flex justify-content-between">
-        <a class="navbar-brand" href="{% url 'index' %}">Правильная Малярка</a>
-        <a class="navbar-brand" href="{% url 'goods' %}">Товары</a>
-        <a class="navbar-brand" href="{% url 'services' %}">Работы</a>
-        <div class="position-relative">
-            <a class="navbar-brand" href="{% url 'cart' %}">
-                <i class="bi bi-cart3">
-                          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-amount">
+<nav class="container-fluid flex-column ">
+    <div class="row d-flex justify-content-center first-row">
+        <div class="col-3 text-center uln">
+            <span class="align-self-center">Ульяновск</span>
+        </div>
+        <div class="col-6 d-flex justify-content-end phone">
+            <i class="bi bi-telephone-fill me-2"></i>
+            <a href="tel:89053483831"> 8 905 348 3831</a>
+        </div>
+        <div class="col-3 text-center call-back">
+            <span>ЗАКАЗАТЬ ЗВОНОК</span>
+        </div>
+    </div>
+    <div class="row second-row">
+        <div class="col-3">
+            <div class="logo-wrapper text-center">
+                <img class="w-75 my-2 object-fit-cover" src="{% static 'images/logo.svg' %}" alt="Logo">
+            </div>
+        </div>
+        <div class="col-9 px-0">
+            <div class="menu-img d-flex flex-column justify-content-center">
+                <span class="repair ms-4">РЕМОНТ</span>
+                <div class="menu-line"></div>
+                <span class="goods ms-4">ТОВАРЫ</span>
+                <span class="for-repair ms-4">ДЛЯ РЕМОНТА</span>
+            </div>
+        </div>
+    </div>
+    <div class="row third-row">
+        <div class="col-3">
+            <form class="d-flex" role="search">
+                <input class="form-control search-input" type="text" aria-label="Search">
+{#                <button class="btn btn-outline-success" type="submit">Search</button>#}
+                <i type="submit" class="bi bi-search search-loop"></i>
+            </form>
 
-                              <span class="visually-hidden">unread messages</span>
-                          </span>
+        </div>
+        <div class="col-6">
 
-                </i>
-            </a>
+        </div>
+        <div class="col-3">
 
         </div>
     </div>
+
+{#    <div class="container-fluid d-flex justify-content-between">#}
+{#        <a class="navbar-brand" href="{% url 'index' %}">Ульяновск</a>#}
+{#        <a class="navbar-brand" href="{% url 'goods' %}">Товары</a>#}
+{#        <a class="navbar-brand" href="{% url 'services' %}">Работы</a>#}
+{#        <div class="position-relative">#}
+{#            <a class="navbar-brand" href="{% url 'cart' %}">#}
+{#                <i class="bi bi-cart3">#}
+{#                          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-amount">#}
+{##}
+{#                              <span class="visually-hidden">unread messages</span>#}
+{#                          </span>#}
+{##}
+{#                </i>#}
+{#            </a>#}
+{##}
+{#        </div>#}
+{#    </div>#}
 </nav>
 

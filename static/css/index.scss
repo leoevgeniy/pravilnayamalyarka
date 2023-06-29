@@ -1,11 +1,22 @@
 @import "cart";
 @import "services_slider";
+@import "header";
 //@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
+
+@font-face {
+  font-family: "Gotham Pro Medium";
+  src: url("./fonts/GothamPro-Medium.woff") format('woff');
+}
+@font-face {
+  font-family: "Gotham Pro Black";
+  src: url("./fonts/GothamPro-Black.woff") format('woff');
+}
 body {
-  background-color: aqua;
+  background-color: white;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  //font-family: ;
 }
 
 #cart-btn {

@@ -1,0 +1,77 @@
+.first-row {
+  height: 2.5rem;
+  .uln, .call-back,  {
+    line-height: 2.5rem;
+    font-family: "Gotham Pro Medium", sans-serif;
+    font-size: 1rem;
+    height: 100%;
+    //font-size: 5.728px;
+    background-color: #1A4582;
+    color: white;
+    ;
+  }
+  .phone {
+    line-height: 2.5rem;
+    font-family: 'Gorham Pro Black', sans-serif;
+    font-weight: bold;
+    font-size: 1.5rem;
+    height: 100%;
+    color: #1A4582;
+    a {
+
+
+      color: #1A4582;
+    }
+  }
+}
+
+.menu-img {
+  background: url("../images/header-bg-image.jpg") no-repeat left center/ cover;
+  height: 100%;
+  .repair, .goods {
+    font-family: 'Gorham Pro Black', sans-serif;
+    font-weight: bold;
+    font-size: 2.5rem;
+    line-height: 2rem;
+    color: white;
+
+  }
+  .for-repair {
+    font-family: 'Gotham Pro Medium', sans-serif;
+    //font-weight: bold;
+    font-size: 1rem;
+    color: white;
+
+  }
+  .menu-line {
+    width: 10rem;
+    height: 2px;
+    background-color: #fff;
+    margin: 1rem 0 1rem 2rem;
+
+  }
+
+}
+.third-row {
+  .search-input[type=text]{
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    border: 1px solid #2d9fd9;
+    color: #a0d18c;
+    width: 250px;
+    height: 30px;
+    padding-left: 10px;
+  }
+  .search-input[type=text]:focus{
+    outline: none;
+    border: 1px solid #a0d18c;
+    color: #2d9fd9;
+  }
+  .search-loop {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+  }
+
+}
