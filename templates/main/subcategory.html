@@ -4,18 +4,19 @@
     <title>{{ subcategory }}</title>
 {% endblock %}
 {% block category %}
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="subcategory_menu navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 justify-content-between">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">
+                           aria-expanded="false" style="color: #1A4582">
+
                             КАТАЛОГ
                         </a>
                         <ul class="dropdown-menu">
                             {% for subcat in allsubcat %}
-                                <li><a class="dropdown-item"
+                                <li><a class="dropdown-item" style="color: #1A4582"
                                        href="{% url 'subcategory' category=category subcategory=subcat %}">{{ subcat }}</a>
                                 </li>
                             {% endfor %}
@@ -26,7 +27,7 @@
                             <li class="dropdown">
                                 <a class="nav-link dropdown-toggle position-relative" href="#" role="button"
                                    data-bs-toggle="dropdown"
-                                   aria-expanded="false">
+                                   aria-expanded="false" style="color: #1A4582">
                                     БРЭНД
                                     {% if vendor %}
                                         <i class="position-absolute vendor_close">
@@ -39,7 +40,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     {% for vendor in allbrend %}
-                                        <li><a class="dropdown-item"
+                                        <li><a class="dropdown-item" style="color: #1A4582"
                                                href="{% url 'subcategory' category=category subcategory=subcategory %}?vendor={{ vendor }}">{{ vendor }}</a>
                                         </li>
                                     {% endfor %}
@@ -58,7 +59,7 @@
 
                                        role="button"
                                        aria-expanded="false">
-                                        <i class="bi bi-sort-up"></i>
+                                        <i class="bi bi-sort-up" style="color: #1A4582"></i>
                                     </a>
                                 {% else %}
                                     <a class="nav-link"
@@ -69,7 +70,7 @@
                                             {% endif %}
                                        role="button"
                                        aria-expanded="false">
-                                        <i class="bi bi-sort-down"></i>
+                                        <i class="bi bi-sort-down" style="color: #1A4582"></i>
                                     </a>
 
                                 {% endif %}
@@ -85,27 +86,25 @@
     {% block card %}
         {% if products %}
             <div class="row">
-                <div class="col-0 col-md-2">
-
-                </div>
-                <div class="col-12 col-md-10">
+                <div class="col-12">
                     <h1>{% if subcategory %}{{ subcategory.name }}{% else %}Товары{% endif %}</h1>
                     <div class="row">
                         {% for product in products %}
                             <div class="item col-12 col-md-4 col-lg-3 mb-1 mb-sm-0 px-1">
                                 <div class="card">
-                                    {% if product.photo %}
-                                        <a href="{% url 'product_view' pk=product.vendor_code %}">
+                                    <a href="{% url 'product_view' pk=product.vendor_code %}">
+                                        {% if product.photo %}
+
                                             <img src="{{ product.photo_url }} "
                                                  class="card-img-top img-thumbnail" alt="{{ product.name }}"
                                                  style="height: 200px; object-fit: contain"
                                             >
-                                        </a>
-                                    {% else %}
-                                        <img src="{% static "images/no_image.svg" %}"
-                                             class="card-img-top img-responsive" alt="{{ product.name }}">
-                                    {% endif %}
-                                    <div class="card-body text-center" style="height: 200px">
+
+                                        {% else %}
+                                            <img src="{% static "images/no_image.svg" %}"
+                                                 class="card-img-top img-responsive" alt="{{ product.name }}">
+                                        {% endif %}
+                                        <div class="card-body text-center" style="height: 200px">
                                         <span class='fw-bold card-name d-inline-block text-start py-0 mb-0 fs-6'
                                               style="">
 
@@ -120,40 +119,42 @@
 
 
                                         </span>
-                                        <span itemProp="name"
-                                              class='card-name fw-bold text-dark mb-3'
-                                              style="   overflow: hidden;
+                                            <span itemProp="name"
+                                                  class='card-name fw-bold text-dark mb-3'
+                                                  style="   overflow: hidden;
                                                display: -webkit-box;
                                                -webkit-line-clamp: 3; /* number of lines to show */
                                                        line-clamp: 3;
                                                -webkit-box-orient: vertical;"
-                                        >{{ product.price }}</span>
+                                            >{{ product.price }}</span>
 
 
-                                        <div id="cart-wrap" class="text-center cart-qty-wrapper mb-3"
-                                             data-id="{{ product.vendor_code }}">
-                                            <button class="cart-minus" data-id="{{ product.vendor_code }}">-</button>
-                                            <i class="bi bi-basket"></i>
-                                            <span
-                                                    class="cart-qty"
-                                                    data-id="{{ product.vendor_code }}"
-                                            >0</span>
-                                            <button class="cart-plus"
-                                                    data-id="{{ product.vendor_code }}"
+                                            <div id="cart-wrap" class="text-center cart-qty-wrapper mb-3"
+                                                 data-id="{{ product.vendor_code }}">
+                                                <button class="cart-minus" data-id="{{ product.vendor_code }}">-
+                                                </button>
+                                                <i class="bi bi-basket"></i>
+                                                <span
+                                                        class="cart-qty"
+                                                        data-id="{{ product.vendor_code }}"
+                                                >0</span>
+                                                <button class="cart-plus"
+                                                        data-id="{{ product.vendor_code }}"
+                                                        data-name="{{ product.name }}"
+                                                        data-price="{{ product.price }}"
+                                                >+
+                                                </button>
+
+                                            </div>
+                                            <button
                                                     data-name="{{ product.name }}"
                                                     data-price="{{ product.price }}"
-                                            >+
+                                                    data-id="{{ product.vendor_code }}"
+                                                    class="add-to-cart-btn"
+                                            >В корзину
                                             </button>
-
                                         </div>
-                                        <button
-                                                data-name="{{ product.name }}"
-                                                data-price="{{ product.price }}"
-                                                data-id="{{ product.vendor_code }}"
-                                                class="add-to-cart-btn"
-                                        >В корзину
-                                        </button>
-                                    </div>
+                                    </a>
                                 </div>
                             </div>
                         {% endfor %}
