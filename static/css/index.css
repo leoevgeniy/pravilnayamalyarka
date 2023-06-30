@@ -326,11 +326,18 @@ a:hover {
     font-family: 'Gotham Pro Medium', sans-serif;
     font-size: 1rem;
     color: white; }
-  .menu-img .menu-line {
-    width: 10rem;
+  .menu-img .menu-line1 {
+    width: 4rem;
     height: 2px;
     background-color: #fff;
-    margin: 1rem 0 1rem 2rem; }
+    margin: 1rem 0 1rem 1.5rem; }
+  .menu-img .menu-line2 {
+    width: 4rem;
+    height: 2px;
+    background-color: #fff;
+    margin: 1rem 0 1rem 0; }
+  .menu-img .and {
+    color: white; }
 
 .third-row .search-input {
   border-radius: 20px; }
@@ -347,6 +354,14 @@ a:hover {
   height: 70px;
   transform: translate(-50%, -18%);
   z-index: 1001; }
+
+.service_index_line {
+  background-color: #1A4582; }
+
+.vendor_close {
+  width: 70px;
+  height: 70px;
+  transform: translate(-100%, -45%); }
 
 @font-face {
   font-family: "Gotham Pro Medium";

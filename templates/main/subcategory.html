@@ -4,16 +4,83 @@
     <title>{{ subcategory }}</title>
 {% endblock %}
 {% block category %}
-    {% if category and subcategory %}
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>
-                <li class="breadcrumb-item"><a href="{% url 'category' category=category %}">{{ category }}</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{ subcategory }}</li>
-            </ol>
-        </nav>
-    {% endif %}
-    <a href="{% url 'index' %}">Назад</a>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 justify-content-between">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            КАТАЛОГ
+                        </a>
+                        <ul class="dropdown-menu">
+                            {% for subcat in allsubcat %}
+                                <li><a class="dropdown-item"
+                                       href="{% url 'subcategory' category=category subcategory=subcat %}">{{ subcat }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li class="nav-item float-end">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="dropdown">
+                                <a class="nav-link dropdown-toggle position-relative" href="#" role="button"
+                                   data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                    БРЭНД
+                                    {% if vendor %}
+                                        <i class="position-absolute vendor_close">
+                                            <a href="{% url 'subcategory' category=category subcategory=subcategory %}"
+                                               class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">x
+                                            </a>
+                                        </i>
+
+                                    {% endif %}
+                                </a>
+                                <ul class="dropdown-menu">
+                                    {% for vendor in allbrend %}
+                                        <li><a class="dropdown-item"
+                                               href="{% url 'subcategory' category=category subcategory=subcategory %}?vendor={{ vendor }}">{{ vendor }}</a>
+                                        </li>
+                                    {% endfor %}
+
+
+                                </ul>
+                            </li>
+                            <li class="">
+                                {% if sortup %}
+                                    <a class="nav-link"
+                                            {% if vendor %}
+                                       href="{% url 'subcategory' category=category subcategory=subcategory %}?vendor={{ vendor }}"
+                                            {% else %}
+                                       href="{% url 'subcategory' category=category subcategory=subcategory %}"
+                                            {% endif %}
+
+                                       role="button"
+                                       aria-expanded="false">
+                                        <i class="bi bi-sort-up"></i>
+                                    </a>
+                                {% else %}
+                                    <a class="nav-link"
+                                            {% if vendor %}
+                                       href="{% url 'subcategory' category=category subcategory=subcategory %}?vendor={{ vendor }}&sortup=1"
+                                            {% else %}
+                                       href="{% url 'subcategory' category=category subcategory=subcategory %}?sortup=1"
+                                            {% endif %}
+                                       role="button"
+                                       aria-expanded="false">
+                                        <i class="bi bi-sort-down"></i>
+                                    </a>
+
+                                {% endif %}
+
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
     {% block card %}
         {% if products %}
@@ -22,18 +89,18 @@
 
                 </div>
                 <div class="col-12 col-md-10">
-                    <h1>{% if category %}{{ category.name }}{% else %}Товары{% endif %}</h1>
+                    <h1>{% if subcategory %}{{ subcategory.name }}{% else %}Товары{% endif %}</h1>
                     <div class="row">
                         {% for product in products %}
                             <div class="item col-12 col-md-4 col-lg-3 mb-1 mb-sm-0 px-1">
                                 <div class="card">
                                     {% if product.photo %}
-                                            <a href="{% url 'product_view' pk=product.vendor_code %}">
+                                        <a href="{% url 'product_view' pk=product.vendor_code %}">
                                             <img src="{{ product.photo_url }} "
                                                  class="card-img-top img-thumbnail" alt="{{ product.name }}"
                                                  style="height: 200px; object-fit: contain"
                                             >
-                                            </a>
+                                        </a>
                                     {% else %}
                                         <img src="{% static "images/no_image.svg" %}"
                                              class="card-img-top img-responsive" alt="{{ product.name }}">
@@ -53,18 +120,30 @@
 
 
                                         </span>
-                                        <div id="cart-wrap" class="text-center cart-qty-wrapper mb-3" data-id="{{ product.vendor_code }}">
+                                        <span itemProp="name"
+                                              class='card-name fw-bold text-dark mb-3'
+                                              style="   overflow: hidden;
+                                               display: -webkit-box;
+                                               -webkit-line-clamp: 3; /* number of lines to show */
+                                                       line-clamp: 3;
+                                               -webkit-box-orient: vertical;"
+                                        >{{ product.price }}</span>
+
+
+                                        <div id="cart-wrap" class="text-center cart-qty-wrapper mb-3"
+                                             data-id="{{ product.vendor_code }}">
                                             <button class="cart-minus" data-id="{{ product.vendor_code }}">-</button>
                                             <i class="bi bi-basket"></i>
                                             <span
-                                                  class="cart-qty"
-                                                  data-id="{{ product.vendor_code }}"
+                                                    class="cart-qty"
+                                                    data-id="{{ product.vendor_code }}"
                                             >0</span>
                                             <button class="cart-plus"
                                                     data-id="{{ product.vendor_code }}"
                                                     data-name="{{ product.name }}"
                                                     data-price="{{ product.price }}"
-                                            >+</button>
+                                            >+
+                                            </button>
 
                                         </div>
                                         <button
@@ -72,7 +151,8 @@
                                                 data-price="{{ product.price }}"
                                                 data-id="{{ product.vendor_code }}"
                                                 class="add-to-cart-btn"
-                                        >В корзину</button>
+                                        >В корзину
+                                        </button>
                                     </div>
                                 </div>
                             </div>

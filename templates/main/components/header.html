@@ -2,8 +2,8 @@
 {% load static %}
 
 
-<nav class="container-fluid flex-column ">
-    <div class="row d-flex justify-content-center first-row">
+<nav class="container flex-column ">
+    <div class="row container p-0 d-flex justify-content-center first-row w-100">
         <div class="col-3 text-center uln">
             <span class="align-self-center">Ульяновск</span>
         </div>
@@ -15,7 +15,7 @@
             <span type="button" data-bs-toggle="modal" data-bs-target="#headercallback">ЗАКАЗАТЬ ЗВОНОК</span>
         </div>
     </div>
-    <div class="row second-row">
+    <div class="row container p-0 second-row w-100">
         <div class="col-3">
             <div class="logo-wrapper text-center">
                 <a href="{% url 'index' %}">
@@ -26,13 +26,18 @@
         <div class="col-9 px-0">
             <div class="menu-img d-flex flex-column justify-content-center">
                 <span class="repair ms-4">РЕМОНТ</span>
-                <div class="menu-line"></div>
+                <div class="d-flex">
+                    <div class="menu-line1"></div>
+                    <span class="and fs-4 mx-3">и</span>
+                    <div class="menu-line2">
+                </div>
+                </div>
                 <span class="goods ms-4">ТОВАРЫ</span>
                 <span class="for-repair ms-4">ДЛЯ РЕМОНТА</span>
             </div>
         </div>
     </div>
-    <div class="row third-row">
+    <div class="row container p-0 third-row w-100">
         <div class="col-3 px-0">
             <div class="text-center mx-auto py-2 search-wrapper text-center position-relative">
                 <label>
@@ -47,7 +52,7 @@
         </div>
         <div class="col-6 d-flex justify-content-around">
             <a class="navbar-brand align-self-center" href="{% url 'services' %}">ВИДЫ РАБОТ</a>
-            <a class="navbar-brand align-self-center" href="{% url 'goods' %}">КАТАЛОГ ТОВАРОВ</a>
+            <a class="navbar-brand align-self-center to_goods" href="{% url 'index' %}#goods">КАТАЛОГ ТОВАРОВ</a>
             <a class="navbar-brand align-self-center" href="{% url 'index' %}">О КОМПАНИИ</a>
 
         </div>

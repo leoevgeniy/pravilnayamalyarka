@@ -3,7 +3,7 @@
 
 
 
-    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <div id="carouselExampleFade" class="w-100 carousel slide carousel-fade mb-3 " data-bs-ride="carousel">
         <ol class="carousel-indicators">
             {% for slide in promoslider %}
                 {% if forloop.first %}
@@ -27,7 +27,7 @@
                     </div>
                 {% else %}
                     <div class="carousel-item"  data-bs-interval="4000">
-                        <img src="{% if slide.photo %}{{ slide.photo.url }}{% else %}{% static 'images/no_image.svg' %}{% endif %}" class="d-block w-100 object-fit-cover"  style="height: 300px"alt="{{ slide.name }}">
+                        <img src="{% if slide.photo %}{{ slide.photo.url }}{% else %}{% static 'images/no_image.svg' %}{% endif %}" class="d-block w-100 object-fit-cover"  style="height: 300px" alt="{{ slide.name }}">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>{{ slide.name }}</h5>
                             {#                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>#}

@@ -26,10 +26,16 @@ class SubCategory(models.Model):
                                  verbose_name='Категория')
     name = models.CharField(max_length=256, verbose_name="Подкатегория")
     description = models.TextField(null=True, blank=True, verbose_name='Описание Подкатегории')
+    photo = models.ImageField(upload_to="images/service_category", verbose_name="Фото", null=True, blank=True)
     # slug = models.SlugField(max_length=150, unique=True)
 
     def __str__(self):
         return self.name
+
+    @property
+    def photo_url(self):
+        if self.photo and hasattr(self.photo, 'url'):
+            return self.photo.url
 
     class Meta:
         ordering= ('name',)

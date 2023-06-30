@@ -1,0 +1,41 @@
+{% load static %}
+    <div id="goods" class="container px-0 py-3 d-table-row collapse w-100">
+        <span   class="fs-2 pe-3 d-table-cell text-nowrap"
+                style="font-family: 'Gotham Pro Medium',sans-serif;
+                color: #1A4582;
+            ">ТОВАРЫ ДЛЯ РЕМОНТА</span>
+        <div class="service_index_line p-0 d-table-cell h-100 w-100"></div>
+    </div>
+    <div class="w-100 my-3 row container px-0 justify-content-around">
+        {% for subcategory in subcategories %}
+            <a href="{% url 'subcategory' category=subcategory.category subcategory=subcategory%}" class="d-flex flex-column p-1" style="width: 20%">
+                {% if subcategory.photo %}
+                        <img src="{{ subcategory.photo_url }} "
+                             class="card-img-top img-thumbnail rounded-4 p-0" alt="{{ service.name }}"
+                             style="height: 150px; object-fit: cover; border-color: #1A4582; border-width: medium"
+                        >
+                {% else %}
+                    <img src="{% static "images/no_image.svg" %}"
+                         class="card-img-top img-responsive" alt="{{ subcategory.name }}">
+                {% endif %}
+                <div class="d-flex card-body text-center justify-content-center align-content-center"  style="background-color: #E6E6E6;">
+                        <span itemProp="name"
+                              class='card-name fw-bold text-dark mb-3 text-center'
+                              style="   overflow: hidden;
+                               display: -webkit-box;
+                               -webkit-line-clamp: 3; /* number of lines to show */
+                                       line-clamp: 3;
+                               -webkit-box-orient: vertical;
+                                font-family: 'Gotham Pro Light',sans-serif;
+                                text-transform: uppercase;
+                                font-size: larger;
+                                align-self: center;
+
+
+                        ">{{ subcategory.name }}</span>
+                </div>
+            </a>
+
+
+        {% endfor %}
+    </div>

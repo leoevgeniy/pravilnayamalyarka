@@ -43,12 +43,22 @@
     color: white;
 
   }
-  .menu-line {
-    width: 10rem;
+  .menu-line1 {
+    width: 4rem;
     height: 2px;
     background-color: #fff;
-    margin: 1rem 0 1rem 2rem;
+    margin: 1rem 0 1rem 1.5rem;
 
+  }
+  .menu-line2 {
+    width: 4rem;
+    height: 2px;
+    background-color: #fff;
+    margin: 1rem 0 1rem 0;
+
+  }
+  .and {
+    color: white;
   }
 
 }

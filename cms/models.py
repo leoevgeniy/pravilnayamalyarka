@@ -80,7 +80,7 @@ class Product(models.Model):
     price = models.DecimalField(decimal_places=0, max_digits=10, verbose_name='Цена', null=True, blank=True)
     rrc = models.DecimalField(decimal_places=0, max_digits=10, verbose_name='РРЦ', null=True, blank=True)
     availability = models.CharField(max_length=256, verbose_name='Наличие', null=True, blank=True)
-    pack = models.ImageField()
+    pack = models.ImageField(null=True, blank=True)
     # slug = models.SlugField(max_length=200, db_index=True)
     oldprice = models.DecimalField(decimal_places=0, max_digits=10, verbose_name='Старая цена', null=True, blank=True)
 
@@ -110,6 +110,10 @@ class WorkPhoto(models.Model):
 
     # def __str__(self):
     #     return self.name
+    @property
+    def photo_url(self):
+        if self.photo and hasattr(self.photo, 'url'):
+            return self.photo.url
 
     class Meta:
         verbose_name = 'Фото работ'

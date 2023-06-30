@@ -1,6 +1,8 @@
 @import "cart";
 @import "services_slider";
 @import "header";
+@import "service_index";
+@import "subcategory";
 //@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
 
 @font-face {
@@ -11,6 +13,15 @@
   font-family: "Gotham Pro Black";
   src: url("./fonts/GothamPro-Black.woff") format('woff');
 }
+
+$grid-breakpoints: (
+        xs: 0,
+        ss: 320px,
+        sm: 480px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px
+);
 
 #header {
   background-color: #1A4582;

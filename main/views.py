@@ -1,20 +1,37 @@
 from django.shortcuts import render
-
+from datetime import date
 from cms.forms import UploadFileForm
-from cms.models import Product, Service, PromoSlider
+from cms.models import Product, Service, PromoSlider, WorkPhoto
 from crm.models import Order, StatusCrm
 from .models import Category, SubCategory, ServiceCategory
 from crm.forms import OrderForm
 from telebot.sendmessage import send_telegram
-
-
+from PIL import Image
+from pravilnayamalyarka.settings import BASE_DIR
 # Create your views here.
 
 def index(request):
-    promos = PromoSlider.objects.all()
+    today = date.today()
+    promos = PromoSlider.objects.filter(start_date__lte=today).filter(expiration_date__gte=today)
     services_category = ServiceCategory.objects.all()
+    work = WorkPhoto.objects.all()
+    work_landscape = []
+    work_portrate = []
+    for w in work:
+        with Image.open(BASE_DIR + w.photo_url) as img:
+            width, height = img.size
+            if width/height >= 1.77 and len(work_landscape) < 11:
+                work_landscape.append(w)
+            elif width/height < 1 and len(work_portrate) < 11:
+                work_portrate.append(w)
+    categories = Category.objects.all()
+    subcategories = SubCategory.objects.all()
     form = OrderForm
     disc = {
+        'work_landscape': work_landscape,
+        'work_portrate': work_portrate,
+        'categories': categories,
+        'subcategories': subcategories,
         'promoslider': promos,
         'services_category': services_category,
         'form': form,
@@ -70,14 +87,38 @@ def category(request, category):
     return render(request, 'main/category.html', dict)
 
 
-def subcategory(request, category, subcategory):
+def subcategory(request, category, subcategory, *args):
+    vendor = ''
+    sortup = ''
+    sortdown = ''
+    if request.GET.get('vendor') is not None:
+        vendor = (request.GET.get('vendor'))
+    if request.GET.get('sortup') is not None:
+        sortup = (request.GET.get('sortup'))
+    if request.GET.get('sortdown') is not None:
+        sortdown = (request.GET.get('sortdown'))
+
     category = Category.objects.get(name=category)
     subCategory = SubCategory.objects.get(name=subcategory)
-    products = Product.objects.filter(subcategory=subCategory)
+    if sortup:
+        products = Product.objects.filter(subcategory=subCategory).filter(vendor__name__icontains=vendor).order_by('price')
+    else:
+        products = Product.objects.filter(subcategory=subCategory).filter(vendor__name__icontains=vendor).order_by('-price')
+
+    allsubcat = SubCategory.objects.all()
+    allbrend = []
+    for product in Product.objects.filter(subcategory=subCategory):
+        if product.vendor not in allbrend:
+            allbrend.append(product.vendor)
     dict = {
+        'sortup': sortup,
+        'sortdown': sortdown,
+        'vendor': vendor,
+        'allbrend': allbrend,
         'category': category,
         'subcategory': subCategory,
         'products': products,
+        'allsubcat': allsubcat,
     }
     return render(request, 'main/subcategory.html', dict)
 

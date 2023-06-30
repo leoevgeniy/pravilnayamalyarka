@@ -1,0 +1,46 @@
+{% load static %}
+    <div class="container px-0 py-3 d-table-row collapse w-100">
+        <span   class="fs-2 pe-3 d-table-cell text-nowrap"
+                style="font-family: 'Gotham Pro Medium',sans-serif;
+                color: #1A4582;
+            ">РЕМОНТНЫЕ РАБОТЫ</span>
+        <div class="service_index_line p-0 d-table-cell w-100 my-3"></div>
+    </div>
+    <div class="w-100 my-3 row container px-0 justify-content-around">
+        {% for service in services_category %}
+            <a href="{% url 'index' %}" class="d-flex flex-column p-1" style="width: 20%">
+
+                {% if service.photo %}
+                        <img src="{{ service.photo_url }} "
+                             class="card-img-top img-thumbnail rounded-4 p-0" alt="{{ service.name }}"
+                             style="height: 150px; object-fit: cover; border-color: #1A4582; border-width: medium"
+                        >
+                {% else %}
+                    <img src="{% static "images/no_image.svg" %}"
+                         class="card-img-top img-responsive" alt="{{ product.name }}">
+                {% endif %}
+                <div class="d-flex card-body text-center justify-content-center align-content-center" style="background-color: #E6E6E6;">
+{#                    <span class='fw-bold card-name d-inline-block text-start py-0 mb-0 fs-6'#}
+{#                          style="">#}
+                        <span itemProp="name"
+                              class='card-name fw-bold text-dark text-center'
+                              style="   overflow: hidden;
+                               display: -webkit-box;
+                               -webkit-line-clamp: 3; /* number of lines to show */
+                                       line-clamp: 3;
+                               -webkit-box-orient: vertical;
+                               align-self: center;
+                                font-family: 'Gotham Pro Light',sans-serif;
+                                text-transform: uppercase;
+                                font-size: large;
+
+
+                        ">{{ service.name }}</span>
+
+{#                    </span>#}
+                </div>
+            </a>
+
+
+        {% endfor %}
+    </div>

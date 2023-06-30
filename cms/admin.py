@@ -4,7 +4,7 @@ from django.urls import path
 from django.utils.safestring import mark_safe
 # from import_export.admin import ImportExportActionModelAdmin
 from import_export import resources
-from .models import Product, WorkPhoto, Service, PromoSlider
+from .models import Product, WorkPhoto, Service, PromoSlider, Vendor
 from cms.forms import UploadFileForm
 
 
@@ -103,3 +103,10 @@ class PromoSliderAdm(admin.ModelAdmin):
             return mark_safe(f'<img src="{obj.photo.url}" width="80px"')
         except:
             return mark_safe(f'<img src="" width="80px"')
+
+@admin.register(Vendor)
+class VendorAdm(admin.ModelAdmin):
+    list_display = ('name', )
+    list_per_page = 20
+    list_max_show_all = 100
+    # list_editable = ('name', )
