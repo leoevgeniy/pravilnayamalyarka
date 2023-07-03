@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from datetime import date
-from cms.forms import UploadFileForm
+from cms.forms import UploadFileForm, SearchForm
 from cms.models import Product, Service, PromoSlider, WorkPhoto
 from crm.models import Order, StatusCrm
 from .models import Category, SubCategory, ServiceCategory
@@ -27,6 +27,7 @@ def index(request):
     categories = Category.objects.all()
     subcategories = SubCategory.objects.all()
     form = OrderForm
+    searchform = SearchForm
     disc = {
         'work_landscape': work_landscape,
         'work_portrate': work_portrate,
@@ -35,6 +36,7 @@ def index(request):
         'promoslider': promos,
         'services_category': services_category,
         'form': form,
+        'searchform': searchform,
     }
     return render(request, 'main/index.html', disc)
 
@@ -44,6 +46,7 @@ def goods(request):
     categories = Category.objects.all()
     form = OrderForm
     up = UploadFileForm
+    searchform = SearchForm
     for category in categories:
         subCategory = SubCategory.objects.filter(category=category)
         subcat = []
@@ -51,6 +54,7 @@ def goods(request):
             subcat.append(sub.name)
         catalog.update({category.name: subcat})
     dict = {
+        'searchform': searchform,
         'catalog': catalog,
         'form': form,
         'up': up,
@@ -62,6 +66,7 @@ def goods(request):
 def services(request):
     catalog = {}
     categories = ServiceCategory.objects.all()
+    searchform = SearchForm
     # form = OrderForm
     # up = UploadFileForm
     for category in categories:
@@ -71,6 +76,7 @@ def services(request):
             currentservices.append(ser)
         catalog.update({category.name: currentservices})
     dict = {
+        'searchform': searchform,
         'catalog': catalog,
     }
 
@@ -80,7 +86,13 @@ def services(request):
 def category(request, category):
     category = Category.objects.get(name=category)
     subCategory = SubCategory.objects.filter(category=category)
+    searchform = SearchForm
+    allcategory = Category.objects.all()
+    allsubcategory = SubCategory.objects.all()
     dict = {
+        'allcategory': allcategory,
+        'allsubcategory': allsubcategory,
+        'searchform': searchform,
         'category': category,
         'subcategory': subCategory
     }
@@ -98,19 +110,25 @@ def subcategory(request, category, subcategory, *args):
     if request.GET.get('sortdown') is not None:
         sortdown = (request.GET.get('sortdown'))
 
+    allcategory = Category.objects.all()
+    allsubcategory = SubCategory.objects.all()
+
     category = Category.objects.get(name=category)
     subCategory = SubCategory.objects.get(name=subcategory)
-    if sortup:
-        products = Product.objects.filter(subcategory=subCategory).filter(vendor__name__icontains=vendor).order_by('price')
-    else:
-        products = Product.objects.filter(subcategory=subCategory).filter(vendor__name__icontains=vendor).order_by('-price')
-
-    allsubcat = SubCategory.objects.all()
+    searchform = SearchForm
+    # if sortup:
+    products = Product.objects.filter(subcategory=subCategory).filter(vendor__name__icontains=vendor)
+    # products['weight'] = []
+    # else:
+    #     products = Product.objects.filter(subcategory=subCategory).filter(vendor__name__icontains=vendor).order_by('-price')
+    # for product in products:
+        # print(product.packprice)
     allbrend = []
     for product in Product.objects.filter(subcategory=subCategory):
         if product.vendor not in allbrend:
             allbrend.append(product.vendor)
     dict = {
+        'searchform': searchform,
         'sortup': sortup,
         'sortdown': sortdown,
         'vendor': vendor,
@@ -118,16 +136,18 @@ def subcategory(request, category, subcategory, *args):
         'category': category,
         'subcategory': subCategory,
         'products': products,
-        'allsubcat': allsubcat,
+        'allcategory': allcategory,
+        'allsubcategory': allsubcategory,
     }
     return render(request, 'main/subcategory.html', dict)
 
 
 def thanks_page(request):
+    searchform = SearchForm
     name = request.POST['name']
     phone = request.POST['phone']
     status = StatusCrm.objects.get(status_name__exact='Новая')
     element = Order(order_name=name, order_phone=phone, order_type='Заказ обратного звонка', order_status=status)
     element.save()
     send_telegram(name, phone)
-    return render(request, 'main/thanks_page.html', {'name': name})
+    return render(request, 'main/thanks_page.html', {'name': name, 'searchform': searchform})

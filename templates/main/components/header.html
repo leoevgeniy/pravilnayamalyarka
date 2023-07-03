@@ -19,7 +19,7 @@
         <div class="col-3">
             <div class="logo-wrapper text-center">
                 <a href="{% url 'index' %}">
-                <img class="w-75 my-2 object-fit-cover" src="{% static 'images/logo.svg' %}" alt="Logo">
+                    <img class="w-75 my-2 object-fit-cover" src="{% static 'images/logo.svg' %}" alt="Logo">
                 </a>
             </div>
         </div>
@@ -30,7 +30,7 @@
                     <div class="menu-line1"></div>
                     <span class="and fs-4 mx-3">и</span>
                     <div class="menu-line2">
-                </div>
+                    </div>
                 </div>
                 <span class="goods ms-4">ТОВАРЫ</span>
                 <span class="for-repair ms-4">ДЛЯ РЕМОНТА</span>
@@ -39,15 +39,21 @@
     </div>
     <div class="row container p-0 third-row w-100">
         <div class="col-3 px-0">
-            <div class="text-center mx-auto py-2 search-wrapper text-center position-relative">
-                <label>
-                    <input type="search" class="search-input">
-                </label>
-                <span type='submit' class='position-absolute'
-                      style="top: 30%; right: 20%; font-size: 13px">
-                    <i class="bi bi-search"></i>
-                </span>
-            </div>
+            <form action="{% url 'search' %}"
+                  class="text-center mx-auto py-2 search-wrapper text-center position-relative" method='POST'>
+                {% csrf_token %}
+                {{ searchform.as_div }}
+                {#                <div type='submit' class='position-absolute'#}
+                {#                      style="top: 30%; right: 20%; font-size: 13px">#}
+                <button type='submit' class='bi bi-search position-absolute'
+                        style="top: 30%; right: 20%; font-size: 13px;      background: none;
+                        border: none;
+                        padding: 0;">
+
+                </button>
+                {#                <input type="submit" class='bi bi-search position-absolute' style="top: 30%; right: 20%; font-size: 13px">#}
+                {#                </div>#}
+            </form>
 
         </div>
         <div class="col-6 d-flex justify-content-around">

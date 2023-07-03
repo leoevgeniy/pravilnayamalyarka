@@ -1,14 +1,14 @@
 import os
 
 import xlrd
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 import openpyxl
 from openpyxl_image_loader import SheetImageLoader
 
 # Create your views here.
-from cms.forms import UploadFileForm
-from cms.models import WorkPhoto, Product, Service, Vendor
+from cms.forms import UploadFileForm, SearchForm
+from cms.models import WorkPhoto, Product, Service, Vendor, Packprice
 from main.models import SubCategory, Category, ServiceCategory
 from pravilnayamalyarka.settings import BASE_DIR, MEDIA_ROOT
 
@@ -70,7 +70,7 @@ def productsimport(request):
                     rows.append(line)
                     # print(worksheet.cell(row, 0).value, line.keys())
                     if Product.objects.filter(vendor_code=params[0]).exists():
-                        product = Product.objects.get(vendor_code=str(params[0]))
+                        product = Product.objects.get(vendor_code=int(params[0]))
                         image.save(MEDIA_ROOT + '/images/' + str(params[0]) + '.png', format='png')
                     else:
                         image.save(MEDIA_ROOT + '/images/' + str(params[0]) + '.png', format='png')
@@ -89,13 +89,18 @@ def productsimport(request):
                                 description=str(params[3]),
                                 vendor=vendor,
                                 vendor_code=int(params[0]),
-                                price=int(params[4]),
                                 rrc=int(params[5]),
                                 availability=str(params[6]),
                                 pack=str(params[7])
-
                             )
-                # if Product.objects.get(vendor_code=)
+                            pack = Packprice.objects.create(
+                                product=product,
+                                weight=1,
+                                price=int(params[5]),
+                                oldprice=int(params[5])*1.2
+                            )
+
+            # if Product.objects.get(vendor_code=)
 
         return HttpResponseRedirect('/admin/')
 
@@ -143,3 +148,29 @@ def services_import(request):
                 # if Product.objects.get(vendor_code=)
 
         return HttpResponseRedirect('/admin/')
+
+
+def search(request):
+    searchform = SearchForm
+    services_category = []
+    products_category = []
+    services = []
+    products = []
+    if request.POST['text']:
+        keyword = request.POST['text']
+        services = Service.objects.filter(name__icontains=keyword)
+        products = Product.objects.filter(name__icontains=keyword)
+        for service in services:
+            if service.service_category not in services_category:
+                services_category.append(service.service_category)
+        for product in products:
+            if product.category not in products_category:
+                products_category.append(product.category)
+    dict = {
+        'searchform': searchform,
+        'services_category': services_category,
+        'products_category': products_category,
+        'services': services,
+        'products': products,
+    }
+    return render(request, 'main/search.html', dict)

@@ -1,22 +1,119 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block page-title %}
     <title>{{ category }}</title>
 {% endblock %}
 {% block category %}
-    {% if category %}
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ category }}</li>
-        </ol>
+    <nav class="subcategory_menu navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 justify-content-between">
+                    <li class="btn-secondary nav-link dropdown-toggle"
+                       data-bs-toggle="dropdown"
+                       data-bs-auto-close="outside"
+                       aria-expanded="false" style="color: #1A4582">
+
+                        КАТАЛОГ
+                    </li>
+                    <ul class="dropdown-menu " style="width: 300px">
+                        <li class="accordion dropdown-item accordion-flush" id="catalogaccordion">
+                            {% for cat in allcategory %}
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#section-{{ forloop.counter0 }}"
+                                                aria-expanded="false"
+                                                aria-controls="section-{{ forloop.counter0 }}"
+                                                style="color: #1A4582; background-color: #E6E6E6;">
+                                            {{ cat }}
+                                        </button>
+
+                                    </h2>
+                                    {% for subcat in allsubcategory %}
+                                        {% if subcat.category == cat %}
+                                            <div id="section-{{ forloop.parentloop.counter0 }}"
+                                                 class="accordion-collapse collapse"
+                                                 aria-labelledby="headingOne" data-bs-parent="#catalogaccordion">
+                                                <div class="accordion-body">
+                                                    <a class="dropdown-item" style="color: #1A4582"
+                                                       href="{% url 'subcategory' category=category subcategory=subcat %}">{{ subcat }}</a>
+
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            {% endfor %}
+
+                        </li>
+
+
+                    </ul>
+                </ul>
+            </div>
+        </div>
     </nav>
-    {% endif %}
-    <div class="jumbotron">
-        <ul>
+    {% if category %}
+        <div id="goods" class="container px-0 py-3 d-table-row collapse w-100">
+            <span class="fs-2 pe-3 d-table-cell text-nowrap"
+                  style="font-family: 'Gotham Pro Medium',sans-serif;
+                color: #1A4582;
+            ">{{ category }}</span>
+            <div class="service_index_line p-0 d-table-cell h-100 w-100"></div>
+        </div>
+        <div class="row">
+        </div>
+        <div class="w-100 my-3 row container px-0 justify-content-around">
+
             {% for subcat in subcategory %}
-                <a href="{% url 'subcategory' category=category subcategory=subcat %}">{{ subcat.name }}</a><br/>
+                <a href="{% url 'subcategory' category=category subcategory=subcat %}" class="d-flex flex-column p-1"
+                   style="width: 20%">
+                    {% if subcat.photo %}
+                        <img src="{{ subcat.photo_url }} "
+                             class="card-img-top img-thumbnail rounded-4 p-0" alt="{{ service.name }}"
+                             style="height: 150px; object-fit: cover; border-color: #1A4582; border-width: medium"
+                        >
+                    {% else %}
+                        <img src="{% static "images/no_image.svg" %}"
+                             class="card-img-top img-responsive" alt="{{ subcat.name }}">
+                    {% endif %}
+                    <div class="d-flex card-body text-center justify-content-center align-content-center"
+                         style="background-color: #E6E6E6;">
+                        <span itemProp="name"
+                              class='card-name fw-bold text-dark mb-3 text-center'
+                              style="   overflow: hidden;
+                               display: -webkit-box;
+                               -webkit-line-clamp: 3; /* number of lines to show */
+                                       line-clamp: 3;
+                               -webkit-box-orient: vertical;
+                                font-family: 'Gotham Pro Light',sans-serif;
+                                text-transform: uppercase;
+                                font-size: larger;
+                                align-self: center;
+
+
+                        ">{{ subcat.name }}</span>
+                    </div>
+                </a>
+
+
             {% endfor %}
-        </ul>
-    </div>
-    <a href="{% url 'index' %}">Назад</a>
+        </div>
+
+        {#    <nav aria-label="breadcrumb">#}
+        {#        <ol class="breadcrumb">#}
+        {#            <li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>#}
+        {#            <li class="breadcrumb-item active" aria-current="page">{{ category }}</li>#}
+        {#        </ol>#}
+        {#    </nav>#}
+    {% endif %}
+    {#    <div class="jumbotron">#}
+    {#        <ul>#}
+    {#            {% for subcat in subcategory %}#}
+    {#                <a href="{% url 'subcategory' category=category subcategory=subcat %}">{{ subcat.name }}</a><br/>#}
+    {#            {% endfor %}#}
+    {#        </ul>#}
+    {#    </div>#}
+{#    <a href="{% url 'index' %}">Назад</a>#}
 {% endblock %}

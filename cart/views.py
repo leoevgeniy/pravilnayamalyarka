@@ -4,12 +4,14 @@ import json
 # from networkx.generators.tests.test_small import null
 
 from cart.forms import OrderConfirmForm
+from cms.forms import SearchForm
 from cms.models import Product
 from crm.models import Order, OrderItems, StatusCrm
 from telebot.sendmessage import send_telegram
 
 
 def cart(request):
+    searchform = SearchForm
     try:
         data = json.loads(request.COOKIES.get('cart'))
     except:
@@ -23,7 +25,7 @@ def cart(request):
         except:
             pass
     form = OrderConfirmForm
-    return render(request, 'main/cart.html', {'products': ids, 'form': form})
+    return render(request, 'main/cart.html', {'products': ids, 'form': form, 'searchform': searchform})
 
 
 def orderCreate(request):

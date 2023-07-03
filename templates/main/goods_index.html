@@ -7,16 +7,16 @@
         <div class="service_index_line p-0 d-table-cell h-100 w-100"></div>
     </div>
     <div class="w-100 my-3 row container px-0 justify-content-around">
-        {% for subcategory in subcategories %}
-            <a href="{% url 'subcategory' category=subcategory.category subcategory=subcategory%}" class="d-flex flex-column p-1" style="width: 20%">
-                {% if subcategory.photo %}
-                        <img src="{{ subcategory.photo_url }} "
+        {% for category in categories %}
+            <a href="{% url 'category' category=category%}" class="d-flex flex-column p-1" style="width: 20%">
+                {% if category.photo %}
+                        <img src="{{ category.photo_url }} "
                              class="card-img-top img-thumbnail rounded-4 p-0" alt="{{ service.name }}"
                              style="height: 150px; object-fit: cover; border-color: #1A4582; border-width: medium"
                         >
                 {% else %}
                     <img src="{% static "images/no_image.svg" %}"
-                         class="card-img-top img-responsive" alt="{{ subcategory.name }}">
+                         class="card-img-top img-responsive" alt="{{ category.name }}">
                 {% endif %}
                 <div class="d-flex card-body text-center justify-content-center align-content-center"  style="background-color: #E6E6E6;">
                         <span itemProp="name"
@@ -32,7 +32,7 @@
                                 align-self: center;
 
 
-                        ">{{ subcategory.name }}</span>
+                        ">{{ category.name }}</span>
                 </div>
             </a>
 

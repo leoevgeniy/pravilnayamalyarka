@@ -4,7 +4,7 @@ from django.urls import path
 from django.utils.safestring import mark_safe
 # from import_export.admin import ImportExportActionModelAdmin
 from import_export import resources
-from .models import Product, WorkPhoto, Service, PromoSlider, Vendor
+from .models import Product, WorkPhoto, Service, PromoSlider, Vendor, Packprice
 from cms.forms import UploadFileForm
 
 
@@ -39,14 +39,27 @@ def upload_services(request):
     return render(request, "admin/upload_services_form.html", {'form': form})
 
 
+class PackPriceAdm(admin.TabularInline):
+    # list_display = ('weight', 'price', 'oldprice', )
+    model = Packprice
+    extra = 0
+    fields = ('weight', 'price', 'oldprice',)
+    # readonly_fields = ('comment_dt', 'comment_owner',)
+
+
 class ProductAdm(admin.ModelAdmin):
     # change_list_template = 'admin/cms/product/change_list.html'
-    list_display = ('get_img', 'name', 'vendor', 'price', 'oldprice', 'category', 'subcategory')
-    list_editable = ('price', 'oldprice', 'category', 'subcategory',)
+    list_display = ('get_img', 'name', 'vendor', 'category', 'subcategory')
+    list_editable = ('category', 'subcategory',)
     list_filter = ('vendor', 'category', 'subcategory',)
     list_per_page = 20
     list_max_show_all = 100
 
+    inlines = [
+        PackPriceAdm,
+
+
+    ]
     def get_img(self, obj):
         try:
             return mark_safe(f'<img src="{obj.photo.url}" width="80px"')
@@ -110,3 +123,4 @@ class VendorAdm(admin.ModelAdmin):
     list_per_page = 20
     list_max_show_all = 100
     # list_editable = ('name', )
+

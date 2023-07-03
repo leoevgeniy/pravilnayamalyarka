@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page-title %}
+    <title>{{ category }}</title>
+{% endblock %}
+{% block search %}
+    <nav class="subcategory_menu navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 justify-content-between">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false" style="color: #1A4582">
+
+                            КАТАЛОГ
+                        </a>
+                        <ul class="dropdown-menu">
+                            {% for subcat in allsubcat %}
+                                <li><a class="dropdown-item" style="color: #1A4582"
+                                       href="{% url 'subcategory' category=category subcategory=subcat %}">{{ subcat }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% if services_category %}
+        <table class="table table-striped-columns my-3">
+            <thead>
+            <tr>
+                <th scope="col">
+                    Наименование работ/материала
+                </th>
+                <th scope="col">
+                    Единица измерения
+                </th>
+                <th scope="col">
+                    Цена за единицу
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for cat in services_category %}
+                <tr>
+                    <th colspan="3" class="text-center">{{ cat }}</th>
+                </tr>
+                {% for item in services %}
+                    {% if item.service_category == cat %}
+                        <tr>
+                            <th>{{ item.name }}</th>
+                            <th>{{ item.service_pc }}</th>
+                            <th>{{ item.service_price }}</th>
+                        </tr>
+
+                    {% endif %}
+                {% endfor %}
+
+
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+    {% if products_category %}
+        {% for cat in products_category %}
+            <div id="goods" class="container px-0 py-3 my-3 d-table-row collapse w-100">
+            <span class="fs-2 pe-3 d-table-cell text-nowrap"
+                  style="font-family: 'Gotham Pro Medium',sans-serif;
+                color: #1A4582;
+            ">{{ cat }}</span>
+                <div class="service_index_line p-0 d-table-cell h-100 w-100"></div>
+            </div>
+            <div class="row mt-3">
+            {% for product in products %}
+                {% if product.category == cat %}
+                    <div class="item col-12 col-md-4 col-lg-3 mb-1 mb-sm-0 px-1">
+                        <div class="card">
+                            <a href="{% url 'product_view' pk=product.vendor_code %}">
+                                {% if product.photo %}
+
+                                    <img src="{{ product.photo_url }} "
+                                         class="card-img-top img-thumbnail" alt="{{ product.name }}"
+                                         style="height: 200px; object-fit: contain"
+                                    >
+
+                                {% else %}
+                                    <img src="{% static "images/no_image.svg" %}"
+                                         class="card-img-top img-responsive" alt="{{ product.name }}">
+                                {% endif %}
+                                <div class="card-body text-center" style="height: 200px">
+                                        <span class='fw-bold card-name d-inline-block text-start py-0 mb-0 fs-6'
+                                              style="">
+
+                                        <span itemProp="name"
+                                              class='card-name fw-bold text-dark mb-3'
+                                              style="   overflow: hidden;
+                                               display: -webkit-box;
+                                               -webkit-line-clamp: 3; /* number of lines to show */
+                                                       line-clamp: 3;
+                                               -webkit-box-orient: vertical;"
+                                        >{{ product.name }}</span>
+
+
+                                        </span>
+                                    <span itemProp="name"
+                                          class='card-name fw-bold text-dark mb-3'
+                                          style="   overflow: hidden;
+                                               display: -webkit-box;
+                                               -webkit-line-clamp: 3; /* number of lines to show */
+                                                       line-clamp: 3;
+                                               -webkit-box-orient: vertical;"
+                                    >{{ product.price }}</span>
+
+
+                                    <div id="cart-wrap" class="text-center cart-qty-wrapper mb-3"
+                                         data-id="{{ product.vendor_code }}">
+                                        <button class="cart-minus" data-id="{{ product.vendor_code }}">-
+                                        </button>
+                                        <i class="bi bi-basket"></i>
+                                        <span
+                                                class="cart-qty"
+                                                data-id="{{ product.vendor_code }}"
+                                        >0</span>
+                                        <button class="cart-plus"
+                                                data-id="{{ product.vendor_code }}"
+                                                data-name="{{ product.name }}"
+                                                data-price="{{ product.price }}"
+                                        >+
+                                        </button>
+
+                                    </div>
+                                    <button
+                                            data-name="{{ product.name }}"
+                                            data-price="{{ product.price }}"
+                                            data-id="{{ product.vendor_code }}"
+                                            class="add-to-cart-btn"
+                                    >В корзину
+                                    </button>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                {% endif %}
+            {% endfor %}
+            </div>
+        {% endfor %}
+
+    {% endif %}
+    {% if not services_category and not products_category %}
+        <div class="text-center">По Вашему запросу ничего не нашлось.</div>
+    {% endif %}
+    <a href="{% url 'index' %}">Назад</a>
+{% endblock %}

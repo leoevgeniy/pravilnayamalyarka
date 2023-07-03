@@ -1,6 +1,11 @@
-from django.forms import forms
+from django import forms
 
 
 class UploadFileForm(forms.Form):
     file = forms.FileField()
 
+
+class SearchForm(forms.Form):
+    text = forms.CharField(max_length=200, required=True, widget=forms.TextInput(attrs={'class': 'form-control, '
+                                                                                                 'search-input'}),
+                           label='')

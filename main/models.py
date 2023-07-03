@@ -7,6 +7,7 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField(max_length=200, verbose_name='Категория')
     description = models.TextField(null=True, blank=True, verbose_name="Описание Категории")
+    photo = models.ImageField(upload_to="images/service_category", verbose_name="Фото", null=True, blank=True)
     # slug = models.SlugField(max_length=150, unique=True)
 
     # def get_absolute_url(self):
@@ -14,6 +15,11 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+    @property
+    def photo_url(self):
+        if self.photo and hasattr(self.photo, 'url'):
+            return self.photo.url
 
     class Meta:
         ordering = ('name',)

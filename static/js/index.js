@@ -106,6 +106,7 @@ $(document).ready(function() {
         onBeforePrevSlide: function (el) {}
     });
 });
+$(document).on("click.bs.dropdown.data-api", ".noclose", function (e) { e.stopPropagation() });
 updateQty()
 
 

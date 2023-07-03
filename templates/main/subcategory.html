@@ -3,25 +3,53 @@
 {% block page-title %}
     <title>{{ subcategory }}</title>
 {% endblock %}
-{% block category %}
+{% block subcategory %}
     <nav class="subcategory_menu navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 justify-content-between">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false" style="color: #1A4582">
+                    <button class="btn-secondary nav-link dropdown-toggle"
+                            data-bs-toggle="dropdown"
+                            data-bs-auto-close="outside"
+                            aria-expanded="false" style="color: #1A4582">
 
-                            КАТАЛОГ
-                        </a>
-                        <ul class="dropdown-menu">
-                            {% for subcat in allsubcat %}
-                                <li><a class="dropdown-item" style="color: #1A4582"
-                                       href="{% url 'subcategory' category=category subcategory=subcat %}">{{ subcat }}</a>
-                                </li>
+                        КАТАЛОГ
+                    </button>
+                    <ul class="dropdown-menu " style="width: 300px">
+                        <li class="accordion dropdown-item accordion-flush" id="catalogaccordion">
+                            {% for cat in allcategory %}
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#section-{{ forloop.counter0 }}"
+                                                aria-expanded="false"
+                                                aria-controls="section-{{ forloop.counter0 }}"
+                                                style="color: #1A4582; background-color: #E6E6E6;">
+                                            {{ cat }}
+                                        </button>
+
+                                    </h2>
+                                    {% for subcat in allsubcategory %}
+                                        {% if subcat.category == cat %}
+                                            <div id="section-{{ forloop.parentloop.counter0 }}"
+                                                 class="accordion-collapse collapse"
+                                                 aria-labelledby="headingOne" data-bs-parent="#catalogaccordion">
+                                                <div class="accordion-body">
+                                                    <a class="dropdown-item" style="color: #1A4582"
+                                                       href="{% url 'subcategory' category=category subcategory=subcat %}">{{ subcat }}</a>
+
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
                             {% endfor %}
-                        </ul>
-                    </li>
+
+                        </li>
+
+
+                    </ul>
                     <li class="nav-item float-end">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="dropdown">
@@ -85,13 +113,27 @@
 
     {% block card %}
         {% if products %}
-            <div class="row">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'category' category=category %}">{{ category }}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ subcategory }}</li>
+                </ol>
+            </nav>
+            <div id="goods" class="container px-0 py-3 d-table-row collapse w-100">
+                <h1 class="fs-2 pe-3 d-table-cell text-nowrap"
+                    style="font-family: 'Gotham Pro Medium',sans-serif;
+                color: #1A4582;
+            ">{{ subcategory }}</h1>
+                <div class="service_index_line p-0 d-table-cell h-100 w-100"></div>
+            </div>
+            <div class="row mt-3">
                 <div class="col-12">
-                    <h1>{% if subcategory %}{{ subcategory.name }}{% else %}Товары{% endif %}</h1>
+                    {#                    <h1>{% if subcategory %}{{ subcategory.name }}{% else %}Товары{% endif %}</h1>#}
                     <div class="row">
                         {% for product in products %}
                             <div class="item col-12 col-md-4 col-lg-3 mb-1 mb-sm-0 px-1">
-                                <div class="card">
+                                <div class="card subcategory_menu">
                                     <a href="{% url 'product_view' pk=product.vendor_code %}">
                                         {% if product.photo %}
 
@@ -105,40 +147,40 @@
                                                  class="card-img-top img-responsive" alt="{{ product.name }}">
                                         {% endif %}
                                         <div class="card-body text-center" style="height: 200px">
-                                        <span class='fw-bold card-name d-inline-block text-start py-0 mb-0 fs-6'
-                                              style="">
+                                            <span itemProp="name"
+                                                  class='card-price fw-bold text-dark mb-3'
+                                                  style="   overflow: hidden;
+                                                   display: -webkit-box;
+                                                   -webkit-line-clamp: 3; /* number of lines to show */
+                                                           line-clamp: 3;
+                                                   -webkit-box-orient: vertical;"
+                                            > р.</span>
+                                            <span class='fw-bold card-name d-inline-block text-start py-0 mb-0 fs-6'
+                                                  style="">
 
-                                        <span itemProp="name"
-                                              class='card-name fw-bold text-dark mb-3'
-                                              style="   overflow: hidden;
-                                               display: -webkit-box;
-                                               -webkit-line-clamp: 3; /* number of lines to show */
-                                                       line-clamp: 3;
-                                               -webkit-box-orient: vertical;"
-                                        >{{ product.name }}</span>
-
-
-                                        </span>
                                             <span itemProp="name"
                                                   class='card-name fw-bold text-dark mb-3'
                                                   style="   overflow: hidden;
-                                               display: -webkit-box;
-                                               -webkit-line-clamp: 3; /* number of lines to show */
-                                                       line-clamp: 3;
-                                               -webkit-box-orient: vertical;"
-                                            >{{ product.price }}</span>
+                                                   display: -webkit-box;
+                                                   -webkit-line-clamp: 3; /* number of lines to show */
+                                                           line-clamp: 3;
+                                                   -webkit-box-orient: vertical;"
+                                            >{{ product.name }}</span>
+
+
+                                        </span>
 
 
                                             <div id="cart-wrap" class="text-center cart-qty-wrapper mb-3"
                                                  data-id="{{ product.vendor_code }}">
-                                                <button class="cart-minus" data-id="{{ product.vendor_code }}">-
+                                                <button class="cart-minus to_cart_button" data-id="{{ product.vendor_code }}">-
                                                 </button>
                                                 <i class="bi bi-basket"></i>
                                                 <span
                                                         class="cart-qty"
                                                         data-id="{{ product.vendor_code }}"
                                                 >0</span>
-                                                <button class="cart-plus"
+                                                <button class="cart-plus  to_cart_button"
                                                         data-id="{{ product.vendor_code }}"
                                                         data-name="{{ product.name }}"
                                                         data-price="{{ product.price }}"
@@ -150,7 +192,7 @@
                                                     data-name="{{ product.name }}"
                                                     data-price="{{ product.price }}"
                                                     data-id="{{ product.vendor_code }}"
-                                                    class="add-to-cart-btn"
+                                                    class="add-to-cart-btn w-100 to_cart_button"
                                             >В корзину
                                             </button>
                                         </div>
