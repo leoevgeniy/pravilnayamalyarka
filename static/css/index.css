@@ -355,8 +355,17 @@ a:hover {
   transform: translate(-50%, -18%);
   z-index: 1001; }
 
+.third-row .search-input {
+  width: 90%; }
+
 .service_index_line {
   background-color: #1A4582; }
+
+.category_line {
+  background-color: #E6E6E6; }
+
+.category_line_title {
+  flex-grow: 2; }
 
 .vendor_close {
   width: 70px;
@@ -372,6 +381,12 @@ a:hover {
   background-color: #FF0000;
   text-transform: uppercase;
   color: white; }
+
+.details_to_cart_btn {
+  font-family: "Gotham Pro Medium", sans-serif;
+  background-color: #FF0000;
+  border-radius: 50px;
+  text-transform: uppercase; }
 
 @font-face {
   font-family: "Gotham Pro Medium";

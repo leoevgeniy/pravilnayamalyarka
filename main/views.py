@@ -118,6 +118,7 @@ def subcategory(request, category, subcategory, *args):
     searchform = SearchForm
     # if sortup:
     products = Product.objects.filter(subcategory=subCategory).filter(vendor__name__icontains=vendor)
+    productsJS = list(Product.objects.filter(subcategory=subCategory).filter(vendor__name__icontains=vendor).values())
     # products['weight'] = []
     # else:
     #     products = Product.objects.filter(subcategory=subCategory).filter(vendor__name__icontains=vendor).order_by('-price')
@@ -127,6 +128,8 @@ def subcategory(request, category, subcategory, *args):
     for product in Product.objects.filter(subcategory=subCategory):
         if product.vendor not in allbrend:
             allbrend.append(product.vendor)
+    # productsJSData = json.dumps({'productsJS': productsJS})
+
     dict = {
         'searchform': searchform,
         'sortup': sortup,
@@ -136,6 +139,7 @@ def subcategory(request, category, subcategory, *args):
         'category': category,
         'subcategory': subCategory,
         'products': products,
+        # 'productsJS': productsJSData,
         'allcategory': allcategory,
         'allsubcategory': allsubcategory,
     }

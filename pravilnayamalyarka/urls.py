@@ -33,7 +33,7 @@ urlpatterns = [
     path('goods/', views.goods, name='goods'),
     path('services/', views.services, name='services'),
     path('search/', cmsviews.search, name='search'),
-    path('category/<str:category>', views.category, name='category'),
+    path('category/<str:category>/', views.category, name='category'),
     path('category/<str:category>/<str:subcategory>', views.subcategory, name='subcategory'),
     path('product/<str:pk>', cmsviews.product_view, name='product_view'),
     path('chaining/', include('smart_selects.urls')),

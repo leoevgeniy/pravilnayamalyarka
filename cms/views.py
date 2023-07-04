@@ -1,7 +1,7 @@
 import os
 
 import xlrd
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 import openpyxl
 from openpyxl_image_loader import SheetImageLoader
@@ -19,7 +19,12 @@ def product_view(request, pk):
     if not session_key:
         request.session["session_key"] = 123
         request.session.cycle_key()
+    allcategory = Category.objects.all()
+    allsubcategory = SubCategory.objects.all()
+
     context = {
+        'allcategory': allcategory,
+        'allsubcategory': allsubcategory,
         "product": product
     }
     return render(request, 'main/product_details.html', context)

@@ -64,10 +64,10 @@ const addToStorage = (product) => {
         let index = 0
         for (let i in cart) {
             if (cart[i].id === product.id) {
-                console.log(cart)
-
-                exist = true
-                cart[index]['qty'] += 1
+                if (cart[i].weight === product.weight) {
+                    exist = true
+                    cart[i]['qty'] += 1
+                }
             }
             index++
         }
@@ -150,14 +150,28 @@ $('.cart-minus').click(function (e) {
 })
 $('.cart-plus').click(function (e) {
     e.preventDefault();
-    const product = {'id': $(this).data('id'), 'name': $(this).data('name'), 'price': $(this).data('price'), 'qty': 1}
+    let weight = ''
+    if ($(this)[0].dataset['weight']) {
+        weight = $(this)[0].dataset['weight']
+    } else {
+        weight = ''
+    }
+
+    const product = {'id': $(this).data('id'), 'name': $(this).data('name'), 'price': $(this).data('price'), 'qty': 1, 'weight': weight}
     addToStorage(product);
     updateQty()
 
 })
 $('.add-to-cart-btn').click(function (event) {
     event.preventDefault();
-    const product = {'id': $(this).data('id'), 'name': $(this).data('name'), 'price': $(this).data('price'), 'qty': 1}
+    let weight = ''
+    if ($(this)[0].dataset['weight']) {
+        weight = $(this)[0].dataset['weight']
+    } else {
+        weight = ''
+    }
+
+    const product = {'id': $(this).data('id'), 'name': $(this).data('name'), 'price': $(this).data('price'), 'qty': 1, 'weight': weight}
     addToStorage(product);
     updateQty()
 });
@@ -171,12 +185,13 @@ $('.remove-from-cart').click(function (e) {
 const getQty = (id) => {
     if (getCookie('cart')) {
         let cart = JSON.parse(getCookie('cart'))
+        let qty = 0
         for (let i in cart) {
             if (cart[i]['id'] === id) {
-                return cart[i]['qty']
+                qty += cart[i]['qty']
             }
         }
-        return 0
+        return qty
     } else {
         return 0
     }
