@@ -14,6 +14,7 @@ from pravilnayamalyarka.settings import BASE_DIR, MEDIA_ROOT
 
 
 def product_view(request, pk):
+    searchform = SearchForm
     product = Product.objects.get(vendor_code=pk)
     session_key = request.session.session_key
     if not session_key:
@@ -25,7 +26,8 @@ def product_view(request, pk):
     context = {
         'allcategory': allcategory,
         'allsubcategory': allsubcategory,
-        "product": product
+        "product": product,
+        'searchform': searchform,
     }
     return render(request, 'main/product_details.html', context)
 
