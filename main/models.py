@@ -7,7 +7,7 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField(max_length=200, verbose_name='Категория')
     description = models.TextField(null=True, blank=True, verbose_name="Описание Категории")
-    photo = models.ImageField(upload_to="images/service_category", verbose_name="Фото", null=True, blank=True)
+    photo = models.ImageField(upload_to="images/category", verbose_name="Фото", null=True, blank=True)
     # slug = models.SlugField(max_length=150, unique=True)
 
     # def get_absolute_url(self):
@@ -32,7 +32,7 @@ class SubCategory(models.Model):
                                  verbose_name='Категория')
     name = models.CharField(max_length=256, verbose_name="Подкатегория")
     description = models.TextField(null=True, blank=True, verbose_name='Описание Подкатегории')
-    photo = models.ImageField(upload_to="images/service_category", verbose_name="Фото", null=True, blank=True)
+    photo = models.ImageField(upload_to="images/subcategory", verbose_name="Фото", null=True, blank=True)
     # slug = models.SlugField(max_length=150, unique=True)
 
     def __str__(self):

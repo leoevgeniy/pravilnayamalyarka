@@ -19,7 +19,16 @@
         <div class="col-3">
             <div class="logo-wrapper text-center">
                 <a href="{% url 'index' %}">
-                    <img class="w-75 my-2 object-fit-cover" src="{% static 'images/logo.svg' %}" alt="Logo">
+{#                    <img class="w-75 my-2 object-fit-cover" src="{% static 'images/logo.svg' %}" alt="Logo">#}
+                    {% if logo.image %}
+                        <img src="{{ logo.image_url }} "
+                             class="w-75 my-2 object-fit-cover" alt="Логотип"
+{#                             style="height: 150px; object-fit: cover; border-color: #1A4582; border-width: medium"#}
+                        >
+                    {% else %}
+                        <img src="{% static "images/no_image.svg" %}"
+                             class="card-img-top img-responsive" alt="Логотип">
+                    {% endif %}
                 </a>
             </div>
         </div>

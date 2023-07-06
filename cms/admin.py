@@ -4,7 +4,7 @@ from django.urls import path
 from django.utils.safestring import mark_safe
 # from import_export.admin import ImportExportActionModelAdmin
 from import_export import resources
-from .models import Product, WorkPhoto, Service, PromoSlider, Vendor, Packprice
+from .models import Product, WorkPhoto, Service, PromoSlider, Vendor, Packprice, Introduction, Logo, Socials
 from cms.forms import UploadFileForm
 
 
@@ -123,4 +123,32 @@ class VendorAdm(admin.ModelAdmin):
     list_per_page = 20
     list_max_show_all = 100
     # list_editable = ('name', )
+
+@admin.register(Logo)
+class LogoAdm(admin.ModelAdmin):
+    # fields = ('get_img', )
+    list_display = ('get_img', 'inuse',)
+
+    def get_img(self, obj):
+        try:
+            return mark_safe(f'<img src="{obj.image.url}" width="80px"')
+        except:
+            return mark_safe(f'<img src="" width="80px"')
+
+@admin.register(Introduction)
+class IntroductionAdm(admin.ModelAdmin):
+    # fields = ('get_img', )
+    list_display = ('text', 'inuse',)
+
+    def get_img(self, obj):
+        try:
+            return mark_safe(f'<img src="{obj.image.url}" width="80px"')
+        except:
+            return mark_safe(f'<img src="" width="80px"')
+
+@admin.register(Socials)
+class IntroductionAdm(admin.ModelAdmin):
+    # fields = ('get_img', )
+    list_display = ('social_network', 'link',)
+
 

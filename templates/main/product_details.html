@@ -95,14 +95,35 @@
                     <div class="d-flex flex-column justify-content-around">
                         <h2 class="w-100 text-center align-self-center fw-bold fs-1">{{ product.packprices.first.price }}
                             р.</h2>
-                        <button type="submit" id="submit_btn" class="btn btn-success details_to_cart_btn fs-3"
+                        <button type="submit" id="submit_btn" class="btn btn-success details_to_cart_btn fs-3 add-to-cart-btn"
                                 data-product_id="{{ product.vendor_code }}"
                                 data-name="{{ product.name }}"
-                                data-price="{{ product.price }}"
-                                data-weight="{{ product.packprices.first.weight.id }}"
+{#                                data-price="{{ product.packpricesprice }}"#}
+                                data-weight="{{ product.packprices.first.id }}"
                         >
                             В корзину
                         </button>
+                        <div id="cart-wrap-product-details" class="text-center justify-item-end cart-qty-wrapper mb-1 "
+                             data-id="{{ product.vendor_code }}">
+                            <button class="cart-minus to_cart_button"
+                                    data-id="{{ product.vendor_code }}">-
+                            </button>
+                            <i class="bi bi-basket"></i>
+                            <span
+                                    class="cart-qty"
+                                    data-id="{{ product.vendor_code }}"
+                                    data-weight="{{ product.packprices.first.id }}"
+                            >0</span>
+                            <button class="cart-plus  to_cart_button"
+                                    data-id="{{ product.vendor_code }}"
+                                    data-name="{{ product.name }}"
+{#                                    data-price="{{ product.price }}"#}
+                                    data-weight="{{ product.packprices.first.id }}"
+                            >+
+                            </button>
+
+                        </div>
+
                     </div>
                 </div>
 

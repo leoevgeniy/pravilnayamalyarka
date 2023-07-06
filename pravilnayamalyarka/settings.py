@@ -33,6 +33,20 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'leoevgrv.beget.tech']
 
 AUTH_USER_MODEL = 'auth.User'
 
+
+# ADMIN_REORDER = (
+#
+#     {
+#         'app': 'cms',
+#         'label': 'Управление контентом сайта',
+#         'models': (
+#             'cms.PromoSlider',
+#             'cms.Introduction',
+#             'cms.Logo'
+#         )
+#     },
+#     'crm',
+# )
 # Application definition
 
 STATICFILES_FINDERS = [
@@ -59,6 +73,7 @@ INSTALLED_APPS = [
     'django_webp',
     # 'compressor',
     'smart_selects',
+    # 'admin_reorder',
     # 'import_export',
 ]
 FILE_UPLOAD_HANDLERS = (
@@ -72,7 +87,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # 'admin_reorder.middleware.ModelAdminReorder',
 ]
+
+MIDDLEWARE_CLASSES = (
+    # 'admin_reorder.middleware.ModelAdminReorder',
+)
 COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )

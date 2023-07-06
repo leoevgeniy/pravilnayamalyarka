@@ -8,7 +8,7 @@ from openpyxl_image_loader import SheetImageLoader
 
 # Create your views here.
 from cms.forms import UploadFileForm, SearchForm
-from cms.models import WorkPhoto, Product, Service, Vendor, Packprice
+from cms.models import WorkPhoto, Product, Service, Vendor, Packprice, Logo
 from main.models import SubCategory, Category, ServiceCategory
 from pravilnayamalyarka.settings import BASE_DIR, MEDIA_ROOT
 
@@ -22,8 +22,12 @@ def product_view(request, pk):
         request.session.cycle_key()
     allcategory = Category.objects.all()
     allsubcategory = SubCategory.objects.all()
-
+    try:
+        logo = Logo.objects.get(inuse=True)
+    except:
+        logo = ''
     context = {
+        'logo': logo,
         'allcategory': allcategory,
         'allsubcategory': allsubcategory,
         "product": product,
@@ -173,7 +177,13 @@ def search(request):
         for product in products:
             if product.category not in products_category:
                 products_category.append(product.category)
+    try:
+        logo = Logo.objects.get(inuse=True)
+    except:
+        logo = ''
+
     dict = {
+        'logo': logo,
         'searchform': searchform,
         'services_category': services_category,
         'products_category': products_category,

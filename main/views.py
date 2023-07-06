@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from datetime import date
 from cms.forms import UploadFileForm, SearchForm
-from cms.models import Product, Service, PromoSlider, WorkPhoto
+from cms.models import Product, Service, PromoSlider, WorkPhoto, Logo, Introduction, Socials
 from crm.models import Order, StatusCrm
 from .models import Category, SubCategory, ServiceCategory
 from crm.forms import OrderForm
@@ -28,7 +28,20 @@ def index(request):
     subcategories = SubCategory.objects.all()
     form = OrderForm
     searchform = SearchForm
+    socials = Socials.objects.all()
+    try:
+        logo = Logo.objects.get(inuse=True)
+    except:
+        logo = ''
+    try:
+        intro = Introduction.objects.get(inuse=True)
+    except:
+        intro = ''
+
     disc = {
+        'socials': socials,
+        'logo': logo,
+        'intro': intro,
         'work_landscape': work_landscape,
         'work_portrate': work_portrate,
         'categories': categories,
@@ -53,7 +66,12 @@ def goods(request):
         for sub in subCategory:
             subcat.append(sub.name)
         catalog.update({category.name: subcat})
+    try:
+        logo = Logo.objects.get(inuse=True)
+    except:
+        logo = ''
     dict = {
+        'logo': logo,
         'searchform': searchform,
         'catalog': catalog,
         'form': form,
@@ -75,7 +93,12 @@ def services(request):
         for ser in services:
             currentservices.append(ser)
         catalog.update({category.name: currentservices})
+    try:
+        logo = Logo.objects.get(inuse=True)
+    except:
+        logo = ''
     dict = {
+        'logo': logo,
         'searchform': searchform,
         'catalog': catalog,
     }
@@ -89,7 +112,13 @@ def category(request, category):
     searchform = SearchForm
     allcategory = Category.objects.all()
     allsubcategory = SubCategory.objects.all()
+    try:
+        logo = Logo.objects.get(inuse=True)
+    except:
+        logo = ''
+
     dict = {
+        'logo': logo,
         'allcategory': allcategory,
         'allsubcategory': allsubcategory,
         'searchform': searchform,
@@ -129,8 +158,13 @@ def subcategory(request, category, subcategory, *args):
         if product.vendor not in allbrend:
             allbrend.append(product.vendor)
     # productsJSData = json.dumps({'productsJS': productsJS})
+    try:
+        logo = Logo.objects.get(inuse=True)
+    except:
+        logo = ''
 
     dict = {
+        'logo': logo,
         'searchform': searchform,
         'sortup': sortup,
         'sortdown': sortdown,
@@ -154,4 +188,8 @@ def thanks_page(request):
     element = Order(order_name=name, order_phone=phone, order_type='Заказ обратного звонка', order_status=status)
     element.save()
     send_telegram(name, phone)
-    return render(request, 'main/thanks_page.html', {'name': name, 'searchform': searchform})
+    try:
+        logo = Logo.objects.get(inuse=True)
+    except:
+        logo = ''
+    return render(request, 'main/thanks_page.html', {'name': name, 'searchform': searchform, 'logo': logo,})

@@ -21,7 +21,7 @@
         </thead>
         <tbody>
         {% for cat, services in catalog.items %}
-            <tr>
+            <tr id="{{ cat }}">
                 <th colspan="3" class="text-center">{{ cat }}</th>
             </tr>
             {% for item in services %}

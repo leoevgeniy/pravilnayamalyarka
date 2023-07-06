@@ -52,7 +52,6 @@ class PromoSlider(models.Model):
         verbose_name_plural = 'Промо акции'
 
 
-
 class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='categoryproducts',
                                  verbose_name='Категория', null=True, blank=True)
@@ -89,7 +88,6 @@ class Product(models.Model):
         packprice = obj.packprice_set.all()
         return packprice
 
-
     def __str__(self):
         return self.name
 
@@ -109,7 +107,8 @@ class Product(models.Model):
 
 
 class Packprice(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.PROTECT, null=True, verbose_name='Товар', related_name='packprices')
+    product = models.ForeignKey(Product, on_delete=models.PROTECT, null=True, verbose_name='Товар',
+                                related_name='packprices')
     weight = models.CharField(max_length=256, verbose_name='Объем', null=True, blank=True)
     # pack = models.ImageField(upload_to="images/pack", verbose_name='Упаковка', null=True, blank=True)
     price = models.DecimalField(decimal_places=0, max_digits=10, verbose_name='Цена', null=True, blank=True)
@@ -123,6 +122,7 @@ class Packprice(models.Model):
         # index_together = (('id', 'slug'),)
         verbose_name = 'Вес'
         verbose_name_plural = 'Веса'
+
 
 class WorkPhoto(models.Model):
     name = models.CharField(max_length=256, blank=True, null=True, verbose_name='Наименование')
@@ -155,3 +155,76 @@ class Service(models.Model):
     class Meta:
         verbose_name = 'Вид работ'
         verbose_name_plural = 'Виды работ'
+
+
+class Introduction(models.Model):
+    text = models.TextField(verbose_name='Вводный текст о компании', null=True, blank=True)
+    inuse = models.BooleanField(null=True, blank=True, verbose_name='Использовать на сайте')
+
+    def save(self, *args, **kwargs):
+        if self.inuse:
+            try:
+                temp = Introduction.objects.get(inuse=True)
+                if self != temp:
+                    temp.inuse = False
+                    temp.save()
+            except Introduction.DoesNotExist:
+                pass
+        super(Introduction, self).save(*args, **kwargs)
+
+    class Meta:
+            verbose_name = 'О компании'
+            verbose_name_plural = 'О компании'
+
+
+class Logo(models.Model):
+    image = models.FileField(upload_to="images/logo", null=True, blank=True, verbose_name="Логотип")
+    inuse = models.BooleanField(null=True, blank=True, verbose_name='Использовать на сайте')
+
+    def save(self, *args, **kwargs):
+        if self.inuse:
+            try:
+                temp = Logo.objects.get(inuse=True)
+                if self != temp:
+                    temp.inuse = False
+                    temp.save()
+            except Logo.DoesNotExist:
+                pass
+        super(Logo, self).save(*args, **kwargs)
+
+    @property
+    def image_url(self):
+        if self.image and hasattr(self.image, 'url'):
+            return self.image.url
+
+    class Meta:
+        verbose_name = 'Логотип'
+        verbose_name_plural = 'Логотипы'
+
+
+class Socials(models.Model):
+    Instagram = 'IG'
+    Facebook = 'FB'
+    VK = 'VK'
+    Telegram = 'TG'
+    social_network_choices = [
+        (Instagram, 'Instagram'),
+        (Facebook, 'Facebook'),
+        (VK, 'VK'),
+        (Telegram, 'Telegram'),
+        ]
+    social_network = models.CharField(max_length=30, choices=social_network_choices, verbose_name='Соцсеть')
+    link = models.CharField(max_length=250, verbose_name='Ссылка на социальную сеть')
+    image = models.FileField(upload_to="images/socials", null=True, blank=True, verbose_name="Логотип Соцсети")
+
+    def image_url(self):
+        if self.image and hasattr(self.image, 'url'):
+            return self.image.url
+
+    def __str__(self):
+        return self.social_network
+
+    class Meta:
+        verbose_name = 'Социальная сеть'
+        verbose_name_plural = 'Социальные сети'
+

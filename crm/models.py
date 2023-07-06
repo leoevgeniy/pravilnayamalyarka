@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-from cms.models import Product
+from cms.models import Product, Packprice
 
 
 class StatusCrm(models.Model):
@@ -39,13 +39,17 @@ class OrderItems(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, null=True, related_name='orderitems')
     name = models.CharField(max_length=200, null=True, blank=True, verbose_name='Наименование')
     qty = models.IntegerField(null=True, blank=True, default=0, verbose_name='Кол-во')
+    weight = models.ForeignKey(Packprice, on_delete=models.CASCADE, null=True, related_name='weights', verbose_name='Вес')
     price = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True, verbose_name='Цена')
     image = models.CharField(max_length=200, null=True, blank=True, verbose_name='Изображение')
     vendor_code = models.CharField(max_length=256, verbose_name='Код от производителя', null=True, blank=True)
     cost = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True, verbose_name='Стоимость')
 
-    def get_cost(self):
-        return self.price * self.qty
+    def get_price(self, obj):
+        return obj.weight.price
+
+    def get_cost(self, obj):
+        return obj.weight.price * self.qty
 
     def __str__(self):
         return str(self.name)
