@@ -11,7 +11,6 @@ const updateQty = () => {
         const weight = $(this).data('weight')
         const id = $(this).data('id')
         const sum = $(this).data('price') * Number(getQty(id,weight))
-        console.log(sum)
         $(this).text('Стоимость: ' + sum + ' р.')
     })
     $('.cart-qty').each(function () {
@@ -21,7 +20,6 @@ const updateQty = () => {
             $(this).text(getQty(id,weight))
         } catch {
             const id = $(this).data('id')
-            console.log($(this).data('id'))
             $(this).text(getQty(id, ''))
         }
 
@@ -192,7 +190,6 @@ $('.cart-plus').click(function (e) {
     const weight = $(this)[0].dataset['weight']
 
     const product = {'id': $(this).data('id'), 'name': $(this).data('name'), 'qty': 1, 'weight': weight}
-    console.log(product)
     addToStorage(product);
     updateQty()
 

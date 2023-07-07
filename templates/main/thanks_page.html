@@ -3,11 +3,8 @@
     <title>Спасибо</title>
 {% endblock %}
 {% block thanks %}
-    <div class="container">
-        {{ name }}Спасибо! В ближайшее время мы с Вам свяжемся.
+    <div class="container text-center my-5">
+        <span class="fs-3"><strong class="text-uppercase">{{ name }} </strong> Спасибо! В ближайшее время мы с Вам свяжемся.</span>
     </div>
-    <a href="{% url 'index' %}">
-        <button>На главную</button>
-    </a>
 
 {% endblock %}

@@ -9,7 +9,10 @@
         </div>
         <div class="col-6 d-flex justify-content-end phone">
             <i class="bi bi-telephone-fill me-2"></i>
-            <a href="tel:89053483831"> 8 905 348 3831</a>
+            {% if contacts.phone1 %}
+                <a href="tel:{{ contacts.phone1 }}"> {{ contacts.phone1}}</a>
+            {% endif %}
+
         </div>
         <div class="col-3 text-center call-back">
             <span type="button" data-bs-toggle="modal" data-bs-target="#headercallback">ЗАКАЗАТЬ ЗВОНОК</span>
@@ -55,7 +58,7 @@
                 {#                <div type='submit' class='position-absolute'#}
                 {#                      style="top: 30%; right: 20%; font-size: 13px">#}
                 <button type='submit' class='bi bi-search position-absolute'
-                        style="top: 30%; right: 20%; font-size: 13px;      background: none;
+                        style="top: 30%; right: 10%; font-size: 13px;      background: none;
                         border: none;
                         padding: 0;">
 

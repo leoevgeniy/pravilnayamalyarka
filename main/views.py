@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from datetime import date
 from cms.forms import UploadFileForm, SearchForm
-from cms.models import Product, Service, PromoSlider, WorkPhoto, Logo, Introduction, Socials
+from cms.models import Product, Service, PromoSlider, WorkPhoto, Logo, Introduction, Socials, Contacts, Packprice
 from crm.models import Order, StatusCrm
 from .models import Category, SubCategory, ServiceCategory
 from crm.forms import OrderForm
@@ -37,8 +37,13 @@ def index(request):
         intro = Introduction.objects.get(inuse=True)
     except:
         intro = ''
+    try:
+        contacts = Contacts.objects.all()
+    except:
+        contacts = ''
 
     disc = {
+        'contacts': contacts[0],
         'socials': socials,
         'logo': logo,
         'intro': intro,
@@ -70,7 +75,13 @@ def goods(request):
         logo = Logo.objects.get(inuse=True)
     except:
         logo = ''
-    dict = {
+    try:
+        contacts = Contacts.objects.all()
+    except:
+        contacts = ''
+
+    disc = {
+        'contacts': contacts[0],
         'logo': logo,
         'searchform': searchform,
         'catalog': catalog,
@@ -78,7 +89,7 @@ def goods(request):
         'up': up,
     }
 
-    return render(request, 'main/goods.html', dict)
+    return render(request, 'main/goods.html', disc)
 
 
 def services(request):
@@ -97,18 +108,29 @@ def services(request):
         logo = Logo.objects.get(inuse=True)
     except:
         logo = ''
-    dict = {
+    try:
+        contacts = Contacts.objects.all()
+    except:
+        contacts = ''
+    socials = Socials.objects.all()
+    form = OrderForm
+
+    disc = {
+        'form': form,
+        'socials': socials,
+        'contacts': contacts[0],
         'logo': logo,
         'searchform': searchform,
         'catalog': catalog,
     }
 
-    return render(request, 'main/services.html', dict)
+    return render(request, 'main/services.html', disc)
 
 
 def category(request, category):
     category = Category.objects.get(name=category)
     subCategory = SubCategory.objects.filter(category=category)
+    products = Product.objects.filter(category=category, subcategory__exact=None)
     searchform = SearchForm
     allcategory = Category.objects.all()
     allsubcategory = SubCategory.objects.all()
@@ -117,7 +139,18 @@ def category(request, category):
     except:
         logo = ''
 
-    dict = {
+    try:
+        contacts = Contacts.objects.all()
+    except:
+        contacts = ''
+
+    socials = Socials.objects.all()
+
+    disc = {
+        "products": products,
+        'socials': socials,
+        'contacts': contacts[0],
+
         'logo': logo,
         'allcategory': allcategory,
         'allsubcategory': allsubcategory,
@@ -125,7 +158,7 @@ def category(request, category):
         'category': category,
         'subcategory': subCategory
     }
-    return render(request, 'main/category.html', dict)
+    return render(request, 'main/category.html', disc)
 
 
 def subcategory(request, category, subcategory, *args):
@@ -145,25 +178,47 @@ def subcategory(request, category, subcategory, *args):
     category = Category.objects.get(name=category)
     subCategory = SubCategory.objects.get(name=subcategory)
     searchform = SearchForm
-    # if sortup:
-    products = Product.objects.filter(subcategory=subCategory).filter(vendor__name__icontains=vendor)
-    productsJS = list(Product.objects.filter(subcategory=subCategory).filter(vendor__name__icontains=vendor).values())
-    # products['weight'] = []
-    # else:
-    #     products = Product.objects.filter(subcategory=subCategory).filter(vendor__name__icontains=vendor).order_by('-price')
-    # for product in products:
-        # print(product.packprice)
+    if sortup:
+        prods1 = Product.objects.filter(subcategory=subCategory, vendor__name__icontains=vendor).order_by('packprices__price')
+        products = []
+        vc = []
+        for pr in prods1:
+            # vc = pr.vendor_code
+            if pr.vendor_code not in vc:
+                products.append(pr)
+                # print(vc)
+                vc.append(pr.vendor_code)
+    else:
+        prods1 = Product.objects.filter(subcategory=subCategory, vendor__name__icontains=vendor).order_by('-packprices__price')
+        products = []
+        vc = []
+        for pr in prods1:
+            # vc = pr.vendor_code
+            if pr.vendor_code not in vc:
+                products.append(pr)
+                # print(vc)
+                vc.append(pr.vendor_code)
+
     allbrend = []
     for product in Product.objects.filter(subcategory=subCategory):
         if product.vendor not in allbrend:
             allbrend.append(product.vendor)
-    # productsJSData = json.dumps({'productsJS': productsJS})
     try:
         logo = Logo.objects.get(inuse=True)
     except:
         logo = ''
 
-    dict = {
+    try:
+        contacts = Contacts.objects.all()
+    except:
+        contacts = ''
+
+    socials = Socials.objects.all()
+
+    disc = {
+        'socials': socials,
+        'contacts': contacts[0],
+
         'logo': logo,
         'searchform': searchform,
         'sortup': sortup,
@@ -177,7 +232,7 @@ def subcategory(request, category, subcategory, *args):
         'allcategory': allcategory,
         'allsubcategory': allsubcategory,
     }
-    return render(request, 'main/subcategory.html', dict)
+    return render(request, 'main/subcategory.html', disc)
 
 
 def thanks_page(request):
@@ -192,4 +247,20 @@ def thanks_page(request):
         logo = Logo.objects.get(inuse=True)
     except:
         logo = ''
-    return render(request, 'main/thanks_page.html', {'name': name, 'searchform': searchform, 'logo': logo,})
+    try:
+        contacts = Contacts.objects.all()
+    except:
+        contacts = ''
+
+    socials = Socials.objects.all()
+
+    disc = {
+        'socials': socials,
+        'contacts': contacts[0],
+
+        'name': name,
+        'searchform': searchform,
+        'logo': logo,
+    }
+
+    return render(request, 'main/thanks_page.html', disc)

@@ -8,7 +8,7 @@ from openpyxl_image_loader import SheetImageLoader
 
 # Create your views here.
 from cms.forms import UploadFileForm, SearchForm
-from cms.models import WorkPhoto, Product, Service, Vendor, Packprice, Logo
+from cms.models import WorkPhoto, Product, Service, Vendor, Packprice, Logo, Contacts, Socials
 from main.models import SubCategory, Category, ServiceCategory
 from pravilnayamalyarka.settings import BASE_DIR, MEDIA_ROOT
 
@@ -26,14 +26,22 @@ def product_view(request, pk):
         logo = Logo.objects.get(inuse=True)
     except:
         logo = ''
-    context = {
+    try:
+        contacts = Contacts.objects.all()
+    except:
+        contacts = ''
+
+    socials = Socials.objects.all()
+    disc = {
+        'socials': socials,
+        'contacts': contacts[0],
         'logo': logo,
         'allcategory': allcategory,
         'allsubcategory': allsubcategory,
         "product": product,
         'searchform': searchform,
     }
-    return render(request, 'main/product_details.html', context)
+    return render(request, 'main/product_details.html', disc)
 
 
 def photomigrations(request):
@@ -169,8 +177,8 @@ def search(request):
     products = []
     if request.POST['text']:
         keyword = request.POST['text']
-        services = Service.objects.filter(name__icontains=keyword)
-        products = Product.objects.filter(name__icontains=keyword)
+        services = Service.objects.filter(name__iregex=keyword).distinct()
+        products = Product.objects.filter(name__iregex=keyword).distinct()
         for service in services:
             if service.service_category not in services_category:
                 services_category.append(service.service_category)
@@ -182,7 +190,14 @@ def search(request):
     except:
         logo = ''
 
-    dict = {
+    try:
+        contacts = Contacts.objects.all()
+    except:
+        contacts = ''
+    socials = Socials.objects.all()
+    disc = {
+        'socials': socials,
+        'contacts': contacts[0],
         'logo': logo,
         'searchform': searchform,
         'services_category': services_category,
@@ -190,4 +205,4 @@ def search(request):
         'services': services,
         'products': products,
     }
-    return render(request, 'main/search.html', dict)
+    return render(request, 'main/search.html', disc)

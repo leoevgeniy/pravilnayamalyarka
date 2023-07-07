@@ -108,17 +108,14 @@ $(document).ready(function() {
 });
 $(document).on("click.bs.dropdown.data-api", ".noclose", function (e) { e.stopPropagation() });
 window.onload = () => {
-    console.log('wekfjwelkjgfwlekjgf')
     updateQty()
 }
 window.onpopstate = () => {
-    console.log('back')
     updateQty()
 }
 // window.history.pushState('', null, './');
 window.addEventListener ("popstate", function (e) {
 //код обработки события popstate
-    console.log('back', e)
 
     updateQty()
 });

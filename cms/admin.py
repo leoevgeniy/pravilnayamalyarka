@@ -4,7 +4,7 @@ from django.urls import path
 from django.utils.safestring import mark_safe
 # from import_export.admin import ImportExportActionModelAdmin
 from import_export import resources
-from .models import Product, WorkPhoto, Service, PromoSlider, Vendor, Packprice, Introduction, Logo, Socials
+from .models import Product, WorkPhoto, Service, PromoSlider, Vendor, Packprice, Introduction, Logo, Socials, Contacts
 from cms.forms import UploadFileForm
 
 
@@ -150,5 +150,10 @@ class IntroductionAdm(admin.ModelAdmin):
 class IntroductionAdm(admin.ModelAdmin):
     # fields = ('get_img', )
     list_display = ('social_network', 'link',)
+
+@admin.register(Contacts)
+class ContactsAdm(admin.ModelAdmin):
+    # fields = ('get_img', )
+    list_display = ('phone1', 'address1',)
 
 

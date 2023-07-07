@@ -62,7 +62,7 @@
             <span class="fs-2 px-5 d-table-cell text-nowrap category_line_title"
                   style="font-family: 'Gotham Pro Medium',sans-serif;
                 color: #1A4582;
-            ">{{ product.subcategory }}</span>
+            ">{% if product.subcategory %}{{ product.subcategory }} {% else%} {{ product.category }}{% endif %} </span>
             <div class="category_line p-0 d-table-cell h-100 w-100"></div>
         </div>
 
@@ -72,12 +72,12 @@
         {#            </div>#}
         {#        </section>#}
 
-        <div class="row mt-4">
-            <figure class="col-lg-3 text-right wow fadeInUp delay-02s">
-                <a href="{{ product.photo_url }}">
-                    <img src="{{ product.photo_url }}" alt="{{ product.name }}">
+        <div class="row my-4">
+            <div class="col-lg-3 text-right wow fadeInUp delay-02s">
+                <a href="{{ product.photo_url }}" class="w-100">
+                    <img  class="w-100" src="{{ product.photo_url }}" alt="{{ product.name }}" style="object-fit: contain">
                 </a>
-            </figure>
+            </div>
             <div class="col-lg-9 featured-box-col2 wow fadeInRight delay-02s">
                 <h1
                         style="   overflow: hidden;
@@ -88,15 +88,16 @@
 
                 ><strong>{{ product.name }}</strong></h1>
                 <br>
-                <div class="container d-flex w-100 ">
+                <div class="container d-flex w-100 product-description">
                     <div class="w-75 me-5">
                         <h4>{{ product.description }}</h4>
                     </div>
+
                     <div class="d-flex flex-column justify-content-around">
-                        <h2 class="w-100 text-center align-self-center fw-bold fs-1">{{ product.packprices.first.price }}
+                        <h2 class="w-100 text-center align-self-center fw-bold fs-1 price">{{ product.packprices.first.price }}
                             р.</h2>
                         <button type="submit" id="submit_btn" class="btn btn-success details_to_cart_btn fs-3 add-to-cart-btn"
-                                data-product_id="{{ product.vendor_code }}"
+                                data-id="{{ product.vendor_code }}"
                                 data-name="{{ product.name }}"
 {#                                data-price="{{ product.packpricesprice }}"#}
                                 data-weight="{{ product.packprices.first.id }}"
@@ -105,16 +106,17 @@
                         </button>
                         <div id="cart-wrap-product-details" class="text-center justify-item-end cart-qty-wrapper mb-1 "
                              data-id="{{ product.vendor_code }}">
-                            <button class="cart-minus to_cart_button"
-                                    data-id="{{ product.vendor_code }}">-
+                            <button class="cart-minus to_cart_button fs-4 px-2"
+                                    data-id="{{ product.vendor_code }}"
+                                    data-weight="{{ packprices.first.id }}"> -
                             </button>
                             <i class="bi bi-basket"></i>
                             <span
-                                    class="cart-qty"
+                                    class="cart-qty fs-4 px-2"
                                     data-id="{{ product.vendor_code }}"
-                                    data-weight="{{ product.packprices.first.id }}"
+                                    data-weight=""
                             >0</span>
-                            <button class="cart-plus  to_cart_button"
+                            <button class="cart-plus  to_cart_button fs-4 px-2"
                                     data-id="{{ product.vendor_code }}"
                                     data-name="{{ product.name }}"
 {#                                    data-price="{{ product.price }}"#}
@@ -126,6 +128,24 @@
 
                     </div>
                 </div>
+                {% if product.packprices.all|length > 1%}
+
+                    <div class="w-25 d-flex text-center justify-content-around"
+                         aria-label="{{ product.name }}">
+                        {% for weight in product.packprices.all %}
+                            <button type="button"
+                                    data-id="{{ product.vendor_code }}plus{{ weight.id }}"
+                                    data-price="{{ weight.price }}"
+                                    class="btn btn-secondary weight-select-product-details-button"
+                                    style="font-size: 70%; {% if forloop.first %} background-color: pink {% else %} background-color: gray {%endif%}"
+                            >{{ weight.weight }}</button>
+
+                        {% endfor %}
+
+
+                    </div>
+                {% endif %}
+
 
             </div>
 

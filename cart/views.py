@@ -5,7 +5,7 @@ import json
 
 from cart.forms import OrderConfirmForm
 from cms.forms import SearchForm
-from cms.models import Product, Logo, Packprice
+from cms.models import Product, Logo, Packprice, Contacts, Socials
 from crm.models import Order, OrderItems, StatusCrm
 from telebot.sendmessage import send_telegram
 
@@ -21,6 +21,10 @@ def cart(request):
     except:
         data = []
     ids = []
+    try:
+        contacts = Contacts.objects.all()
+    except:
+        contacts = ''
     for cart_item in data:
         try:
             product = Product.objects.get(vendor_code=cart_item['id'])
@@ -30,7 +34,18 @@ def cart(request):
         except:
             pass
     form = OrderConfirmForm
-    return render(request, 'main/cart.html', {'products': ids, 'form': form, 'searchform': searchform, 'logo': logo})
+    socials = Socials.objects.all()
+
+    content = {
+        'socials': socials,
+        'products': ids,
+        'form': form,
+        'searchform': searchform,
+        'logo': logo,
+        'contacts': contacts[0],
+    }
+
+    return render(request, 'main/cart.html', content)
 
 
 def orderCreate(request):
@@ -70,7 +85,20 @@ def orderCreate(request):
 
                 )
         send_telegram(name, phone)
-    response = render(request, 'main/thanks_page.html', {'searchform': searchform, 'logo': logo})
+    socials = Socials.objects.all()
+    try:
+        contacts = Contacts.objects.all()
+    except:
+        contacts = ''
+
+    content = {
+        'socials': socials,
+        'searchform': searchform,
+        'logo': logo,
+        'contacts': contacts[0],
+    }
+
+    response = render(request, 'main/thanks_page.html', content)
     response.delete_cookie('cart')
 
     return response

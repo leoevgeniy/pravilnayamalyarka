@@ -83,10 +83,11 @@ class Product(models.Model):
     # price = models.DecimalField(decimal_places=0, max_digits=10, verbose_name='Цена', null=True, blank=True)
 
     # slug = models.SlugField(max_length=200, db_index=True)
-
-    def get_packprice(self, obj):
-        packprice = obj.packprice_set.all()
+    @property
+    def firstprice(self):
+        packprice = self.packprices.all()[0].price
         return packprice
+
 
     def __str__(self):
         return self.name
@@ -114,11 +115,16 @@ class Packprice(models.Model):
     price = models.DecimalField(decimal_places=0, max_digits=10, verbose_name='Цена', null=True, blank=True)
     oldprice = models.DecimalField(decimal_places=0, max_digits=10, verbose_name='Старая цена', null=True, blank=True)
 
+    @property
+    def firstprice(self):
+        packprice = self.objects.all()[0].price
+        return packprice
+
     def __str__(self):
         return self.weight + '/ Цена: ' + str(self.price) + '/Старая цена: ' + str(self.oldprice)
 
     class Meta:
-        # ordering = ('expiration_date',)
+        ordering = ('price',)
         # index_together = (('id', 'slug'),)
         verbose_name = 'Вес'
         verbose_name_plural = 'Веса'
@@ -207,11 +213,13 @@ class Socials(models.Model):
     Facebook = 'FB'
     VK = 'VK'
     Telegram = 'TG'
+    Whatsapp = 'WA'
     social_network_choices = [
         (Instagram, 'Instagram'),
         (Facebook, 'Facebook'),
         (VK, 'VK'),
         (Telegram, 'Telegram'),
+        (Whatsapp, 'Whatsapp'),
         ]
     social_network = models.CharField(max_length=30, choices=social_network_choices, verbose_name='Соцсеть')
     link = models.CharField(max_length=250, verbose_name='Ссылка на социальную сеть')
@@ -228,3 +236,14 @@ class Socials(models.Model):
         verbose_name = 'Социальная сеть'
         verbose_name_plural = 'Социальные сети'
 
+class Contacts(models.Model):
+    phone1 = models.CharField(max_length=250, null=True, blank=True, verbose_name='Номер телефона для контактов')
+    phone2 = models.CharField(max_length=250, null=True, blank=True, verbose_name='Номер телефона для контактов')
+    phone3 = models.CharField(max_length=250, null=True, blank=True, verbose_name='Номер телефона для контактов')
+    address1 = models.CharField(max_length=250, null=True, blank=True, verbose_name='Адрес')
+    address2 = models.CharField(max_length=250, null=True, blank=True, verbose_name='Адрес')
+    address3 = models.CharField(max_length=250, null=True, blank=True, verbose_name='Адрес')
+
+    class Meta:
+        verbose_name = 'Контактные данные'
+        verbose_name_plural = 'Контактные данные'

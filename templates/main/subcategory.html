@@ -212,11 +212,11 @@
                                                 class="add-to-cart-btn w-100 mb-1 to_cart_button"
                                         >В корзину
                                         </button>
-                                        <div id="cart-wrap" class="text-center justify-item-end cart-qty-wrapper mb-1"
+                                        <div id="cart-wrap-product-details" class="text-center justify-item-end cart-qty-wrapper mb-1"
                                              data-id="{{ product.vendor_code }}">
                                             <button class="cart-minus to_cart_button"
                                                     data-id="{{ product.vendor_code }}"
-                                                    data-weight=""
+                                                    data-weight="{{ product.vendor_code }}"
                                             >-
                                             </button>
                                             <i class="bi bi-basket"></i>

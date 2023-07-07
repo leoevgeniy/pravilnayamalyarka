@@ -13,55 +13,58 @@
                 <h1>Корзина </h1>
             </div>
         </header>
-        <div class="container w-100">
-            <div class="row w-100">
-                <div class="col-12 col-lg-10">
-                    {% for product in products %}
-                        <br>
-                        <div class="row">
-                            <div class="col-md-2">
-                                {% if product.product.photo %}
-                                    <a href="{% url 'product_view' pk=product.product.vendor_code %}">
-                                        <img src="{{ product.product.photo_url }} "
-                                             class="card-img-top img-thumbnail" alt="{{ product.name }}"
-                                             style="height: 100px; object-fit: contain"
-                                        >
-                                    </a>
-                                {% else %}
-                                {% endif %}
-                            </div>
-                            <div class="col-md-5 d-flex flex-column justify-content-between">
-                                <a href="{% url 'product_view' pk=product.product.vendor_code %}"
-                                   style="   overflow: hidden;
+        {% if products %}
+
+
+            <div class="container w-100">
+                <div class="row w-100">
+                    <div class="col-12 col-lg-10">
+                        {% for product in products %}
+                            <br>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    {% if product.product.photo %}
+                                        <a href="{% url 'product_view' pk=product.product.vendor_code %}">
+                                            <img src="{{ product.product.photo_url }} "
+                                                 class="card-img-top img-thumbnail" alt="{{ product.name }}"
+                                                 style="height: 100px; object-fit: contain"
+                                            >
+                                        </a>
+                                    {% else %}
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-5 d-flex flex-column justify-content-between">
+                                    <a href="{% url 'product_view' pk=product.product.vendor_code %}"
+                                       style="   overflow: hidden;
                                                display: -webkit-box;
                                                -webkit-line-clamp: 2; /* number of lines to show */
                                                        line-clamp: 2;
                                                -webkit-box-orient: vertical;">{{ product.product.name }}</a>
-                                <div class="d-flex">
-                                    <span class="pe-3">Объем: {{ product.weight.weight }}   </span>
-                                    <span>  Цена: {{ product.weight.price }}</span>
+                                    <div class="d-flex">
+                                        <span class="pe-3">Объем: {{ product.weight.weight }}   </span>
+                                        <span>  Цена: {{ product.weight.price }}</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div id="cart-wrap" class="col-md-2 text-center cart-qty-wrapper mb-3"
-                                 data-id="{{ product.product.vendor_code }}">
-                                <button class="cart-minus" data-id="{{ product.product.vendor_code }}"
-                                        data-weight="{{ product.weight.id }}">-
-                                </button>
-                                <i class="bi bi-basket"></i>
-                                <span
-                                        class="cart-qty"
-                                        data-id="{{ product.product.vendor_code }}"
-                                        data-weight="{{ product.weight.id }}"
-                                ></span>
-                                <button class="cart-plus"
-                                        data-id="{{ product.product.vendor_code }}"
-                                        data-name="{{ product.product.name }}"
-                                        data-price="{{ product.weight.price }}"
-                                        data-weight="{{ product.weight.id }}"
-                                >+
-                                </button>
-                            </div>
-                            <div class="col-md-2">
+                                <div id="cart-wrap" class="col-md-2 text-center cart-qty-wrapper mb-3"
+                                     data-id="{{ product.product.vendor_code }}">
+                                    <button class="cart-minus" data-id="{{ product.product.vendor_code }}"
+                                            data-weight="{{ product.weight.id }}">-
+                                    </button>
+                                    <i class="bi bi-basket"></i>
+                                    <span
+                                            class="cart-qty"
+                                            data-id="{{ product.product.vendor_code }}"
+                                            data-weight="{{ product.weight.id }}"
+                                    ></span>
+                                    <button class="cart-plus"
+                                            data-id="{{ product.product.vendor_code }}"
+                                            data-name="{{ product.product.name }}"
+                                            data-price="{{ product.weight.price }}"
+                                            data-weight="{{ product.weight.id }}"
+                                    >+
+                                    </button>
+                                </div>
+                                <div class="col-md-2">
                                 <span class="price_info"
                                       data-id="{{ product.product.vendor_code }}"
                                       data-weight="{{ product.weight.id }}"
@@ -69,29 +72,41 @@
                                       data-qty="{{ product.product.qty }}"
 
                                 ></span>
+                                </div>
+                                <div class="col-md-1">
+                                    <button class="remove-from-cart" data-id="{{ product.product.vendor_code }}"><i
+                                            class="bi bi-trash-fill"></i></button>
+                                </div>
                             </div>
-                            <div class="col-md-1">
-                                <button class="remove-from-cart" data-id="{{ product.product.vendor_code }}"><i
-                                        class="bi bi-trash-fill"></i></button>
-                            </div>
-                        </div>
-                    {% endfor %}
+                        {% endfor %}
 
 
-                </div>
-                <div class="col-12 col-lg-2">
-                    <button
-                            type='button'
-                            class='btn w-100 mb-3 fs-4 cart-confirm-btn'
-                            data-bs-toggle="modal" data-bs-target="#cartModal"
-                    >
-                        Перейти к оформлению
-                    </button>
+                    </div>
+                    <div class="col-12 col-lg-2">
+                        <button
+                                type='button'
+                                class='btn w-100 mb-3 fs-4 cart-confirm-btn'
+                                data-bs-toggle="modal" data-bs-target="#cartModal"
+                        >
+                            Заказать
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
+        {% else %}
+            <div class="container text-center ">
+                <span class="fs-3"> Ваша корзина пуста</span>
+            </div>
+            <div class="text-center call-back my-4">
+                <a href="{% url 'index' %}" type="button"
+                      class="fs-2 text-white p-4 "
+                      style="background-color: #1A4582;"
+                >К Покупкам</a>
+            </div>
 
+        {% endif %}
     </main>
+
     <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
