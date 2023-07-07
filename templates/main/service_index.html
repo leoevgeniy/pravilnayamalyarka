@@ -1,14 +1,14 @@
 {% load static %}
     <div class="container px-0 py-3 d-table-row collapse w-100">
-        <span   class="fs-2 pe-3 d-table-cell text-nowrap"
+        <span   class="fs-6 repair-works pe-3 d-table-cell text-nowrap"
                 style="font-family: 'Gotham Pro Medium',sans-serif;
                 color: #1A4582;
             ">РЕМОНТНЫЕ РАБОТЫ</span>
         <div class="service_index_line p-0 d-table-cell w-100 my-3"></div>
     </div>
-    <div class="w-100 my-3 row container px-0 justify-content-around">
+    <div class="w-100 my-3 row container px-0 justify-content-around services_index">
         {% for service in services_category %}
-            <a href="{% url 'services' %}#{{ service.name }}" class="d-flex flex-column p-1" style="width: 20%">
+            <a href="{% url 'services' %}#{{ service.name }}" class="d-flex services_item flex-column p-1">
 
                 {% if service.photo %}
                         <img src="{{ service.photo_url }} "

@@ -27,6 +27,7 @@ $grid-breakpoints: (
 #header {
   background-color: #1A4582;
 }
+
 body {
   background-color: white;
   display: flex;
@@ -34,7 +35,9 @@ body {
   flex-direction: column;
   //font-family: ;
 }
+.services_index {
 
+}
 #cart-btn {
   border: none;
   padding: 15px;
@@ -80,4 +83,25 @@ button:focus {
   flex: 0 0 auto;
 
 
+}
+.repair-works {
+
+}
+.services_index {
+  .services_item {
+    width: 20%;
+  }
+}
+@media (max-width: 768px) {
+  .services_index {
+    .services_item {
+      width: 50%;
+    }
+  }
+}@media (max-width: 320px) {
+  .services_index {
+    .services_item {
+      width: 100%;
+    }
+  }
 }
