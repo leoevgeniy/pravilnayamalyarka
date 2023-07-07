@@ -62,6 +62,18 @@
   }
 
 }
+.header-fixed-top {
+  position: sticky;
+  top: 0;
+  background-color: inherit; /* [1] */
+  z-index: 1055; /* [2] */
+}
+.collapsed-search {
+  .search-input {
+    width: 100%;
+    border-radius: 20px;
+  }
+}
 .third-row {
   .search-input{
     //-webkit-border-radius: 20px;

@@ -339,6 +339,18 @@ a:hover {
   .menu-img .and {
     color: white; }
 
+.header-fixed-top {
+  position: sticky;
+  top: 0;
+  background-color: inherit;
+  /* [1] */
+  z-index: 1055;
+  /* [2] */ }
+
+.collapsed-search .search-input {
+  width: 100%;
+  border-radius: 20px; }
+
 .third-row .search-input {
   border-radius: 20px; }
 
@@ -377,6 +389,12 @@ a:hover {
   color: #1A4582; }
 
 .to_cart_button {
+  border-radius: 10px;
+  background-color: #FF0000;
+  text-transform: uppercase;
+  color: white; }
+
+.page-num-selected {
   border-radius: 10px;
   background-color: #FF0000;
   text-transform: uppercase;

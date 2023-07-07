@@ -243,6 +243,9 @@ class Contacts(models.Model):
     address1 = models.CharField(max_length=250, null=True, blank=True, verbose_name='Адрес')
     address2 = models.CharField(max_length=250, null=True, blank=True, verbose_name='Адрес')
     address3 = models.CharField(max_length=250, null=True, blank=True, verbose_name='Адрес')
+    email1 = models.EmailField(null=True, blank=True, verbose_name='E-mail')
+    email2 = models.EmailField(null=True, blank=True, verbose_name='E-mail')
+    email3 = models.EmailField(null=True, blank=True, verbose_name='E-mail')
 
     class Meta:
         verbose_name = 'Контактные данные'

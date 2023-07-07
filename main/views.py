@@ -8,6 +8,9 @@ from crm.forms import OrderForm
 from telebot.sendmessage import send_telegram
 from PIL import Image
 from pravilnayamalyarka.settings import BASE_DIR
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+
+
 # Create your views here.
 
 def index(request):
@@ -57,6 +60,44 @@ def index(request):
         'searchform': searchform,
     }
     return render(request, 'main/index.html', disc)
+def about(request):
+    work = WorkPhoto.objects.all()
+    work_landscape = []
+    work_portrate = []
+    for w in work:
+        with Image.open(BASE_DIR + w.photo_url) as img:
+            width, height = img.size
+            if width/height >= 1.77:
+                work_landscape.append(w)
+            elif width/height < 1:
+                work_portrate.append(w)
+    form = OrderForm
+    searchform = SearchForm
+    socials = Socials.objects.all()
+    try:
+        logo = Logo.objects.get(inuse=True)
+    except:
+        logo = ''
+    try:
+        intro = Introduction.objects.get(inuse=True)
+    except:
+        intro = ''
+    try:
+        contacts = Contacts.objects.all()
+    except:
+        contacts = ''
+
+    disc = {
+        'contacts': contacts[0],
+        'socials': socials,
+        'logo': logo,
+        'intro': intro,
+        'work_landscape': work_landscape,
+        'work_portrate': work_portrate,
+        'form': form,
+        'searchform': searchform,
+    }
+    return render(request, 'main/about.html', disc)
 
 
 def goods(request):
@@ -146,7 +187,28 @@ def category(request, category):
 
     socials = Socials.objects.all()
 
+    pageinput = request.GET.get('page')
+    page = request.GET.get('page')
+
+    paginator = Paginator(products, 12)
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        products = paginator.page(1)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)
+
+    if page == None or page == 'undefined':
+        page = 1
+
+    page = int(page)
+    pages = []
+    for p in range(paginator.num_pages):
+        pages.append(p+1)
     disc = {
+        'pageinput': pageinput,
+        'page': page,
+        'pages': pages,
         "products": products,
         'socials': socials,
         'contacts': contacts[0],
@@ -214,8 +276,28 @@ def subcategory(request, category, subcategory, *args):
         contacts = ''
 
     socials = Socials.objects.all()
+    pageinput = request.GET.get('page')
+    page = request.GET.get('page')
 
+    paginator = Paginator(products, 12)
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        products = paginator.page(1)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)
+
+    if page == None or page == 'undefined':
+        page = 1
+
+    page = int(page)
+    pages = []
+    for p in range(paginator.num_pages):
+        pages.append(p+1)
     disc = {
+        'pageinput': pageinput,
+        'page': page,
+        'pages': pages,
         'socials': socials,
         'contacts': contacts[0],
 

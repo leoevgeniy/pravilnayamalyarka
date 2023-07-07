@@ -71,10 +71,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_webp',
-    # 'compressor',
     'smart_selects',
-    # 'admin_reorder',
-    # 'import_export',
 ]
 FILE_UPLOAD_HANDLERS = (
     'django.core.files.uploadhandler.TemporaryFileUploadHandler',
@@ -104,7 +101,6 @@ CONTEXT_PROCESSORS = [
     }
 ]
 ROOT_URLCONF = 'pravilnayamalyarka.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

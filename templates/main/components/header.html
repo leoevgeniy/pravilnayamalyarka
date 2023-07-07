@@ -2,7 +2,7 @@
 {% load static %}
 
 
-<nav class="container w-100 flex-column ">
+<nav class="container d-none d-md-flex w-100 flex-column ">
     <div class="row container p-0 d-flex justify-content-center first-row w-100">
         <div class="col-3 text-center uln">
             <span class="align-self-center">Ульяновск</span>
@@ -71,7 +71,7 @@
         <div class="col-6 d-flex justify-content-around">
             <a class="navbar-brand align-self-center" href="{% url 'services' %}">ВИДЫ РАБОТ</a>
             <a class="navbar-brand align-self-center to_goods" href="{% url 'index' %}#goods">КАТАЛОГ ТОВАРОВ</a>
-            <a class="navbar-brand align-self-center" href="{% url 'index' %}">О КОМПАНИИ</a>
+            <a class="navbar-brand align-self-center" href="{% url 'about' %}">О КОМПАНИИ</a>
 
         </div>
         <div class="col-3 position-relative text-center cart-wrapper">
@@ -87,23 +87,54 @@
     </div>
 
 
-    {#    <div class="container-fluid d-flex justify-content-between">#}
-    {#        <a class="navbar-brand" href="{% url 'index' %}">Ульяновск</a>#}
-    {#        <a class="navbar-brand" href="{% url 'goods' %}">Товары</a>#}
-    {#        <a class="navbar-brand" href="{% url 'services' %}">Работы</a>#}
-    {#        <div class="position-relative">#}
-    {#            <a class="navbar-brand" href="{% url 'cart' %}">#}
-    {#                <i class="bi bi-cart3">#}
-    {#                          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-amount">#}
-    {##}
-    {#                              <span class="visually-hidden">unread messages</span>#}
-    {#                          </span>#}
-    {##}
-    {#                </i>#}
-    {#            </a>#}
-    {##}
-    {#        </div>#}
-    {#    </div>#}
+</nav>
+<nav class="navbar navbar-expand-lg d-lg-none bg-body-tertiary header-fixed-top w-100">
+    <div class="container-fluid px-0 row d-flex justify-content-between w-100 mx-0" style="background-color: #1A4582;">
+        <div class="logo-wrapper text-center col-2 px-0"  style="background-color: #fff;">
+            <a href="{% url 'index' %}">
+                {#                    <img class="w-75 my-2 object-fit-cover" src="{% static 'images/logo.svg' %}" alt="Logo">#}
+                {% if logo.image %}
+                    <img src="{{ logo.image_url }} "
+                         class="my-2 object-fit-contain" style="width: 90%" alt="Логотип"
+                            {#                             style="height: 150px; object-fit: cover; border-color: #1A4582; border-width: medium"#}
+                    >
+                {% else %}
+                    <img src="{% static "images/no_image.svg" %}"
+                         class="card-img-top img-responsive" alt="Логотип">
+                {% endif %}
+            </a>
+        </div>
+        <div class="px-0 collapsed-search col-8" style="background-color: #1A4582">
+            <form action="{% url 'search' %}"
+                  class="text-center search-wrapper text-center position-relative" method='POST'>
+                {% csrf_token %}
+                {{ searchform.as_div }}
+                {#                <div type='submit' class='position-absolute'#}
+                {#                      style="top: 30%; right: 20%; font-size: 13px">#}
+                <button type='submit' class='bi bi-search position-absolute'
+                        style="top: 25%; right: 10%; font-size: 13px;      background: none;
+                        border: none;
+                        padding: 0;">
+
+                </button>
+                {#                <input type="submit" class='bi bi-search position-absolute' style="top: 30%; right: 20%; font-size: 13px">#}
+                {#                </div>#}
+            </form>
+
+        </div>
+
+        <button class="navbar-toggler text-white col-2 p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon text-white"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav" style="background-color: #1A4582;">
+            <div class="d-flex flex-column">
+                <a class="text-center text-white" href="{% url 'services' %}">ВИДЫ РАБОТ</a>
+                <a class="text-center to_goods text-white" href="{% url 'index' %}#goods">КАТАЛОГ ТОВАРОВ</a>
+                <a class="text-center text-white" href="{% url 'about' %}">О КОМПАНИИ</a>
+
+            </div>
+        </div>
+    </div>
 </nav>
 <div class="modal fade" id="headercallback" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">

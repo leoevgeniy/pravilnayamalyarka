@@ -227,6 +227,29 @@
                 </div>
             </div>
         </div>
+        {% if pages|length > 1 %}
+
+
+            <div class="row">
+                <nav class="list-pages">
+
+                    <div class="d-flex justify-content-center">
+                        {% for p in pages %}
+                            {% if page == p %}
+                                <button class="page-num page-num-selected p-3">{{ p }}</button>
+                            {% elif p >= page|add:-4 and p <= page|add:4 %}
+                                <a href="{% url 'category' category=category%}?page={{ p }}">
+                                    <button class="page-num p-3">
+                                        {{ p }}
+                                    </button>
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </nav>
+            </div>
+        {% endif %}
+
     {% endif %}
 
     {#    <div class="jumbotron">#}

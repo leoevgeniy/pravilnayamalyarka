@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page-title %}
+    <title>О нашей компании</title>
+{% endblock %}
+{% block about %}
+    <nav class="subcategory_menu navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid p-3">
+            <h1>О КОМПАНИИ</h1>
+        </div>
+    </nav>
+    <nav class="subcategory_menu navbar navbar-expand-lg my-3 text-center">
+        {{ intro.text }}
+    </nav>
+
+    {% include 'main/components/services_category_clider.html' %}
+
+    <div class="container px-0 py-3 d-table-row collapse w-100">
+        <h1 id="responsive_headline" class="fs-2 pe-3 d-table-cell text-nowrap"
+            style="font-family: 'Gotham Pro Medium',sans-serif;
+                color: #1A4582;
+            ">КОНТАКТЫ</h1>
+        <div class="service_index_line p-0 d-table-cell h-100 w-100"></div>
+    </div>
+    <div class="container px-0 py-3 d-flex w-100">
+        <div id="responsive_headline" class="w-50 fs-4 pe-3 d-flex flex-column justify-content-center align-items-end"
+             style="font-family: 'Gotham Pro Medium',sans-serif;
+                color: #1A4582;
+            ">
+
+            {% if contacts.phone1 %}
+                <a href="tel:{{ contacts.phone1 }}"><i class="bi bi-telephone-fill me-2"></i>{{ contacts.phone1 }}</a>
+            {% endif %}
+            {% if contacts.phone2 %}
+                <a href="tel:{{ contacts.phone2 }}"><i class="bi bi-telephone-fill me-2"></i>{{ contacts.phone2 }}</a>
+            {% endif %}
+            {% if contacts.phone3 %}
+                <a href="tel:{{ contacts.phone3 }}"><i class="bi bi-telephone-fill me-2"></i>{{ contacts.phone3 }}</a>
+            {% endif %}
+            {% if contacts.email1 %}
+                <a href="mailto:{{ contacts.email1 }}"><i class="bi bi-envelope-at-fill me-2"></i>{{ contacts.email1 }}
+                </a>
+            {% endif %}
+            {% if contacts.email2 %}
+                <a href="mailto:{{ contacts.email2 }}"><i class="bi bi-envelope-at-fill me-2"></i>{{ contacts.email2 }}
+                </a>
+            {% endif %}
+            {% if contacts.email3 %}
+                <a href="mailto:{{ contacts.email3 }}"><i class="bi bi-envelope-at-fill me-2"></i>{{ contacts.email3 }}
+                </a>
+            {% endif %}
+
+        </div>
+        <div id="responsive_headline" class="w-50 fs-5 pe-3 d-flex flex-column"
+             style="font-family: 'Gotham Pro Medium',sans-serif;
+                color: #1A4582;
+            ">
+            {% if contacts.address1 %}
+                <span>{{ contacts.address1 }}</span>
+            {% endif %}
+            {% if contacts.address2 %}
+                <span>{{ contacts.address2 }}</span>
+            {% endif %}
+            {% if contacts.address3 %}
+                <span>{{ contacts.address3 }}</span>
+            {% endif %}
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <span></span>
+    </div>
+    <div class="text-center call-back my-4">
+        <span type="button"
+              class="fs-2 text-white p-4 "
+              data-bs-toggle="modal"
+              data-bs-target="#headercallback"
+              style="background-color: #1A4582;"
+        >ЗАКАЗАТЬ ЗВОНОК</span>
+    </div>
+
+    <script type="text/javascript" charset="utf-8" async
+            src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ac8b1775553a8b10d87dbf136fbace9a9c2c7e914718c887ca09c4d83b166b9c9&amp;width=100%25&amp;height=503&amp;lang=ru_RU&amp;scroll=true"></script>
+
+
+
+
+
+{% endblock %}
