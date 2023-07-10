@@ -25,9 +25,20 @@ const updateQty = () => {
 
     })
     $('.cart-amount').text(getAllQty())
-    if (getAllQty() === 0) {
+    $('.cart-amount-footer').text(getAllQty())
+    if (getAllQty() === 0 ) {
         $('.cart-confirm-btn').addClass('disabled')
+        $('.cart-amount').addClass('d-none')
+        $('.cart-amount-footer').addClass('d-none')
+    } else {
+        $('.cart-confirm-btn').removeClass('disabled')
+        $('.cart-amount').removeClass('d-none')
+        $('.cart-amount-footer').removeClass('d-none')
+
     }
+    $('.footer_search').click(function () {
+        $('.search_input').focus()
+    })
     $('.add-to-cart-btn').each(function () {
         const id = $(this).data('id')
         let exist = false
@@ -73,6 +84,8 @@ const updateQty = () => {
 
 const addToStorage = (product) => {
     let exist = false
+
+
     if (getCookie('cart')) {
         let cart = JSON.parse(getCookie('cart'))
         let index = 0
@@ -125,7 +138,7 @@ const removeFromStorage = (id, weight) => {
                     }
                 } else {
                     if (cart[i].weight === String(weight)) {
-                        console.log(weight)
+
                         if (cart[i]['qty'] > 1) {
                             cart[i]['qty'] -= 1
                             exist = true

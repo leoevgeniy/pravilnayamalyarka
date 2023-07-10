@@ -1,9 +1,14 @@
 @import "cart";
 @import "services_slider";
 @import "header";
+@import "footer";
+@import "about";
+@import "category";
 @import "service_index";
 @import "subcategory";
 @import "products_details";
+@import "products_index";
+@import "services";
 //@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
 
 @font-face {
@@ -84,24 +89,77 @@ button:focus {
 
 
 }
-.repair-works {
-  font-size: larger;
-}
 .services_index {
-  .services_item {
+  .services_item,{
     width: 20%;
   }
 }
+.products_item, .category_item, .category_product_item {
+  width: 20%;
+}
+
+@media (min-width: 1200px) {
+
+  .products_item, .category_item, .category_product_item {
+    width: 20%;
+  }
+  .services_index {
+    .services_item {
+      width: 20%;
+    }
+  }
+}
+@media (max-width: 1200px) {
+
+  .products_item, .category_item, .category_product_item {
+    width: 25%;
+  }
+  .services_index {
+    .services_item {
+      width: 25%;
+    }
+  }
+}
+@media (max-width: 992px) {
+
+  .products_item, .category_item, .category_product_item {
+    width: 33%;
+  }
+  .services_index {
+    .services_item {
+      width: 33%;
+    }
+  }
+}
 @media (max-width: 768px) {
+
+  .products_item, .category_item, .category_product_item {
+    width: 50%;
+  }
   .services_index {
     .services_item {
       width: 50%;
     }
   }
-}@media (max-width: 320px) {
+}@media (max-width: 576px) {
+  .services_index {
+    .services_item {
+      width: 50%;
+    }
+  }
+  .products_item, .category_item, .category_product_item {
+    width: 50%;
+  }
+
+}
+@media (max-width: 320px) {
   .services_index {
     .services_item {
       width: 100%;
     }
   }
+  .products_item, .category_item, .category_product_item {
+    width: 100%;
+  }
+
 }

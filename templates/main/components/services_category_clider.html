@@ -1,7 +1,7 @@
 {% load static %}
 
 <div class="container px-0 py-3 d-table-row collapse w-100">
-        <span   class="fs-2 pe-3 d-table-cell text-nowrap"
+        <span   class="pe-3 d-table-cell text-nowrap our_work_index"
                 style="font-family: 'Gotham Pro Medium',sans-serif;
                 color: #1A4582;
             ">НАШИ РАБОТЫ</span>
@@ -12,7 +12,7 @@
     {% for service in work_portrate %}
     <li class="">
         <img src="{% if service.photo %}{{ service.photo.url }}{% else %}{% static 'images/no_image.svg' %}{% endif %}" class="d-block w-100 object-fit-contain" alt="{{ service.name }}">
-        <h3 class="service_name">{{ service.name }}</h3>
+{#        <h3 class="service_name">{{ service.name }}</h3>#}
 {#        <p>Lorem ipsum Cupidatat quis pariatur anim.</p>#}
     </li>
     {% endfor %}

@@ -8,9 +8,9 @@
 {% block cart %}
     <main>
         <!-- Start DEMO HTML (Use the following code into your project)-->
-        <header id="site-header">
+        <header id="site-header" class="mb-1">
             <div class="container">
-                <h1>Корзина </h1>
+                <h1 class="py-1">Корзина </h1>
             </div>
         </header>
         {% if products %}
@@ -18,7 +18,7 @@
 
             <div class="container w-100">
                 <div class="row w-100">
-                    <div class="col-12 col-lg-10">
+                    <div class="col-12 col-lg-10 text-center">
                         {% for product in products %}
                             <br>
                             <div class="row">
@@ -74,7 +74,7 @@
                                 ></span>
                                 </div>
                                 <div class="col-md-1">
-                                    <button class="remove-from-cart" data-id="{{ product.product.vendor_code }}"><i
+                                    <button class="remove-from-cart float-end" data-id="{{ product.product.vendor_code }}"><i
                                             class="bi bi-trash-fill"></i></button>
                                 </div>
                             </div>
@@ -84,7 +84,7 @@
                     </div>
                     <div class="col-12 col-lg-2">
                         <button
-                                type='button'
+                                type='button' style="background-color: #1A4582;"
                                 class='btn w-100 mb-3 fs-4 cart-confirm-btn'
                                 data-bs-toggle="modal" data-bs-target="#cartModal"
                         >

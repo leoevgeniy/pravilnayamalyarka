@@ -2,7 +2,7 @@
 {% load static %}
 
 
-<nav class="container d-none d-md-flex w-100 flex-column ">
+<nav class="container d-none d-sm-flex w-100 flex-column ">
     <div class="row container p-0 d-flex justify-content-center first-row w-100">
         <div class="col-3 text-center uln">
             <span class="align-self-center">Ульяновск</span>
@@ -68,10 +68,10 @@
             </form>
 
         </div>
-        <div class="col-6 d-flex justify-content-around">
-            <a class="navbar-brand align-self-center" href="{% url 'services' %}">ВИДЫ РАБОТ</a>
-            <a class="navbar-brand align-self-center to_goods" href="{% url 'index' %}#goods">КАТАЛОГ ТОВАРОВ</a>
-            <a class="navbar-brand align-self-center" href="{% url 'about' %}">О КОМПАНИИ</a>
+        <div class="col-6 d-flex justify-content-around menu_header">
+            <a class="align-self-center text-center" href="{% url 'services' %}">ВИДЫ РАБОТ</a>
+            <a class="text-center align-self-center to_goods" href="{% url 'index' %}#goods">КАТАЛОГ ТОВАРОВ</a>
+            <a class="align-self-center text-center" href="{% url 'about' %}">О КОМПАНИИ</a>
 
         </div>
         <div class="col-3 position-relative text-center cart-wrapper">
@@ -88,7 +88,7 @@
 
 
 </nav>
-<nav class="navbar d-md-none bg-body-tertiary header-fixed-top w-100">
+<nav class="navbar d-sm-none bg-body-tertiary header-fixed-top w-100">
     <div class="container-fluid px-0 row d-flex justify-content-between w-100 mx-0" style="background-color: #1A4582;">
         <div class="logo-wrapper text-center col-2 px-0"  style="background-color: #fff;">
             <a href="{% url 'index' %}">
@@ -104,7 +104,7 @@
                 {% endif %}
             </a>
         </div>
-        <div class="px-0 collapsed-search col-8" style="background-color: #1A4582">
+        <div class="px-0 collapsed-search col-8 px-2" style="background-color: #1A4582">
             <form action="{% url 'search' %}"
                   class="text-center search-wrapper text-center position-relative" method='POST'>
                 {% csrf_token %}
@@ -112,7 +112,7 @@
                 {#                <div type='submit' class='position-absolute'#}
                 {#                      style="top: 30%; right: 20%; font-size: 13px">#}
                 <button type='submit' class='bi bi-search position-absolute'
-                        style="top: 25%; right: 10%; font-size: 13px;      background: none;
+                        style="top: 22%; right: 10%; font-size: 13px;      background: none;
                         border: none;
                         padding: 0;">
 
@@ -124,13 +124,13 @@
         </div>
 
         <button class="navbar-toggler text-white col-2 p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon text-white"></span>
+            <span id="toggle-icon-header" class="navbar-toggler-icon "></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav" style="background-color: #1A4582;">
             <div class="d-flex flex-column">
-                <a class="text-center text-white" href="{% url 'services' %}">ВИДЫ РАБОТ</a>
-                <a class="text-center to_goods text-white" href="{% url 'index' %}#goods">КАТАЛОГ ТОВАРОВ</a>
-                <a class="text-center text-white" href="{% url 'about' %}">О КОМПАНИИ</a>
+                <a class="text-center text-white navbar-toggler" href="{% url 'services' %}">ВИДЫ РАБОТ</a>
+                <a class="text-center to_goods text-white navbar-toggler" href="{% url 'index' %}#goods">КАТАЛОГ ТОВАРОВ</a>
+                <a class="text-center text-white navbar-toggler" href="{% url 'about' %}">О КОМПАНИИ</a>
 
             </div>
         </div>

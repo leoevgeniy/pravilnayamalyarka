@@ -9,3 +9,17 @@
 .category_line_title {
   flex-grow: 2;
 }
+.repair-works {
+  font-size: 2rem;
+}
+
+@media (max-width: 768px) {
+  #goods, .our_work_index, .repair-works, .contacts {
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 320px) {
+  #goods, .our_work_index, .repair-works, .contacts {
+    font-size: 1rem;
+  }
+}

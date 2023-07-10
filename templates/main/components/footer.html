@@ -1,7 +1,7 @@
 {#{% extends 'base.html' %}#}
-
+{% load static %}
 {#{% block footer %}#}
-<div class="container footer d-flex mt-auto w-100" style="background-color:#1A4582">
+<div class="container footer d-sm-flex mt-auto w-100 d-none" style="background-color:#1A4582">
     <div class="navbar-inner d-flex w-50 justify-content-center my-4 " style="color: white">
         {% for social in socials %}
             {% if social.image %}
@@ -32,6 +32,66 @@
             <a class="fs-3 text-white" href="tel:{{ contacts.phone3 }}">Тел: {{ contacts.phone3 }}</a>
         {% endif %}
     </div>
+</div>
+<div class="navbar container footer_mobile d-flex d-sm-none mt-auto w-100 justify-content-around align-items-center footer-fixed-bottom"
+     style="background-color:#1A4582"
+>
+
+    <button class="navbar-toggler col-2 p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon footer_toggle_button toggle-icon"></span>
+    </button>
+        <a class="position-relative " href="{% url 'cart' %}">
+            <img src="{% static 'images/cart.svg' %}" class="h-100" alt="Корзина"  style="width: 30px">
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-amount-footer">
+                  <span class="visually-hidden">unread messages</span>
+                </span>
+
+        </a>
+{#    <div class="px-0 collapsed-search col-8 px-2" style="background-color: #1A4582">#}
+        <a href="{% url 'about' %}" class='footer_search'
+           style="width: 30px;
+                        background: none;
+                        border: none;
+                        padding: 0;
+                        color: white"
+        >
+            <img src="{% static 'images/about.svg' %}" alt="О нас">
+        </a>
+{##}
+{#    </div>#}
+
+
+
+    {#    <div class="navbar-inner d-flex w-50 justify-content-center my-4 " style="color: white">#}
+    {#        {% for social in socials %}#}
+    {#            {% if social.image %}#}
+    {#                <a href="{{ social.link }}" target="_blank" class="social_network_icon">#}
+    {##}
+    {#                    <img style="height: 50px; fill: white" class="px-2" src="{{ social.image_url }}" alt="{{ social }}">#}
+    {#                </a>#}
+    {#            {% endif %}#}
+    {#        {% endfor %}#}
+    {#    </div>#}
+    {#    <div class="w-50 d-flex flex-column justify-content-center text-white">#}
+    {#        {% if contacts.address1 %}#}
+    {#            <span>{{ contacts.address1 }}</span>#}
+    {#        {% endif %}#}
+    {#        {% if contacts.address2 %}#}
+    {#            <span>{{ contacts.address2 }}</span>#}
+    {#        {% endif %}#}
+    {#        {% if contacts.address3 %}#}
+    {#            <span>{{ contacts.address3 }}</span>#}
+    {#        {% endif %}#}
+    {#        {% if contacts.phone1 %}#}
+    {#            <a class="fs-3 text-white" href="tel:{{ contacts.phone1 }}">Тел: {{ contacts.phone1 }}</a>#}
+    {#        {% endif %}#}
+    {#        {% if contacts.phone2 %}#}
+    {#            <a class="fs-3 text-white" href="tel:{{ contacts.phone2 }}">Тел: {{ contacts.phone2 }}</a>#}
+    {#        {% endif %}#}
+    {#        {% if contacts.phone3 %}#}
+    {#            <a class="fs-3 text-white" href="tel:{{ contacts.phone3 }}">Тел: {{ contacts.phone3 }}</a>#}
+    {#        {% endif %}#}
+    {#    </div>#}
 
 </div>
 {#{% endblock %}#}

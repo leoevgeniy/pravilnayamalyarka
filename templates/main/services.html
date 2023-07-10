@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block services %}
-    <table class="table table-striped-columns">
+    <table class="table table-striped-columns w-100 services_table">
         <thead>
         <tr>
             <th scope="col">
@@ -37,9 +37,9 @@
         {% endfor %}
         </tbody>
     </table>
-    <div class="text-center call-back my-4">
+    <div class="text-center call-back my-4 services_callback">
         <span type="button"
-              class="fs-2 text-white p-4 "
+              class="text-white"
               data-bs-toggle="modal"
               data-bs-target="#headercallback"
               style="background-color: #1A4582;"

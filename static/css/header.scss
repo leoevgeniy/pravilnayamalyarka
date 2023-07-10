@@ -109,3 +109,15 @@
   }
 
 }
+
+@media (max-width: 992px) {
+  .menu_header {
+    font-size: medium;
+  }
+
+}@media (max-width: 768px) {
+  .menu_header {
+    font-size: 10px;
+  }
+
+}

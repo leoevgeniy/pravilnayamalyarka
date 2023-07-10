@@ -126,35 +126,32 @@
                 </ol>
             </nav>
             <div id="goods" class="container px-0 py-3 d-table-row collapse w-100">
-                <h1 id="responsive_headline" class="fs-2 pe-3 d-table-cell text-nowrap"
+                <h1 class="fs-2 pe-3 d-table-cell"
                     style="font-family: 'Gotham Pro Medium',sans-serif;
                 color: #1A4582;
             ">{{ subcategory }}</h1>
                 <div class="service_index_line p-0 d-table-cell h-100 w-100"></div>
             </div>
-            <div class="row mt-3">
-                <div class="col-12">
-                    {#                    <h1>{% if subcategory %}{{ subcategory.name }}{% else %}Товары{% endif %}</h1>#}
-                    <div class="row">
-                        {% for product in products %}
-                            <div class="item col-12 col-md-4 col-lg-3 mb-1 mb-sm-0 px-1">
-                                <div class="card subcategory_menu d-flex flex-column">
-                                    <a href="{% url 'product_view' pk=product.vendor_code %}">
-                                        {% if product.photo %}
+            <div class="row">
+                {% for product in products %}
+                    <div class="item col-12 col-md-4 col-lg-3 mb-1 mb-sm-0 px-1 subcategory_item">
+                        <div class="card subcategory_menu d-flex flex-column justify-content-between h-100">
+                            <a href="{% url 'product_view' pk=product.vendor_code %}">
+                                {% if product.photo %}
 
-                                            <img src="{{ product.photo_url }} "
-                                                 class="card-img-top img-thumbnail" alt="{{ product.name }}"
-                                                 style="height: 10vw; object-fit: contain"
-                                            >
+                                    <img src="{{ product.photo_url }} "
+                                         class="card-img-top img-thumbnail subcategory_images" alt="{{ product.name }}"
+                                         style="object-fit: contain"
+                                    >
 
-                                        {% else %}
-                                            <img src="{% static "images/no_image.svg" %}"
-                                                 class="card-img-top img-responsive" alt="{{ product.name }}">
-                                        {% endif %}
-                                    </a>
-                                    <div class="card-body text-center d-flex flex-column justify-content-between"
-                                         style="height: 14vw; object-fit: contain">
-                                        <a href="{% url 'product_view' pk=product.vendor_code %}">
+                                {% else %}
+                                    <img src="{% static "images/no_image.svg" %}"
+                                         class="card-img-top img-responsive" alt="{{ product.name }}">
+                                {% endif %}
+                            </a>
+                            <div class="card-body text-center d-flex flex-column justify-content-between"
+                                 style="height: 14vw; object-fit: contain">
+                                <a href="{% url 'product_view' pk=product.vendor_code %}">
 
                                             <span class='fw-bold card-name d-inline-block text-start py-0 mb-0'
                                                   style="">
@@ -167,105 +164,103 @@
                                                        -webkit-box-orient: vertical;"
                                                 >{{ product.name }}</span>
                                             </span>
-                                        </a>
-                                        <span itemProp="price"
-                                              data-id="{{ product.vendor_code }}"
-                                              class='card-price fw-bold text-dark mb-3'
-                                              style="   overflow: hidden;
+                                </a>
+                                <span itemProp="price"
+                                      data-id="{{ product.vendor_code }}"
+                                      class='card-price fw-bold text-dark mb-3'
+                                      style="   overflow: hidden;
                                                    display: -webkit-box;
                                                    -webkit-line-clamp: 3; /* number of lines to show */
                                                            line-clamp: 3;
                                                    -webkit-box-orient: vertical;"
-                                        > {{ product.packprices.first.price }} р.</span>
+                                > {{ product.packprices.first.price }} р.</span>
 
 
-                                        {#                                            <div class="d-flex justify-content-center">#}
-                                        {#                                                {% for weight in product.packprices.all %}#}
-                                        {#                                                    {% if product.packprices.all|length > 1 %}#}
-                                        {#                                                        <div class="border-1 mx-1">#}
-                                        {#                                                            {{ weight.weight }}#}
-                                        {#                                                        </div>#}
-                                        {#                                                    {% endif %}#}
-                                        {#                                                {% endfor %}#}
-                                        {#                                            </div>#}
-                                        {% if product.packprices.all|length > 1 %}
+                                {#                                            <div class="d-flex justify-content-center">#}
+                                {#                                                {% for weight in product.packprices.all %}#}
+                                {#                                                    {% if product.packprices.all|length > 1 %}#}
+                                {#                                                        <div class="border-1 mx-1">#}
+                                {#                                                            {{ weight.weight }}#}
+                                {#                                                        </div>#}
+                                {#                                                    {% endif %}#}
+                                {#                                                {% endfor %}#}
+                                {#                                            </div>#}
+                                {% if product.packprices.all|length > 1 %}
 
-                                            <div class="d-flex text-center justify-content-around"
-                                                 aria-label="{{ product.name }}">
-                                                {% for weight in product.packprices.all %}
-                                                    <button type="button"
-                                                            data-id="{{ product.vendor_code }}plus{{ weight.id }}"
-                                                            data-price="{{ weight.price }}"
-                                                            class="btn btn-secondary weight-select-button"
-                                                            style="font-size: 70%; {% if forloop.first %} background-color: pink {% else %} background-color: gray {% endif %}"
-                                                    >{{ weight.weight }}</button>
+                                    <div class="d-flex text-center justify-content-around"
+                                         aria-label="{{ product.name }}">
+                                        {% for weight in product.packprices.all %}
+                                            <button type="button"
+                                                    data-id="{{ product.vendor_code }}plus{{ weight.id }}"
+                                                    data-price="{{ weight.price }}"
+                                                    class="btn btn-secondary weight-select-button"
+                                                    style="font-size: 70%; {% if forloop.first %} background-color: pink {% else %} background-color: gray {% endif %}"
+                                            >{{ weight.weight }}</button>
 
-                                                {% endfor %}
+                                        {% endfor %}
 
-
-                                            </div>
-                                        {% endif %}
-                                        <button
-                                                data-name="{{ product.name }}"
-                                                data-price="{{ product.price }}"
-                                                data-id="{{ product.vendor_code }}"
-                                                data-weight="{{ product.packprices.first.id }}"
-                                                class="add-to-cart-btn w-100 mb-1 to_cart_button"
-                                        >В корзину
-                                        </button>
-                                        <div id="cart-wrap-product-details"
-                                             class="text-center justify-item-end cart-qty-wrapper mb-1"
-                                             data-id="{{ product.vendor_code }}">
-                                            <button class="cart-minus to_cart_button"
-                                                    data-id="{{ product.vendor_code }}"
-                                                    data-weight="{{ product.vendor_code }}"
-                                            >-
-                                            </button>
-                                            <i class="bi bi-basket"></i>
-                                            <span
-                                                    class="cart-qty"
-                                                    data-id="{{ product.vendor_code }}"
-                                                    data-weight=""
-                                            >0</span>
-                                            <button class="cart-plus  to_cart_button"
-                                                    data-id="{{ product.vendor_code }}"
-                                                    data-name="{{ product.name }}"
-                                                    data-price="{{ product.price }}"
-                                                    data-weight="{{ product.packprices.first.id }}"
-                                            >+
-                                            </button>
-
-                                        </div>
 
                                     </div>
+                                {% endif %}
+                                <button
+                                        data-name="{{ product.name }}"
+                                        data-price="{{ product.price }}"
+                                        data-id="{{ product.vendor_code }}"
+                                        data-weight="{{ product.packprices.first.id }}"
+                                        class="add-to-cart-btn w-100 mb-1 to_cart_button"
+                                >В корзину
+                                </button>
+                                <div id="cart-wrap-product-details"
+                                     class="text-center justify-item-end cart-qty-wrapper mb-1"
+                                     data-id="{{ product.vendor_code }}">
+                                    <button class="cart-minus to_cart_button"
+                                            data-id="{{ product.vendor_code }}"
+                                            data-weight="{{ product.packprices.first.id }}"
+                                    >-
+                                    </button>
+                                    <i class="bi bi-basket"></i>
+                                    <span
+                                            class="cart-qty"
+                                            data-id="{{ product.vendor_code }}"
+                                            data-weight=""
+                                    >0</span>
+                                    <button class="cart-plus  to_cart_button"
+                                            data-id="{{ product.vendor_code }}"
+                                            data-name="{{ product.name }}"
+                                            data-price="{{ product.price }}"
+                                            data-weight="{{ product.packprices.first.id }}"
+                                    >+
+                                    </button>
+
                                 </div>
+
                             </div>
-                        {% endfor %}
-                    </div>
-                    {% if pages|length > 1 %}
-
-
-                        <div class="row">
-                            <nav class="list-pages">
-
-                                <div class="d-flex justify-content-center">
-                                    {% for p in pages %}
-                                        {% if page == p %}
-                                            <button class="page-num page-num-selected p-3">{{ p }}</button>
-                                        {% elif p >= page|add:-4 and p <= page|add:4 %}
-                                            <a href="{% url 'subcategory' category=category subcategory=subcategory %}?page={{ p }}">
-                                                <button class="page-num p-3">
-                                                    {{ p }}
-                                                </button>
-                                            </a>
-                                        {% endif %}
-                                    {% endfor %}
-                                </div>
-                            </nav>
                         </div>
-                    {% endif %}
-                </div>
+                    </div>
+                {% endfor %}
             </div>
+            {% if pages|length > 1 %}
+
+
+                <div class="row">
+                    <nav class="list-pages">
+
+                        <div class="d-flex justify-content-center">
+                            {% for p in pages %}
+                                {% if page == p %}
+                                    <button class="page-num page-num-selected p-3">{{ p }}</button>
+                                {% elif p >= page|add:-4 and p <= page|add:4 %}
+                                    <a href="{% url 'subcategory' category=category subcategory=subcategory %}?page={{ p }}">
+                                        <button class="page-num p-3">
+                                            {{ p }}
+                                        </button>
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </nav>
+                </div>
+            {% endif %}
         {% endif %}
     {% endblock %}
 
