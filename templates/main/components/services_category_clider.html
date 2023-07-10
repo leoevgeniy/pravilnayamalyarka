@@ -8,7 +8,7 @@
     <div class="service_index_line p-0 d-table-cell h-100 w-100"></div>
 </div>
 
-<ul id="lightSlider" class="mt-3">
+<ul id="lightSlider" class="mt-3 ">
     {% for service in work_portrate %}
     <li class="">
         <img src="{% if service.photo %}{{ service.photo.url }}{% else %}{% static 'images/no_image.svg' %}{% endif %}" class="d-block w-100 object-fit-contain" alt="{{ service.name }}">

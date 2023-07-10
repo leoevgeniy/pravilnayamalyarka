@@ -462,6 +462,9 @@ button:focus {
 .footer {
   flex: 0 0 auto; }
 
+.repair-works {
+  font-size: larger; }
+
 .services_index .services_item {
   width: 20%; }
 
