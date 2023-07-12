@@ -1,12 +1,10 @@
 {% load static %}
-    <div id="goods" class="container px-0 py-3 d-table-row collapse w-100">
-        <span   class="pe-3 d-table-cell text-nowrap "
-                style="font-family: 'Gotham Pro Medium',sans-serif;
-                color: #1A4582;
-            ">ТОВАРЫ ДЛЯ РЕМОНТА</span>
-        <div class="service_index_line p-0 d-table-cell h-100 w-100"></div>
+    <div id="goods" class="text-center mx-auto">
+        <span   class=" w-100 mb-3">Наши товары</span>
+        <div id="goods_line" class="mx-auto my-3"></div>
+        <span id="decr">Широкий ассортимент продукции от различных брендов и лидеров рынка</span>
     </div>
-    <div class="w-100 my-3 row container px-0 justify-content-around">
+    <div class="row">
         {% for category in categories %}
             <a href="{% url 'category' category=category%}" class="d-flex flex-column p-1 products_item" >
                 {% if category.photo %}

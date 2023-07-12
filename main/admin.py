@@ -4,6 +4,8 @@ from django.utils.safestring import mark_safe
 from .models import Category, SubCategory, ServiceCategory
 
 
+
+
 # Register your models here.
 
 class SubCategoryAdm(admin.ModelAdmin):
@@ -15,6 +17,7 @@ class SubCategoryAdm(admin.ModelAdmin):
     list_per_page = 10
     list_max_show_all = 100
     readonly_fields = ('id',)
+
     # поле класса комент
     # inlines = [Coment,]
 
@@ -23,6 +26,7 @@ class SubCategoryAdm(admin.ModelAdmin):
             return mark_safe(f'<img src="{obj.photo.url}" width="80px"')
         except:
             return mark_safe(f'<img src="" width="80px"')
+
 
 admin.site.register(SubCategory, SubCategoryAdm)
 
@@ -47,4 +51,3 @@ class CategoryAdm(admin.ModelAdmin):
             return mark_safe(f'<img src="{obj.photo.url}" width="80px"')
         except:
             return mark_safe(f'<img src="" width="80px"')
-

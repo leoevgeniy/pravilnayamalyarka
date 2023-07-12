@@ -10,6 +10,8 @@ from PIL import Image
 from pravilnayamalyarka.settings import BASE_DIR
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from urllib.parse import unquote
+from meta.views import Meta
+
 
 # Create your views here.
 
@@ -46,8 +48,20 @@ def index(request):
         contacts = ''
     allcategory = Category.objects.all()
     allsubcategory = SubCategory.objects.all()
+    meta = Meta(
+        title="Правильная малярка",
+        description='Только проверенные поставщики, занимающие лидирующие позиции на мировом рынке. Качество подтверждено мировыми гигантами.',
+        keywords=['pony', 'ponies', 'awesome'],
+        extra_props = {
+            'viewport': 'width=device-width, initial-scale=1.0, minimum-scale=1.0'
+        },
+        extra_custom_props=[
+            ('http-equiv', 'Content-Type', 'text/html; charset=UTF-8'),
+        ]
+    )
 
     disc = {
+        'pagename': 'index',
         'allcategory': allcategory,
         'allsubcategory': allsubcategory,
 
@@ -96,6 +110,7 @@ def about(request):
     allsubcategory = SubCategory.objects.all()
 
     disc = {
+        'pagename': 'about',
         'allcategory': allcategory,
         'allsubcategory': allsubcategory,
         'contacts': contacts[0],
@@ -227,6 +242,7 @@ def category(request, category):
         pages.append(p+1)
     form = OrderForm
     disc = {
+        'pagename': 'category',
         'form': form,
         'pageinput': pageinput,
         'page': page,

@@ -1,15 +1,21 @@
 {% load static %}
+
 {% if promoslider %}
 
 
 
     <div id="carouselExampleFade" class="w-100 carousel slide carousel-fade mb-3 " data-bs-ride="carousel">
         <ol class="carousel-indicators">
+
             {% for slide in promoslider %}
+
                 {% if forloop.first %}
-                    <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="{{ forloop.counter0 }}" class="active" aria-current="true" aria-label="{{ forloop.counter0 }}"></button>
+                    <button type="button" data-bs-target="#carouselExampleFade"
+                            data-bs-slide-to="{{ forloop.counter0 }}" class="active" aria-current="true"
+                            aria-label="{{ forloop.counter0 }}"></button>
                 {% else %}
-                    <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="{{ forloop.counter0 }}" aria-label="{{ forloop.counter0 }}"></button>
+                    <button type="button" data-bs-target="#carouselExampleFade"
+                            data-bs-slide-to="{{ forloop.counter0 }}" aria-label="{{ forloop.counter0 }}"></button>
 
                 {% endif %}
             {% endfor %}
@@ -17,17 +23,34 @@
         </ol>
         <div class="carousel-inner">
             {% for slide in promoslider %}
+                <a id="promo_link_button" href="
+                {% if slide.vendor %}
+                    {% url 'subcategory' category=slide.category subcategory=slide.subcategory %}?vendor={{ slide.vendor }}
+                {% else %}
+                    {% url 'subcategory' category=slide.category subcategory=slide.subcategory %}
+                {% endif %}
+                ">
+                    <button
+                            class="btn_container align-self-center fw-bold d-flex align-items-center">
+                    <span type="button" data-bs-toggle="modal" data-bs-target="#headercallback"
+                          class="">Перейти в каталог</span>
+                    </button>
+                </a>
                 {% if forloop.first %}
-                    <div class="carousel-item active"  data-bs-interval="4000">
-                        <img src="{% if slide.photo %}{{ slide.photo.url }}{% else %}{% static 'images/no_image.svg' %}{% endif %}" class="d-block w-100 object-fit-cover" style="height: 300px" alt="{{ slide.name }}">
+                    <div class="carousel-item active" data-bs-interval="4000">
+                        <img src="
+                                {% if slide.photo %}{{ slide.photo.url }}{% else %}{% static 'images/no_image.svg' %}{% endif %}"
+                             class="d-block w-100 object-fit-cover" alt="{{ slide.name }}">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>{{ slide.name }}</h5>
                             {#                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>#}
                         </div>
                     </div>
                 {% else %}
-                    <div class="carousel-item"  data-bs-interval="4000">
-                        <img src="{% if slide.photo %}{{ slide.photo.url }}{% else %}{% static 'images/no_image.svg' %}{% endif %}" class="d-block w-100 object-fit-cover"  style="height: 300px" alt="{{ slide.name }}">
+                    <div class="carousel-item" data-bs-interval="4000">
+                        <img src="
+                                {% if slide.photo %}{{ slide.photo.url }}{% else %}{% static 'images/no_image.svg' %}{% endif %}"
+                             class="d-block w-100 object-fit-cover" alt="{{ slide.name }}">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>{{ slide.name }}</h5>
                             {#                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>#}

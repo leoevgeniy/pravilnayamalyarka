@@ -57,6 +57,8 @@ STATICFILES_FINDERS = [
 ]
 USE_DJANGO_JQUERY = True
 
+CMS_SEO_FIELDS=True
+
 INSTALLED_APPS = [
     'telebot.apps.TelebotConfig',
     'main.apps.MainConfig',
@@ -69,9 +71,11 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
     'django_webp',
     'smart_selects',
+    'meta',
 ]
 FILE_UPLOAD_HANDLERS = (
     'django.core.files.uploadhandler.TemporaryFileUploadHandler',

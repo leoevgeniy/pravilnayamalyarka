@@ -2,14 +2,17 @@
 {% load static %}
 {% block page-title %}
     <title>Правильная Малярка</title>
+    <meta name="description" content="Только проверенные поставщики, занимающие лидирующие позиции на мировом рынке. Качество подтверждено мировыми гигантами.">
+    <meta name="title" content="Правильная Малярка">
 {% endblock %}
 {% block index %}
-    <nav class="subcategory_menu navbar d-none d-md-block bg-body-tertiary my-3 text-center">
-        {{ intro.text }}
-    </nav>
+
+{#    <nav class="subcategory_menu navbar d-none d-md-block bg-body-tertiary my-3 text-center">#}
+{#        {{ intro.text }}#}
+{#    </nav>#}
     {% include 'main/components/promoslider.html' %}
     {% include 'main/goods_index.html' %}
-    {% include 'main/service_index.html' %}
-
-    {% include 'main/components/services_category_clider.html' %}
+{#    {% include 'main/service_index.html' %}#}
+{##}
+{#    {% include 'main/components/services_category_clider.html' %}#}
 {% endblock %}

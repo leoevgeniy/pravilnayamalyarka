@@ -1,155 +1,102 @@
-.first-row {
-  height: 2.5rem;
-  .uln, .call-back,  {
-    line-height: 2.5rem;
-    font-family: "Gotham Pro Medium", sans-serif;
-    font-size: 1rem;
-    height: 100%;
-    //font-size: 5.728px;
-    background-color: #1A4582;
-    color: white;
-    ;
+//
+.header_container {
+  font-family: 'Circe',Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+  //display: table;
+  .left_wrapper {
+    padding-top: 10px;
+    padding-bottom: 10px;
+//    padding-left: 20px;
+//    display: table-cell;
+//    vertical-align: middle;
+//    .logo_wrapper {
+//      vertical-align: middle;
+//      margin-right: 35px;
+//    }
+//  }
+//  .right_wrapper {
+//    display: table-cell;
+//    vertical-align: middle;
   }
-  .phone {
-    line-height: 2.5rem;
-    font-family: 'Gorham Pro Black', sans-serif;
-    font-weight: bold;
-    font-size: 1.5rem;
-    height: 100%;
-    color: #1A4582;
+  .right_wrapper {
+    .phone_container {
+      img {
+        height: 40px;
+      }
+    }
+    .address_container {
+      img {
+        height: 40px;
+      }
+    }
+  }
+    .btn_container {
+      height: 45px;
+      padding-left: 30px;
+      padding-right: 30px;
+      white-space: nowrap;
+      font-weight: 700;
+      cursor: pointer;
+      border: 2px solid black;
+      border-radius: 50px;
+      span {
+
+      }
+    }
+}
+.offcanvas-body {
+  padding: 42px 25px 25px;
+  height: auto;
+  min-height: 100%;
+  text-align: left;
+  .menu-list {
+
+    list-style-type: none;
+    li {
+      padding-left: 30px;
+      margin: 10px 0;
+    }
     a {
-
-
-      color: #1A4582;
+      font-size: 24px;
+      text-decoration: none;
     }
   }
 }
 
-.menu-img {
-  background: url("../images/header-bg-image.jpg") no-repeat left center/ cover;
-  height: 100%;
-  .repair, .goods {
-    font-family: 'Gorham Pro Black', sans-serif;
-    font-weight: bold;
-    font-size: 2.5rem;
-    line-height: 2rem;
-    color: white;
+.menu-content {
+  font-family: 'Circe',Arial,sans-serif;
+  background-color: #333333;
+  .menu-list {
 
-  }
-  .for-repair {
-    font-family: 'Gotham Pro Medium', sans-serif;
-    //font-weight: bold;
-    font-size: 1rem;
-    color: white;
-
-  }
-  .menu-line1 {
-    width: 4rem;
-    height: 2px;
-    background-color: #fff;
-    margin: 1rem 0 1rem 1.5rem;
-
-  }
-  .menu-line2 {
-    width: 4rem;
-    height: 2px;
-    background-color: #fff;
-    margin: 1rem 0 1rem 0;
-
-  }
-  .and {
-    color: white;
-  }
-
-}
-.header-fixed-top {
-  position: sticky;
-  top: 0;
-  background-color: inherit; /* [1] */
-  z-index: 1055; /* [2] */
-}
-.collapsed-search {
-  .search-input {
-    width: 100%;
-    border-radius: 20px;
-  }
-}
-.third-row {
-  .search-input{
-    //-webkit-border-radius: 20px;
-    //-moz-border-radius: 20px;
-    border-radius: 20px;
-    //border: 1px solid #2d9fd9;
-    //color: #a0d18c;
-    //width: 250px;
-    //height: 30px;
-    //padding-left: 10px;
-  }
-  //.search-input:focus{
-  //  //outline: none;
-  //  //border: 1px solid #a0d18c;
-  //  color: #2d9fd9;
-  //}
-  .search-wrapper {
-    background-color: #1A4582;
-  }
-  .cart-wrapper {
-    background-color: #1A4582;
-
-  }
-  .cart {
-    background: url("../images/cart.svg") no-repeat center center / contain;
-    width: 70px;
-    height: 70px;
-    transform: translate(-50%, -18%);
-    z-index: 1001;
-  }
-  .search-input {
-    width: 90%;
-  }
-
-}
-
-@media (max-width: 992px) {
-  .call-back span {
-    font-size: 15px;
-  }
-  .uln span {
-    font-size: 15px;
-  }
-  .menu_header {
-    font-size: medium;
-  }
-
-}@media (max-width: 768px) {
-  .third-row {
-    .cart {
-      width: 40px;
-      height: 40px;
-      transform: translate(-50%, 5%);
-
+    list-style-type: none;
+    a {
+      text-decoration: none;
     }
   }
-  .call-back span {
-    font-size: 12px;
-  }
-
-  .uln span{
-
-    font-size: 12px;
-  }
-
-  .menu_header {
-    font-size: 10px;
-  }
-
 }
-@media (max-width: 576px) {
-  .uln span{
-    font-size: 10px;
-  }
-  .menu_header {
-    font-size: 10px;
-  }
+.active {
+  text-decoration: underline;
+}
 
+.logo_stick {
+  top: 25px;
+  left: 50px;
+  position: fixed;
+  z-index: 998;
+}
+
+.button_stick {
+  top: 25px;
+  right: 50px;
+  position: fixed;
+  z-index: 998;
+}
+
+@media  (max-width: 1200px) {
+  .header_container {
+    font-family: 'Circe', Arial, sans-serif;
+    font-size: 12px;
+    line-height: 1.55;
+  }
 }

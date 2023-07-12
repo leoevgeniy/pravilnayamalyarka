@@ -21,12 +21,12 @@ class PromoSlider(models.Model):
     photo = models.ImageField(upload_to="images/slider", verbose_name="Фото", null=True, blank=True)
     vendor = models.ForeignKey(Vendor, on_delete=models.CASCADE, verbose_name='Производитель', null=True, blank=True)
     vendor_code_list = models.CharField(max_length=256, verbose_name='Артикулы товаров', null=True, blank=True)
-    promo_category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='promos',
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='promos',
                                        verbose_name='Категория', null=True, blank=True)
-    promo_subcategory = ChainedForeignKey(
+    subcategory = ChainedForeignKey(
         SubCategory,
-        chained_field="promo_category",
-        chained_model_field="promo_category",
+        chained_field="category",
+        chained_model_field="category",
         show_all=False,
         auto_choose=True,
         sort=True,

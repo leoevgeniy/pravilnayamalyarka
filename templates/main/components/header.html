@@ -1,161 +1,384 @@
 {#{% extends 'base.html' %}#}
 {% load static %}
 
-
-<nav class="container d-none d-sm-flex w-100 flex-column ">
-    <div class="row container p-0 d-flex justify-content-center first-row w-100">
-        <div class="col-2 text-center uln">
-            <span class="align-self-center d-none d-xl-block">город Ульяновск</span>
-            <span class="align-self-center d-block d-xl-none">Ульяновск</span>
-        </div>
-        <div class="col-8 d-flex justify-content-end phone">
-            <i class="bi bi-telephone-fill me-2"></i>
-            {% if contacts.phone1 %}
-                <a href="tel:{{ contacts.phone1 }}"> {{ contacts.phone1}}</a>
-            {% endif %}
-
-        </div>
-        <div class="col-2 text-center call-back">
-            <span type="button" data-bs-toggle="modal" data-bs-target="#headercallback">ЗАКАЗАТЬ ЗВОНОК</span>
-        </div>
-    </div>
-    <div class="row container p-0 second-row w-100">
-        <div class="col-2">
-            <div class="logo-wrapper text-center h-100 d-flex flex-column justify-content-center">
+<div class="d-none d-lg-block">
+    <div class="container d-table header_container text-black">
+        <div class="left_wrapper d-table-cell py-1">
+            <div class="logo_wrapper">
                 <a href="{% url 'index' %}">
-{#                    <img class="w-75 my-2 object-fit-cover" src="{% static 'images/logo.svg' %}" alt="Logo">#}
                     {% if logo.image %}
                         <img src="{{ logo.image_url }} "
-                             class="w-75 my-2 object-fit-cover" alt="Логотип"
-{#                             style="height: 150px; object-fit: cover; border-color: #1A4582; border-width: medium"#}
+                             class="" alt="Логотип"
                         >
                     {% else %}
                         <img src="{% static "images/no_image.svg" %}"
-                             class="card-img-top img-responsive" alt="Логотип">
+                             class="" alt="Логотип">
                     {% endif %}
                 </a>
             </div>
         </div>
-        <div class="col-10 px-0">
-            <div class="menu-img d-flex flex-column justify-content-center">
-                <span class="repair ms-4">РЕМОНТ</span>
-                <div class="d-flex">
-                    <div class="menu-line1"></div>
-                    <span class="and fs-4 mx-3">и</span>
-                    <div class="menu-line2">
-                    </div>
+        <div class="right_wrapper d-table-cell justify-content-around py-1">
+            <div class="d-flex justify-content-evenly">
+                <div class="phone_container d-flex align-items-center">
+                    <span class="me-3">
+                        <img class="t821__img t-img loaded" role="presentation" alt="Телефон"
+                             src="{% static 'images/telephone.png' %}"
+                                {#                         data-original="https://static.tildacdn.com/tild3433-3765-4131-a331-363230396664/222.png"#}
+                             imgfield="img2">
+                    </span>
+                    <span class="fw-bold d-flex flex-column">
+                        {% if contacts %}
+                            {% if contacts.phone1 %}
+                                <a class="text-decoration-none text-black"
+                                   href="tel:{{ contacts.phone1 }}">{{ contacts.phone1 }}</a>
+                            {% endif %}
+                            {% if contacts.phone2 %}
+                                <a class="text-decoration-none text-black"
+                                   href="tel:{{ contacts.phone2 }}">{{ contacts.phone2 }}</a>
+                            {% endif %}
+                            {% if contacts.phone3 %}
+                                <a class="text-decoration-none text-black"
+                                   href="tel:{{ contacts.phone3 }}">{{ contacts.phone3 }}</a>
+                            {% endif %}
+                            {% if contacts.email1 %}
+                                <a class="text-decoration-none text-black fw-normal"
+                                   href="mailto:{{ contacts.email1 }}">{{ contacts.email1 }}</a>
+                            {% endif %}
+                        {% endif %}
+
+                    </span>
                 </div>
-                <span class="goods ms-4">ТОВАРЫ</span>
-                <span class="for-repair ms-4">ДЛЯ РЕМОНТА</span>
+                <div class="address_container d-flex align-items-center">
+                    <span class="me-3">
+                        <img class="t821__img t-img loaded" role="presentation" alt="Адрес"
+                             src="{% static 'images/location.png' %}"
+                             imgfield="img2">
+                    </span>
+                    <span class="d-flex flex-column">
+
+                        {% if contacts %}
+                            <span class="fw-bolder">Ульяновск</span>
+                            {% if contacts.address1 %}
+                                <span class="text-decoration-none text-black">{{ contacts.address1 }}</span>
+                            {% endif %}
+                            {% if contacts.address2 %}
+                                <span class="text-decoration-none text-black">{{ contacts.address2 }}</span>
+                            {% endif %}
+                            {% if contacts.address3 %}
+                                <span class="text-decoration-none text-black">{{ contacts.address3 }}</span>
+                            {% endif %}
+                        {% endif %}
+
+                    </span>
+
+                </div>
+                <div class="btn_container align-self-center fw-bold d-flex align-items-center">
+                    <span type="button" data-bs-toggle="modal" data-bs-target="#headercallback"
+                          class="">Заказать звонок</span>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row container p-0 third-row w-100">
-        <div class="col-2 px-0">
-            <form action="{% url 'search' %}"
-                  class="text-center mx-auto py-2 search-wrapper text-center position-relative" method='POST'>
-                {% csrf_token %}
-                {{ searchform.as_div }}
-                {#                <div type='submit' class='position-absolute'#}
-                {#                      style="top: 30%; right: 20%; font-size: 13px">#}
-                <button type='submit' class='bi bi-search position-absolute'
-                        style="top: 30%; right: 10%; font-size: 13px;      background: none;
-                        border: none;
-                        padding: 0;">
 
-                </button>
-                {#                <input type="submit" class='bi bi-search position-absolute' style="top: 30%; right: 20%; font-size: 13px">#}
-                {#                </div>#}
-            </form>
-
-        </div>
-        <div class="col-8 d-flex justify-content-around menu_header">
-            <a class="align-self-center text-center" href="{% url 'services' %}">ВИДЫ РАБОТ</a>
-            <a class="text-center align-self-center to_goods" href="{% url 'index' %}#goods">КАТАЛОГ ТОВАРОВ</a>
-            <a class="align-self-center text-center" href="{% url 'about' %}">О КОМПАНИИ</a>
-
-        </div>
-        <div class="col-2 position-relative text-center cart-wrapper">
-            <a class="position-relative" href="{% url 'cart' %}">
-                <i class="position-absolute cart">
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-amount">
-                  <span class="visually-hidden">unread messages</span>
-                </span>
-                </i>
-            </a>
-
-        </div>
     </div>
 
+    <div class="container-fluid menu-content">
+        <nav class="d-flex justify-content-evenly align-content-center" aria-label="Основные разделы на странице">
+            <ul class="uppercase d-flex justify-content-evenly menu-list my-2 " role="menubar"
+                aria-label="Основные разделы на странице">
+                <li class="" role="none" style="padding:0 35px 0 0;">
+                    <a style="color:#ffffff;font-size:13px;font-weight:600;text-transform:uppercase;{% if pagename == 'index' %} opacity: .7;{% endif %}"
+                       href="{% url 'index' %}"
+                       tabindex="0"
+                       data-menu-submenu-hook=""
+                    >Главная</a>
+                </li>
+                <li class="dropdown" role="none" style="padding:0 35px;">
+                    <a class="nav-link dropdown-toggle my-1"
+                       href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                       style="color:#ffffff;font-size:13px;font-weight:600;text-transform:uppercase;{% if pagename == 'category' %} opacity: .7;{% endif %}"
+                       data-tooltip-menu-id="203552058">Каталог
+                    </a>
+                    <ul class="dropdown-menu">
+                        {% for category in categories %}
+                            <li><a class="dropdown-item"
+                                   href="{% url 'category' category=category %}">{{ category }}</a></li>
+                        {% endfor %}
 
-</nav>
-<nav class="navbar d-sm-none bg-body-tertiary header-fixed-top w-100">
-    <div class="container-fluid px-0 row d-flex justify-content-between w-100 mx-0" style="background-color: #1A4582;">
-        <div class="logo-wrapper text-center col-2 px-0"  style="background-color: #fff;">
+
+                    </ul>
+
+                </li>
+                <li class="t229__list_item" role="none" style="padding:0 35px;">
+                    <a class=""
+                       href="{% url 'about' %}"
+                       role="menuitem" tabindex="0"
+                       data-menu-submenu-hook=""
+                       style="color:#ffffff;font-size:13px;font-weight:600;text-transform:uppercase;{% if pagename == 'about' %} opacity: .7;{% endif %}">О
+                        нас
+                    </a></li>
+                <li class="t229__list_item" role="none" style="padding:0 35px;">
+                    <a class=""
+                       href="https://xn----8sbgf1bdbnft8n.xn--p1ai/delivery"
+                       role="menuitem" tabindex="0"
+                       data-menu-submenu-hook=""
+                       style="color:#ffffff;font-size:13px;font-weight:600;text-transform:uppercase;{% if pagename == 'delivery' %} opacity: .7;{% endif %}">Доставка
+                        и оплата</a></li>
+                <li class="t229__list_item" role="none" style="padding:0 0 0 35px;">
+                    <a class=""
+                       href="https://xn----8sbgf1bdbnft8n.xn--p1ai/contacts"
+                       role="menuitem" tabindex="0"
+                       data-menu-submenu-hook=""
+                       style="color:#ffffff;font-size:13px;font-weight:600;text-transform:uppercase;{% if pagename == 'contacts' %} text-decoration: underline; {% else %} text-decorations: none; {% endif %}">Контакты</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+</div>
+<div class="d-block d-lg-none logo_stick">
+    <div class="logo_wrapper">
+        <a href="{% url 'index' %}">
+            {% if logo.image %}
+                <img src="{{ logo.image_url }} "
+                     class="" alt="Логотип"
+                >
+            {% else %}
+                <img src="{% static "images/no_image.svg" %}"
+                     class="" alt="Логотип">
+            {% endif %}
+        </a>
+    </div>
+</div>
+<button class="d-block d-lg-none button_stick navbar-toggler" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+    <img src="{% static 'images/menu.svg' %}" alt="Меню" style="width: 60px">
+
+</button>
+<div class="offcanvas offcanvas-end text-bg-dark " tabindex="-1" id="offcanvasRight"
+     aria-labelledby="offcanvasRightLabel" style="width: 260px">
+    <div class="offcanvas-header">
+        <div class="logo_wrapper ms-2 mt-3">
             <a href="{% url 'index' %}">
-                {#                    <img class="w-75 my-2 object-fit-cover" src="{% static 'images/logo.svg' %}" alt="Logo">#}
                 {% if logo.image %}
                     <img src="{{ logo.image_url }} "
-                         class="my-2 object-fit-contain" style="width: 90%" alt="Логотип"
-                            {#                             style="height: 150px; object-fit: cover; border-color: #1A4582; border-width: medium"#}
+                         class="" alt="Логотип"
                     >
                 {% else %}
                     <img src="{% static "images/no_image.svg" %}"
-                         class="card-img-top img-responsive" alt="Логотип">
+                         class="" alt="Логотип">
                 {% endif %}
             </a>
         </div>
-        <div class="px-0 collapsed-search col-8 px-2" style="background-color: #1A4582">
-            <form action="{% url 'search' %}"
-                  class="text-center search-wrapper text-center position-relative" method='POST'>
-                {% csrf_token %}
-                {{ searchform.as_div }}
-                {#                <div type='submit' class='position-absolute'#}
-                {#                      style="top: 30%; right: 20%; font-size: 13px">#}
-                <button type='submit' class='bi bi-search position-absolute'
-                        style="top: 22%; right: 10%; font-size: 13px;      background: none;
-                        border: none;
-                        padding: 0;">
-
-                </button>
-                {#                <input type="submit" class='bi bi-search position-absolute' style="top: 30%; right: 20%; font-size: 13px">#}
-                {#                </div>#}
-            </form>
-
-        </div>
-
-        <button class="navbar-toggler text-white col-2 p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span id="toggle-icon-header" class="navbar-toggler-icon "></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav" style="background-color: #1A4582;">
-            <div class="d-flex flex-column">
-                <a class="text-center text-white navbar-toggler" href="{% url 'services' %}">ВИДЫ РАБОТ</a>
-                <a class="text-center to_goods text-white navbar-toggler" href="{% url 'index' %}#goods">КАТАЛОГ ТОВАРОВ</a>
-                <a class="text-center text-white navbar-toggler" href="{% url 'about' %}">О КОМПАНИИ</a>
-
-            </div>
-        </div>
     </div>
-</nav>
-<div class="modal fade" id="headercallback" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Как с Вами связаться?</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-            </div>
-            <div class="modal-body">
-                <form action="{% url 'thanks' %}" method="POST">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <div class="modal-footer">
-                        {#                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>#}
-                        <button type="submit" class="btn btn-primary">Отправить заявку</button>
-                    </div>
-                </form>
-            </div>
+    <div class="offcanvas-body p-0">
+            <ul class="uppercase d-flex flex-column justify-content-start menu-list my-2 ps-0"
+                aria-label="Основные разделы на странице">
+                <li class="" role="none" style="">
+                    <a style="color:#ffffff;font-weight:600;{% if pagename == 'index' %} opacity: .7;{% endif %}"
+                       href="{% url 'index' %}"
+                       tabindex="0"
+                       data-menu-submenu-hook=""
+                    >Главная</a>
+                </li>
+                <li class=""   style="">
+                    <a id="catalog_small" data-clecked='false' class=" my-1"
+                       role="button"
+                       style="color:#ffffff;font-weight:600;{% if pagename == 'category' %} opacity: .7;{% endif %}"
+                       data-tooltip-menu-id="203552058">Каталог
+                    </a>
+                    <ul class="d-none" id="catalog_items_small" style="background-color: inherit; color: white; list-style-type: none;  padding-left: 0">
+                        {% for category in categories %}
+                            <li  style=" padding-left: 0">
+                                <a class="dropdown-item ps-0 fs-6"
+                                   href="{% url 'category' category=category %}">{{ category }}
+                                </a>
+                            </li>
+                        {% endfor %}
 
-        </div>
+
+                    </ul>
+
+                </li>
+                <li class="t229__list_item" role="none" style="">
+                    <a class=""
+                       href="{% url 'about' %}"
+                       role="menuitem" tabindex="0"
+                       data-menu-submenu-hook=""
+                       style="color:#ffffff;font-weight:600;{% if pagename == 'about' %} opacity: .7;{% endif %}">О
+                        нас
+                    </a></li>
+                <li class="t229__list_item" role="none" style="">
+                    <a class=""
+                       href="https://xn----8sbgf1bdbnft8n.xn--p1ai/delivery"
+                       role="menuitem" tabindex="0"
+                       data-menu-submenu-hook=""
+                       style="color:#ffffff;font-weight:600;{% if pagename == 'delivery' %} opacity: .7;{% endif %}">Доставка
+                        и оплата</a></li>
+                <li class="t229__list_item" role="none" style="">
+                    <a class=""
+                       href="https://xn----8sbgf1bdbnft8n.xn--p1ai/contacts"
+                       role="menuitem" tabindex="0"
+                       data-menu-submenu-hook=""
+                       style="color:#ffffff;font-weight:600;{% if pagename == 'contacts' %} text-decoration: underline; {% else %} text-decorations: none; {% endif %}">Контакты</a>
+                </li>
+            </ul>
+
     </div>
 </div>
+    {#<nav class="container d-none d-sm-flex w-100 flex-column ">#}
+    {#    <div class="row container p-0 d-flex justify-content-center first-row w-100">#}
+    {#        <div class="col-2 text-center uln">#}
+    {#            <span class="align-self-center d-none d-xl-block">город Ульяновск</span>#}
+    {#            <span class="align-self-center d-block d-xl-none">Ульяновск</span>#}
+    {#        </div>#}
+    {#        <div class="col-8 d-flex justify-content-end phone">#}
+    {#            <i class="bi bi-telephone-fill me-2"></i>#}
+    {#            {% if contacts.phone1 %}#}
+    {#                <a href="tel:{{ contacts.phone1 }}"> {{ contacts.phone1}}</a>#}
+    {#            {% endif %}#}
+    {##}
+    {#        </div>#}
+    {#        <div class="col-2 text-center call-back">#}
+    {#            <span type="button" data-bs-toggle="modal" data-bs-target="#headercallback">ЗАКАЗАТЬ ЗВОНОК</span>#}
+    {#        </div>#}
+    {#    </div>#}
+    {#    <div class="row container p-0 second-row w-100">#}
+    {#        <div class="col-2">#}
+    {#            <div class="logo-wrapper text-center h-100 d-flex flex-column justify-content-center">#}
+    {#                <a href="{% url 'index' %}">#}
+    {#                    <img class="w-75 my-2 object-fit-cover" src="{% static 'images/logo.svg' %}" alt="Logo">#}
+    {#                    {% if logo.image %}#}
+    {#                        <img src="{{ logo.image_url }} "#}
+    {#                             class="w-75 my-2 object-fit-cover" alt="Логотип"#}
+    {#                             style="height: 150px; object-fit: cover; border-color: #1A4582; border-width: medium"#}
+    {#                        >#}
+    {#                    {% else %}#}
+    {#                        <img src="{% static "images/no_image.svg" %}"#}
+    {#                             class="card-img-top img-responsive" alt="Логотип">#}
+    {#                    {% endif %}#}
+    {#                </a>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#        <div class="col-10 px-0">#}
+    {#            <div class="menu-img d-flex flex-column justify-content-center">#}
+    {#                <span class="repair ms-4">РЕМОНТ</span>#}
+    {#                <div class="d-flex">#}
+    {#                    <div class="menu-line1"></div>#}
+    {#                    <span class="and fs-4 mx-3">и</span>#}
+    {#                    <div class="menu-line2">#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#                <span class="goods ms-4">ТОВАРЫ</span>#}
+    {#                <span class="for-repair ms-4">ДЛЯ РЕМОНТА</span>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </div>#}
+    {#    <div class="row container p-0 third-row w-100">#}
+    {#        <div class="col-2 px-0">#}
+    {#            <form action="{% url 'search' %}"#}
+    {#                  class="text-center mx-auto py-2 search-wrapper text-center position-relative" method='POST'>#}
+    {#                {% csrf_token %}#}
+    {#                {{ searchform.as_div }}#}
+    {#                <div type='submit' class='position-absolute'#}
+    {#                      style="top: 30%; right: 20%; font-size: 13px">#}
+    {#                <button type='submit' class='bi bi-search position-absolute'#}
+    {#                        style="top: 30%; right: 10%; font-size: 13px;      background: none;#}
+    {#                        border: none;#}
+    {#                        padding: 0;">#}
+    {##}
+    {#                </button>#}
+    {#                <input type="submit" class='bi bi-search position-absolute' style="top: 30%; right: 20%; font-size: 13px">#}
+    {#                </div>#}
+    {#            </form>#}
+    {##}
+    {#        </div>#}
+    {#        <div class="col-8 d-flex justify-content-around menu_header">#}
+    {#            <a class="align-self-center text-center" href="{% url 'services' %}">ВИДЫ РАБОТ</a>#}
+    {#            <a class="text-center align-self-center to_goods" href="{% url 'index' %}#goods">КАТАЛОГ ТОВАРОВ</a>#}
+    {#            <a class="align-self-center text-center" href="{% url 'about' %}">О КОМПАНИИ</a>#}
+    {##}
+    {#        </div>#}
+    {#        <div class="col-2 position-relative text-center cart-wrapper">#}
+    {#            <a class="position-relative" href="{% url 'cart' %}">#}
+    {#                <i class="position-absolute cart">#}
+    {#                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-amount">#}
+    {#                  <span class="visually-hidden">unread messages</span>#}
+    {#                </span>#}
+    {#                </i>#}
+    {#            </a>#}
+    {##}
+    {#        </div>#}
+    {#    </div>#}
+    {##}
+    {##}
+    {#</nav>#}
+    {#<nav class="navbar d-sm-none bg-body-tertiary header-fixed-top w-100">#}
+    {#    <div class="container-fluid px-0 row d-flex justify-content-between w-100 mx-0" style="background-color: #1A4582;">#}
+    {#        <div class="logo-wrapper text-center col-2 px-0"  style="background-color: #fff;">#}
+    {#            <a href="{% url 'index' %}">#}
+    {#                    <img class="w-75 my-2 object-fit-cover" src="{% static 'images/logo.svg' %}" alt="Logo">#}
+    {#                {% if logo.image %}#}
+    {#                    <img src="{{ logo.image_url }} "#}
+    {#                         class="my-2 object-fit-contain" style="width: 90%" alt="Логотип"#}
+    {#                             style="height: 150px; object-fit: cover; border-color: #1A4582; border-width: medium"#}
+    {#                    >#}
+    {#                {% else %}#}
+    {#                    <img src="{% static "images/no_image.svg" %}"#}
+    {#                         class="card-img-top img-responsive" alt="Логотип">#}
+    {#                {% endif %}#}
+    {#            </a>#}
+    {#        </div>#}
+    {#        <div class="px-0 collapsed-search col-8 px-2" style="background-color: #1A4582">#}
+    {#            <form action="{% url 'search' %}"#}
+    {#                  class="text-center search-wrapper text-center position-relative" method='POST'>#}
+    {#                {% csrf_token %}#}
+    {#                {{ searchform.as_div }}#}
+    {#                <div type='submit' class='position-absolute'#}
+    {#                      style="top: 30%; right: 20%; font-size: 13px">#}
+    {#                <button type='submit' class='bi bi-search position-absolute'#}
+    {#                        style="top: 22%; right: 10%; font-size: 13px;      background: none;#}
+    {#                        border: none;#}
+    {#                        padding: 0;">#}
+    {##}
+    {#                </button>#}
+    {#                <input type="submit" class='bi bi-search position-absolute' style="top: 30%; right: 20%; font-size: 13px">#}
+    {#                </div>#}
+    {#            </form>#}
+    {##}
+    {#        </div>#}
+    {##}
+    {#        <button class="navbar-toggler text-white col-2 p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">#}
+    {#            <span id="toggle-icon-header" class="navbar-toggler-icon "></span>#}
+    {#        </button>#}
+    {#        <div class="collapse navbar-collapse" id="navbarNav" style="background-color: #1A4582;">#}
+    {#            <div class="d-flex flex-column">#}
+    {#                <a class="text-center text-white navbar-toggler" href="{% url 'services' %}">ВИДЫ РАБОТ</a>#}
+    {#                <a class="text-center to_goods text-white navbar-toggler" href="{% url 'index' %}#goods">КАТАЛОГ ТОВАРОВ</a>#}
+    {#                <a class="text-center text-white navbar-toggler" href="{% url 'about' %}">О КОМПАНИИ</a>#}
+    {##}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </div>#}
+    {#</nav>#}
+    {#<div class="modal fade" id="headercallback" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">#}
+    {#    <div class="modal-dialog">#}
+    {#        <div class="modal-content">#}
+    {#            <div class="modal-header">#}
+    {#                <h5 class="modal-title" id="exampleModalLabel">Как с Вами связаться?</h5>#}
+    {#                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>#}
+    {#            </div>#}
+    {#            <div class="modal-body">#}
+    {#                <form action="{% url 'thanks' %}" method="POST">#}
+    {#                    {% csrf_token %}#}
+    {#                    {{ form.as_p }}#}
+    {#                    <div class="modal-footer">#}
+    {#                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>#}
+    {#                        <button type="submit" class="btn btn-primary">Отправить заявку</button>#}
+    {#                    </div>#}
+    {#                </form>#}
+    {#            </div>#}
+    {##}
+    {#        </div>#}
+    {#    </div>#}
+    {#</div>#}
 
