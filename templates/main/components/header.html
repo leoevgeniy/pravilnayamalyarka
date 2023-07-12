@@ -4,23 +4,24 @@
 
 <nav class="container d-none d-sm-flex w-100 flex-column ">
     <div class="row container p-0 d-flex justify-content-center first-row w-100">
-        <div class="col-3 text-center uln">
-            <span class="align-self-center">Ульяновск</span>
+        <div class="col-2 text-center uln">
+            <span class="align-self-center d-none d-xl-block">город Ульяновск</span>
+            <span class="align-self-center d-block d-xl-none">Ульяновск</span>
         </div>
-        <div class="col-6 d-flex justify-content-end phone">
+        <div class="col-8 d-flex justify-content-end phone">
             <i class="bi bi-telephone-fill me-2"></i>
             {% if contacts.phone1 %}
                 <a href="tel:{{ contacts.phone1 }}"> {{ contacts.phone1}}</a>
             {% endif %}
 
         </div>
-        <div class="col-3 text-center call-back">
+        <div class="col-2 text-center call-back">
             <span type="button" data-bs-toggle="modal" data-bs-target="#headercallback">ЗАКАЗАТЬ ЗВОНОК</span>
         </div>
     </div>
     <div class="row container p-0 second-row w-100">
-        <div class="col-3">
-            <div class="logo-wrapper text-center">
+        <div class="col-2">
+            <div class="logo-wrapper text-center h-100 d-flex flex-column justify-content-center">
                 <a href="{% url 'index' %}">
 {#                    <img class="w-75 my-2 object-fit-cover" src="{% static 'images/logo.svg' %}" alt="Logo">#}
                     {% if logo.image %}
@@ -35,7 +36,7 @@
                 </a>
             </div>
         </div>
-        <div class="col-9 px-0">
+        <div class="col-10 px-0">
             <div class="menu-img d-flex flex-column justify-content-center">
                 <span class="repair ms-4">РЕМОНТ</span>
                 <div class="d-flex">
@@ -50,7 +51,7 @@
         </div>
     </div>
     <div class="row container p-0 third-row w-100">
-        <div class="col-3 px-0">
+        <div class="col-2 px-0">
             <form action="{% url 'search' %}"
                   class="text-center mx-auto py-2 search-wrapper text-center position-relative" method='POST'>
                 {% csrf_token %}
@@ -68,13 +69,13 @@
             </form>
 
         </div>
-        <div class="col-6 d-flex justify-content-around menu_header">
+        <div class="col-8 d-flex justify-content-around menu_header">
             <a class="align-self-center text-center" href="{% url 'services' %}">ВИДЫ РАБОТ</a>
             <a class="text-center align-self-center to_goods" href="{% url 'index' %}#goods">КАТАЛОГ ТОВАРОВ</a>
             <a class="align-self-center text-center" href="{% url 'about' %}">О КОМПАНИИ</a>
 
         </div>
-        <div class="col-3 position-relative text-center cart-wrapper">
+        <div class="col-2 position-relative text-center cart-wrapper">
             <a class="position-relative" href="{% url 'cart' %}">
                 <i class="position-absolute cart">
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-amount">

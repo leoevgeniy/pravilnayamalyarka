@@ -7,6 +7,7 @@ from cart.forms import OrderConfirmForm
 from cms.forms import SearchForm
 from cms.models import Product, Logo, Packprice, Contacts, Socials
 from crm.models import Order, OrderItems, StatusCrm
+from main.models import Category, SubCategory
 from telebot.sendmessage import send_telegram
 
 
@@ -36,7 +37,14 @@ def cart(request):
     form = OrderConfirmForm
     socials = Socials.objects.all()
 
+    allcategory = Category.objects.all()
+    allsubcategory = SubCategory.objects.all()
+
+
+
     content = {
+        'allcategory': allcategory,
+        'allsubcategory': allsubcategory,
         'socials': socials,
         'products': ids,
         'form': form,
@@ -90,8 +98,15 @@ def orderCreate(request):
         contacts = Contacts.objects.all()
     except:
         contacts = ''
+    allcategory = Category.objects.all()
+    allsubcategory = SubCategory.objects.all()
+
+
 
     content = {
+        'allcategory': allcategory,
+        'allsubcategory': allsubcategory,
+
         'socials': socials,
         'searchform': searchform,
         'logo': logo,

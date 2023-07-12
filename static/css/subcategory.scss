@@ -57,7 +57,15 @@
  }
 @media (max-width: 576px) {
   .subcategory_item, .category_product_item {
-    height: 380px;
+    height: 470px;
+  }
+  .subcategory_images, .category_product_image {
+    height: 150px;
+  }
+}
+@media (max-width: 320px) {
+  .subcategory_item, .category_product_item {
+    height: 470px;
   }
   .subcategory_images, .category_product_image {
     height: 150px;

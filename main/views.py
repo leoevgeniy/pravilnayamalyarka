@@ -9,7 +9,7 @@ from telebot.sendmessage import send_telegram
 from PIL import Image
 from pravilnayamalyarka.settings import BASE_DIR
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-
+from urllib.parse import unquote
 
 # Create your views here.
 
@@ -44,8 +44,13 @@ def index(request):
         contacts = Contacts.objects.all()
     except:
         contacts = ''
+    allcategory = Category.objects.all()
+    allsubcategory = SubCategory.objects.all()
 
     disc = {
+        'allcategory': allcategory,
+        'allsubcategory': allsubcategory,
+
         'contacts': contacts[0],
         'socials': socials,
         'logo': logo,
@@ -87,7 +92,12 @@ def about(request):
     except:
         contacts = ''
 
+    allcategory = Category.objects.all()
+    allsubcategory = SubCategory.objects.all()
+
     disc = {
+        'allcategory': allcategory,
+        'allsubcategory': allsubcategory,
         'contacts': contacts[0],
         'socials': socials,
         'logo': logo,
@@ -121,7 +131,12 @@ def goods(request):
     except:
         contacts = ''
 
+    allcategory = Category.objects.all()
+    allsubcategory = SubCategory.objects.all()
+
     disc = {
+        'allcategory': allcategory,
+        'allsubcategory': allsubcategory,
         'contacts': contacts[0],
         'logo': logo,
         'searchform': searchform,
@@ -156,7 +171,12 @@ def services(request):
     socials = Socials.objects.all()
     form = OrderForm
 
+    allcategory = Category.objects.all()
+    allsubcategory = SubCategory.objects.all()
+
     disc = {
+        'allcategory': allcategory,
+        'allsubcategory': allsubcategory,
         'form': form,
         'socials': socials,
         'contacts': contacts[0],
@@ -169,7 +189,7 @@ def services(request):
 
 
 def category(request, category):
-    category = Category.objects.get(name=category)
+    category = Category.objects.get(name=unquote(category))
     subCategory = SubCategory.objects.filter(category=category)
     products = Product.objects.filter(category=category, subcategory__exact=None)
     searchform = SearchForm
@@ -205,7 +225,9 @@ def category(request, category):
     pages = []
     for p in range(paginator.num_pages):
         pages.append(p+1)
+    form = OrderForm
     disc = {
+        'form': form,
         'pageinput': pageinput,
         'page': page,
         'pages': pages,
@@ -236,9 +258,12 @@ def subcategory(request, category, subcategory, *args):
 
     allcategory = Category.objects.all()
     allsubcategory = SubCategory.objects.all()
-
-    category = Category.objects.get(name=category)
-    subCategory = SubCategory.objects.get(name=subcategory)
+    try:
+        category = Category.objects.get(name=unquote(category))
+        subCategory = SubCategory.objects.get(name=unquote(subcategory))
+    except:
+        category = ''
+        subCategory = ''
     searchform = SearchForm
     if sortup:
         prods1 = Product.objects.filter(subcategory=subCategory, vendor__name__icontains=vendor).order_by('packprices__price')
@@ -294,7 +319,9 @@ def subcategory(request, category, subcategory, *args):
     pages = []
     for p in range(paginator.num_pages):
         pages.append(p+1)
+    form = OrderForm
     disc = {
+        'form': form,
         'pageinput': pageinput,
         'page': page,
         'pages': pages,
@@ -336,7 +363,14 @@ def thanks_page(request):
 
     socials = Socials.objects.all()
 
+    allcategory = Category.objects.all()
+    allsubcategory = SubCategory.objects.all()
+
+    form = OrderForm
     disc = {
+        'form': form,
+        'allcategory': allcategory,
+        'allsubcategory': allsubcategory,
         'socials': socials,
         'contacts': contacts[0],
 

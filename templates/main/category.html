@@ -4,9 +4,9 @@
     <title>{{ category }}</title>
 {% endblock %}
 {% block category %}
-    <nav class="subcategory_menu navbar bg-body-tertiary category_catalog">
+    <nav class="subcategory_menu navbar navbar bg-body-tertiary category_catalog">
         <div class="container-fluid">
-            <div class="" id="navbarSupportedContent" role="button">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 justify-content-between">
                     <li class="btn-secondary nav-link dropdown-toggle"
                         data-bs-toggle="dropdown"
@@ -15,6 +15,7 @@
 
                         КАТАЛОГ
                     </li>
+
                     <ul class="dropdown-menu " style="width: 300px">
                         <li class="accordion dropdown-item accordion-flush" id="catalogaccordion">
                             {% for cat in allcategory %}
@@ -183,7 +184,8 @@
                                     data-price="{{ product.price }}"
                                     data-id="{{ product.vendor_code }}"
                                     data-weight="{{ product.packprices.first.id }}"
-                                    class="add-to-cart-btn w-100 mb-1 to_cart_button"
+                                    class="add-to-cart-btn w-100 py-3 mb-1 to_cart_button"
+                                    style="cursor: pointer"
                             >В корзину
                             </button>
                             <div id="cart-wrap" class="text-center justify-item-end cart-qty-wrapper mb-1"
@@ -191,19 +193,21 @@
                                 <button class="cart-minus to_cart_button"
                                         data-id="{{ product.vendor_code }}"
                                         data-weight=""
+                                        style="cursor: pointer"
                                 >-
                                 </button>
                                 <i class="bi bi-basket"></i>
                                 <span
                                         class="cart-qty"
                                         data-id="{{ product.vendor_code }}"
-                                        data-weight=""
+                                        data-weight="{{ product.packprices.first.id }}"
                                 >0</span>
                                 <button class="cart-plus  to_cart_button"
                                         data-id="{{ product.vendor_code }}"
                                         data-name="{{ product.name }}"
                                         data-price="{{ product.price }}"
                                         data-weight="{{ product.packprices.first.id }}"
+                                        style="cursor: pointer"
                                 >+
                                 </button>
 

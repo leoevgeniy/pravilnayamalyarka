@@ -5,3 +5,4 @@ venv
 *.webp
 *.xlsx
 /externalcomponents/
+/materials/

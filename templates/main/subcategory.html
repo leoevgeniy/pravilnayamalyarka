@@ -207,7 +207,8 @@
                                         data-price="{{ product.price }}"
                                         data-id="{{ product.vendor_code }}"
                                         data-weight="{{ product.packprices.first.id }}"
-                                        class="add-to-cart-btn w-100 mb-1 to_cart_button"
+                                        class="add-to-cart-btn w-100 py-3 mb-1 to_cart_button"
+                                        style="cursor: pointer"
                                 >В корзину
                                 </button>
                                 <div id="cart-wrap-product-details"
@@ -216,6 +217,7 @@
                                     <button class="cart-minus to_cart_button"
                                             data-id="{{ product.vendor_code }}"
                                             data-weight="{{ product.packprices.first.id }}"
+                                            style="cursor: pointer"
                                     >-
                                     </button>
                                     <i class="bi bi-basket"></i>
@@ -229,6 +231,7 @@
                                             data-name="{{ product.name }}"
                                             data-price="{{ product.price }}"
                                             data-weight="{{ product.packprices.first.id }}"
+                                            style="cursor: pointer"
                                     >+
                                     </button>
 

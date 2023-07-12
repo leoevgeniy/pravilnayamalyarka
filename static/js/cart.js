@@ -6,13 +6,15 @@ function getCookie(name) {
 }
 
 const updateQty = () => {
-
+    let totalcost = 0
     $('.price_info').each(function () {
         const weight = $(this).data('weight')
         const id = $(this).data('id')
         const sum = $(this).data('price') * Number(getQty(id,weight))
-        $(this).text('Стоимость: ' + sum + ' р.')
+        totalcost += sum
+        $(this).html('<strong>Стоимость: </strong></br> ' + sum + ' р.')
     })
+    $('.final_cost').html('<strong>' + String(totalcost) + ' р.' + '</strong>')
     $('.cart-qty').each(function () {
         try {
             const weight = $(this).data('weight')
@@ -36,7 +38,7 @@ const updateQty = () => {
         $('.cart-amount-footer').removeClass('d-none')
 
     }
-    $('.footer_search').click(function () {
+    $('.footer_search').on("click touchend", function () {
         $('.search_input').focus()
     })
     $('.add-to-cart-btn').each(function () {
@@ -190,7 +192,7 @@ const deleteFromStorage = (id) => {
 
 }
 
-$('.cart-minus').click(function (e) {
+$('.cart-minus').on("click touchend", function (e) {
     e.preventDefault();
     let id = $(this).data('id')
     const weight = $(this).data('weight')
@@ -198,7 +200,7 @@ $('.cart-minus').click(function (e) {
     updateQty()
 
 })
-$('.cart-plus').click(function (e) {
+$('.cart-plus').on("click touchend", function (e) {
     e.preventDefault();
     const weight = $(this)[0].dataset['weight']
 
@@ -207,7 +209,7 @@ $('.cart-plus').click(function (e) {
     updateQty()
 
 })
-$('.add-to-cart-btn').click(function (event) {
+$('.add-to-cart-btn').on("click touchend", function (event) {
     event.preventDefault();
     let weight = ''
     if ($(this)[0].dataset['weight']) {
@@ -221,7 +223,7 @@ $('.add-to-cart-btn').click(function (event) {
     updateQty()
 });
 
-$('.remove-from-cart').click(function (e) {
+$('.remove-from-cart').on("click touchend", function (e) {
     e.preventDefault()
     deleteFromStorage($(this).data('id'))
     location.reload();
@@ -263,6 +265,7 @@ const getAllQty = () => {
     } else
         return 0
 }
+
 
 const clearcart = () => {
     // document.cookie = 'cart=' + JSON.stringify([]) + ";path=/"
