@@ -31,6 +31,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('goods/', views.goods, name='goods'),
+    path('legal/', cmsviews.legal, name='legal'),
     path('services/', views.services, name='services'),
     path('about/', views.about, name='about'),
     path('search/', cmsviews.search, name='search'),

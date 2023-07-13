@@ -1,0 +1,43 @@
+
+#delivery_decr {
+  text-transform: uppercase;
+  font-weight: 700;
+  color: $maincolor;
+}
+
+.circle_before_span {
+
+  display: block;
+  margin: auto 5px auto 0;
+  //padding: 20px 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: gray;
+}
+@media (min-width: 481px) {
+  #delivery_decr {
+    line-height: 47px;
+    font-size: 30px;
+  }
+  .small_payment_img {
+    display: none;
+  }
+}
+@media (max-width: 480px) {
+  .small_payment_img {
+
+  }
+  #delivery_decr {
+    font-size: 16px;
+    text-transform: uppercase;
+    color: $maincolor;
+  }
+  #delivery {
+    #our_goods {
+      font-size: 24px;
+    }
+
+  }
+
+}

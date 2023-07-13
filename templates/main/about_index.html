@@ -1,0 +1,101 @@
+{% load static %}
+<div class="inter_wrapper d-block d-lg-none mt-5" style="height: 160px">
+    <img src="{% static 'images/inter1.jpeg' %}" alt="Интерьер"
+         class="inter1"
+         style="position: absolute;
+                "
+    >
+    <img src="{% static 'images/inter2.jpg' %}" alt="Интерьер"
+         class="inter2"
+         style="position: absolute;
+                "
+    >
+</div>
+<div id="delivery" class="text-center mx-auto d-block d-lg-none">
+    <span id="our_goods" class=" w-100" style="line-height: 1.3">о нашей </br>компании</span>
+    <div id="goods_line" class="mx-auto mb-3"></div>
+
+</div>
+<div class="row">
+    <div class="col-12 col-lg-6 flex-column align-content-center">
+        <div id="delivery" class="text-left mx-auto mt-5 d-none d-lg-block">
+            <span id="our_goods" class=" w-100" style="line-height: 1.3">о нашей </br>компании</span>
+            <div id="goods_line" class="ms-0 mb-3"></div>
+
+        </div>
+
+
+        <div class="mb-3">
+            <span>
+                «Правильная малярка» — это профессиональный малярный центр, включающий в себя: магазин популярных брендов лакокрасочной продукции и оборудования, услуги колористики, услуги мастеров строительно-малярных работ с многолетним стажем, разработку дизайн-проектов, консультацию и ведение проектов специалистами, мастер-классы для маляров.
+            </span>
+        </div>
+        <a href="{% url 'about' %}"
+           class="to_catalog_btn align-self-center fw-bold d-flex mx-auto align-items-center element-animation"
+           style="text-decoration: none; font-size: 14px;
+           width: 190px;
+            font-family: 'Arial',Arial,sans-serif;
+            line-height: 1.55;
+            font-weight: 600; "
+        >
+                    <span type="button" data-bs-toggle="modal" data-bs-target="#headercallback"
+                          class="">Узнать подробнее</span>
+        </a>
+
+    </div>
+    <div class="col-12 col-lg-6 flex-column align-content-center position-relative">
+        <div class="inter_wrapper d-none d-lg-block">
+            <img src="{% static 'images/inter1.jpeg' %}" alt="Интерьер"
+                 class="inter1"
+                 style="position: absolute;
+                "
+            >
+            <img src="{% static 'images/inter2.jpg' %}" alt="Интерьер"
+                 class="inter2"
+                 style="position: absolute;
+                "
+            >
+        </div>
+    </div>
+</div>
+
+
+    <div style="background-color: lightgrey;">
+        <div id="pluses" class="text-center mx-auto pt-5">
+            <span id="our_goods" class=" w-100" style="line-height: 1.3">плюсы работы с нами</span>
+            <div id="goods_line" class="mx-auto mb-3"></div>
+
+        </div>
+        <div class="row d-flex justify-content-around pb-5">
+            <div class="col-12 col-lg-3 d-flex flex-column align-content-center text-center">
+                <div class="pluses_circle d-flex justify-content-center align-content-center mx-auto">
+                    <img src="{% static 'images/experience.png' %}" alt="Опыт">
+                </div>
+                <span class="fw-bold my-4">ОПЫТ</span>
+                <span>За нас говорит наше портфолио и многочисленные отзывы довольных заказчиков!</span>
+            </div>
+            <div class="col-12 col-lg-3 d-flex flex-column align-content-center text-center">
+                <div class="pluses_circle d-flex justify-content-center align-content-center mx-auto">
+                    <img src="{% static 'images/quality.png' %}" alt="Опыт">
+                </div>
+                <span class="fw-bold my-4">КАЧЕСТВО</span>
+                <span>Только популярные бренды лакокрасочных материалов и оборудования</span>
+            </div>
+            <div class="col-12 col-lg-3 d-flex flex-column align-content-center text-center">
+                <div class="pluses_circle d-flex justify-content-center align-content-center mx-auto">
+                    <img src="{% static 'images/prof.png' %}" alt="Опыт">
+                </div>
+                <span class="fw-bold my-4 text-uppercase">Профессионализм</span>
+                <span>Многолетний стаж всех специалистов</span>
+            </div>
+            <div class="col-12 col-lg-3 d-flex flex-column align-content-center text-center">
+                <div class="pluses_circle d-flex justify-content-center align-content-center mx-auto">
+                    <img src="{% static 'images/support.png' %}" alt="Опыт">
+                </div>
+                <span class="fw-bold my-4 uppercase">ПОДДЕРЖКА</span>
+                <span>Консультация и ведение проектов специалистами на протяжении всех этапов взаимодействия с Вами</span>
+            </div>
+
+
+        </div>
+    </div>

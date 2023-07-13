@@ -1,38 +1,50 @@
 {% load static %}
     <div id="goods" class="text-center mx-auto">
-        <span   class=" w-100 mb-3">Наши товары</span>
-        <div id="goods_line" class="mx-auto my-3"></div>
+        <span id="our_goods"  class=" w-100">Наши товары</span>
+        <div id="goods_line" class="mx-auto mb-3"></div>
         <span id="decr">Широкий ассортимент продукции от различных брендов и лидеров рынка</span>
     </div>
-    <div class="row">
+    <div class="row justify-content-evenly">
         {% for category in categories %}
-            <a href="{% url 'category' category=category%}" class="d-flex flex-column p-1 products_item" >
+            <a href="{% url 'category' category=category%}"
+               class="col-6 col-lg-3 d-flex flex-column justify-content-start align-items-center goods_index_products_item py-3"
+                style="text-decoration: none"
+            >
                 {% if category.photo %}
-                        <img src="{{ category.photo_url }} "
-                             class="card-img-top img-thumbnail rounded-4 p-0" alt="{{ service.name }}"
-                             style="height: 200px; object-fit: cover; border-color: #1A4582; border-width: medium"
-                        >
+                <img src="{{ category.photo_url }} "
+                     class="card-img-top element-animation" alt="{{ service.name }}"
+                     style="height: 18%; object-fit: contain;"
+                >
                 {% else %}
-                    <img src="{% static "images/no_image.svg" %}"
-                         class="card-img-top img-responsive" alt="{{ category.name }}">
+                <img src="{% static "images/no_image.svg" %}"
+                     class="card-img-top w-100" alt="{{ category.name }}">
                 {% endif %}
-                <div class="d-flex card-body text-center justify-content-center align-content-center"  style="background-color: #E6E6E6;">
+                <div class="goods_index_products_item_line w-75 element-animation"></div>
+                <div class="goods_index_products_item_name element-animation text-center"  style="">
                         <span itemProp="name"
-                              class='card-name fw-bold text-dark mb-3 text-center'
-                              style="   overflow: hidden;
-                               display: -webkit-box;
-                               -webkit-line-clamp: 3; /* number of lines to show */
-                                       line-clamp: 3;
-                               -webkit-box-orient: vertical;
-                                font-family: 'Gotham Pro Light',sans-serif;
-                                text-transform: uppercase;
-                                font-size: larger;
-                                align-self: center;
-
-
+                              class=' text-wrap '
+                              style="
+                              {#overflow: hidden;#}
+                              {# display: -webkit-box;#}
+                              {# -webkit-line-clamp: 1; /* number of lines to show */#}
+                              {#         line-clamp: 1;#}
+                              {# -webkit-box-orient: vertical;#}
                         ">{{ category.name }}</span>
                 </div>
-            </a>
+                <div class="goods_index_products_item_description text-center my-3 element-animation"  style="">
+                        <span itemProp="name"
+                              class=''
+                              style="   overflow: hidden;
+                               display: -webkit-box;
+                               -webkit-line-clamp: 6; /* number of lines to show */
+                                       line-clamp: 6;
+                               -webkit-box-orient: vertical;
+                        ">{{ category.description }}</span>
+                </div>
+                <div class="to_catalog_btn align-self-center fw-bold d-flex align-items-center element-animation">
+                    <span type="button" data-bs-toggle="modal" data-bs-target="#headercallback"
+                          class="">Заказать звонок</span>
+                </div>            </a>
 
 
         {% endfor %}

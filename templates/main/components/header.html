@@ -1,7 +1,7 @@
 {#{% extends 'base.html' %}#}
 {% load static %}
 
-<div class="d-none d-lg-block">
+<div class="d-none d-lg-block my-2">
     <div class="container d-table header_container text-black">
         <div class="left_wrapper d-table-cell py-1">
             <div class="logo_wrapper">
@@ -360,25 +360,27 @@
     {#        </div>#}
     {#    </div>#}
     {#</nav>#}
-    {#<div class="modal fade" id="headercallback" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">#}
-    {#    <div class="modal-dialog">#}
-    {#        <div class="modal-content">#}
-    {#            <div class="modal-header">#}
-    {#                <h5 class="modal-title" id="exampleModalLabel">Как с Вами связаться?</h5>#}
-    {#                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>#}
-    {#            </div>#}
-    {#            <div class="modal-body">#}
-    {#                <form action="{% url 'thanks' %}" method="POST">#}
-    {#                    {% csrf_token %}#}
-    {#                    {{ form.as_p }}#}
-    {#                    <div class="modal-footer">#}
-    {#                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>#}
-    {#                        <button type="submit" class="btn btn-primary">Отправить заявку</button>#}
-    {#                    </div>#}
-    {#                </form>#}
-    {#            </div>#}
-    {##}
-    {#        </div>#}
-    {#    </div>#}
-    {#</div>#}
+    <div class="modal fade center-block" id="headercallback" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered vw-75">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class=" d-flex flex-column align-items-center">
+                        <span id="" class=" w-100" style="line-height: 1.3; font-size: 30px">У Вас есть вопросы?</span>
+                        <span id="" class=" w-100" style="line-height: 1.3; font-size: 18px; font-weight: 300">Оставьте свои данные и мы перезвоним вам в течении 15-минут</span>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'thanks' %}" method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Отправить заявку</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
 

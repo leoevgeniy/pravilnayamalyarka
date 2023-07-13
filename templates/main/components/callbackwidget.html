@@ -21,7 +21,14 @@
 {#                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>#}
 {#            </div>#}
             <div class="modal-body">
-                            {% for social in socials %}
+                <a type="button" href="tel:{{ contacts.phone1 }}"
+                        style="background-color: inherit; border: none"
+                >
+                    <img style="height: 57px; width: 57px; fill: #0f5132"  class=""
+                         src="{% static 'images/phone-svgrepo-com.svg' %}" alt="Позвонить">
+                </a>
+
+                {% for social in socials %}
                                     {% if social.social_network == 'FB' %}
                                         <a href="{{ social.link }}" target="_blank"
                                            class="position-relative modal_social_icon d-inline-block py-1"

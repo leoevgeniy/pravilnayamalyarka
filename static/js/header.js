@@ -4,7 +4,6 @@
         const catalog_items_small = document.getElementById('catalog_items_small')
 
         if (catalog_small.dataset.clecked === 'false') {
-            console.log(catalog_small.getAttribute('data-clecked'))
             catalog_small.dataset.clecked =  'true'
             catalog_items_small.classList.remove('d-none')
         } else {

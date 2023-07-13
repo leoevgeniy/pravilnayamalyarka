@@ -12,7 +12,8 @@ from cms.models import WorkPhoto, Product, Service, Vendor, Packprice, Logo, Con
 from main.models import SubCategory, Category, ServiceCategory
 from pravilnayamalyarka.settings import BASE_DIR, MEDIA_ROOT
 
-
+def legal(request):
+    return render(request, 'main/legal.html')
 def product_view(request, pk):
     searchform = SearchForm
     product = Product.objects.get(vendor_code=pk)
