@@ -1,23 +1,23 @@
 from django.db import models
-from django.contrib.sites.models import Site
+# from django.contrib.sites.models import Site
 from meta.models import ModelMeta
 
 
 # Create your models here.
-class Page(models.Model, ModelMeta):
-    site = models.ForeignKey(Site, on_delete=models.CASCADE)
-    title = models.CharField(max_length=255)
-    description = models.CharField(max_length=255)
-    keywords = models.CharField(max_length=255)
-
-    def get_meta_title(self):
-        return self.title
-
-    def get_meta_description(self):
-        return self.description
-
-    def get_meta_keywords(self):
-        return self.keywords
+# class Page(models.Model, ModelMeta):
+#     site = models.ForeignKey(Site, on_delete=models.CASCADE)
+#     title = models.CharField(max_length=255)
+#     description = models.CharField(max_length=255)
+#     keywords = models.CharField(max_length=255)
+#
+#     def get_meta_title(self):
+#         return self.title
+#
+#     def get_meta_description(self):
+#         return self.description
+#
+#     def get_meta_keywords(self):
+#         return self.keywords
 
 class Category(models.Model):
     name = models.CharField(max_length=200, verbose_name='Категория')
@@ -32,11 +32,11 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-    _metadata = {
-        'title': name,
-        'description': description,
-        'image': 'photo_url',
-    }
+    # _metadata = {
+    #     'title': name,
+    #     'description': description,
+    #     'image': 'photo_url',
+    # }
 
     @property
     def photo_url(self):

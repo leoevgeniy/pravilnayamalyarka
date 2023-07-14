@@ -1,9 +1,9 @@
 {#{% extends 'base.html' %}#}
 {% load static %}
 
-<div style="background-color: darkgrey">
-    <div class="row d-flex justify-content-around text-light px-4">
-        <div class="d-flex justify-content-around m4">
+<div style="background-color: darkgrey" class="w-100">
+    <div class="row d-flex justify-content-around text-light px-4 w-100">
+        <div class="d-flex justify-content-between m4">
             <div class="d-flex flex-column">
                 <div class="left_wrapper py-1">
                     <div class="logo_wrapper">
@@ -24,10 +24,10 @@
                     <a href="{% url 'legal' %}">Политика конфиденциальности</a>
                 </div>
             </div>
-            <div class="d-flex flex-column text-white">
+            <div class="d-flex flex-column text-white ps-2">
                 <span style="color: #1A4582; font-weight: 700">КОНТАКТЫ</span>
                 <div>
-                    <span class="fw-bold d-flex flex-column">
+                    <span class="fw-bold d-flex flex-column contacts">
                         {% if contacts %}
                             {% if contacts.phone1 %}
                                 <a class="text-decoration-none  text-light"

@@ -58,6 +58,7 @@
 
   .inter_wrapper {
     width: 50%;
+    height: 350px;
   }
   .inter1 {
     width: 50%;
@@ -68,4 +69,12 @@
     right: 40%;
 
   }
+}
+
+@media (max-width: 518px) {
+  .inter_wrapper {
+    width: 50%;
+    height: 200px;
+  }
+
 }

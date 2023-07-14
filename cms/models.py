@@ -18,9 +18,9 @@ class Vendor(models.Model):
 # Create your models here.
 class PromoSlider(models.Model):
     name = models.CharField(max_length=256, verbose_name='Наименование', null=True, blank=True)
+    description = models.CharField(max_length=256, verbose_name='Описание', null=True, blank=True)
     photo = models.ImageField(upload_to="images/slider", verbose_name="Фото", null=True, blank=True)
     vendor = models.ForeignKey(Vendor, on_delete=models.CASCADE, verbose_name='Производитель', null=True, blank=True)
-    vendor_code_list = models.CharField(max_length=256, verbose_name='Артикулы товаров', null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='promos',
                                        verbose_name='Категория', null=True, blank=True)
     subcategory = ChainedForeignKey(
@@ -185,6 +185,7 @@ class Introduction(models.Model):
 
 class Logo(models.Model):
     image = models.FileField(upload_to="images/logo", null=True, blank=True, verbose_name="Логотип")
+    image_light = models.FileField(upload_to="images/logo", null=True, blank=True, verbose_name="Логотип светлый")
     inuse = models.BooleanField(null=True, blank=True, verbose_name='Использовать на сайте')
 
     def save(self, *args, **kwargs):
@@ -202,6 +203,10 @@ class Logo(models.Model):
     def image_url(self):
         if self.image and hasattr(self.image, 'url'):
             return self.image.url
+    @property
+    def image_light_url(self):
+        if self.image_light and hasattr(self.image_light, 'url'):
+            return self.image_light.url
 
     class Meta:
         verbose_name = 'Логотип'

@@ -1,101 +1,120 @@
 {% load static %}
 
 {% if promoslider %}
+    <div class="carousel_wrapper">
+        <div id="carouselExampleFade" class="position-relative w-100 carousel slide carousel-fade mb-3 h-100"
+             data-bs-ride="carousel">
+            <ol id="myCarousel-indicators" class="carousel-indicators">
+                {% for slide in promoslider %}
+                    {% if forloop.first %}
+                        <button type="button" data-bs-target="#carouselExampleFade"
+                                data-bs-slide-to="{{ forloop.counter0 }}" class="active" aria-current="true"
+                                aria-label="{{ forloop.counter0 }}"></button>
+                    {% else %}
+                        <button type="button" data-bs-target="#carouselExampleFade"
+                                data-bs-slide-to="{{ forloop.counter0 }}" aria-label="{{ forloop.counter0 }}"></button>
+
+                    {% endif %}
+                {% endfor %}
+            </ol>
+            <div class="carousel-inner h-100">
+                {% for slide in promoslider %}
+
+                    {% if forloop.first %}
+                        <div class="carousel-item active  h-100" data-bs-interval="4000">
+                            <img src="
 
 
 
-    <div id="carouselExampleFade" class="position-relative w-100 carousel slide carousel-fade mb-3 " data-bs-ride="carousel">
-        <ol class="carousel-indicators">
+                                    {% if slide.photo %}{{ slide.photo.url }}{% else %}{% static 'images/no_image.svg' %}{% endif %}"
+                                 class="d-block w-100 object-fit-cover h-100" alt="{{ slide.name }}">
+                            <div class="main_container promo_table">
+                                <div class="t734__wrapper t-width t-width_12 t-margin_left">
+                                    <div class="t734__textwrapper t-align_left">
+                                        <div class="t734__title t-title t-title_sm" field="li_title__1618817738730"
+                                             style="color:#333333;font-size:56px;font-weight:700;padding-top:85px;font-family:'Circe', sans-serif;">
+                                            {{ slide.name }}</div>
+                                        {% if slide.description %}
 
-            {% for slide in promoslider %}
 
-                {% if forloop.first %}
-                    <button type="button" data-bs-target="#carouselExampleFade"
-                            data-bs-slide-to="{{ forloop.counter0 }}" class="active" aria-current="true"
-                            aria-label="{{ forloop.counter0 }}"></button>
-                {% else %}
-                    <button type="button" data-bs-target="#carouselExampleFade"
-                            data-bs-slide-to="{{ forloop.counter0 }}" aria-label="{{ forloop.counter0 }}"></button>
-
-                {% endif %}
-            {% endfor %}
-
-        </ol>
-        <div class="carousel-inner h-100">
-            {% for slide in promoslider %}
-
-                {% if forloop.first %}
-                    <div class="carousel-item active  h-100" data-bs-interval="4000">
-                        <img src="
-                                {% if slide.photo %}{{ slide.photo.url }}{% else %}{% static 'images/no_image.svg' %}{% endif %}"
-                             class="d-block w-100 object-fit-contain" alt="{{ slide.name }}">
-                        {% if slide.vendor %}
-                            <a id="promo_link_button" href="{% url 'subcategory' category=slide.category subcategory=slide.subcategory %}?vendor={{ slide.vendor }}">
-                                <button
-                                        class="btn_container align-self-center fw-bold d-flex align-items-center">
-                    <span type="button"
-                          class="">Перейти в каталог</span>
-                                </button>
-                            </a>
-
-                        {% else %}
-                            <a id="promo_link_button" href="{% url 'subcategory' category=slide.category subcategory=slide.subcategory %}">
-                                <button
-                                        class="btn_container align-self-center fw-bold d-flex align-items-center">
-                    <span type="button"
-                          class="">Перейти в каталог</span>
-                                </button>
-                            </a>
-
-                        {% endif %}
-
-                        <div class="carousel-caption promo_name">
-                            <h5>{{ slide.name }}</h5>
-                            {#                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>#}
+                                            <div class="t734__descr t-descr t-descr_md" field="li_descr__1618817738730"
+                                                 style="color:#333333;">{{ slide.description }}
+                                            </div>
+                                        {% endif %}                                        <div class="t734__button">
+                                        <a href="/wagner" target="" class="t-btn t-btn_md"
+                                                                     style="color:lightgray;border:0px solid #ffffff;background-color:#1A4582;border-radius:30px; -moz-border-radius:30px; -webkit-border-radius:30px;font-family:Circe, sans-serif;font-weight:600; text-decoration: none"
+                                                                     tabindex="0">
+                                            <table role="presentation" style="width:100%; height:100%;">
+                                                <tbody>
+                                                <tr>
+                                                    <td>Перейти в каталог</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </a></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                {% else %}
-                    <div class="carousel-item h-100" data-bs-interval="4000">
-                        <img src="
-                                {% if slide.photo %}{{ slide.photo.url }}{% else %}{% static 'images/no_image.svg' %}{% endif %}"
-                             class="d-block w-100 object-fit-contain" alt="{{ slide.name }}">
-                        {% if slide.vendor %}
-                            <a id="promo_link_button" href="{% url 'subcategory' category=slide.category subcategory=slide.subcategory %}?vendor={{ slide.vendor }}">
-                                <button
-                                        class="btn_container align-self-center fw-bold d-flex align-items-center">
-                    <span type="button"
-                          class="">Перейти в каталог</span>
-                                </button>
-                            </a>
+                    {% else %}
+                        <div class="carousel-item h-100" data-bs-interval="4000">
+                            <img src="
 
-                        {% else %}
-                            <a id="promo_link_button" href="{% url 'subcategory' category=slide.category subcategory=slide.subcategory %}">
-                                <button
-                                        class="btn_container align-self-center fw-bold d-flex align-items-center">
-                    <span type="button"
-                          class="">Перейти в каталог</span>
-                                </button>
-                            </a>
 
-                        {% endif %}
 
-                        <div class="carousel-caption  promo_name">
-                            <h5>{{ slide.name }}</h5>
-                            {#                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>#}
+                                    {% if slide.photo %}{{ slide.photo.url }}{% else %}{% static 'images/no_image.svg' %}{% endif %}"
+                                 class="d-block w-100 object-fit-cover  h-100" alt="{{ slide.name }}">
+
+                            <div class="main_container promo_table">
+                                <div class="t734__wrapper t-width t-width_12 t-margin_left">
+                                    <div class="t734__textwrapper t-align_left">
+                                        <div class="t734__title t-title t-title_sm" field="li_title__1618817738730"
+                                             style="color:#333333;font-size:56px;font-weight:700;padding-top:85px;font-family:'Circe', sans-serif;">
+                                            {{ slide.name }}<br></div>
+                                        {% if slide.description %}
+
+
+                                        <div class="t734__descr t-descr t-descr_md" field="li_descr__1618817738730"
+                                             style="color:#333333;">{{ slide.description }}
+                                        </div>
+                                        {% endif %}
+                                        <div class="t734__button">
+                                            <a href="/wagner" target="" class="t-btn t-btn_md"
+                                                 style="color:lightgray;border:0px solid #ffffff;
+                                                 background-color:#1A4582;border-radius:30px; -moz-border-radius:30px;
+                                                 -webkit-border-radius:30px;font-family:Circe, sans-serif;
+                                                 font-weight:600; text-decoration: none"
+                                                 tabindex="0">
+                                            <table role="presentation" style="width:100%; height:100%;">
+                                                <tbody>
+                                                <tr>
+                                                    <td>Перейти в каталог</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </a></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                {% endif %}
-            {% endfor %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% if promoslider|length > 1 %}
+
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
+                        data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Предыдущий</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
+                        data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Следующий</span>
+                </button>
+            {% endif %}
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Предыдущий</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Следующий</span>
-        </button>
-
     </div>
 {% endif %}

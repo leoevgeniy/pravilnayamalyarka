@@ -2,66 +2,22 @@
 {% load static %}
 {% block page-title %}
     <title>{{ category }}</title>
+    <meta name="description" content="{{ category.description }}">
+    <meta name="title" content="{{ category }}">
+
 {% endblock %}
 {% block category %}
-    <nav class="subcategory_menu navbar navbar bg-body-tertiary category_catalog">
-        <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 justify-content-between">
-                    <li class="btn-secondary nav-link dropdown-toggle"
-                        data-bs-toggle="dropdown"
-                        data-bs-auto-close="outside"
-                        aria-expanded="false" style="color: #1A4582">
-
-                        КАТАЛОГ
-                    </li>
-
-                    <ul class="dropdown-menu " style="width: 300px">
-                        <li class="accordion dropdown-item accordion-flush" id="catalogaccordion">
-                            {% for cat in allcategory %}
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse"
-                                                data-bs-target="#section-{{ forloop.counter0 }}"
-                                                aria-expanded="false"
-                                                aria-controls="section-{{ forloop.counter0 }}"
-                                                style="color: #1A4582; background-color: #E6E6E6;">
-                                            {{ cat }}
-                                        </button>
-
-                                    </h2>
-                                    {% for subcat in allsubcategory %}
-                                        {% if subcat.category == cat %}
-                                            <div id="section-{{ forloop.parentloop.counter0 }}"
-                                                 class="accordion-collapse collapse"
-                                                 aria-labelledby="headingOne" data-bs-parent="#catalogaccordion">
-                                                <div class="accordion-body">
-                                                    <a class="dropdown-item" style="color: #1A4582"
-                                                       href="{% url 'subcategory' category=category subcategory=subcat %}">{{ subcat }}</a>
-
-                                                </div>
-                                            </div>
-                                        {% endif %}
-                                    {% endfor %}
-                                </div>
-                            {% endfor %}
-
-                        </li>
-
-
-                    </ul>
-                </ul>
-            </div>
-        </div>
-    </nav>
     {% if category %}
-        <div id="goods" class="container px-0 py-3 d-table-row collapse w-100">
-            <span class="fs-2 pe-3 d-table-cell"
+        <div id="goods" class="container py-3 w-100">
+            <img src="{{ subcat.photo_url }} "
+                 class="card-img-top img-thumbnail rounded-4 p-0" alt="{{ service.name }}"
+                 style="object-fit: cover; border-color: #1A4582; border-width: medium"
+            >
+
+            <span class=""
                   style="font-family: 'Gotham Pro Medium',sans-serif;
                 color: #1A4582;
             ">{{ category }}</span>
-            <div class="service_index_line p-0 d-table-cell h-100 w-100"></div>
         </div>
         {#        <div class="row">#}
         {#        </div>#}

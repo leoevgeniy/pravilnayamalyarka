@@ -1,166 +1,507 @@
 {#{% extends 'base.html' %}#}
 {% load static %}
 
-<div class="d-none d-lg-block my-2">
-    <div class="container d-table header_container text-black">
-        <div class="left_wrapper d-table-cell py-1">
-            <div class="logo_wrapper">
-                <a href="{% url 'index' %}">
-                    {% if logo.image %}
-                        <img src="{{ logo.image_url }} "
-                             class="" alt="Логотип"
-                        >
-                    {% else %}
-                        <img src="{% static "images/no_image.svg" %}"
-                             class="" alt="Логотип">
-                    {% endif %}
-                </a>
-            </div>
-        </div>
-        <div class="right_wrapper d-table-cell justify-content-around py-1">
-            <div class="d-flex justify-content-evenly">
-                <div class="phone_container d-flex align-items-center">
-                    <span class="me-3">
-                        <img class="t821__img t-img loaded" role="presentation" alt="Телефон"
-                             src="{% static 'images/telephone.png' %}"
-                                {#                         data-original="https://static.tildacdn.com/tild3433-3765-4131-a331-363230396664/222.png"#}
-                             imgfield="img2">
-                    </span>
-                    <span class="fw-bold d-flex flex-column">
-                        {% if contacts %}
-                            {% if contacts.phone1 %}
-                                <a class="text-decoration-none text-black"
-                                   href="tel:{{ contacts.phone1 }}">{{ contacts.phone1 }}</a>
+<div id="t-header" class="t-records" data-hook="blocks-collection-content-node" data-tilda-project-id="2602277"
+     data-tilda-page-id="12161812" data-tilda-formskey="048ccbab20512a948bcdd4e2f1f6443c" data-tilda-lazy="yes"
+     data-tilda-project-headcode="yes">
+    <div id="rec205655723" class="r t-rec t-rec_pt_0 t-rec_pb_0 t-screenmin-980px"
+         style="padding-top:0px;padding-bottom:0px; " data-animationappear="off" data-record-type="821"
+         data-screen-min="980px"><!-- t821 -->
+        <div id="nav205655723marker"></div>
+        <div id="nav205655723" class="t821 t821__positionstatic" style=" " data-bgcolor-hex="" data-bgcolor-rgba=""
+             data-navmarker="nav205655723marker" data-appearoffset="" data-bgopacity-two="" data-menushadow=""
+             data-bgopacity="1" data-menu="yes" data-bgcolor-setbyscript="yes">
+            <div class="t821__maincontainer t821__c12collumns" style="">
+                <div class="t821__leftwrapper" style="padding-left:20px;">
+                    <div class="t821__logo-wrapper t821__logo-wrapper_inlineblock">
+                        <a href="/">
+                            {% if logo.image %}
+                                <img src="{{ logo.image_url }} "
+                                     class="t821__imglogo t821__imglogomobile" alt="Логотип"
+                                     style="max-width: 160px; width: 160px;"
+                                >
+                            {% else %}
+                                <img src="{% static "images/no_image.svg" %}"
+                                     class="t821__imglogo t821__imglogomobile" alt="Логотип"
+                                     style="max-width: 160px; width: 160px;"
+                                >
                             {% endif %}
-                            {% if contacts.phone2 %}
-                                <a class="text-decoration-none text-black"
-                                   href="tel:{{ contacts.phone2 }}">{{ contacts.phone2 }}</a>
-                            {% endif %}
-                            {% if contacts.phone3 %}
-                                <a class="text-decoration-none text-black"
-                                   href="tel:{{ contacts.phone3 }}">{{ contacts.phone3 }}</a>
-                            {% endif %}
-                            {% if contacts.email1 %}
-                                <a class="text-decoration-none text-black fw-normal"
-                                   href="mailto:{{ contacts.email1 }}">{{ contacts.email1 }}</a>
-                            {% endif %}
-                        {% endif %}
-
-                    </span>
+                        </a>
+                    </div>
                 </div>
-                <div class="address_container d-flex align-items-center">
-                    <span class="me-3">
-                        <img class="t821__img t-img loaded" role="presentation" alt="Адрес"
-                             src="{% static 'images/location.png' %}"
-                             imgfield="img2">
-                    </span>
-                    <span class="d-flex flex-column">
+                <div class="t821__rightwrapper" style="padding-right:20px;">
+                    <div class="t821__phone-container" style="padding-right:20px;"><span class="t821__img-wrap"
+                                                                                         style="width: 40px;"><img
+                            class="t821__img t-img loaded" role="presentation"
+                            src="{% static 'images/telephone.png' %}"
+                            {#                            data-original="https://static.tildacdn.com/tild3433-3765-4131-a331-363230396664/222.png"#}
+                            imgfield="img2"></span>
+                        <span class="t821__text t-descr t-descr_xxs" field="descr"
+                              style="font-weight:500;">
 
-                        {% if contacts %}
-                            <span class="fw-bolder">Ульяновск</span>
-                            {% if contacts.address1 %}
-                                <span class="text-decoration-none text-black">{{ contacts.address1 }}</span>
+                                <strong>
+                                    {% if contacts %}
+                                        {% if contacts.phone1 %}
+                                            <a style="color:rgb(0, 0, 0) !important;"
+                                               href="tel:{{ contacts.phone1 }}">{{ contacts.phone1 }}</a><br>
+                                        {% endif %}
+                                        {% if contacts.phone2 %}
+                                            <a style="color:rgb(0, 0, 0) !important;"
+                                               href="tel:{{ contacts.phone2 }}">{{ contacts.phone2 }}</a><br>
+                                        {% endif %}
+                                        {% if contacts.phone3 %}
+                                            <a style="color:rgb(0, 0, 0) !important;"
+                                               href="tel:{{ contacts.phone3 }}">{{ contacts.phone3 }}</a><br>
+                                        {% endif %}
+                                        {% if contacts.email1 %}
+                                            <a style="color:rgb(0, 0, 0) !important;"
+                                               href="mailto:{{ contacts.email1 }}">{{ contacts.email1 }}</a>
+                                        {% endif %}
+                                    {% endif %}</strong>
+                            </span>
+                    </div>
+                    <div class="t821__adress-container" style="padding-right:20px;"><span class="t821__img-wrap"
+                                                                                          style="width: 40px;"><img
+                            class="t821__img t-img loaded" role="presentation"
+                            src="{% static 'images/location.png' %}"
+                            {#                            data-original="https://static.tildacdn.com/tild3563-6639-4331-a635-356635323236/_-3.png"#}
+                            imgfield="img3"></span>
+                        <span class="t821__text t-descr t-descr_xxs" field="text"
+                              style="font-weight:500;">
+                            <strong>Ульяновск</strong><br>
+                            {% if contacts %}
+                                {% if contacts.address1 %}
+                                    {{ contacts.address1 }}<br>
+                                {% endif %}
+                                {% if contacts.address2 %}
+                                    {{ contacts.address2 }}<br>
+                                {% endif %}
+                                {% if contacts.address3 %}
+                                    {{ contacts.address3 }}
+                                {% endif %}
                             {% endif %}
-                            {% if contacts.address2 %}
-                                <span class="text-decoration-none text-black">{{ contacts.address2 }}</span>
-                            {% endif %}
-                            {% if contacts.address3 %}
-                                <span class="text-decoration-none text-black">{{ contacts.address3 }}</span>
-                            {% endif %}
-                        {% endif %}
 
-                    </span>
-
-                </div>
-                <div class="btn_container align-self-center fw-bold d-flex align-items-center">
-                    <span type="button" data-bs-toggle="modal" data-bs-target="#headercallback"
-                          class="">Заказать звонок</span>
+                        </span>
+                    </div>
+                    <div class="t821__btn-container">
+                        <div class="t821__btn-wrapper">
+                            <a href="#popup:myform" target="" class="t-btn t-btn_sm "
+                               style="color:#333333;border:2px solid #333333;border-radius:50px; -moz-border-radius:50px; -webkit-border-radius:50px;box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.3);"
+                               role="button" aria-haspopup="dialog">
+                                <table role="presentation" style="width:100%; height:100%;">
+                                    <tbody>
+                                    <tr>
+                                        <td>Заказать звонок</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </a></div>
+                    </div>
                 </div>
             </div>
         </div>
 
     </div>
+    <div id="rec205655725" class="r t-rec t-rec_pb_0 t-screenmin-980px" style="padding-bottom:0px; "
+         data-animationappear="off" data-record-type="258" data-screen-min="980px"><!-- T229 -->
+        <div id="nav205655725marker"></div>
+        <div id="nav205655725" class="t229 t229__positionstatic"
+             style="background-color: rgba(51,51,51,1); height:50px; " data-bgcolor-hex="#333333"
+             data-bgcolor-rgba="rgba(51,51,51,1)" data-navmarker="nav205655725marker" data-appearoffset=""
+             data-bgopacity="1" data-menu="yes" data-bgcolor-setbyscript="yes">
+            <div class="container-fluid h-100">
+                <nav class="main_container d-flex justify-content-evenly align-content-center h-100"
+                     aria-label="Основные разделы на странице">
+                    <ul class="uppercase d-flex justify-content-evenly  align-items-center menu-list my-2 "
+                        role="menubar"
+                        aria-label="Основные разделы на странице">
+                        <li class="" role="none" style="padding:0 35px 0 0;">
+                            <a style="color:#ffffff;font-size:13px;font-weight:600;text-transform:uppercase;{% if pagename == 'index' %} opacity: .7;{% endif %}"
+                               href="{% url 'index' %}"
+                               tabindex="0"
+                               data-menu-submenu-hook=""
+                            >Главная</a>
+                        </li>
+                        <li class="dropdown" role="none" style="padding:0 35px;">
+                            <a class="nav-link dropdown-toggle my-1"
+                               href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                               style="color:#ffffff;font-size:13px;font-weight:600;text-transform:uppercase;{% if pagename == 'category' %} opacity: .7;{% endif %}"
+                               data-tooltip-menu-id="203552058">Каталог
+                            </a>
+                            <ul class="dropdown-menu">
+                                {% for category in categories %}
+                                    <li><a class="dropdown-item"
+                                           href="{% url 'category' category=category %}">{{ category }}</a></li>
+                                {% endfor %}
 
-    <div class="container-fluid menu-content">
-        <nav class="d-flex justify-content-evenly align-content-center" aria-label="Основные разделы на странице">
-            <ul class="uppercase d-flex justify-content-evenly menu-list my-2 " role="menubar"
-                aria-label="Основные разделы на странице">
-                <li class="" role="none" style="padding:0 35px 0 0;">
-                    <a style="color:#ffffff;font-size:13px;font-weight:600;text-transform:uppercase;{% if pagename == 'index' %} opacity: .7;{% endif %}"
-                       href="{% url 'index' %}"
-                       tabindex="0"
-                       data-menu-submenu-hook=""
-                    >Главная</a>
-                </li>
-                <li class="dropdown" role="none" style="padding:0 35px;">
-                    <a class="nav-link dropdown-toggle my-1"
-                       href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-                       style="color:#ffffff;font-size:13px;font-weight:600;text-transform:uppercase;{% if pagename == 'category' %} opacity: .7;{% endif %}"
-                       data-tooltip-menu-id="203552058">Каталог
-                    </a>
-                    <ul class="dropdown-menu">
-                        {% for category in categories %}
-                            <li><a class="dropdown-item"
-                                   href="{% url 'category' category=category %}">{{ category }}</a></li>
-                        {% endfor %}
 
+                            </ul>
 
+                        </li>
+                        <li class="t229__list_item" role="none" style="padding:0 35px;">
+                            <a class=""
+                               href="{% url 'about' %}"
+                               role="menuitem" tabindex="0"
+                               data-menu-submenu-hook=""
+                               style="color:#ffffff;font-size:13px;font-weight:600;text-transform:uppercase;{% if pagename == 'about' %} opacity: .7;{% endif %}">О
+                                нас
+                            </a></li>
+                        <li class="t229__list_item" role="none" style="padding:0 35px;">
+                            <a class=""
+                               href="https://xn----8sbgf1bdbnft8n.xn--p1ai/delivery"
+                               role="menuitem" tabindex="0"
+                               data-menu-submenu-hook=""
+                               style="color:#ffffff;font-size:13px;font-weight:600;text-transform:uppercase;{% if pagename == 'delivery' %} opacity: .7;{% endif %}">Доставка
+                                и оплата</a></li>
+                        <li class="t229__list_item" role="none" style="padding:0 0 0 35px;">
+                            <a class=""
+                               href="https://xn----8sbgf1bdbnft8n.xn--p1ai/contacts"
+                               role="menuitem" tabindex="0"
+                               data-menu-submenu-hook=""
+                               style="color:#ffffff;font-size:13px;font-weight:600;text-transform:uppercase;{% if pagename == 'contacts' %} text-decoration: underline; {% else %} text-decorations: none; {% endif %}">Контакты</a>
+                        </li>
                     </ul>
+                </nav>
+            </div>
+        </div>
 
-                </li>
-                <li class="t229__list_item" role="none" style="padding:0 35px;">
-                    <a class=""
-                       href="{% url 'about' %}"
-                       role="menuitem" tabindex="0"
-                       data-menu-submenu-hook=""
-                       style="color:#ffffff;font-size:13px;font-weight:600;text-transform:uppercase;{% if pagename == 'about' %} opacity: .7;{% endif %}">О
-                        нас
-                    </a></li>
-                <li class="t229__list_item" role="none" style="padding:0 35px;">
-                    <a class=""
-                       href="https://xn----8sbgf1bdbnft8n.xn--p1ai/delivery"
-                       role="menuitem" tabindex="0"
-                       data-menu-submenu-hook=""
-                       style="color:#ffffff;font-size:13px;font-weight:600;text-transform:uppercase;{% if pagename == 'delivery' %} opacity: .7;{% endif %}">Доставка
-                        и оплата</a></li>
-                <li class="t229__list_item" role="none" style="padding:0 0 0 35px;">
-                    <a class=""
-                       href="https://xn----8sbgf1bdbnft8n.xn--p1ai/contacts"
-                       role="menuitem" tabindex="0"
-                       data-menu-submenu-hook=""
-                       style="color:#ffffff;font-size:13px;font-weight:600;text-transform:uppercase;{% if pagename == 'contacts' %} text-decoration: underline; {% else %} text-decorations: none; {% endif %}">Контакты</a>
-                </li>
-            </ul>
-        </nav>
     </div>
+    <div id="rec206046016" class="r t-rec" style="opacity: 1;" data-animationappear="off" data-record-type="702"
+         data-popup-subscribe-inited="y"><!-- T702 -->
+        <div class="t702">
+            <div class="t-popup" data-tooltip-hook="#popup:myform" role="dialog" aria-modal="true" tabindex="-1"
+                 aria-label="У вас есть вопросы?">
+                <div class="t-popup__container t-width t-width_6">
+                    <div class="t702__wrapper">
+                        <div class="t702__text-wrapper t-align_center">
+                            <div class="t702__title t-title t-title_xxs" style="">У вас есть вопросы?</div>
+                            <div class="t702__descr t-descr t-descr_xs" style="">Оставьте свои данные и мы перезвоним
+                                вам в течении 15-минут
+                            </div>
+                        </div>
+                        <form id="form206046016" name="form206046016" role="form" action="#" method="POST"
+                              data-formactiontype="2" data-inputbox=".t-input-group"
+                              class="t-form js-form-proccess t-form_inputs-total_2 "
+                              data-success-callback="t702_onSuccess"><input type="hidden" name="formservices[]"
+                                                                            value="bded5ca4b92b9688b4f9daa424d83f07"
+                                                                            class="js-formaction-services"><input
+                                type="hidden" name="formservices[]" value="fab3b9a0083859972e934009376bb01f"
+                                class="js-formaction-services">
+                            <div class="js-successbox t-form__successbox t-text t-text_md" aria-live="polite"
+                                 style="display:none;"></div>
+                            <div class="t-form__inputsbox">
+                                <div class="t-input-group t-input-group_nm" data-input-lid="1495810354468">
+                                    <div class="t-input-block"><input type="text" autocomplete="name" name="Name"
+                                                                      id="input_1495810354468"
+                                                                      class="t-input js-tilda-rule " value=""
+                                                                      placeholder="Ваше имя" data-tilda-req="1"
+                                                                      aria-required="true" data-tilda-rule="name"
+                                                                      aria-describedby="error_1495810354468"
+                                                                      style="color:#333333;border:1px solid #333333;border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;">
+                                        <div class="t-input-error" aria-live="polite" id="error_1495810354468"></div>
+                                    </div>
+                                </div>
+                                <div class="t-input-group t-input-group_ph" data-input-lid="1495810359387">
+                                    <div class="t-input-block"><input type="tel" autocomplete="tel" name="Phone"
+                                                                      id="input_1495810359387"
+                                                                      class="t-input js-tilda-rule " value=""
+                                                                      placeholder="Ваш номер телефона"
+                                                                      data-tilda-req="1" aria-required="true"
+                                                                      data-tilda-rule="phone" pattern="[0-9]*"
+                                                                      aria-describedby="error_1495810359387"
+                                                                      style="color:#333333;border:1px solid #333333;border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;">
+                                        <div class="t-input-error" aria-live="polite" id="error_1495810359387"></div>
+                                    </div>
+                                </div>
+                                <div class="t-form__errorbox-middle">
+                                    <div class="js-errorbox-all t-form__errorbox-wrapper" style="display:none;">
+                                        <div class="t-form__errorbox-text t-text t-text_md"><p
+                                                class="t-form__errorbox-item js-rule-error js-rule-error-all"></p>
+                                            <p class="t-form__errorbox-item js-rule-error js-rule-error-req"></p>
+                                            <p class="t-form__errorbox-item js-rule-error js-rule-error-email"></p>
+                                            <p class="t-form__errorbox-item js-rule-error js-rule-error-name"></p>
+                                            <p class="t-form__errorbox-item js-rule-error js-rule-error-phone"></p>
+                                            <p class="t-form__errorbox-item js-rule-error js-rule-error-minlength"></p>
+                                            <p class="t-form__errorbox-item js-rule-error js-rule-error-string"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="t-form__submit">
+                                    <button type="submit" class="t-submit"
+                                            style="color:#333333;background-color:#ffb600;border-radius:50px; -moz-border-radius:50px; -webkit-border-radius:50px;">
+                                        Позвоните мне
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="t-form__errorbox-bottom">
+                                <div class="js-errorbox-all t-form__errorbox-wrapper" style="display:none;">
+                                    <div class="t-form__errorbox-text t-text t-text_md"><p
+                                            class="t-form__errorbox-item js-rule-error js-rule-error-all"></p>
+                                        <p class="t-form__errorbox-item js-rule-error js-rule-error-req"></p>
+                                        <p class="t-form__errorbox-item js-rule-error js-rule-error-email"></p>
+                                        <p class="t-form__errorbox-item js-rule-error js-rule-error-name"></p>
+                                        <p class="t-form__errorbox-item js-rule-error js-rule-error-phone"></p>
+                                        <p class="t-form__errorbox-item js-rule-error js-rule-error-minlength"></p>
+                                        <p class="t-form__errorbox-item js-rule-error js-rule-error-string"></p></div>
+                                </div>
+                            </div>
+                            <div style="position: absolute; left: -5000px; bottom: 0; display: none;"><input type="text"
+                                                                                                             name="form-spec-comments"
+                                                                                                             value="Its good"
+                                                                                                             class="js-form-spec-comments"
+                                                                                                             tabindex="-1">
+                            </div>
+                        </form>
+                        <style>#rec206046016 input::-webkit-input-placeholder {
+                            color: #333333;
+                            opacity: 0.5;
+                        }
 
-</div>
-<div class="d-block d-lg-none logo_stick">
-    <div class="logo_wrapper">
-        <a href="{% url 'index' %}">
-            {% if logo.image %}
-                <img src="{{ logo.image_url }} "
-                     class="" alt="Логотип"
-                >
-            {% else %}
-                <img src="{% static "images/no_image.svg" %}"
-                     class="" alt="Логотип">
-            {% endif %}
-        </a>
+                        #rec206046016 input::-moz-placeholder {
+                            color: #333333;
+                            opacity: 0.5;
+                        }
+
+                        #rec206046016 input:-moz-placeholder {
+                            color: #333333;
+                            opacity: 0.5;
+                        }
+
+                        #rec206046016 input:-ms-input-placeholder {
+                            color: #333333;
+                            opacity: 0.5;
+                        }
+
+                        #rec206046016 textarea::-webkit-input-placeholder {
+                            color: #333333;
+                            opacity: 0.5;
+                        }
+
+                        #rec206046016 textarea::-moz-placeholder {
+                            color: #333333;
+                            opacity: 0.5;
+                        }
+
+                        #rec206046016 textarea:-moz-placeholder {
+                            color: #333333;
+                            opacity: 0.5;
+                        }
+
+                        #rec206046016 textarea:-ms-input-placeholder {
+                            color: #333333;
+                            opacity: 0.5;
+                        }</style>
+                        <div class="t702__form-bottom-text t-text t-text_xs t-align_center">Нажимая кнопку "Позвоните
+                            мне" вы соглашаетесь с <a href="https://дом-маляров.рф/privacy" style="">политикой
+                                конфиденциальности</a></div>
+                    </div>
+                </div>
+                <div class="t-popup__close t-popup__block-close">
+                    <button type="button" class="t-popup__close-wrapper t-popup__block-close-button"
+                            aria-label="Закрыть диалог">
+                        <svg role="presentation" class="t-popup__close-icon" width="23px" height="23px"
+                             viewBox="0 0 23 23" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                             xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g stroke="none" stroke-width="1" fill="#fff" fill-rule="evenodd">
+                                <rect transform="translate(11.313708, 11.313708) rotate(-45.000000) translate(-11.313708, -11.313708) "
+                                      x="10.3137085" y="-3.6862915" width="2" height="30"></rect>
+                                <rect transform="translate(11.313708, 11.313708) rotate(-315.000000) translate(-11.313708, -11.313708) "
+                                      x="10.3137085" y="-3.6862915" width="2" height="30"></rect>
+                            </g>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-<button class="d-block d-lg-none button_stick navbar-toggler" type="button" data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-    <img src="{% static 'images/menu.svg' %}" alt="Меню" style="width: 60px">
 
-</button>
+
+{#<div class="d-none d-lg-block">#}
+{#    <div class="container d-table main_container header_container text-black">#}
+{#        <div class="left_wrapper d-table-cell py-1">#}
+{#            <div class="logo_wrapper">#}
+{#                <a href="{% url 'index' %}">#}
+{#                    {% if logo.image %}#}
+{#                        <img src="{{ logo.image_url }} "#}
+{#                             class="" alt="Логотип"#}
+{#                        >#}
+{#                    {% else %}#}
+{#                        <img src="{% static "images/no_image.svg" %}"#}
+{#                             class="" alt="Логотип">#}
+{#                    {% endif %}#}
+{#                </a>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="right_wrapper d-table-cell justify-content-around py-1">#}
+{#            <div class="d-flex justify-content-evenly">#}
+{#                <div class="phone_container d-flex align-items-center">#}
+{#                    <span class="me-3">#}
+{#                        <img class="t821__img t-img loaded" role="presentation" alt="Телефон"#}
+{#                             src="{% static 'images/telephone.png' %}"#}
+{#                         data-original="https://static.tildacdn.com/tild3433-3765-4131-a331-363230396664/222.png"#}
+{#                             imgfield="img2">#}
+{#                    </span>#}
+{#                    <span class="fw-bold d-flex flex-column">#}
+{#                        {% if contacts %}#}
+{#                            {% if contacts.phone1 %}#}
+{#                                <a class="text-decoration-none text-black"#}
+{#                                   href="tel:{{ contacts.phone1 }}">{{ contacts.phone1 }}</a>#}
+{#                            {% endif %}#}
+{#                            {% if contacts.phone2 %}#}
+{#                                <a class="text-decoration-none text-black"#}
+{#                                   href="tel:{{ contacts.phone2 }}">{{ contacts.phone2 }}</a>#}
+{#                            {% endif %}#}
+{#                            {% if contacts.phone3 %}#}
+{#                                <a class="text-decoration-none text-black"#}
+{#                                   href="tel:{{ contacts.phone3 }}">{{ contacts.phone3 }}</a>#}
+{#                            {% endif %}#}
+{#                            {% if contacts.email1 %}#}
+{#                                <a class="text-decoration-none text-black fw-normal"#}
+{#                                   href="mailto:{{ contacts.email1 }}">{{ contacts.email1 }}</a>#}
+{#                            {% endif %}#}
+{#                        {% endif %}#}
+{##}
+{#                    </span>#}
+{#                </div>#}
+{#                <div class="address_container d-flex align-items-center">#}
+{#                    <span class="me-3">#}
+{#                        <img class="t821__img t-img loaded" role="presentation" alt="Адрес"#}
+{#                             src="{% static 'images/location.png' %}"#}
+{#                             imgfield="img2">#}
+{#                    </span>#}
+{#                    <span class="d-flex flex-column">#}
+{##}
+{#                        {% if contacts %}#}
+{#                            <span class="fw-bolder">Ульяновск</span>#}
+{#                            {% if contacts.address1 %}#}
+{#                                <span class="text-decoration-none text-black">{{ contacts.address1 }}</span>#}
+{#                            {% endif %}#}
+{#                            {% if contacts.address2 %}#}
+{#                                <span class="text-decoration-none text-black">{{ contacts.address2 }}</span>#}
+{#                            {% endif %}#}
+{#                            {% if contacts.address3 %}#}
+{#                                <span class="text-decoration-none text-black">{{ contacts.address3 }}</span>#}
+{#                            {% endif %}#}
+{#                        {% endif %}#}
+{##}
+{#                    </span>#}
+{##}
+{#                </div>#}
+{#                <div class="btn_container align-self-center fw-bold d-flex align-items-center">#}
+{#                    <span type="button" data-bs-toggle="modal" data-bs-target="#headercallback"#}
+{#                          class="">Заказать звонок</span>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{##}
+{#    </div>#}
+{##}
+{#    <div class="container-fluid menu-content">#}
+{#        <nav class="d-flex justify-content-evenly align-content-center" aria-label="Основные разделы на странице">#}
+{#            <ul class="uppercase d-flex justify-content-evenly menu-list my-2 " role="menubar"#}
+{#                aria-label="Основные разделы на странице">#}
+{#                <li class="" role="none" style="padding:0 35px 0 0;">#}
+{#                    <a style="color:#ffffff;font-size:13px;font-weight:600;text-transform:uppercase;{% if pagename == 'index' %} opacity: .7;{% endif %}"#}
+{#                       href="{% url 'index' %}"#}
+{#                       tabindex="0"#}
+{#                       data-menu-submenu-hook=""#}
+{#                    >Главная</a>#}
+{#                </li>#}
+{#                <li class="dropdown" role="none" style="padding:0 35px;">#}
+{#                    <a class="nav-link dropdown-toggle my-1"#}
+{#                       href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"#}
+{#                       style="color:#ffffff;font-size:13px;font-weight:600;text-transform:uppercase;{% if pagename == 'category' %} opacity: .7;{% endif %}"#}
+{#                       data-tooltip-menu-id="203552058">Каталог#}
+{#                    </a>#}
+{#                    <ul class="dropdown-menu">#}
+{#                        {% for category in categories %}#}
+{#                            <li><a class="dropdown-item"#}
+{#                                   href="{% url 'category' category=category %}">{{ category }}</a></li>#}
+{#                        {% endfor %}#}
+{##}
+{##}
+{#                    </ul>#}
+{##}
+{#                </li>#}
+{#                <li class="t229__list_item" role="none" style="padding:0 35px;">#}
+{#                    <a class=""#}
+{#                       href="{% url 'about' %}"#}
+{#                       role="menuitem" tabindex="0"#}
+{#                       data-menu-submenu-hook=""#}
+{#                       style="color:#ffffff;font-size:13px;font-weight:600;text-transform:uppercase;{% if pagename == 'about' %} opacity: .7;{% endif %}">О#}
+{#                        нас#}
+{#                    </a></li>#}
+{#                <li class="t229__list_item" role="none" style="padding:0 35px;">#}
+{#                    <a class=""#}
+{#                       href="https://xn----8sbgf1bdbnft8n.xn--p1ai/delivery"#}
+{#                       role="menuitem" tabindex="0"#}
+{#                       data-menu-submenu-hook=""#}
+{#                       style="color:#ffffff;font-size:13px;font-weight:600;text-transform:uppercase;{% if pagename == 'delivery' %} opacity: .7;{% endif %}">Доставка#}
+{#                        и оплата</a></li>#}
+{#                <li class="t229__list_item" role="none" style="padding:0 0 0 35px;">#}
+{#                    <a class=""#}
+{#                       href="https://xn----8sbgf1bdbnft8n.xn--p1ai/contacts"#}
+{#                       role="menuitem" tabindex="0"#}
+{#                       data-menu-submenu-hook=""#}
+{#                       style="color:#ffffff;font-size:13px;font-weight:600;text-transform:uppercase;{% if pagename == 'contacts' %} text-decoration: underline; {% else %} text-decorations: none; {% endif %}">Контакты</a>#}
+{#                </li>#}
+{#            </ul>#}
+{#        </nav>#}
+{#    </div>#}
+{##}
+{#</div>#}
+{#<div class="d-block d-lg-none logo_stick">#}
+{#    <div class="logo_wrapper">#}
+{#        <a href="{% url 'index' %}">#}
+{#            {% if logo.image %}#}
+{#                <img src="{{ logo.image_light_url }} "#}
+{#                     class="" alt="Логотип"#}
+{#                >#}
+{#            {% else %}#}
+{#                <img src="{% static "images/no_image.svg" %}"#}
+{#                     class="" alt="Логотип">#}
+{#            {% endif %}#}
+{#        </a>#}
+{#    </div>#}
+{#</div>#}
+<div id="rec305826014" class="r t-rec t-screenmax-980px" style="background-color:#ffffff; " data-record-type="145"
+     data-screen-max="980px" data-bg-color="#ffffff" data-animationappear="off"><!-- T135 -->
+    <div class="t135"><a href="{% url 'index' %}"><img class="t135__img"
+                                       src="{{ logo.image_light_url }}"
+                                       imgfield="img" style="max-width: 150px; width: 100%; display: inline-block;"
+                                       alt=""></a></div>
+    <style>#rec305826014 .t135 {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        max-width: 150px;
+        width: 100%;
+    }</style>
+</div>
+<div class="t450__menu__content d-block d-lg-none" style="top:20px; " data-menu="yes" data-appearoffset="" data-hideoffset="">
+    <div class="t450__burger_container t450__small " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+        <div class="t450__burger_bg t450__burger_cirqle" style="; opacity:0.50;"></div>
+        <div class="t-menuburger t-menuburger_first t-menuburger__small"><span style="background-color:#ffffff;"></span><span
+                style="background-color:#ffffff;"></span><span style="background-color:#ffffff;"></span><span
+                style="background-color:#ffffff;"></span>
+        </div>
+
+
+    </div>
+</div>
+{#<button class="d-block d-lg-none button_stick navbar-toggler" type="button" data-bs-toggle="offcanvas"#}
+{#        data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">#}
+{#    <img src="{% static 'images/menu.svg' %}" alt="Меню" style="width: 60px">#}
+{##}
+{#</button>#}
 <div class="offcanvas offcanvas-end text-bg-dark " tabindex="-1" id="offcanvasRight"
-     aria-labelledby="offcanvasRightLabel" style="width: 260px">
+     aria-labelledby="offcanvasRightLabel" style="width: 260px; z-index: 999999">
     <div class="offcanvas-header">
         <div class="logo_wrapper ms-2 mt-3">
             <a href="{% url 'index' %}">
                 {% if logo.image %}
-                    <img src="{{ logo.image_url }} "
+                    <img src="{{ logo.image_light_url }} "
                          class="" alt="Логотип"
                     >
                 {% else %}
@@ -169,218 +510,227 @@
                 {% endif %}
             </a>
         </div>
+        <button type="button" class="t450__close-button t450__close t450_opened " data-bs-dismiss="offcanvas"
+                aria-label="Close" style="background-color: #333333;"
+                aria-label="Закрыть меню">
+            <div class="t450__close_icon"><span style="background-color:#ffffff;"></span><span
+                    style="background-color:#ffffff;"></span><span style="background-color:#ffffff;"></span><span
+                    style="background-color:#ffffff;"></span></div>
+        </button>
     </div>
     <div class="offcanvas-body p-0">
-            <ul class="uppercase d-flex flex-column justify-content-start menu-list my-2 ps-0"
-                aria-label="Основные разделы на странице">
-                <li class="" role="none" style="">
-                    <a style="color:#ffffff;font-weight:600;{% if pagename == 'index' %} opacity: .7;{% endif %}"
-                       href="{% url 'index' %}"
-                       tabindex="0"
-                       data-menu-submenu-hook=""
-                    >Главная</a>
-                </li>
-                <li class=""   style="">
-                    <a id="catalog_small" data-clecked='false' class=" my-1"
-                       role="button"
-                       style="color:#ffffff;font-weight:600; cursor: pointer; {% if pagename == 'category' %} opacity: .7;{% endif %}"
-                       data-tooltip-menu-id="203552058">Каталог
-                    </a>
-                    <ul class="d-none" id="catalog_items_small" style="background-color: inherit; color: white; list-style-type: none;  padding-left: 0">
-                        {% for category in categories %}
-                            <li  style=" padding-left: 0">
-                                <a class="dropdown-item ps-0 fs-6"
-                                   href="{% url 'category' category=category %}">{{ category }}
-                                </a>
-                            </li>
-                        {% endfor %}
+        <ul class="uppercase d-flex flex-column justify-content-start menu-list my-2 ps-0"
+            aria-label="Основные разделы на странице">
+            <li class="" role="none" style="">
+                <a style="color:#ffffff;font-weight:600;{% if pagename == 'index' %} opacity: .7;{% endif %}"
+                   href="{% url 'index' %}"
+                   tabindex="0"
+                   data-menu-submenu-hook=""
+                >Главная</a>
+            </li>
+            <li class="" style="">
+                <a id="catalog_small" data-clecked='false' class=" my-1"
+                   role="button"
+                   style="color:#ffffff;font-weight:600; cursor: pointer; {% if pagename == 'category' %} opacity: .7;{% endif %}"
+                   data-tooltip-menu-id="203552058">Каталог
+                </a>
+                <ul class="d-none" id="catalog_items_small"
+                    style="background-color: inherit; color: white; list-style-type: none;  padding-left: 0">
+                    {% for category in categories %}
+                        <li style=" padding-left: 0">
+                            <a class="dropdown-item ps-0 fs-6"
+                               href="{% url 'category' category=category %}">{{ category }}
+                            </a>
+                        </li>
+                    {% endfor %}
 
 
-                    </ul>
+                </ul>
 
-                </li>
-                <li class="t229__list_item" role="none" style="">
-                    <a class=""
-                       href="{% url 'about' %}"
-                       role="menuitem" tabindex="0"
-                       data-menu-submenu-hook=""
-                       style="color:#ffffff;font-weight:600;{% if pagename == 'about' %} opacity: .7;{% endif %}">О
-                        нас
-                    </a></li>
-                <li class="t229__list_item" role="none" style="">
-                    <a class=""
-                       href="https://xn----8sbgf1bdbnft8n.xn--p1ai/delivery"
-                       role="menuitem" tabindex="0"
-                       data-menu-submenu-hook=""
-                       style="color:#ffffff;font-weight:600;{% if pagename == 'delivery' %} opacity: .7;{% endif %}">Доставка
-                        и оплата</a></li>
-                <li class="t229__list_item" role="none" style="">
-                    <a class=""
-                       href="https://xn----8sbgf1bdbnft8n.xn--p1ai/contacts"
-                       role="menuitem" tabindex="0"
-                       data-menu-submenu-hook=""
-                       style="color:#ffffff;font-weight:600;{% if pagename == 'contacts' %} text-decoration: underline; {% else %} text-decorations: none; {% endif %}">Контакты</a>
-                </li>
-            </ul>
+            </li>
+            <li class="t229__list_item" role="none" style="">
+                <a class=""
+                   href="{% url 'about' %}"
+                   role="menuitem" tabindex="0"
+                   data-menu-submenu-hook=""
+                   style="color:#ffffff;font-weight:600;{% if pagename == 'about' %} opacity: .7;{% endif %}">О
+                    нас
+                </a></li>
+            <li class="t229__list_item" role="none" style="">
+                <a class=""
+                   href="https://xn----8sbgf1bdbnft8n.xn--p1ai/delivery"
+                   role="menuitem" tabindex="0"
+                   data-menu-submenu-hook=""
+                   style="color:#ffffff;font-weight:600;{% if pagename == 'delivery' %} opacity: .7;{% endif %}">Доставка
+                    и оплата</a></li>
+            <li class="t229__list_item" role="none" style="">
+                <a class=""
+                   href="https://xn----8sbgf1bdbnft8n.xn--p1ai/contacts"
+                   role="menuitem" tabindex="0"
+                   data-menu-submenu-hook=""
+                   style="color:#ffffff;font-weight:600;{% if pagename == 'contacts' %} text-decoration: underline; {% else %} text-decorations: none; {% endif %}">Контакты</a>
+            </li>
+        </ul>
 
     </div>
 </div>
-    {#<nav class="container d-none d-sm-flex w-100 flex-column ">#}
-    {#    <div class="row container p-0 d-flex justify-content-center first-row w-100">#}
-    {#        <div class="col-2 text-center uln">#}
-    {#            <span class="align-self-center d-none d-xl-block">город Ульяновск</span>#}
-    {#            <span class="align-self-center d-block d-xl-none">Ульяновск</span>#}
-    {#        </div>#}
-    {#        <div class="col-8 d-flex justify-content-end phone">#}
-    {#            <i class="bi bi-telephone-fill me-2"></i>#}
-    {#            {% if contacts.phone1 %}#}
-    {#                <a href="tel:{{ contacts.phone1 }}"> {{ contacts.phone1}}</a>#}
-    {#            {% endif %}#}
-    {##}
-    {#        </div>#}
-    {#        <div class="col-2 text-center call-back">#}
-    {#            <span type="button" data-bs-toggle="modal" data-bs-target="#headercallback">ЗАКАЗАТЬ ЗВОНОК</span>#}
-    {#        </div>#}
-    {#    </div>#}
-    {#    <div class="row container p-0 second-row w-100">#}
-    {#        <div class="col-2">#}
-    {#            <div class="logo-wrapper text-center h-100 d-flex flex-column justify-content-center">#}
-    {#                <a href="{% url 'index' %}">#}
-    {#                    <img class="w-75 my-2 object-fit-cover" src="{% static 'images/logo.svg' %}" alt="Logo">#}
-    {#                    {% if logo.image %}#}
-    {#                        <img src="{{ logo.image_url }} "#}
-    {#                             class="w-75 my-2 object-fit-cover" alt="Логотип"#}
-    {#                             style="height: 150px; object-fit: cover; border-color: #1A4582; border-width: medium"#}
-    {#                        >#}
-    {#                    {% else %}#}
-    {#                        <img src="{% static "images/no_image.svg" %}"#}
-    {#                             class="card-img-top img-responsive" alt="Логотип">#}
-    {#                    {% endif %}#}
-    {#                </a>#}
-    {#            </div>#}
-    {#        </div>#}
-    {#        <div class="col-10 px-0">#}
-    {#            <div class="menu-img d-flex flex-column justify-content-center">#}
-    {#                <span class="repair ms-4">РЕМОНТ</span>#}
-    {#                <div class="d-flex">#}
-    {#                    <div class="menu-line1"></div>#}
-    {#                    <span class="and fs-4 mx-3">и</span>#}
-    {#                    <div class="menu-line2">#}
-    {#                    </div>#}
-    {#                </div>#}
-    {#                <span class="goods ms-4">ТОВАРЫ</span>#}
-    {#                <span class="for-repair ms-4">ДЛЯ РЕМОНТА</span>#}
-    {#            </div>#}
-    {#        </div>#}
-    {#    </div>#}
-    {#    <div class="row container p-0 third-row w-100">#}
-    {#        <div class="col-2 px-0">#}
-    {#            <form action="{% url 'search' %}"#}
-    {#                  class="text-center mx-auto py-2 search-wrapper text-center position-relative" method='POST'>#}
-    {#                {% csrf_token %}#}
-    {#                {{ searchform.as_div }}#}
-    {#                <div type='submit' class='position-absolute'#}
-    {#                      style="top: 30%; right: 20%; font-size: 13px">#}
-    {#                <button type='submit' class='bi bi-search position-absolute'#}
-    {#                        style="top: 30%; right: 10%; font-size: 13px;      background: none;#}
-    {#                        border: none;#}
-    {#                        padding: 0;">#}
-    {##}
-    {#                </button>#}
-    {#                <input type="submit" class='bi bi-search position-absolute' style="top: 30%; right: 20%; font-size: 13px">#}
-    {#                </div>#}
-    {#            </form>#}
-    {##}
-    {#        </div>#}
-    {#        <div class="col-8 d-flex justify-content-around menu_header">#}
-    {#            <a class="align-self-center text-center" href="{% url 'services' %}">ВИДЫ РАБОТ</a>#}
-    {#            <a class="text-center align-self-center to_goods" href="{% url 'index' %}#goods">КАТАЛОГ ТОВАРОВ</a>#}
-    {#            <a class="align-self-center text-center" href="{% url 'about' %}">О КОМПАНИИ</a>#}
-    {##}
-    {#        </div>#}
-    {#        <div class="col-2 position-relative text-center cart-wrapper">#}
-    {#            <a class="position-relative" href="{% url 'cart' %}">#}
-    {#                <i class="position-absolute cart">#}
-    {#                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-amount">#}
-    {#                  <span class="visually-hidden">unread messages</span>#}
-    {#                </span>#}
-    {#                </i>#}
-    {#            </a>#}
-    {##}
-    {#        </div>#}
-    {#    </div>#}
-    {##}
-    {##}
-    {#</nav>#}
-    {#<nav class="navbar d-sm-none bg-body-tertiary header-fixed-top w-100">#}
-    {#    <div class="container-fluid px-0 row d-flex justify-content-between w-100 mx-0" style="background-color: #1A4582;">#}
-    {#        <div class="logo-wrapper text-center col-2 px-0"  style="background-color: #fff;">#}
-    {#            <a href="{% url 'index' %}">#}
-    {#                    <img class="w-75 my-2 object-fit-cover" src="{% static 'images/logo.svg' %}" alt="Logo">#}
-    {#                {% if logo.image %}#}
-    {#                    <img src="{{ logo.image_url }} "#}
-    {#                         class="my-2 object-fit-contain" style="width: 90%" alt="Логотип"#}
-    {#                             style="height: 150px; object-fit: cover; border-color: #1A4582; border-width: medium"#}
-    {#                    >#}
-    {#                {% else %}#}
-    {#                    <img src="{% static "images/no_image.svg" %}"#}
-    {#                         class="card-img-top img-responsive" alt="Логотип">#}
-    {#                {% endif %}#}
-    {#            </a>#}
-    {#        </div>#}
-    {#        <div class="px-0 collapsed-search col-8 px-2" style="background-color: #1A4582">#}
-    {#            <form action="{% url 'search' %}"#}
-    {#                  class="text-center search-wrapper text-center position-relative" method='POST'>#}
-    {#                {% csrf_token %}#}
-    {#                {{ searchform.as_div }}#}
-    {#                <div type='submit' class='position-absolute'#}
-    {#                      style="top: 30%; right: 20%; font-size: 13px">#}
-    {#                <button type='submit' class='bi bi-search position-absolute'#}
-    {#                        style="top: 22%; right: 10%; font-size: 13px;      background: none;#}
-    {#                        border: none;#}
-    {#                        padding: 0;">#}
-    {##}
-    {#                </button>#}
-    {#                <input type="submit" class='bi bi-search position-absolute' style="top: 30%; right: 20%; font-size: 13px">#}
-    {#                </div>#}
-    {#            </form>#}
-    {##}
-    {#        </div>#}
-    {##}
-    {#        <button class="navbar-toggler text-white col-2 p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">#}
-    {#            <span id="toggle-icon-header" class="navbar-toggler-icon "></span>#}
-    {#        </button>#}
-    {#        <div class="collapse navbar-collapse" id="navbarNav" style="background-color: #1A4582;">#}
-    {#            <div class="d-flex flex-column">#}
-    {#                <a class="text-center text-white navbar-toggler" href="{% url 'services' %}">ВИДЫ РАБОТ</a>#}
-    {#                <a class="text-center to_goods text-white navbar-toggler" href="{% url 'index' %}#goods">КАТАЛОГ ТОВАРОВ</a>#}
-    {#                <a class="text-center text-white navbar-toggler" href="{% url 'about' %}">О КОМПАНИИ</a>#}
-    {##}
-    {#            </div>#}
-    {#        </div>#}
-    {#    </div>#}
-    {#</nav>#}
-    <div class="modal fade center-block" id="headercallback" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered vw-75">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <div class=" d-flex flex-column align-items-center">
-                        <span id="" class=" w-100" style="line-height: 1.3; font-size: 30px">У Вас есть вопросы?</span>
-                        <span id="" class=" w-100" style="line-height: 1.3; font-size: 18px; font-weight: 300">Оставьте свои данные и мы перезвоним вам в течении 15-минут</span>
-                    </div>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="{% url 'thanks' %}" method="POST">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Отправить заявку</button>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-    </div>
+{#<div class="modal fade center-block" id="headercallback" tabindex="-1" aria-labelledby="exampleModalLabel"#}
+{#     aria-hidden="true">#}
+{#    <div class="modal-dialog modal-dialog-centered vw-75">#}
+{#        <div class="modal-content">#}
+{#            <div class="modal-header">#}
+{#                <div class=" d-flex flex-column align-items-center">#}
+{#                    <span id="" class=" w-100" style="line-height: 1.3; font-size: 30px">У Вас есть вопросы?</span>#}
+{#                    <span id="" class=" w-100" style="line-height: 1.3; font-size: 18px; font-weight: 300">Оставьте свои данные и мы перезвоним вам в течении 15-минут</span>#}
+{#                </div>#}
+{#                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>#}
+{#            </div>#}
+{#            <div class="modal-body">#}
+{#                <form action="{% url 'thanks' %}" method="POST">#}
+{#                    {% csrf_token %}#}
+{#                    {{ form.as_p }}#}
+{#                    <div class="modal-footer">#}
+{#                        <button type="submit" class="btn btn-primary">Отправить заявку</button>#}
+{#                    </div>#}
+{#                </form>#}
+{#            </div>#}
+{##}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+{#<div class="t-popup t-popup_show" data-tooltip-hook="#popup:myform" role="dialog" aria-modal="true" tabindex="-1"#}
+{#     aria-label="У вас есть вопросы?" style="display: block;">#}
+{#    <div class="t-popup__container t-width t-width_6 t-popup__container-animated">#}
+{#        <div class="t702__wrapper">#}
+{#            <div class="t702__text-wrapper t-align_center">#}
+{#                <div class="t702__title t-title t-title_xxs" style="">У вас есть вопросы?</div>#}
+{#                <div class="t702__descr t-descr t-descr_xs" style="">Оставьте свои данные и мы перезвоним вам в течении#}
+{#                    15-минут#}
+{#                </div>#}
+{#            </div>#}
+{#            <form id="form206046016" name="form206046016" role="form" action="#" method="POST" data-formactiontype="2"#}
+{#                  data-inputbox=".t-input-group" class="t-form js-form-proccess t-form_inputs-total_2 "#}
+{#                  data-success-callback="t702_onSuccess"><input type="hidden" name="formservices[]"#}
+{#                                                                value="bded5ca4b92b9688b4f9daa424d83f07"#}
+{#                                                                class="js-formaction-services"><input type="hidden"#}
+{#                                                                                                      name="formservices[]"#}
+{#                                                                                                      value="fab3b9a0083859972e934009376bb01f"#}
+{#                                                                                                      class="js-formaction-services">#}
+{#                <div class="js-successbox t-form__successbox t-text t-text_md" aria-live="polite"#}
+{#                     style="display:none;"></div>#}
+{#                <div class="t-form__inputsbox">#}
+{#                    <div class="t-input-group t-input-group_nm" data-input-lid="1495810354468">#}
+{#                        <div class="t-input-block"><input type="text" autocomplete="name" name="Name"#}
+{#                                                          id="input_1495810354468" class="t-input js-tilda-rule "#}
+{#                                                          value="" placeholder="Ваше имя" data-tilda-req="1"#}
+{#                                                          aria-required="true" data-tilda-rule="name"#}
+{#                                                          aria-describedby="error_1495810354468"#}
+{#                                                          style="color:#333333;border:1px solid #333333;border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;">#}
+{#                            <div class="t-input-error" aria-live="polite" id="error_1495810354468"></div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="t-input-group t-input-group_ph" data-input-lid="1495810359387">#}
+{#                        <div class="t-input-block"><input type="tel" autocomplete="tel" name="Phone"#}
+{#                                                          id="input_1495810359387" class="t-input js-tilda-rule "#}
+{#                                                          value="" placeholder="Ваш номер телефона" data-tilda-req="1"#}
+{#                                                          aria-required="true" data-tilda-rule="phone" pattern="[0-9]*"#}
+{#                                                          aria-describedby="error_1495810359387"#}
+{#                                                          style="color:#333333;border:1px solid #333333;border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;">#}
+{#                            <div class="t-input-error" aria-live="polite" id="error_1495810359387"></div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="t-form__errorbox-middle">#}
+{#                        <div class="js-errorbox-all t-form__errorbox-wrapper" style="display:none;">#}
+{#                            <div class="t-form__errorbox-text t-text t-text_md"><p#}
+{#                                    class="t-form__errorbox-item js-rule-error js-rule-error-all"></p>#}
+{#                                <p class="t-form__errorbox-item js-rule-error js-rule-error-req"></p>#}
+{#                                <p class="t-form__errorbox-item js-rule-error js-rule-error-email"></p>#}
+{#                                <p class="t-form__errorbox-item js-rule-error js-rule-error-name"></p>#}
+{#                                <p class="t-form__errorbox-item js-rule-error js-rule-error-phone"></p>#}
+{#                                <p class="t-form__errorbox-item js-rule-error js-rule-error-minlength"></p>#}
+{#                                <p class="t-form__errorbox-item js-rule-error js-rule-error-string"></p></div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="t-form__submit">#}
+{#                        <button type="submit" class="t-submit"#}
+{#                                style="color:#333333;background-color:#ffb600;border-radius:50px; -moz-border-radius:50px; -webkit-border-radius:50px;">#}
+{#                            Позвоните мне#}
+{#                        </button>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="t-form__errorbox-bottom">#}
+{#                    <div class="js-errorbox-all t-form__errorbox-wrapper" style="display:none;">#}
+{#                        <div class="t-form__errorbox-text t-text t-text_md"><p#}
+{#                                class="t-form__errorbox-item js-rule-error js-rule-error-all"></p>#}
+{#                            <p class="t-form__errorbox-item js-rule-error js-rule-error-req"></p>#}
+{#                            <p class="t-form__errorbox-item js-rule-error js-rule-error-email"></p>#}
+{#                            <p class="t-form__errorbox-item js-rule-error js-rule-error-name"></p>#}
+{#                            <p class="t-form__errorbox-item js-rule-error js-rule-error-phone"></p>#}
+{#                            <p class="t-form__errorbox-item js-rule-error js-rule-error-minlength"></p>#}
+{#                            <p class="t-form__errorbox-item js-rule-error js-rule-error-string"></p></div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div style="position: absolute; left: -5000px; bottom: 0; display: none;"><input type="text"#}
+{#                                                                                                 name="form-spec-comments"#}
+{#                                                                                                 value="Its good"#}
+{#                                                                                                 class="js-form-spec-comments"#}
+{#                                                                                                 tabindex="-1"></div>#}
+{#            </form>#}
+{#            <style>#rec206046016 input::-webkit-input-placeholder {#}
+{#                color: #333333;#}
+{#                opacity: 0.5;#}
+{#            }#}
+{##}
+{#            #rec206046016 input::-moz-placeholder {#}
+{#                color: #333333;#}
+{#                opacity: 0.5;#}
+{#            }#}
+{##}
+{#            #rec206046016 input:-moz-placeholder {#}
+{#                color: #333333;#}
+{#                opacity: 0.5;#}
+{#            }#}
+{##}
+{#            #rec206046016 input:-ms-input-placeholder {#}
+{#                color: #333333;#}
+{#                opacity: 0.5;#}
+{#            }#}
+{##}
+{#            #rec206046016 textarea::-webkit-input-placeholder {#}
+{#                color: #333333;#}
+{#                opacity: 0.5;#}
+{#            }#}
+{##}
+{#            #rec206046016 textarea::-moz-placeholder {#}
+{#                color: #333333;#}
+{#                opacity: 0.5;#}
+{#            }#}
+{##}
+{#            #rec206046016 textarea:-moz-placeholder {#}
+{#                color: #333333;#}
+{#                opacity: 0.5;#}
+{#            }#}
+{##}
+{#            #rec206046016 textarea:-ms-input-placeholder {#}
+{#                color: #333333;#}
+{#                opacity: 0.5;#}
+{#            }</style>#}
+{#            <div class="t702__form-bottom-text t-text t-text_xs t-align_center">Нажимая кнопку "Позвоните мне" вы#}
+{#                соглашаетесь с <a href="https://дом-маляров.рф/privacy" style="">политикой конфиденциальности</a></div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="t-popup__close t-popup__block-close">#}
+{#        <button type="button" class="t-popup__close-wrapper t-popup__block-close-button" aria-label="Закрыть диалог">#}
+{#            <svg role="presentation" class="t-popup__close-icon" width="23px" height="23px" viewBox="0 0 23 23"#}
+{#                 version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">#}
+{#                <g stroke="none" stroke-width="1" fill="#fff" fill-rule="evenodd">#}
+{#                    <rect transform="translate(11.313708, 11.313708) rotate(-45.000000) translate(-11.313708, -11.313708) "#}
+{#                          x="10.3137085" y="-3.6862915" width="2" height="30"></rect>#}
+{#                    <rect transform="translate(11.313708, 11.313708) rotate(-315.000000) translate(-11.313708, -11.313708) "#}
+{#                          x="10.3137085" y="-3.6862915" width="2" height="30"></rect>#}
+{#                </g>#}
+{#            </svg>#}
+{#        </button>#}
+{#    </div>#}
+{#</div>#}
 

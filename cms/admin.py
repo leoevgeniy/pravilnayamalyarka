@@ -105,7 +105,7 @@ class ServicesAdm(admin.ModelAdmin):
 
 @admin.register(PromoSlider)
 class PromoSliderAdm(admin.ModelAdmin):
-    list_display = ('get_img', 'name', 'vendor', 'vendor_code_list', 'start_date', 'expiration_date')
+    list_display = ('get_img', 'name', 'vendor', 'start_date', 'expiration_date')
     list_per_page = 20
     list_max_show_all = 100
     list_filter = ('vendor',)

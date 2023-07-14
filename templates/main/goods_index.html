@@ -1,37 +1,38 @@
 {% load static %}
-    <div id="goods" class="text-center mx-auto">
-        <span id="our_goods"  class=" w-100">Наши товары</span>
-        <div id="goods_line" class="mx-auto mb-3"></div>
-        <span id="decr">Широкий ассортимент продукции от различных брендов и лидеров рынка</span>
-    </div>
-    <div class="row justify-content-evenly">
-        {% for category in categories %}
-            <a href="{% url 'category' category=category%}"
-               class="col-6 col-lg-3 d-flex flex-column justify-content-start align-items-center goods_index_products_item py-3"
-                style="text-decoration: none"
+<div id="goods" class="text-center mx-auto">
+    <span id="our_goods" class=" w-100">Наши товары</span>
+    <div id="goods_line" class="mx-auto mb-3"></div>
+    <span id="decr">Широкий ассортимент продукции от различных брендов и лидеров рынка</span>
+</div>
+<div id="products_index" class="row justify-content-evenly">
+    {% for category in categories %}
+        <div class="col-6 col-lg-3 d-flex flex-column justify-content-start align-items-center goods_index_products_item py-3">
+            <a href="{% url 'category' category=category %}"
+                class=""
+               style="text-decoration: none; height: 90%"
             >
                 {% if category.photo %}
-                <img src="{{ category.photo_url }} "
-                     class="card-img-top element-animation" alt="{{ service.name }}"
-                     style="height: 18%; object-fit: contain;"
-                >
+                    <img src="{{ category.photo_url }} "
+                         class="card-img-top element-animation" alt="{{ category }}"
+                         style="height: 18%; object-fit: contain;"
+                    >
                 {% else %}
-                <img src="{% static "images/no_image.svg" %}"
-                     class="card-img-top w-100" alt="{{ category.name }}">
+                    <img src="{% static "images/no_image.svg" %}"
+                         class="card-img-top w-100" alt="{{ category.name }}">
                 {% endif %}
                 <div class="goods_index_products_item_line w-75 element-animation"></div>
-                <div class="goods_index_products_item_name element-animation text-center"  style="">
+                <div class="goods_index_products_item_name element-animation text-center" style="">
                         <span itemProp="name"
                               class=' text-wrap '
                               style="
-                              {#overflow: hidden;#}
-                              {# display: -webkit-box;#}
-                              {# -webkit-line-clamp: 1; /* number of lines to show */#}
-                              {#         line-clamp: 1;#}
-                              {# -webkit-box-orient: vertical;#}
-                        ">{{ category.name }}</span>
+                                      {#overflow: hidden;#}
+                                      {# display: -webkit-box;#}
+                                      {# -webkit-line-clamp: 1; /* number of lines to show */#}
+                                      {#         line-clamp: 1;#}
+                                      {# -webkit-box-orient: vertical;#}
+                                      ">{{ category.name }}</span>
                 </div>
-                <div class="goods_index_products_item_description text-center my-3 element-animation"  style="">
+                <div class="goods_index_products_item_description text-center my-3 element-animation" style="">
                         <span itemProp="name"
                               class=''
                               style="   overflow: hidden;
@@ -41,11 +42,14 @@
                                -webkit-box-orient: vertical;
                         ">{{ category.description }}</span>
                 </div>
-                <div class="to_catalog_btn align-self-center fw-bold d-flex align-items-center element-animation">
+            </a>
+
+            <div class="to_catalog_btn align-self-center fw-bold d-flex align-items-center element-animation">
                     <span type="button" data-bs-toggle="modal" data-bs-target="#headercallback"
-                          class="">Заказать звонок</span>
-                </div>            </a>
+                          class="">В корзину</span>
+            </div>
+        </div>
 
 
-        {% endfor %}
-    </div>
+    {% endfor %}
+</div>

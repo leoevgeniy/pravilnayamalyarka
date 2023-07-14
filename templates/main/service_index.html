@@ -1,7 +1,8 @@
 {% load static %}
+<div id="products_index">
     <div class="container px-0 py-3 d-table-row collapse w-100">
-        <span   class="repair-works pe-3 d-table-cell text-nowrap"
-                style="font-family: 'Gotham Pro Medium',sans-serif;
+        <span class="repair-works pe-3 d-table-cell text-nowrap"
+              style="font-family: 'Gotham Pro Medium',sans-serif;
                 color: #1A4582;
             ">РЕМОНТНЫЕ РАБОТЫ</span>
         <div class="service_index_line p-0 d-table-cell w-100 my-3"></div>
@@ -11,20 +12,21 @@
             <a href="{% url 'services' %}#{{ service.name }}" class="d-flex services_item flex-column p-1">
 
                 {% if service.photo %}
-                        <img src="{{ service.photo_url }} "
-                             class="card-img-top img-thumbnail rounded-4 p-0" alt="{{ service.name }}"
-                             style="height: 200px; object-fit: cover; border-color: #1A4582; border-width: medium"
-                        >
+                    <img src="{{ service.photo_url }} "
+                         class="card-img-top img-thumbnail rounded-4 p-0" alt="{{ service.name }}"
+                         style="height: 200px; object-fit: cover; border-color: #1A4582; border-width: medium"
+                    >
                 {% else %}
                     <img src="{% static "images/no_image.svg" %}"
                          class="card-img-top img-responsive" alt="{{ product.name }}">
                 {% endif %}
-                <div class="d-flex card-body text-center justify-content-center align-content-center" style="background-color: #E6E6E6;">
-{#                    <span class='fw-bold card-name d-inline-block text-start py-0 mb-0 fs-6'#}
-{#                          style="">#}
-                        <span itemProp="name"
-                              class='card-name fw-bold text-dark text-center'
-                              style="   overflow: hidden;
+                <div class="d-flex card-body text-center justify-content-center align-content-center"
+                     style="background-color: #E6E6E6;">
+                    {#                    <span class='fw-bold card-name d-inline-block text-start py-0 mb-0 fs-6'#}
+                    {#                          style="">#}
+                    <span itemProp="name"
+                          class='card-name fw-bold text-dark text-center'
+                          style="   overflow: hidden;
                                display: -webkit-box;
                                -webkit-line-clamp: 3; /* number of lines to show */
                                        line-clamp: 3;
@@ -37,10 +39,11 @@
 
                         ">{{ service.name }}</span>
 
-{#                    </span>#}
+                    {#                    </span>#}
                 </div>
             </a>
 
 
         {% endfor %}
     </div>
+</div>

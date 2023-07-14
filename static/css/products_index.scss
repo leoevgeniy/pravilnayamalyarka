@@ -70,17 +70,18 @@ $maincolor: #1A4582;
   transition: all 1.5s;
   transform: translateY(0%);
 }
-#goods:before {
+#products_index:before {
   z-index:-1;
   position:absolute;
   left:0;
-  background-image: url('../images/kisspng-architecture.webp');
-  background-size: contain;
-  //top:0;
+  //background: no-repeat left  url('../images/kisspng-architecture.webp');
+  //background-size: contain;
+  top:0;
   content: url('../images/kisspng-architecture.webp');
-  width: 50%;
-  object-fit: contain;
+  width: 100vw;
+  //object-fit: contain;
   opacity: 0.3;
+  overflow: hidden;
 }
 
 #goods {
@@ -110,7 +111,10 @@ $maincolor: #1A4582;
   background-color: $maincolor;
 }
 @media (max-width: 480px) {
-  #goods {
+  #products_index:before {
+
+  }
+    #goods {
 
   }
   #goods:before {

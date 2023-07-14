@@ -1,0 +1,24 @@
+.carousel_wrapper {
+  height: 600px;
+  margin: 0 auto;
+}
+#myCarousel-indicators {
+  button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+}
+
+.promo_table {
+  max-width: 1200px;
+  position: absolute;
+  right: 15%;
+  top: 1.25rem;
+  left: 15%;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  color: #fff;
+  text-align: center;
+
+}
