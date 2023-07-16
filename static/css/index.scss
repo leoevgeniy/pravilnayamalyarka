@@ -16,7 +16,16 @@ $maincolor: #1A4582;
 @import "components/tilda-blocks-page11886414.min.css";
 @import "components/tilda-grid-3.0.min.css";
 @import "components/tilda-popup-1.1.min.css";
+@import "components/inline";
 
+@font-face {
+  font-family: Circe;
+  src: url("fonts/Circe-Bold.woff2") format('woff2');
+}
+@font-face {
+  font-family: Circe-Regular;
+  src: url("fonts/Circe-Regular.woff2") format('woff2');
+}
 
 .main_container {
   max-width: 1200px;

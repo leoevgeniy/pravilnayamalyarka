@@ -1,7 +1,7 @@
 {#{% extends 'base.html' %}#}
 {% load static %}
 
-<div style="background-color: darkgrey" class="w-100">
+<div style="background-color: #333333" class="w-100">
     <div class="row d-flex justify-content-around text-light px-4 w-100">
         <div class="d-flex justify-content-between m4">
             <div class="d-flex flex-column">
@@ -9,7 +9,7 @@
                     <div class="logo_wrapper">
                         <a href="{% url 'index' %}">
                             {% if logo.image %}
-                                <img src="{{ logo.image_url }} "
+                                <img src="{{ logo.image_light_url }} "
                                      class="" alt="Логотип"
                                 >
                             {% else %}

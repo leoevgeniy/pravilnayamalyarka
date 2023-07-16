@@ -108,7 +108,7 @@ class Product(models.Model):
 
 
 class Packprice(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.PROTECT, null=True, verbose_name='Товар',
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, verbose_name='Товар',
                                 related_name='packprices')
     weight = models.CharField(max_length=256, verbose_name='Объем', null=True, blank=True)
     # pack = models.ImageField(upload_to="images/pack", verbose_name='Упаковка', null=True, blank=True)
