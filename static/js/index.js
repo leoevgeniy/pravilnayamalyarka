@@ -16,6 +16,10 @@ for (let elm of elements) {
     observer.observe(elm);
 }
 
+$('.select_location').on('change', function(){
+    window.location = $(this).val();
+});
+
 
 // $(document).ready(function() {
 //     $("#lightSlider").lightSlider({

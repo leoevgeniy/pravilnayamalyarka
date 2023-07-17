@@ -6,7 +6,40 @@
 {% block subcategory %}
 
     {% if products %}
-{#        <div id="goods" class="main_container px-0 py-3 w-100 d-flex justify-content-center">#}
+        <div id="goods" class="main_container py-3 w-75 text-center" style="">
+            <img src="{{ category.photo_url }} "
+                 class="card-img-top img-thumbnail my-4" alt="{{ category.name }}"
+                 style="object-fit: contain; border: none; height: 100px"
+            >
+
+            <span class="mx-auto "
+                  style="font-family: Circe,sans-serif;
+                        color: black; font-size: 22px;
+                    ">{{ category }}</br></br>
+                    </span>
+            <span class="mx-auto py-4"
+                  style="font-family: Circe_Regular,sans-serif;
+                        color: black; font-size: 14px;
+                    ">{{ category.description }}</span>
+        </div>
+
+        <div class="main_container d-flex justify-content-center">
+            {#                    <div class=" w-100" style="background: rgb(255, 255, 255);"></div>#}
+            <select class="w-75 t-name py-4 select_location" style="font-family: Circe, sans-serif; background: #1A4582; color: white" ">
+            {% if products %}
+                <option value="" class="px-3">Выберите категорию</option>
+            {% endif %}
+            {% for subcat in this_subcategory %}
+                {% if subcat == subcategory %}
+                    <option value="{% url 'subcategory' category=category subcategory=subcat %}" selected="selected" class="px-3">{{ subcat }}</option>
+                {% else %}
+                <option value="{% url 'subcategory' category=category subcategory=subcat %}" class="px-3">{{ subcat }}</option>
+                {% endif %}
+            {% endfor %}
+            </select>
+        </div>
+
+        {#        <div id="goods" class="main_container px-0 py-3 w-100 d-flex justify-content-center">#}
 {#            <h1 id="responsive_headline" class="fs-2 pe-3 mx-auto text-nowrap"#}
 {#                style="font-family: 'Gotham Pro Medium',sans-serif;#}
 {#                color: #1A4582;#}

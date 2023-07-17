@@ -150,31 +150,39 @@ def productsimport(request):
                         image.save(MEDIA_ROOT + '/images/' + str(params[0]) + '.png', format='png')
                     else:
                         image.save(MEDIA_ROOT + '/images/' + str(params[0]) + '.png', format='png')
-                        if SubCategory.objects.filter(name=cat).exists:
+                        category = Category.objects.get(name='Ручной инструмент')
+                        try:
                             subcategory = SubCategory.objects.get(name=cat)
-                            category = Category.objects.get(name=subcategory.category)
-                            try:
-                                vendor = Vendor.objects.get(name='ROLLINGDOG')
-                            except:
-                                vendor = Vendor.objects.create(name='ROLLINGDOG')
-                            product = Product.objects.create(
+                        except:
+                            subcategory = SubCategory.objects.create(
                                 category=category,
-                                subcategory=subcategory,
-                                photo='images/' + str(params[0]) + '.png',
-                                name=str(params[1]),
-                                description=str(params[3]),
-                                vendor=vendor,
-                                vendor_code=int(params[0]),
-                                rrc=int(params[5]),
-                                availability=str(params[6]),
-                                pack=str(params[7])
+                                name=cat,
+                                description='',
+
                             )
-                            pack = Packprice.objects.create(
-                                product=product,
-                                weight=1,
-                                price=int(params[5]),
-                                oldprice=int(params[5])*1.2
-                            )
+
+                        try:
+                            vendor = Vendor.objects.get(name='ROLLINGDOG')
+                        except:
+                            vendor = Vendor.objects.create(name='ROLLINGDOG')
+                        product = Product.objects.create(
+                            category=category,
+                            subcategory=subcategory,
+                            photo='images/' + str(params[0]) + '.png',
+                            name=str(params[1]),
+                            description=str(params[3]),
+                            vendor=vendor,
+                            vendor_code=int(params[0]),
+                            rrc=int(params[5]),
+                            availability=str(params[6]),
+                            pack=str(params[7])
+                        )
+                        pack = Packprice.objects.create(
+                            product=product,
+                            weight=1,
+                            price=int(params[5]),
+                            oldprice=int(params[5])*1.2
+                        )
 
             # if Product.objects.get(vendor_code=)
 

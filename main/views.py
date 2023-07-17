@@ -248,12 +248,24 @@ def services(request):
 
 
 def category(request, category):
+    category = Category.objects.get(name=unquote(category))
+    subcat_name = ''
+    if request.GET.get('subcategory') is not None:
+        subcat_name = (request.GET.get('subcategory'))
+        subcat = SubCategory.objects.get(category=category, name__exact=subcat_name)
+    else:
+        subcat = SubCategory.objects.filter(category=category)
+
     today = date.today()
     promos = PromoSlider.objects.filter(start_date__lte=today).filter(expiration_date__gte=today)
 
-    category = Category.objects.get(name=unquote(category))
-    subCategory = SubCategory.objects.filter(category=category)
+
+    subcategory = SubCategory.objects.filter(category=category)
     products = Product.objects.filter(category=category, subcategory__exact=None)
+    try:
+        products_firstsubcat = Product.objects.filter(category=category, subcategory=subcat[0])
+    except:
+        products_firstsubcat = []
     searchform = SearchForm
     allcategory = Category.objects.all()
     allsubcategory = SubCategory.objects.all()
@@ -296,6 +308,7 @@ def category(request, category):
         'page': page,
         'pages': pages,
         "products": products,
+        "products_first": products_firstsubcat,
         'socials': socials,
         'contacts': contacts[0],
 
@@ -304,7 +317,7 @@ def category(request, category):
         'allsubcategory': allsubcategory,
         'searchform': searchform,
         'category': category,
-        'subcategory': subCategory
+        'subcategory': subcategory
     }
     return render(request, 'main/category.html', disc)
 
@@ -325,9 +338,11 @@ def subcategory(request, category, subcategory, *args):
     try:
         category = Category.objects.get(name=unquote(category))
         subCategory = SubCategory.objects.get(name=unquote(subcategory))
+        this_subcategories = SubCategory.objects.filter(category=category)
     except:
         category = ''
         subCategory = ''
+        this_subcategories = ''
     searchform = SearchForm
     if sortup:
         prods1 = Product.objects.filter(subcategory=subCategory, vendor__name__icontains=vendor).order_by('packprices__price')
@@ -400,6 +415,7 @@ def subcategory(request, category, subcategory, *args):
         'allbrend': allbrend,
         'category': category,
         'subcategory': subCategory,
+        'this_subcategory': this_subcategories,
         'products': products,
         # 'productsJS': productsJSData,
         'allcategory': allcategory,
