@@ -1,22 +1,54 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block page-title %}
+    <link href="https://fonts.tildacdn.com/get/?fonts=167,168,169,170&amp;format=woff" rel="stylesheet" type="text/css"
+          media="all">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> <!--metatextblock-->
+    <title>Правильная Малярка. Лакокрасочные и строительные материалы.</title>
+    <meta name="description"
+          content="Только проверенные поставщики, занимающие лидирующие позиции на мировом рынке. Качество подтверждено мировыми гигантами.">
+    <meta name="keywords"
+          content="краска, интерьерная краска, премиум краска, лакокрасочные материалы, лак, шпатлевка, лкм, ">
+    <meta property="og:url" content="https://правильная-малярка.рф/">
+    <meta property="og:title" content="Дом маляров. Лакокрасочные и строительные материалы.">
+    <meta property="og:description"
+          content="Только проверенные поставщики, занимающие лидирующие позиции на мировом рынке. Качество подтверждено мировыми гигантами.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="{{ logo.image_url }}">
+    <link rel="canonical" href="https://правильная-малярка.рф/"><!--/metatextblock-->
+    <meta name="format-detection" content="telephone=no">
+    <link rel="shortcut icon" href="{{ logo.image_url }}"
+          type="image/x-icon">
+    <link rel="apple-touch-icon" href="{{ logo.image_url }}">
+    <link rel="apple-touch-icon" sizes="76x76"
+          href="{{ logo.image_url }}">
+    <link rel="apple-touch-icon" sizes="152x152"
+          href="{{ logo.image_url }}">
+    <link rel="apple-touch-startup-image"
+          href="{{ logo.image_url }}">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage"
+          content="{{ logo.image_url }}"><!-- Assets -->
+
     <title>Правильная Малярка</title>
-    <meta name="description" content="Только проверенные поставщики, занимающие лидирующие позиции на мировом рынке. Качество подтверждено мировыми гигантами.">
+    <meta name="description"
+          content="Только проверенные поставщики, занимающие лидирующие позиции на мировом рынке. Качество подтверждено мировыми гигантами.">
     <meta name="title" content="Правильная Малярка">
 {% endblock %}
 {% block index %}
 
-{#    <nav class="subcategory_menu navbar d-none d-md-block bg-body-tertiary my-3 text-center">#}
-{#        {{ intro.text }}#}
-{#    </nav>#}
+    {#    <nav class="subcategory_menu navbar d-none d-md-block bg-body-tertiary my-3 text-center">#}
+    {#        {{ intro.text }}#}
+    {#    </nav>#}
     {% include 'main/components/promoslider.html' %}
     {% include 'main/goods_index.html' %}
     {% include 'main/delivery_index.html' %}
-{#    {% include 'main/about_index.html' %}#}
-{#    {% include 'main/contacts_index.html' %}#}
-{#    {% include 'main/service_index.html' %}#}
-{##}
-{#    {% include 'main/components/services_category_clider.html' %}#}
+    {% include 'main/about_index.html' %}
+    {% include 'main/contacts_index.html' %}
+    {#    {% include 'main/service_index.html' %}#}
+    {##}
+    {#    {% include 'main/components/services_category_clider.html' %}#}
 {% endblock %}
 

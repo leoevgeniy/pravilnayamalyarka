@@ -328,7 +328,20 @@
 
 @media (max-width: 576px) {
   .contacts a, .contacts span {
-    font-size: 12px; } }
+    font-size: 12px; }
+  #policy {
+    font-family: 'Circe-Regular',sans-serif;
+    font-size: 16px;
+    line-height: 1.45;
+    font-weight: 300;
+    color: #000; } }
+
+.category_products_item_name {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.35;
+  font-family: 'Circe',sans-serif;
+  color: #000; }
 
 .goods_index_products_item {
   height: 417px;
@@ -424,6 +437,10 @@
   height: 3px;
   background-color: #1A4582; }
 
+.details_content .category_products_item span {
+  font-size: 22px;
+  font-weight: 300; }
+
 @media (max-width: 480px) {
   #products_index {
     width: 80%; }
@@ -458,7 +475,16 @@
     .goods_index_products_item .to_catalog_btn {
       font-size: 12px;
       height: 25px;
-      padding: 20px 20px; } }
+      padding: 20px 20px; }
+  #buy_button {
+    font-size: 12px;
+    height: 25px;
+    width: 100%; }
+    #buy_button span {
+      font-size: 20px; }
+  .details_content .category_products_item span {
+    font-size: 15px;
+    font-weight: 300; } }
 
 #delivery_decr {
   text-transform: uppercase;
@@ -523,7 +549,6 @@
     left: 0; }
   .inter2 {
     width: 75%;
-    bottom: 0;
     right: 0; } }
 
 @media (max-width: 991px) {
@@ -553,13 +578,57 @@
 @media (max-width: 518px) {
   .inter_wrapper {
     width: 50%;
-    height: 200px; } }
+    height: 170px; } }
+
+.tn-img {
+  transform: rotate(45deg);
+  background-position: center center;
+  border-color: transparent;
+  border-style: solid;
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%;
+  box-sizing: content-box; }
+  .tn-img img {
+    width: 100%;
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: content-box; }
+
+.tn-img1 {
+  transform: rotate(-45deg);
+  background-position: center center;
+  border-color: transparent;
+  border-style: solid;
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%;
+  box-sizing: content-box; }
+  .tn-img1 img {
+    width: 100%;
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: content-box; }
+
+@media (max-width: 576px) {
+  .tn-elem__2056596141594812414867 {
+    left: -200px;
+    top: 20px;
+    width: 180px; }
+  .tn-elem__2056596141594812386742 {
+    right: -100px;
+    top: 115px;
+    width: 200px; } }
 
 #popup__toggle {
-  bottom: 45px;
   left: 150px;
   position: fixed;
-  z-index: 998; }
+  z-index: 998;
+  bottom: 20px !important; }
 
 .img-circle {
   background-color: #2a7b3e;
@@ -631,7 +700,7 @@
   -webkit-box-sizing: content-box;
   width: 57px;
   height: 57px;
-  background-image: url("../images/mini.png");
+  background-image: url("../images/animated_svg.svg");
   background-position: center center;
   background-repeat: no-repeat;
   animation-name: tossing;
@@ -784,7 +853,7 @@
   width: 57px; }
 
 .social_modal_content {
-  bottom: 60px;
+  bottom: 38px;
   left: 23px;
   position: fixed;
   z-index: 999; }

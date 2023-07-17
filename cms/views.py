@@ -1,5 +1,6 @@
 import os
-
+from datetime import date
+from PIL import Image
 import xlrd
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
@@ -8,12 +9,66 @@ from openpyxl_image_loader import SheetImageLoader
 
 # Create your views here.
 from cms.forms import UploadFileForm, SearchForm
-from cms.models import WorkPhoto, Product, Service, Vendor, Packprice, Logo, Contacts, Socials
+from cms.models import WorkPhoto, Product, Service, Vendor, Packprice, Logo, Contacts, Socials, Introduction, \
+    PromoSlider
+from crm.forms import OrderForm
 from main.models import SubCategory, Category, ServiceCategory
 from pravilnayamalyarka.settings import BASE_DIR, MEDIA_ROOT
 
 def legal(request):
-    return render(request, 'main/legal.html')
+    today = date.today()
+    promos = PromoSlider.objects.filter(start_date__lte=today).filter(expiration_date__gte=today)
+    services_category = ServiceCategory.objects.all()
+    work = WorkPhoto.objects.all()
+    work_landscape = []
+    work_portrate = []
+    for w in work:
+        with Image.open(BASE_DIR + w.photo_url) as img:
+            width, height = img.size
+            if width/height >= 1.77 and len(work_landscape) < 11:
+                work_landscape.append(w)
+            elif width/height < 1 and len(work_portrate) < 11:
+                work_portrate.append(w)
+    categories = Category.objects.all()
+    subcategories = SubCategory.objects.all()
+    form = OrderForm
+    searchform = SearchForm
+    socials = Socials.objects.all()
+    try:
+        logo = Logo.objects.get(inuse=True)
+    except:
+        logo = ''
+    try:
+        intro = Introduction.objects.get(inuse=True)
+    except:
+        intro = ''
+    try:
+        contacts = Contacts.objects.all()
+    except:
+        contacts = ''
+    allcategory = Category.objects.all()
+    allsubcategory = SubCategory.objects.all()
+
+
+    disc = {
+        'pagename': 'index',
+        'allcategory': allcategory,
+        'allsubcategory': allsubcategory,
+
+        'contacts': contacts[0],
+        'socials': socials,
+        'logo': logo,
+        'intro': intro,
+        'work_landscape': work_landscape,
+        'work_portrate': work_portrate,
+        'categories': categories,
+        'subcategories': subcategories,
+        'promoslider': promos,
+        'services_category': services_category,
+        'form': form,
+        'searchform': searchform,
+    }
+    return render(request, 'main/policy.html', disc)
 def product_view(request, pk):
     searchform = SearchForm
     product = Product.objects.get(vendor_code=pk)
@@ -34,6 +89,7 @@ def product_view(request, pk):
 
     socials = Socials.objects.all()
     disc = {
+        'pagename': 'product_details',
         'socials': socials,
         'contacts': contacts[0],
         'logo': logo,

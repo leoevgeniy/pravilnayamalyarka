@@ -34,6 +34,7 @@ urlpatterns = [
     path('legal/', cmsviews.legal, name='legal'),
     path('services/', views.services, name='services'),
     path('about/', views.about, name='about'),
+    path('delivery/', views.delivery, name='delivery'),
     path('search/', cmsviews.search, name='search'),
     path('category/<str:category>/', views.category, name='category'),
     path('category/<str:category>', views.category, name='category'),

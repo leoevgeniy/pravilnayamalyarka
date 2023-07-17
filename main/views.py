@@ -123,6 +123,50 @@ def about(request):
         'searchform': searchform,
     }
     return render(request, 'main/about.html', disc)
+def delivery(request):
+    work = WorkPhoto.objects.all()
+    work_landscape = []
+    work_portrate = []
+    for w in work:
+        with Image.open(BASE_DIR + w.photo_url) as img:
+            width, height = img.size
+            if width/height >= 1.77:
+                work_landscape.append(w)
+            elif width/height < 1:
+                work_portrate.append(w)
+    form = OrderForm
+    searchform = SearchForm
+    socials = Socials.objects.all()
+    try:
+        logo = Logo.objects.get(inuse=True)
+    except:
+        logo = ''
+    try:
+        intro = Introduction.objects.get(inuse=True)
+    except:
+        intro = ''
+    try:
+        contacts = Contacts.objects.all()
+    except:
+        contacts = ''
+
+    allcategory = Category.objects.all()
+    allsubcategory = SubCategory.objects.all()
+
+    disc = {
+        'pagename': 'delivery',
+        'allcategory': allcategory,
+        'allsubcategory': allsubcategory,
+        'contacts': contacts[0],
+        'socials': socials,
+        'logo': logo,
+        'intro': intro,
+        'work_landscape': work_landscape,
+        'work_portrate': work_portrate,
+        'form': form,
+        'searchform': searchform,
+    }
+    return render(request, 'main/delivery.html', disc)
 
 
 def goods(request):
@@ -204,6 +248,9 @@ def services(request):
 
 
 def category(request, category):
+    today = date.today()
+    promos = PromoSlider.objects.filter(start_date__lte=today).filter(expiration_date__gte=today)
+
     category = Category.objects.get(name=unquote(category))
     subCategory = SubCategory.objects.filter(category=category)
     products = Product.objects.filter(category=category, subcategory__exact=None)
@@ -242,6 +289,7 @@ def category(request, category):
         pages.append(p+1)
     form = OrderForm
     disc = {
+        'promoslider': promos,
         'pagename': 'category',
         'form': form,
         'pageinput': pageinput,

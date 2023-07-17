@@ -219,12 +219,16 @@ class Socials(models.Model):
     VK = 'VK'
     Telegram = 'TG'
     Whatsapp = 'WA'
+    Viber = 'VB'
+    YouTube = 'YT'
     social_network_choices = [
         (Instagram, 'Instagram'),
         (Facebook, 'Facebook'),
         (VK, 'VK'),
         (Telegram, 'Telegram'),
         (Whatsapp, 'Whatsapp'),
+        (Viber, 'Viber'),
+        (YouTube, 'YouTube'),
         ]
     social_network = models.CharField(max_length=30, choices=social_network_choices, verbose_name='Соцсеть')
     link = models.CharField(max_length=250, verbose_name='Ссылка на социальную сеть')

@@ -1,0 +1,245 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page-title %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> <!--metatextblock-->
+    <title>Правильная Малярка. Лакокрасочные и строительные материалы.</title>
+    <meta name="description"
+          content="Только проверенные поставщики, занимающие лидирующие позиции на мировом рынке. Качество подтверждено мировыми гигантами.">
+    <meta name="keywords"
+          content="краска, интерьерная краска, премиум краска, лакокрасочные материалы, лак, шпатлевка, лкм, ">
+    <meta property="og:url" content="https://правильная-малярка.рф/">
+    <meta property="og:title" content="Дом маляров. Лакокрасочные и строительные материалы.">
+    <meta property="og:description"
+          content="Только проверенные поставщики, занимающие лидирующие позиции на мировом рынке. Качество подтверждено мировыми гигантами.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="{{ logo.image_url }}">
+    <link rel="canonical" href="https://правильная-малярка.рф/"><!--/metatextblock-->
+    <meta name="format-detection" content="telephone=no">
+    <link rel="shortcut icon" href="{{ logo.image_url }}"
+          type="image/x-icon">
+    <link rel="apple-touch-icon" href="{{ logo.image_url }}">
+    <link rel="apple-touch-icon" sizes="76x76"
+          href="{{ logo.image_url }}">
+    <link rel="apple-touch-icon" sizes="152x152"
+          href="{{ logo.image_url }}">
+    <link rel="apple-touch-startup-image"
+          href="{{ logo.image_url }}">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage"
+          content="{{ logo.image_url }}"><!-- Assets -->
+
+    <title>Правильная Малярка</title>
+    <meta name="description"
+          content="Только проверенные поставщики, занимающие лидирующие позиции на мировом рынке. Качество подтверждено мировыми гигантами.">
+    <meta name="title" content="Правильная Малярка">
+{% endblock %}
+{% block delivery %}
+
+    <div id="delivery" class="main_container text-center mx-auto mt-5">
+        <span id="our_goods" class=" w-100">Доставка и оплата</span>
+        <div id="goods_line" class="mx-auto mb-3"></div>
+
+    </div>
+    <div class="main_container d-flex justify-content-evenly row align-items-center text-center w-100 py-4" style="font-weight: 400">
+        <span id="delivery_decr" class="d-lg-none d-block">Условия доставки</span>
+        <img src="{% static 'images/truckwithlogo.png' %}" alt="Фургон" class="col-12 col-lg-6 text-center" style="width: 40%">
+        <div class="text-start col-12 col-lg-6 px-3 delivery_text">
+            <span id="delivery_decr" class="d-lg-block d-none">Условия доставки</span>
+            <div class="my-2 d-flex" style="line-height: 28px;">
+                <div class="d-flex" style="width: 10%;"><div class="circle_before_span align-self-center" ></div></div>
+                <span>Оперативная доставка стройматериалов до объекта.</span><br>
+            </div>
+            <div class="my-2 d-flex"style="line-height: 28px;">
+                <div class="d-flex" style="width: 10%;"><div class="circle_before_span" ></div></div>
+                <span style="width: 90%;">Отгрузка заказов осуществляется только при 100% предоплате.</span><br>
+            </div>
+            <div class="my-2 d-flex"style="line-height: 28px;">
+                <div class="d-flex" style="width: 10%;"><div class="circle_before_span" ></div></div>
+                <span style="width: 90%;">Мы осуществляем доставку по всем регионам РФ транспортными компаниями. Доставка до терминала транспортной компании: БЕСПЛАТНО.</span><br>
+            </div>
+        </div>
+    </div>
+    <div class="main_container d-flex justify-content-evenly row align-items-center text-center w-100" style="font-weight: 400">
+        <span id="delivery_decr" class="d-block d-lg-none py-3">Оплата</span>
+        <div class="text-start col-12 col-lg-6 px-3 text-lg-end delivery_text">
+            <span id="delivery_decr" class="d-none d-lg-block">Оплата</span>
+            <img src="{% static 'images/terminal.webp' %}" alt="Фургон" class="small_payment_img d-block d-lg-none col-12 col-lg-6 text-center mx-auto"  style="width: 35%">
+            <div class="my-2 d-flex" field="tn_text_1592395270042" style="line-height: 28px;">
+                <div class="d-flex d-lg-none" style="width: 10%;"><div class="circle_before_span align-self-center" ></div></div>
+                <span style="width: 90%;">Оплата наличными.</span><div class="d-lg-flex d-none justify-content-end" style="width: 10%;"><div class="circle_before_span align-self-center" ></div></div><br>
+            </div>
+            <div class="my-2 d-flex" field="tn_text_1592395270042" style="line-height: 28px;">
+                <div class="d-flex d-lg-none" style="width: 10%;"><div class="circle_before_span align-self-center" ></div></div>
+                <span style="width: 90%;">Оплата пластиковой картой.</span><div class="d-lg-flex d-none justify-content-end" style="width: 10%;"><div class="circle_before_span align-self-center" ></div></div><br>
+            </div>
+            <div class="my-2 d-flex" field="tn_text_1592395270042" style="line-height: 28px;">
+                <div class="d-flex d-lg-none" style="width: 10%;"><div class="circle_before_span align-self-center" ></div></div>
+                <span style="width: 90%;">Оплата по безналичному расчету. Данная функция работает для юридических лиц и индивидуальных предпринимателей.
+            </span><div class="d-lg-flex d-none justify-content-end" style="width: 10%;"><div class="circle_before_span align-self-center" ></div></div><br>
+            </div>
+        </div>
+        <img src="{% static 'images/terminal.webp' %}" alt="Фургон" class="d-none pb-lg-5 d-lg-flex col-12 col-lg-6 text-center" style="width: 30%">
+
+    </div>
+    <div class="contacts main_container" xmlns="http://www.w3.org/1999/html">
+        <div id="" class="text-center mx-auto pt-5">
+            <span id="our_goods" class=" w-100" style="line-height: 1.3">Наши контакты</span>
+            <div id="goods_line" class="mx-auto my-3"></div>
+
+        </div>
+        <div class="row d-flex justify-content-around w-100">
+            <div class="col-12 col-lg-3 d-flex flex-column align-content-center text-center my-3">
+                <div class="d-flex justify-content-center align-content-center mx-auto">
+                    <img src="{% static 'images/phone.png' %}" alt="Телефон">
+                </div>
+                <span class="fw-bold my-4 contact_name" style="">Телефон</span>
+                {% if contacts %}
+                    {% if contacts.phone1 %}
+                        <a class="text-decoration-none text-black"
+                           href="tel:{{ contacts.phone1 }}">{{ contacts.phone1 }}</a>
+                    {% endif %}
+                    {% if contacts.phone2 %}
+                        <a class="text-decoration-none text-black"
+                           href="tel:{{ contacts.phone2 }}">{{ contacts.phone2 }}</a>
+                    {% endif %}
+                    {% if contacts.phone3 %}
+                        <a class="text-decoration-none text-black"
+                           href="tel:{{ contacts.phone3 }}">{{ contacts.phone3 }}</a>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="col-12 col-lg-3 d-flex flex-column align-content-center text-center">
+                <div class="d-flex justify-content-center align-content-center my-3 mx-auto">
+                    <img src="{% static 'images/e-mail.png' %}" alt="e-mail">
+                </div>
+                <span class="fw-bold my-4 contact_name">E-mail</span>
+                {% if contacts %}
+                    {% if contacts.email1 %}
+                        <a class="text-decoration-none text-black"
+                           href="tel:{{ contacts.email1 }}">{{ contacts.email1 }}</a>
+                    {% endif %}
+                    {% if contacts.email2 %}
+                        <a class="text-decoration-none text-black"
+                           href="tel:{{ contacts.email2 }}">{{ contacts.email2 }}</a>
+                    {% endif %}
+                    {% if contacts.email3 %}
+                        <a class="text-decoration-none text-black fw-normal"
+                           href="mailto:{{ contacts.email3 }}">{{ contacts.email3 }}</a>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="col-12 col-lg-3 d-flex flex-column align-content-center text-center my-3">
+                <div class="d-flex justify-content-center align-content-center  mx-auto">
+                    <img src="{% static 'images/location_index.png' %}" alt="Адрес">
+                </div>
+                <span class="fw-bold my-4 contact_name">Адрес</span>
+                <span class="d-flex flex-column">
+
+                        {% if contacts %}
+                            <span class="fw-bolder">Ульяновск</span>
+                            {% if contacts.address1 %}
+                                <span class="text-decoration-none text-black">{{ contacts.address1 }}</span>
+                            {% endif %}
+                            {% if contacts.address2 %}
+                                <span class="text-decoration-none text-black">{{ contacts.address2 }}</span>
+                            {% endif %}
+                            {% if contacts.address3 %}
+                                <span class="text-decoration-none text-black">{{ contacts.address3 }}</span>
+                            {% endif %}
+                        {% endif %}
+
+                    </span>
+            </div>
+
+
+        </div>
+        <script type="text/javascript" charset="utf-8" async
+                src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ac8b1775553a8b10d87dbf136fbace9a9c2c7e914718c887ca09c4d83b166b9c9&amp;width=100%25&amp;height=503&amp;lang=ru_RU&amp;scroll=true"></script>
+
+    </div>
+    <div class="main_container d-flex my-3 justify-content-between align-items-center w-100 position-relative">
+        {#    <div class="modal fade" id="headercallback" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">#}
+        {#        <div class="modal-dialog">#}
+        <div class="d-none d-lg-block w-50">
+            <img src="{% static 'images/fingerpointer 1.jpg' %}" alt="Рабочий" class="w-100">
+        </div>
+        <div class="mx-5">
+            <div class="">
+                <div id="" class="text-center mx-auto pt-5">
+                    <span id="our_goods" class=" w-100" style="line-height: 1.3">У ВАС ЕЩЕ ОСТАЛИСЬ ВОПРОСЫ?</span>
+                    <div id="goods_line" class="mx-auto my-3"></div>
+
+                </div>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'thanks' %}" method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="modal-footer">
+                        <button type="submit"
+                                class="btn btn-primary"
+                                style="text-decoration: none; font-size: 14px;
+                                       width: 190px;
+                                       margin: auto auto;
+                                       border-radius: 50px;
+                                        font-family: 'Arial',Arial,sans-serif;
+                                        line-height: 1.55;
+                                        font-weight: 600; "
+                        >
+                            Позвоните мне
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <span class="" style="color: #000000;
+        width: 70%;
+font-size: 10px;
+font-family: 'Circe',Arial,sans-serif;
+line-height: 1.55;
+font-weight: 400;
+background-position: center center;
+border-color: transparent;
+border-style: solid;">Нажимая кнопку "Позвоните мне" вы соглашаетесь с политикой конфиденциальности</span>
+        </div>
+        {#    <div class="t396__elem tn-elem tn-elem__2056596141594812414867" data-elem-id="1594812414867" data-elem-type="image"#}
+        {#         data-field-top-value="400" data-field-left-value="-370" data-field-width-value="380"#}
+        {#         data-field-axisy-value="top" data-field-axisx-value="left" data-field-container-value="grid"#}
+        {#         data-field-topunits-value="px" data-field-leftunits-value="px" data-field-heightunits-value=""#}
+        {#         data-field-widthunits-value="px" data-field-filewidth-value="356" data-field-fileheight-value="414"#}
+        {#         data-field-top-res-320-value="510" data-field-left-res-320-value="210" data-field-width-res-320-value="210"#}
+        {#         data-field-top-res-480-value="425" data-field-left-res-480-value="310" data-field-width-res-480-value="260"#}
+        {#         data-field-top-res-640-value="90" data-field-left-res-640-value="-120" data-field-width-res-640-value="210"#}
+        {#         data-field-top-res-960-value="450" data-field-left-res-960-value="-370"#}
+        {#         data-fields="img,width,filewidth,fileheight,top,left,container,axisx,axisy,widthunits,leftunits,topunits"#}
+        {#         style="left: -300px; top: 20px; width: 380px; z-index: -1; overflow: hidden">#}
+        {#        <div class="tn-img" ><img class="tn-atom__img t-img loaded"#}
+        {#                                  data-original="https://static.tildacdn.com/tild3633-6265-4438-b031-373766393036/68a350725371755beaf0.png"#}
+        {#                                  imgfield="tn_img_1594812414867"#}
+        {#                                  src="https://thumb.tildacdn.com/tild3633-6265-4438-b031-373766393036/-/resize/456x/-/format/webp/68a350725371755beaf0.png">#}
+        {#        </div>#}
+        {#    </div>#}
+        {#    <div class="t396__elem tn-elem tn-elem__2056596141594812386742" data-elem-id="1594812386742" data-elem-type="image"#}
+        {#         data-field-top-value="115" data-field-left-value="1290" data-field-width-value="400"#}
+        {#         data-field-axisy-value="top" data-field-axisx-value="left" data-field-container-value="grid"#}
+        {#         data-field-topunits-value="px" data-field-leftunits-value="px" data-field-heightunits-value=""#}
+        {#         data-field-widthunits-value="px" data-field-filewidth-value="362" data-field-fileheight-value="414"#}
+        {#         data-field-top-res-320-value="110" data-field-left-res-320-value="240" data-field-width-res-320-value="190"#}
+        {#         data-field-top-res-480-value="25" data-field-left-res-480-value="370" data-field-top-res-640-value="-10"#}
+        {#         data-field-left-res-640-value="500" data-field-width-res-640-value="290" data-field-top-res-960-value="-60"#}
+        {#         data-field-left-res-960-value="780"#}
+        {#         data-fields="img,width,filewidth,fileheight,top,left,container,axisx,axisy,widthunits,leftunits,topunits"#}
+        {#         style="right: -200px; top: 115px; width: 200px; z-index: -1; overflow: hidden">#}
+        {#        <div class="tn-img1"><img class="tn-atom__img t-img loaded"#}
+        {#                                  data-original="https://static.tildacdn.com/tild3464-6264-4632-a364-333630353336/photo.png"#}
+        {#                                  imgfield="tn_img_1594812386742"#}
+        {#                                  src="https://thumb.tildacdn.com/tild3464-6264-4632-a364-333630353336/-/resize/480x/-/format/webp/photo.png">#}
+        {#        </div>#}
+        {#    </div>#}
+        {#        </div>#}
+        {#    </div>#}
+
+    </div>
+
+{% endblock %}

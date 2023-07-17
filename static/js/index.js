@@ -16,6 +16,7 @@ for (let elm of elements) {
     observer.observe(elm);
 }
 
+
 // $(document).ready(function() {
 //     $("#lightSlider").lightSlider({
 //         item: 5,

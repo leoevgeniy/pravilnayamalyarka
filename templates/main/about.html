@@ -5,119 +5,375 @@
     <title>О нашей компании</title>
 {% endblock %}
 {% block about %}
-    <nav class="subcategory_menu navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <h1>О КОМПАНИИ</h1>
-        </div>
-    </nav>
-    <nav class="subcategory_menu_about navbar navbar-expand-lg text-center">
-        {{ intro.text }}
-    </nav>
+    <div id="rec203280249" class="main_container r t-rec w-100 my-4" style=" font-family: Circe, sans-serif"
+         data-animationappear="off" data-record-type="396"><!-- T396 -->
 
-    {% include 'main/components/services_category_clider.html' %}
+        <div id="goods" class="main_container text-center mx-auto">
+            <span id="our_goods" class=" w-100">О НАС</span>
+            <div id="goods_line" class="mx-auto mb-3"></div>
 
-    <div class="container px-0 py-3 d-table-row collapse w-100">
-        <span class="pe-3 d-table-cell text-nowrap contacts"
-              style="font-family: 'Gotham Pro Medium',sans-serif;
-                color: #1A4582;
-            ">КОНТАКТЫ</span>
-        <div class="service_index_line p-0 d-table-cell h-100 w-100"></div>
-    </div>
-    <div class="container px-0 py-3 d-none d-md-flex w-100">
-        <div class="w-50 fs-4 pe-3 d-flex flex-column justify-content-center align-items-end"
-             style="font-family: 'Gotham Pro Medium',sans-serif;
-                color: #1A4582;
-            ">
-
-            {% if contacts.phone1 %}
-                <a href="tel:{{ contacts.phone1 }}"><i class="bi bi-telephone-fill me-2"></i>{{ contacts.phone1 }}</a>
-            {% endif %}
-            {% if contacts.phone2 %}
-                <a href="tel:{{ contacts.phone2 }}"><i class="bi bi-telephone-fill me-2"></i>{{ contacts.phone2 }}</a>
-            {% endif %}
-            {% if contacts.phone3 %}
-                <a href="tel:{{ contacts.phone3 }}"><i class="bi bi-telephone-fill me-2"></i>{{ contacts.phone3 }}</a>
-            {% endif %}
-            {% if contacts.email1 %}
-                <a href="mailto:{{ contacts.email1 }}"><i class="bi bi-envelope-at-fill me-2"></i>{{ contacts.email1 }}
-                </a>
-            {% endif %}
-            {% if contacts.email2 %}
-                <a href="mailto:{{ contacts.email2 }}"><i class="bi bi-envelope-at-fill me-2"></i>{{ contacts.email2 }}
-                </a>
-            {% endif %}
-            {% if contacts.email3 %}
-                <a href="mailto:{{ contacts.email3 }}"><i class="bi bi-envelope-at-fill me-2"></i>{{ contacts.email3 }}
-                </a>
-            {% endif %}
+            <div
+                    style="">
+                <h3 class="tn-atom"
+                    style="line-height: 25px; font-size: 20px; font-family: Circe-Regular, sans-serif">
+                    «Правильная малярка» —
+                    это профессиональный малярный центр, включающий в себя: <br> - магазин, где вы сможете
+                    приобрести
+                    всё необходимое для качественной финишной отделки. Только популярные бренды лакокрасочной
+                    продукции:
+                    шпаклевки, краски, оборудование, ручной инструмент, расходные материалы; <br> - услуги
+                    колористики -
+                    при помощи высококлассного колеровочного оборудования мы создадим для вас краску любого на
+                    ваше
+                    усмотрение цвета и оттенка. <br> - услуги мастеров строительно-малярных работ с многолетним
+                    стажем.
+                    Консультация специалистов и сопровождение вашего проекта на протяжении всего срока ведения
+                    работ;
+                    <br> - разработку дизайн-проектов; <br> - мастер-классы для маляров. <br><br></h3></div>
 
         </div>
-        <div id="responsive_headline" class="w-50 fs-5 pe-3 d-flex flex-column"
-             style="font-family: 'Gotham Pro Medium',sans-serif;
-                color: #1A4582;
-            ">
-            {% if contacts.address1 %}
-                <span>{{ contacts.address1 }}</span>
-            {% endif %}
-            {% if contacts.address2 %}
-                <span>{{ contacts.address2 }}</span>
-            {% endif %}
-            {% if contacts.address3 %}
-                <span>{{ contacts.address3 }}</span>
-            {% endif %}
+        <div class="">
+            <div class="">
+                <div id="goods" class="main_container text-center mx-auto">
+                    <span id="our_goods" class=" w-100">ЦЕЛЬ КОМПАНИИ</span>
+                    <div id="goods_line" class="mx-auto mb-3"></div>
+
+                    <div
+                            style="">
+                        <h3 class="tn-atom"
+                            style="line-height: 25px; font-size: 20px; font-family: Circe-Regular, sans-serif">
+                            Наша цель — на высочайшем уровне оказывать услуги и выполнять пожелания заказчиков.
+                            Мы с удовольствием станем вашим надежным помощником в сфере малярных услуг на долгие
+                            годы! <br><br></h3></div>
+
+                </div>
+            </div>
+            <div class="">
+                <div id="goods" class="main_container text-center mx-auto">
+                    <span id="our_goods" class=" w-100">МИССИЯ КОМПАНИИ</span>
+                    <div id="goods_line" class="mx-auto mb-3"></div>
+
+                    <div
+                            style="">
+                        <h3 class="tn-atom"
+                            style="line-height: 25px; font-size: 20px; font-family: Circe-Regular, sans-serif">
+                            Наша миссия — профессионально, оперативно и недорого наполнить Вашу жизнь новыми
+                            красками согласно любым вашим пожеланиям! <br><br></h3></div>
+
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="d-flex d-md-none flex-column justify-content-center align-items-center text-center" style="color: #1A4582">
-        {% if contacts.phone1 %}
-            <a href="tel:{{ contacts.phone1 }}"><i class="bi bi-telephone-fill me-2"></i>{{ contacts.phone1 }}</a>
-        {% endif %}
-        {% if contacts.phone2 %}
-            <a href="tel:{{ contacts.phone2 }}"><i class="bi bi-telephone-fill me-2"></i>{{ contacts.phone2 }}</a>
-        {% endif %}
-        {% if contacts.phone3 %}
-            <a href="tel:{{ contacts.phone3 }}"><i class="bi bi-telephone-fill me-2"></i>{{ contacts.phone3 }}</a>
-        {% endif %}
-        {% if contacts.email1 %}
-            <a href="mailto:{{ contacts.email1 }}"><i class="bi bi-envelope-at-fill me-2"></i>{{ contacts.email1 }}
-            </a>
-        {% endif %}
-        {% if contacts.email2 %}
-            <a href="mailto:{{ contacts.email2 }}"><i class="bi bi-envelope-at-fill me-2"></i>{{ contacts.email2 }}
-            </a>
-        {% endif %}
-        {% if contacts.email3 %}
-            <a href="mailto:{{ contacts.email3 }}"><i class="bi bi-envelope-at-fill me-2"></i>{{ contacts.email3 }}
-            </a>
-        {% endif %}
-        {% if contacts.address1 %}
-            <span>{{ contacts.address1 }}</span>
-        {% endif %}
-        {% if contacts.address2 %}
-            <span>{{ contacts.address2 }}</span>
-        {% endif %}
-        {% if contacts.address3 %}
-            <span>{{ contacts.address3 }}</span>
-        {% endif %}
+        <div style="background-color: lightgrey;">
+            <div id="pluses" class="main_container text-center mx-auto pt-5">
+                <span id="our_goods" class=" w-100" style="line-height: 1.3">плюсы работы с нами</span>
+                <div id="goods_line" class="mx-auto my-3"></div>
+
+            </div>
+            <div class="main_container row d-flex justify-content-around pb-5">
+                <div class="col-12 col-lg-3 d-flex flex-column align-content-center text-center">
+                    <div class="pluses_circle d-flex justify-content-center align-content-center mx-auto">
+                        <img src="{% static 'images/experience.png' %}" alt="Опыт">
+                    </div>
+                    <span class="fw-bold my-4">ОПЫТ</span>
+                    <span>За нас говорит наше портфолио и многочисленные отзывы довольных заказчиков!</span>
+                </div>
+                <div class="col-12 col-lg-3 d-flex flex-column align-content-center text-center">
+                    <div class="pluses_circle d-flex justify-content-center align-content-center mx-auto">
+                        <img src="{% static 'images/quality.png' %}" alt="Опыт">
+                    </div>
+                    <span class="fw-bold my-4">КАЧЕСТВО</span>
+                    <span>Только популярные бренды лакокрасочных материалов и оборудования</span>
+                </div>
+                <div class="col-12 col-lg-3 d-flex flex-column align-content-center text-center">
+                    <div class="pluses_circle d-flex justify-content-center align-content-center mx-auto">
+                        <img src="{% static 'images/prof.png' %}" alt="Опыт">
+                    </div>
+                    <span class="fw-bold my-4 text-uppercase">Профессионализм</span>
+                    <span>Многолетний стаж всех специалистов</span>
+                </div>
+                <div class="col-12 col-lg-3 d-flex flex-column align-content-center text-center">
+                    <div class="pluses_circle d-flex justify-content-center align-content-center mx-auto">
+                        <img src="{% static 'images/support.png' %}" alt="Опыт">
+                    </div>
+                    <span class="fw-bold my-4 uppercase">ПОДДЕРЖКА</span>
+                    <span>Консультация и ведение проектов специалистами на протяжении всех этапов взаимодействия с Вами</span>
+                </div>
 
 
-    </div>
-    <div class="d-flex justify-content-center">
-        <span></span>
-    </div>
-    <div class="text-center call-back-about my-4">
-        <span type="button"
-              class="text-white"
-              data-bs-toggle="modal"
-              data-bs-target="#headercallback"
-              style="background-color: #1A4582;"
-        >ЗАКАЗАТЬ ЗВОНОК</span>
-    </div>
+            </div>
+        </div>
+        <div class="contacts main_container" xmlns="http://www.w3.org/1999/html">
+            <div id="" class="text-center mx-auto pt-5">
+                <span id="our_goods" class=" w-100" style="line-height: 1.3">Наши контакты</span>
+                <div id="goods_line" class="mx-auto my-3"></div>
 
-    <script type="text/javascript" charset="utf-8" async
-            src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ac8b1775553a8b10d87dbf136fbace9a9c2c7e914718c887ca09c4d83b166b9c9&amp;width=100%25&amp;height=503&amp;lang=ru_RU&amp;scroll=true"></script>
+            </div>
+            <div class="row d-flex justify-content-around w-100">
+                <div class="col-12 col-lg-3 d-flex flex-column align-content-center text-center my-3">
+                    <div class="d-flex justify-content-center align-content-center mx-auto">
+                        <img src="{% static 'images/phone.png' %}" alt="Телефон">
+                    </div>
+                    <span class="fw-bold my-4 contact_name" style="">Телефон</span>
+                    {% if contacts %}
+                        {% if contacts.phone1 %}
+                            <a class="text-decoration-none text-black"
+                               href="tel:{{ contacts.phone1 }}">{{ contacts.phone1 }}</a>
+                        {% endif %}
+                        {% if contacts.phone2 %}
+                            <a class="text-decoration-none text-black"
+                               href="tel:{{ contacts.phone2 }}">{{ contacts.phone2 }}</a>
+                        {% endif %}
+                        {% if contacts.phone3 %}
+                            <a class="text-decoration-none text-black"
+                               href="tel:{{ contacts.phone3 }}">{{ contacts.phone3 }}</a>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                <div class="col-12 col-lg-3 d-flex flex-column align-content-center text-center">
+                    <div class="d-flex justify-content-center align-content-center my-3 mx-auto">
+                        <img src="{% static 'images/e-mail.png' %}" alt="e-mail">
+                    </div>
+                    <span class="fw-bold my-4 contact_name">E-mail</span>
+                    {% if contacts %}
+                        {% if contacts.email1 %}
+                            <a class="text-decoration-none text-black"
+                               href="tel:{{ contacts.email1 }}">{{ contacts.email1 }}</a>
+                        {% endif %}
+                        {% if contacts.email2 %}
+                            <a class="text-decoration-none text-black"
+                               href="tel:{{ contacts.email2 }}">{{ contacts.email2 }}</a>
+                        {% endif %}
+                        {% if contacts.email3 %}
+                            <a class="text-decoration-none text-black fw-normal"
+                               href="mailto:{{ contacts.email3 }}">{{ contacts.email3 }}</a>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                <div class="col-12 col-lg-3 d-flex flex-column align-content-center text-center my-3">
+                    <div class="d-flex justify-content-center align-content-center  mx-auto">
+                        <img src="{% static 'images/location_index.png' %}" alt="Адрес">
+                    </div>
+                    <span class="fw-bold my-4 contact_name">Адрес</span>
+                    <span class="d-flex flex-column">
+
+                        {% if contacts %}
+                            <span class="fw-bolder">Ульяновск</span>
+                            {% if contacts.address1 %}
+                                <span class="text-decoration-none text-black">{{ contacts.address1 }}</span>
+                            {% endif %}
+                            {% if contacts.address2 %}
+                                <span class="text-decoration-none text-black">{{ contacts.address2 }}</span>
+                            {% endif %}
+                            {% if contacts.address3 %}
+                                <span class="text-decoration-none text-black">{{ contacts.address3 }}</span>
+                            {% endif %}
+                        {% endif %}
+
+                    </span>
+                </div>
 
 
+            </div>
+            <script type="text/javascript" charset="utf-8" async
+                    src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ac8b1775553a8b10d87dbf136fbace9a9c2c7e914718c887ca09c4d83b166b9c9&amp;width=100%25&amp;height=503&amp;lang=ru_RU&amp;scroll=true"></script>
+
+        </div>
+        <div class="main_container d-flex my-3 justify-content-between align-items-center w-100 position-relative">
+            {#    <div class="modal fade" id="headercallback" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">#}
+            {#        <div class="modal-dialog">#}
+            <div class="d-none d-lg-block w-50">
+                <img src="{% static 'images/fingerpointer 1.jpg' %}" alt="Рабочий" class="w-100">
+            </div>
+            <div class="mx-5">
+                <div class="">
+                    <div id="" class="text-center mx-auto pt-5">
+                        <span id="our_goods" class=" w-100" style="line-height: 1.3">У ВАС ЕЩЕ ОСТАЛИСЬ ВОПРОСЫ?</span>
+                        <div id="goods_line" class="mx-auto my-3"></div>
+
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'thanks' %}" method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="modal-footer">
+                            <button type="submit"
+                                    class="btn btn-primary"
+                                    style="text-decoration: none; font-size: 14px;
+                                       width: 190px;
+                                       margin: auto auto;
+                                       border-radius: 50px;
+                                        font-family: 'Arial',Arial,sans-serif;
+                                        line-height: 1.55;
+                                        font-weight: 600; "
+                            >
+                                Позвоните мне
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <span class="" style="color: #000000;
+        width: 70%;
+font-size: 10px;
+font-family: 'Circe',Arial,sans-serif;
+line-height: 1.55;
+font-weight: 400;
+background-position: center center;
+border-color: transparent;
+border-style: solid;">Нажимая кнопку "Позвоните мне" вы соглашаетесь с политикой конфиденциальности</span>
+            </div>
+            {#    <div class="t396__elem tn-elem tn-elem__2056596141594812414867" data-elem-id="1594812414867" data-elem-type="image"#}
+            {#         data-field-top-value="400" data-field-left-value="-370" data-field-width-value="380"#}
+            {#         data-field-axisy-value="top" data-field-axisx-value="left" data-field-container-value="grid"#}
+            {#         data-field-topunits-value="px" data-field-leftunits-value="px" data-field-heightunits-value=""#}
+            {#         data-field-widthunits-value="px" data-field-filewidth-value="356" data-field-fileheight-value="414"#}
+            {#         data-field-top-res-320-value="510" data-field-left-res-320-value="210" data-field-width-res-320-value="210"#}
+            {#         data-field-top-res-480-value="425" data-field-left-res-480-value="310" data-field-width-res-480-value="260"#}
+            {#         data-field-top-res-640-value="90" data-field-left-res-640-value="-120" data-field-width-res-640-value="210"#}
+            {#         data-field-top-res-960-value="450" data-field-left-res-960-value="-370"#}
+            {#         data-fields="img,width,filewidth,fileheight,top,left,container,axisx,axisy,widthunits,leftunits,topunits"#}
+            {#         style="left: -300px; top: 20px; width: 380px; z-index: -1; overflow: hidden">#}
+            {#        <div class="tn-img" ><img class="tn-atom__img t-img loaded"#}
+            {#                                  data-original="https://static.tildacdn.com/tild3633-6265-4438-b031-373766393036/68a350725371755beaf0.png"#}
+            {#                                  imgfield="tn_img_1594812414867"#}
+            {#                                  src="https://thumb.tildacdn.com/tild3633-6265-4438-b031-373766393036/-/resize/456x/-/format/webp/68a350725371755beaf0.png">#}
+            {#        </div>#}
+            {#    </div>#}
+            {#    <div class="t396__elem tn-elem tn-elem__2056596141594812386742" data-elem-id="1594812386742" data-elem-type="image"#}
+            {#         data-field-top-value="115" data-field-left-value="1290" data-field-width-value="400"#}
+            {#         data-field-axisy-value="top" data-field-axisx-value="left" data-field-container-value="grid"#}
+            {#         data-field-topunits-value="px" data-field-leftunits-value="px" data-field-heightunits-value=""#}
+            {#         data-field-widthunits-value="px" data-field-filewidth-value="362" data-field-fileheight-value="414"#}
+            {#         data-field-top-res-320-value="110" data-field-left-res-320-value="240" data-field-width-res-320-value="190"#}
+            {#         data-field-top-res-480-value="25" data-field-left-res-480-value="370" data-field-top-res-640-value="-10"#}
+            {#         data-field-left-res-640-value="500" data-field-width-res-640-value="290" data-field-top-res-960-value="-60"#}
+            {#         data-field-left-res-960-value="780"#}
+            {#         data-fields="img,width,filewidth,fileheight,top,left,container,axisx,axisy,widthunits,leftunits,topunits"#}
+            {#         style="right: -200px; top: 115px; width: 200px; z-index: -1; overflow: hidden">#}
+            {#        <div class="tn-img1"><img class="tn-atom__img t-img loaded"#}
+            {#                                  data-original="https://static.tildacdn.com/tild3464-6264-4632-a364-333630353336/photo.png"#}
+            {#                                  imgfield="tn_img_1594812386742"#}
+            {#                                  src="https://thumb.tildacdn.com/tild3464-6264-4632-a364-333630353336/-/resize/480x/-/format/webp/photo.png">#}
+            {#        </div>#}
+            {#    </div>#}
+            {#        </div>#}
+            {#    </div>#}
+
+        </div>
 
 
+        {#    <nav class="subcategory_menu navbar navbar-expand-lg bg-body-tertiary">#}
+        {#        <div class="container-fluid">#}
+        {#            <h1>О КОМПАНИИ</h1>#}
+        {#        </div>#}
+        {#    </nav>#}
+        {#    <nav class="subcategory_menu_about navbar navbar-expand-lg text-center">#}
+        {#        {{ intro.text }}#}
+        {#    </nav>#}
+        {##}
+        {#    {% include 'main/components/services_category_clider.html' %}#}
+        {##}
+        {#    <div class="container px-0 py-3 d-table-row collapse w-100">#}
+        {#        <span class="pe-3 d-table-cell text-nowrap contacts"#}
+        {#              style="font-family: 'Gotham Pro Medium',sans-serif;#}
+        {#                color: #1A4582;#}
+        {#            ">КОНТАКТЫ</span>#}
+        {#        <div class="service_index_line p-0 d-table-cell h-100 w-100"></div>#}
+        {#    </div>#}
+        {#    <div class="container px-0 py-3 d-none d-md-flex w-100">#}
+        {#        <div class="w-50 fs-4 pe-3 d-flex flex-column justify-content-center align-items-end"#}
+        {#             style="font-family: 'Gotham Pro Medium',sans-serif;#}
+        {#                color: #1A4582;#}
+        {#            ">#}
+        {##}
+        {#            {% if contacts.phone1 %}#}
+        {#                <a href="tel:{{ contacts.phone1 }}"><i class="bi bi-telephone-fill me-2"></i>{{ contacts.phone1 }}</a>#}
+        {#            {% endif %}#}
+        {#            {% if contacts.phone2 %}#}
+        {#                <a href="tel:{{ contacts.phone2 }}"><i class="bi bi-telephone-fill me-2"></i>{{ contacts.phone2 }}</a>#}
+        {#            {% endif %}#}
+        {#            {% if contacts.phone3 %}#}
+        {#                <a href="tel:{{ contacts.phone3 }}"><i class="bi bi-telephone-fill me-2"></i>{{ contacts.phone3 }}</a>#}
+        {#            {% endif %}#}
+        {#            {% if contacts.email1 %}#}
+        {#                <a href="mailto:{{ contacts.email1 }}"><i class="bi bi-envelope-at-fill me-2"></i>{{ contacts.email1 }}#}
+        {#                </a>#}
+        {#            {% endif %}#}
+        {#            {% if contacts.email2 %}#}
+        {#                <a href="mailto:{{ contacts.email2 }}"><i class="bi bi-envelope-at-fill me-2"></i>{{ contacts.email2 }}#}
+        {#                </a>#}
+        {#            {% endif %}#}
+        {#            {% if contacts.email3 %}#}
+        {#                <a href="mailto:{{ contacts.email3 }}"><i class="bi bi-envelope-at-fill me-2"></i>{{ contacts.email3 }}#}
+        {#                </a>#}
+        {#            {% endif %}#}
+        {##}
+        {#        </div>#}
+        {#        <div id="responsive_headline" class="w-50 fs-5 pe-3 d-flex flex-column"#}
+        {#             style="font-family: 'Gotham Pro Medium',sans-serif;#}
+        {#                color: #1A4582;#}
+        {#            ">#}
+        {#            {% if contacts.address1 %}#}
+        {#                <span>{{ contacts.address1 }}</span>#}
+        {#            {% endif %}#}
+        {#            {% if contacts.address2 %}#}
+        {#                <span>{{ contacts.address2 }}</span>#}
+        {#            {% endif %}#}
+        {#            {% if contacts.address3 %}#}
+        {#                <span>{{ contacts.address3 }}</span>#}
+        {#            {% endif %}#}
+        {#        </div>#}
+        {#    </div>#}
+        {#    <div class="d-flex d-md-none flex-column justify-content-center align-items-center text-center" style="color: #1A4582">#}
+        {#        {% if contacts.phone1 %}#}
+        {#            <a href="tel:{{ contacts.phone1 }}"><i class="bi bi-telephone-fill me-2"></i>{{ contacts.phone1 }}</a>#}
+        {#        {% endif %}#}
+        {#        {% if contacts.phone2 %}#}
+        {#            <a href="tel:{{ contacts.phone2 }}"><i class="bi bi-telephone-fill me-2"></i>{{ contacts.phone2 }}</a>#}
+        {#        {% endif %}#}
+        {#        {% if contacts.phone3 %}#}
+        {#            <a href="tel:{{ contacts.phone3 }}"><i class="bi bi-telephone-fill me-2"></i>{{ contacts.phone3 }}</a>#}
+        {#        {% endif %}#}
+        {#        {% if contacts.email1 %}#}
+        {#            <a href="mailto:{{ contacts.email1 }}"><i class="bi bi-envelope-at-fill me-2"></i>{{ contacts.email1 }}#}
+        {#            </a>#}
+        {#        {% endif %}#}
+        {#        {% if contacts.email2 %}#}
+        {#            <a href="mailto:{{ contacts.email2 }}"><i class="bi bi-envelope-at-fill me-2"></i>{{ contacts.email2 }}#}
+        {#            </a>#}
+        {#        {% endif %}#}
+        {#        {% if contacts.email3 %}#}
+        {#            <a href="mailto:{{ contacts.email3 }}"><i class="bi bi-envelope-at-fill me-2"></i>{{ contacts.email3 }}#}
+        {#            </a>#}
+        {#        {% endif %}#}
+        {#        {% if contacts.address1 %}#}
+        {#            <span>{{ contacts.address1 }}</span>#}
+        {#        {% endif %}#}
+        {#        {% if contacts.address2 %}#}
+        {#            <span>{{ contacts.address2 }}</span>#}
+        {#        {% endif %}#}
+        {#        {% if contacts.address3 %}#}
+        {#            <span>{{ contacts.address3 }}</span>#}
+        {#        {% endif %}#}
+        {##}
+        {##}
+        {#    </div>#}
+        {#    <div class="d-flex justify-content-center">#}
+        {#        <span></span>#}
+        {#    </div>#}
+        {#    <div class="text-center call-back-about my-4">#}
+        {#        <span type="button"#}
+        {#              class="text-white"#}
+        {#              data-bs-toggle="modal"#}
+        {#              data-bs-target="#headercallback"#}
+        {#              style="background-color: #1A4582;"#}
+        {#        >ЗАКАЗАТЬ ЗВОНОК</span>#}
+        {#    </div>#}
+        {##}
+        {#    <script type="text/javascript" charset="utf-8" async#}
+        {#            src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ac8b1775553a8b10d87dbf136fbace9a9c2c7e914718c887ca09c4d83b166b9c9&amp;width=100%25&amp;height=503&amp;lang=ru_RU&amp;scroll=true"></script>#}
+        {##}
+        {##}
 
+    </div>>
 {% endblock %}

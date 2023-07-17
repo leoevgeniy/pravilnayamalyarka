@@ -1,4 +1,5 @@
 
+    try {
     const catalog_small = document.getElementById('catalog_small')
     catalog_small.addEventListener('click', () => {
         const catalog_items_small = document.getElementById('catalog_items_small')
@@ -27,4 +28,5 @@
         }
 
 
-    })
+    })}
+    catch {}

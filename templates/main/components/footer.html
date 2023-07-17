@@ -1,9 +1,9 @@
 {#{% extends 'base.html' %}#}
 {% load static %}
-
+{% if pagename != 'product_details' %}
 <div style="background-color: #333333" class="w-100">
-    <div class="row d-flex justify-content-around text-light px-4 w-100">
-        <div class="d-flex justify-content-between m4">
+    <div class="main_container row d-flex justify-content-around text-light px-4 w-100">
+        <div class="d-flex justify-content-around m4">
             <div class="d-flex flex-column">
                 <div class="left_wrapper py-1">
                     <div class="logo_wrapper">
@@ -203,3 +203,4 @@
 {#        {% endfor %}#}
 {#    </div>#}
 {#</div>#}
+{% endif %}

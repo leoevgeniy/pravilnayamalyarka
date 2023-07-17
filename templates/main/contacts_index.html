@@ -1,13 +1,13 @@
 {% load static %}
 
 
-<div class="contacts" xmlns="http://www.w3.org/1999/html">
+<div class="contacts main_container" xmlns="http://www.w3.org/1999/html">
     <div id="" class="text-center mx-auto pt-5">
         <span id="our_goods" class=" w-100" style="line-height: 1.3">Наши контакты</span>
-        <div id="goods_line" class="mx-auto mb-3"></div>
+        <div id="goods_line" class="mx-auto my-3"></div>
 
     </div>
-    <div class="row d-flex justify-content-around">
+    <div class="row d-flex justify-content-around w-100">
         <div class="col-12 col-lg-3 d-flex flex-column align-content-center text-center my-3">
             <div class="d-flex justify-content-center align-content-center mx-auto">
                 <img src="{% static 'images/phone.png' %}" alt="Телефон">
@@ -29,7 +29,7 @@
             {% endif %}
         </div>
         <div class="col-12 col-lg-3 d-flex flex-column align-content-center text-center">
-            <div class="d-flex justify-content-center align-content-center mx-auto">
+            <div class="d-flex justify-content-center align-content-center my-3 mx-auto">
                 <img src="{% static 'images/e-mail.png' %}" alt="e-mail">
             </div>
             <span class="fw-bold my-4 contact_name">E-mail</span>
@@ -48,8 +48,8 @@
                 {% endif %}
             {% endif %}
         </div>
-        <div class="col-12 col-lg-3 d-flex flex-column align-content-center text-center">
-            <div class="d-flex justify-content-center align-content-center mx-auto">
+        <div class="col-12 col-lg-3 d-flex flex-column align-content-center text-center my-3">
+            <div class="d-flex justify-content-center align-content-center  mx-auto">
                 <img src="{% static 'images/location_index.png' %}" alt="Адрес">
             </div>
             <span class="fw-bold my-4 contact_name">Адрес</span>
@@ -77,42 +77,85 @@
             src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ac8b1775553a8b10d87dbf136fbace9a9c2c7e914718c887ca09c4d83b166b9c9&amp;width=100%25&amp;height=503&amp;lang=ru_RU&amp;scroll=true"></script>
 
 </div>
-<div class="d-flex my-3 justify-content-between align-items-center">
-{#    <div class="modal fade" id="headercallback" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">#}
-{#        <div class="modal-dialog">#}
+<div class="main_container d-flex my-3 justify-content-between align-items-center w-100 position-relative">
+    {#    <div class="modal fade" id="headercallback" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">#}
+    {#        <div class="modal-dialog">#}
     <div class="d-none d-lg-block w-50">
         <img src="{% static 'images/fingerpointer 1.jpg' %}" alt="Рабочий" class="w-100">
     </div>
-            <div class="">
-                <div class="">
-                    <div id="" class="text-center mx-auto pt-5">
-                        <span id="our_goods" class=" w-100" style="line-height: 1.3">У ВАС ОСТАЛИСЬ ВОПРОСЫ?</span>
-                        <div id="goods_line" class="mx-auto mb-3"></div>
+    <div class="mx-5">
+        <div class="">
+            <div id="" class="text-center mx-auto pt-5">
+                <span id="our_goods" class=" w-100" style="line-height: 1.3">У ВАС ЕЩЕ ОСТАЛИСЬ ВОПРОСЫ?</span>
+                <div id="goods_line" class="mx-auto my-3"></div>
 
-                    </div>
-                </div>
-                <div class="modal-body">
-                    <form action="{% url 'thanks' %}" method="POST">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <div class="modal-footer">
-                            <button type="submit"
-                                    class="btn btn-primary"
-                                    style="text-decoration: none; font-size: 14px;
+            </div>
+        </div>
+        <div class="modal-body">
+            <form action="{% url 'thanks' %}" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="modal-footer">
+                    <button type="submit"
+                            class="btn btn-primary"
+                            style="text-decoration: none; font-size: 14px;
                                        width: 190px;
                                        margin: auto auto;
                                        border-radius: 50px;
                                         font-family: 'Arial',Arial,sans-serif;
                                         line-height: 1.55;
                                         font-weight: 600; "
-                            >
-                            Отправить заявку</button>
-                        </div>
-                    </form>
+                    >
+                        Позвоните мне
+                    </button>
                 </div>
-
-            </div>
+            </form>
+        </div>
+        <span class="" style="color: #000000;
+        width: 70%;
+font-size: 10px;
+font-family: 'Circe',Arial,sans-serif;
+line-height: 1.55;
+font-weight: 400;
+background-position: center center;
+border-color: transparent;
+border-style: solid;">Нажимая кнопку "Позвоните мне" вы соглашаетесь с политикой конфиденциальности</span>
+    </div>
+{#    <div class="t396__elem tn-elem tn-elem__2056596141594812414867" data-elem-id="1594812414867" data-elem-type="image"#}
+{#         data-field-top-value="400" data-field-left-value="-370" data-field-width-value="380"#}
+{#         data-field-axisy-value="top" data-field-axisx-value="left" data-field-container-value="grid"#}
+{#         data-field-topunits-value="px" data-field-leftunits-value="px" data-field-heightunits-value=""#}
+{#         data-field-widthunits-value="px" data-field-filewidth-value="356" data-field-fileheight-value="414"#}
+{#         data-field-top-res-320-value="510" data-field-left-res-320-value="210" data-field-width-res-320-value="210"#}
+{#         data-field-top-res-480-value="425" data-field-left-res-480-value="310" data-field-width-res-480-value="260"#}
+{#         data-field-top-res-640-value="90" data-field-left-res-640-value="-120" data-field-width-res-640-value="210"#}
+{#         data-field-top-res-960-value="450" data-field-left-res-960-value="-370"#}
+{#         data-fields="img,width,filewidth,fileheight,top,left,container,axisx,axisy,widthunits,leftunits,topunits"#}
+{#         style="left: -300px; top: 20px; width: 380px; z-index: -1; overflow: hidden">#}
+{#        <div class="tn-img" ><img class="tn-atom__img t-img loaded"#}
+{#                                  data-original="https://static.tildacdn.com/tild3633-6265-4438-b031-373766393036/68a350725371755beaf0.png"#}
+{#                                  imgfield="tn_img_1594812414867"#}
+{#                                  src="https://thumb.tildacdn.com/tild3633-6265-4438-b031-373766393036/-/resize/456x/-/format/webp/68a350725371755beaf0.png">#}
 {#        </div>#}
 {#    </div>#}
+{#    <div class="t396__elem tn-elem tn-elem__2056596141594812386742" data-elem-id="1594812386742" data-elem-type="image"#}
+{#         data-field-top-value="115" data-field-left-value="1290" data-field-width-value="400"#}
+{#         data-field-axisy-value="top" data-field-axisx-value="left" data-field-container-value="grid"#}
+{#         data-field-topunits-value="px" data-field-leftunits-value="px" data-field-heightunits-value=""#}
+{#         data-field-widthunits-value="px" data-field-filewidth-value="362" data-field-fileheight-value="414"#}
+{#         data-field-top-res-320-value="110" data-field-left-res-320-value="240" data-field-width-res-320-value="190"#}
+{#         data-field-top-res-480-value="25" data-field-left-res-480-value="370" data-field-top-res-640-value="-10"#}
+{#         data-field-left-res-640-value="500" data-field-width-res-640-value="290" data-field-top-res-960-value="-60"#}
+{#         data-field-left-res-960-value="780"#}
+{#         data-fields="img,width,filewidth,fileheight,top,left,container,axisx,axisy,widthunits,leftunits,topunits"#}
+{#         style="right: -200px; top: 115px; width: 200px; z-index: -1; overflow: hidden">#}
+{#        <div class="tn-img1"><img class="tn-atom__img t-img loaded"#}
+{#                                  data-original="https://static.tildacdn.com/tild3464-6264-4632-a364-333630353336/photo.png"#}
+{#                                  imgfield="tn_img_1594812386742"#}
+{#                                  src="https://thumb.tildacdn.com/tild3464-6264-4632-a364-333630353336/-/resize/480x/-/format/webp/photo.png">#}
+{#        </div>#}
+{#    </div>#}
+    {#        </div>#}
+    {#    </div>#}
 
 </div>
