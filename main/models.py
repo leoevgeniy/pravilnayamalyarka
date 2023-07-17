@@ -50,7 +50,7 @@ class Category(models.Model):
 
 
 class SubCategory(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='subcategories',
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='subcategories',
                                  verbose_name='Категория')
     name = models.CharField(max_length=256, verbose_name="Подкатегория")
     description = models.TextField(null=True, blank=True, verbose_name='Описание Подкатегории')

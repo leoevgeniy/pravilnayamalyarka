@@ -15,7 +15,7 @@ $maincolor: #1A4582;
   background-color: $maincolor;
   background-position: center center;
   border-color: transparent;
-  border-width: 2px;
+  border-width: 1px;
   border-style: solid;
   display: table-cell;
   vertical-align: middle;
@@ -35,7 +35,7 @@ $maincolor: #1A4582;
     text-decoration: none;
     color: #000000;
     font-size: 16px;
-    font-family: 'Circe', Arial, sans-serif;
+    font-family: 'Circe',sans-serif;
     line-height: 1.55;
     font-weight: 400;
   }
@@ -111,15 +111,25 @@ $maincolor: #1A4582;
   background-color: $maincolor;
 }
 @media (max-width: 480px) {
-  #products_index:before {
-
+  #products_index{
+    width: 80%;
   }
     #goods {
-
+    width: 80%;
+      h3 {
+        font-size: 16px;
+        color: #000000;
+        font-family: 'Circe',Arial,sans-serif;
+        font-weight: 400;
+        background-position: center center;
+        border-color: transparent;
+        border-style: solid;
+        transform: translateZ(0);
+      }
   }
-  #goods:before {
-    //width: 300px;
-  }
+  //#goods:before {
+  //  width: 300px;
+  //}
   #our_goods {
     font-size: 24px;
   }
@@ -138,7 +148,7 @@ $maincolor: #1A4582;
     .goods_index_products_item_description {
       span {
         font-size: 12px;
-        line-height: 1.55;
+        line-height: 14px;
         font-weight: 400;
       }
       padding: 0 10px;
@@ -146,9 +156,7 @@ $maincolor: #1A4582;
     .to_catalog_btn {
       font-size: 12px;
       height: 25px;
-      padding-left: 10px;
-      padding-right: 10px;
-
+      padding: 20px 20px;
     }
   }
 
