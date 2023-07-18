@@ -93,14 +93,14 @@
   z-index: 1000;
 }
 
-@media  (max-width: 1200px) {
+@media  screen and (max-width: 1200px) {
   .header_container {
     font-family: 'Circe', Arial, sans-serif;
     font-size: 12px;
     line-height: 1.55;
   }
 }
-@media (max-width: 480px) {
+@media screen and (max-width: 480px) {
   .logo_stick {
     img {
       height: 40px;

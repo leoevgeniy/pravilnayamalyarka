@@ -1,7 +1,7 @@
 
 
 
-@media (min-width: 992px) {
+@media screen and (min-width: 992px) {
   .contacts {
     .contact_name {
       color: $maincolor;
@@ -37,7 +37,7 @@
     right: 0;
   }
 }
-@media (max-width: 991px) {
+@media screen and (max-width: 991px) {
   .contacts {
     .contact_name {
       color: $maincolor;
@@ -80,7 +80,7 @@
     line-height: 25px; font-size: 20px; font-family: Circe-Regular, sans-serif
   }
 }
-@media (max-width: 518px) {
+@media screen and (max-width: 518px) {
   #aboutas {
     h3 {
       line-height: 20px; font-size: 14px; font-family: Circe-Regular, sans-serif

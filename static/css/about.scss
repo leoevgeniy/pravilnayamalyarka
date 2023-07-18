@@ -1,0 +1,45 @@
+.lSSlideOuter .lSPager {
+  display: none;
+}
+
+@media screen and (max-width: 320px) {
+  .subcategory_menu_about {
+    font-size: 10px;
+  }
+  .lSSlideOuter .lSPager {
+    display: none;
+  }
+}
+@media screen and (max-width: 1200px) {
+
+
+  .call-back-about {
+    span {
+      padding: 15px;
+      font-size: 20px;
+    }
+  }
+
+}
+@media screen and (max-width: 576px) {
+
+
+  .call-back-about {
+    span {
+      padding: 15px;
+      font-size: 20px;
+    }
+  }
+
+}
+@media screen and (max-width: 320px) {
+
+
+  .call-back-about {
+    span {
+      padding: 10px;
+      font-size: 15px;
+    }
+  }
+
+}
