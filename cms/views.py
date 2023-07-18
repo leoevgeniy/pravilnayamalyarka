@@ -16,6 +16,7 @@ from crm.forms import OrderForm
 from main.models import SubCategory, Category, ServiceCategory
 from pravilnayamalyarka.settings import BASE_DIR, MEDIA_ROOT
 
+
 def legal(request):
     today = date.today()
     promos = PromoSlider.objects.filter(start_date__lte=today).filter(expiration_date__gte=today)
@@ -26,9 +27,9 @@ def legal(request):
     for w in work:
         with Image.open(BASE_DIR + w.photo_url) as img:
             width, height = img.size
-            if width/height >= 1.77 and len(work_landscape) < 11:
+            if width / height >= 1.77 and len(work_landscape) < 11:
                 work_landscape.append(w)
-            elif width/height < 1 and len(work_portrate) < 11:
+            elif width / height < 1 and len(work_portrate) < 11:
                 work_portrate.append(w)
     categories = Category.objects.all()
     subcategories = SubCategory.objects.all()
@@ -49,7 +50,6 @@ def legal(request):
         contacts = ''
     allcategory = Category.objects.all()
     allsubcategory = SubCategory.objects.all()
-
 
     try:
         data = json.loads(request.COOKIES.get('cart'))
@@ -85,13 +85,16 @@ def legal(request):
         'searchform': searchform,
     }
     return render(request, 'main/policy.html', disc)
+
+
 def product_view(request, pk):
     searchform = SearchForm
     product = Product.objects.get(vendor_code=pk)
-    session_key = request.session.session_key
-    if not session_key:
-        request.session["session_key"] = 123
-        request.session.cycle_key()
+    print(product.name)
+    # session_key = request.session.session_key
+    # if not session_key:
+    #     request.session["session_key"] = 123
+    #     request.session.cycle_key()
     allcategory = Category.objects.all()
     allsubcategory = SubCategory.objects.all()
     try:
@@ -111,10 +114,10 @@ def product_view(request, pk):
     ids = []
     for cart_item in data:
         try:
-            product = Product.objects.get(vendor_code=cart_item['id'])
+            cart_product = Product.objects.get(vendor_code=cart_item['id'])
             weight = Packprice.objects.get(id=cart_item['weight'])
             cost = weight.price * cart_item['qty']
-            ids.append({'product': product, 'qty': cart_item['qty'], 'weight': weight, 'cost': cost})
+            ids.append({'product': cart_product, 'qty': cart_item['qty'], 'weight': weight, 'cost': cost})
         except:
             pass
 
@@ -212,7 +215,7 @@ def productsimport(request):
                             product=product,
                             weight=1,
                             price=int(params[5]),
-                            oldprice=int(params[5])*1.2
+                            oldprice=int(params[5]) * 1.2
                         )
 
             # if Product.objects.get(vendor_code=)

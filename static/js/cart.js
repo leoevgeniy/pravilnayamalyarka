@@ -236,6 +236,7 @@ $('#buy_button').on(event, function (event) {
     }
     const product = {'id': $(this).data('id'), 'name': $(this).data('name'), 'qty': 1, 'weight': weight}
     addToStorage(product);
+    console.log(product)
     location.replace($(this).data('categoryurl')+'?cart=1')
     updateQty()
     // location.reload();

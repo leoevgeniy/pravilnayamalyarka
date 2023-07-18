@@ -229,7 +229,7 @@
         <div class="main_container row d-flex justify-content-center mb-4">
             {% for product in products %}
                 <div class="col-12 col-lg-3 d-flex flex-column justify-content-center align-items-center subcategory_index_products_item my-2 mx-auto">
-                    <a href="{% url 'product_view' pk=product.vendor_code %}?weight={{ product.packprices.first.id }}"
+                    <a href="{% url 'product_view' pk=product.vendor_code %}"
                        class="d-flex flex-column justify-content-center align-items-center"
                        style="text-decoration: none; height: 70%"
                     >
@@ -292,7 +292,7 @@
 
                         </div>
                     {% endif %}
-                    <a href="{% url 'product_view' pk=product.vendor_code %}?weight={{ product.packprices.first.id }}" class="to_catalog_btn align-self-center fw-bold d-flex align-items-center element-animation mb-3"
+                    <a href="{% url 'product_view' pk=product.vendor_code %}" class="to_catalog_btn align-self-center fw-bold d-flex align-items-center element-animation mb-3"
                        data-name="{{ product.name }}"
                        data-price="{{ product.price }}"
                        data-id="{{ product.vendor_code }}"

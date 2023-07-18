@@ -69,10 +69,10 @@ def index(request):
     ids = []
     for cart_item in data:
         try:
-            product = Product.objects.get(vendor_code=cart_item['id'])
+            cart_product = Product.objects.get(vendor_code=cart_item['id'])
             weight = Packprice.objects.get(id=cart_item['weight'])
             cost = weight.price * cart_item['qty']
-            ids.append({'product': product, 'qty': cart_item['qty'], 'weight': weight, 'cost': cost})
+            ids.append({'product': cart_product, 'qty': cart_item['qty'], 'weight': weight, 'cost': cost})
         except:
             pass
 
@@ -134,10 +134,10 @@ def about(request):
     ids = []
     for cart_item in data:
         try:
-            product = Product.objects.get(vendor_code=cart_item['id'])
+            cart_product = Product.objects.get(vendor_code=cart_item['id'])
             weight = Packprice.objects.get(id=cart_item['weight'])
             cost = weight.price * cart_item['qty']
-            ids.append({'product': product, 'qty': cart_item['qty'], 'weight': weight, 'cost': cost})
+            ids.append({'product': cart_product, 'qty': cart_item['qty'], 'weight': weight, 'cost': cost})
         except:
             pass
 
@@ -195,10 +195,10 @@ def contacts(request):
     ids = []
     for cart_item in data:
         try:
-            product = Product.objects.get(vendor_code=cart_item['id'])
+            cart_product = Product.objects.get(vendor_code=cart_item['id'])
             weight = Packprice.objects.get(id=cart_item['weight'])
             cost = weight.price * cart_item['qty']
-            ids.append({'product': product, 'qty': cart_item['qty'], 'weight': weight, 'cost': cost})
+            ids.append({'product': cart_product, 'qty': cart_item['qty'], 'weight': weight, 'cost': cost})
         except:
             pass
 
@@ -254,10 +254,10 @@ def delivery(request):
     ids = []
     for cart_item in data:
         try:
-            product = Product.objects.get(vendor_code=cart_item['id'])
+            cart_product = Product.objects.get(vendor_code=cart_item['id'])
             weight = Packprice.objects.get(id=cart_item['weight'])
             cost = weight.price * cart_item['qty']
-            ids.append({'product': product, 'qty': cart_item['qty'], 'weight': weight, 'cost': cost})
+            ids.append({'product': cart_product, 'qty': cart_item['qty'], 'weight': weight, 'cost': cost})
         except:
             pass
 
@@ -426,10 +426,10 @@ def category(request, category):
     ids = []
     for cart_item in data:
         try:
-            product = Product.objects.get(vendor_code=cart_item['id'])
+            cart_product = Product.objects.get(vendor_code=cart_item['id'])
             weight = Packprice.objects.get(id=cart_item['weight'])
             cost = weight.price * cart_item['qty']
-            ids.append({'product': product, 'qty': cart_item['qty'], 'weight': weight, 'cost': cost})
+            ids.append({'product': cart_product, 'qty': cart_item['qty'], 'weight': weight, 'cost': cost})
         except:
             pass
 
@@ -542,10 +542,10 @@ def subcategory(request, category, subcategory, *args):
     ids = []
     for cart_item in data:
         try:
-            product = Product.objects.get(vendor_code=cart_item['id'])
+            cart_product = Product.objects.get(vendor_code=cart_item['id'])
             weight = Packprice.objects.get(id=cart_item['weight'])
             cost = weight.price * cart_item['qty']
-            ids.append({'product': product, 'qty': cart_item['qty'], 'weight': weight, 'cost': cost})
+            ids.append({'product': cart_product, 'qty': cart_item['qty'], 'weight': weight, 'cost': cost})
         except:
             pass
 
@@ -605,10 +605,10 @@ def thanks_page(request):
     ids = []
     for cart_item in data:
         try:
-            product = Product.objects.get(vendor_code=cart_item['id'])
+            cart_product = Product.objects.get(vendor_code=cart_item['id'])
             weight = Packprice.objects.get(id=cart_item['weight'])
             cost = weight.price * cart_item['qty']
-            ids.append({'product': product, 'qty': cart_item['qty'], 'weight': weight, 'cost': cost})
+            ids.append({'product': cart_product, 'qty': cart_item['qty'], 'weight': weight, 'cost': cost})
         except:
             pass
 
