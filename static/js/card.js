@@ -1,3 +1,8 @@
+// let iOS = navigator.userAgent.match(/iPhone|iPad|iPod/i);
+// let event = "click";
+//
+// if(iOS != null)
+//     event = "touchstart";
 
 // const weight_selected = document.querySelectorAll('weight-select-button')
 // document.querySelectorAll('goods_index_products_item').forEach((item) => {
@@ -12,7 +17,7 @@
 //     })
 // })
 
-$('.weight-select-button').on("click touchstart", function (event) {
+$('.weight-select-button').on(event, function (event) {
     event.preventDefault();
     $(this).parent().prev().find('.card-price')[0].innerText = $(this).data('price') + 'р.'
     $(this).parent().next()[0].dataset['weight'] = $(this).data('id').split('plus')[1]

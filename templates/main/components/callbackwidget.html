@@ -127,7 +127,7 @@
         </div>
     </div>
 </div>
-
+{% if pagename != 'product_details' %}
 <a id="cart_sticked" role="button" class="t706__carticon-wrapper" href="{{ request.path }}?cart=1" style="">
         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="black" class="bi bi-bag w-100"
              viewBox="0 0 16 16">
@@ -135,5 +135,6 @@
         </svg>
     <div class="t706__carticon-counter js-carticon-counter" style="background-color:#ffb600;color:#333333;">4</div>
 </a>
+{% endif %}
 
 

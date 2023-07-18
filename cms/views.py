@@ -1,3 +1,4 @@
+import json
 import os
 from datetime import date
 from PIL import Image
@@ -50,7 +51,22 @@ def legal(request):
     allsubcategory = SubCategory.objects.all()
 
 
+    try:
+        data = json.loads(request.COOKIES.get('cart'))
+    except:
+        data = []
+    ids = []
+    for cart_item in data:
+        try:
+            product = Product.objects.get(vendor_code=cart_item['id'])
+            weight = Packprice.objects.get(id=cart_item['weight'])
+            cost = weight.price * cart_item['qty']
+            ids.append({'product': product, 'qty': cart_item['qty'], 'weight': weight, 'cost': cost})
+        except:
+            pass
+
     disc = {
+        'cart_products': ids,
         'pagename': 'index',
         'allcategory': allcategory,
         'allsubcategory': allsubcategory,
@@ -88,7 +104,22 @@ def product_view(request, pk):
         contacts = ''
 
     socials = Socials.objects.all()
+    try:
+        data = json.loads(request.COOKIES.get('cart'))
+    except:
+        data = []
+    ids = []
+    for cart_item in data:
+        try:
+            product = Product.objects.get(vendor_code=cart_item['id'])
+            weight = Packprice.objects.get(id=cart_item['weight'])
+            cost = weight.price * cart_item['qty']
+            ids.append({'product': product, 'qty': cart_item['qty'], 'weight': weight, 'cost': cost})
+        except:
+            pass
+
     disc = {
+        'cart_products': ids,
         'pagename': 'product_details',
         'socials': socials,
         'contacts': contacts[0],

@@ -1,5 +1,10 @@
+// let iOS = navigator.userAgent.match(/iPhone|iPad|iPod/i);
+// let event = "click";
+//
+// if(iOS != null)
+//     event = "touchstart";
 
-$('.product_details_weight-select-button').on("click touchstart", function (event) {
+$('.product_details_weight-select-button').on(event, function (event) {
     event.preventDefault();
     console.log($(this).parent().prev().children('#price')[0].innerText)
 

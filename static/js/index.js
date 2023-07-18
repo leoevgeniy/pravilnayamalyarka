@@ -1,4 +1,14 @@
+// let iOS = navigator.userAgent.match(/iPhone|iPad|iPod/i);
+// let event = "click";
+//
+// if(iOS != null)
+//     event = "touchstart";
 
+$(function() {
+    $(document).on(event, ".element_class", function(e) {
+        //действия
+    });
+});
 const urlParams = new URLSearchParams(window.location.search);
 const myParam = urlParams.get('cart');
 const myModal = new bootstrap.Modal('#cartmodal', {

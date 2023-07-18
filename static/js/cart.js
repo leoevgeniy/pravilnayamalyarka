@@ -1,3 +1,10 @@
+let iOS = navigator.userAgent.match(/iPhone|iPad|iPod/i);
+let event = "click";
+
+if(iOS != null)
+    event = "touchstart";
+
+
 function getCookie(name) {
 
     let matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
@@ -192,7 +199,7 @@ const deleteFromStorage = (id) => {
 
 }
 
-$('.t706__product-minus').on("click touchend", function (e) {
+$('.t706__product-minus').on(event, function (e) {
     e.preventDefault();
     let id = $(this).data('id')
     const weight = $(this).data('weight')
@@ -200,7 +207,7 @@ $('.t706__product-minus').on("click touchend", function (e) {
     updateQty()
 
 })
-$('.t706__product-plus').on("click touchend", function (e) {
+$('.t706__product-plus').on(event, function (e) {
     e.preventDefault();
     const weight = $(this)[0].dataset['weight']
 
@@ -209,7 +216,7 @@ $('.t706__product-plus').on("click touchend", function (e) {
     updateQty()
 
 })
-$('.add-to-cart-btn').on("click touchstart", function (event) {
+$('.add-to-cart-btn').on(event, function (event) {
     event.preventDefault();
     let weight = ''
     if ($(this)[0].dataset['weight']) {
@@ -223,8 +230,22 @@ $('.add-to-cart-btn').on("click touchstart", function (event) {
     updateQty()
     // location.reload();
 });
+// $('.add-to-cart-btn').on("touchstart", function (event) {
+//     event.preventDefault();
+//     let weight = ''
+//     if ($(this)[0].dataset['weight']) {
+//         weight = $(this)[0].dataset['weight']
+//     } else {
+//         weight = ''
+//     }
+//     const product = {'id': $(this).data('id'), 'name': $(this).data('name'), 'qty': 1, 'weight': weight}
+//     addToStorage(product);
+//     location.replace($(this).data('categoryurl')+'?cart=1')
+//     updateQty()
+//     // location.reload();
+// });
 
-$('.t706__product-del').on("click touchend", function (e) {
+$('.t706__product-del').on(event, function (e) {
     e.preventDefault()
     deleteFromStorage($(this).data('id'))
     location.reload();

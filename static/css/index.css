@@ -493,7 +493,8 @@
   #buy_button {
     font-size: 12px;
     height: 25px;
-    width: 100%; }
+    width: 100%;
+    cursor: pointer; }
     #buy_button span {
       font-size: 20px; }
   .details_content .category_products_item span {
