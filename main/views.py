@@ -1,4 +1,5 @@
 from django.shortcuts import render
+import json
 from datetime import date
 from cms.forms import UploadFileForm, SearchForm
 from cms.models import Product, Service, PromoSlider, WorkPhoto, Logo, Introduction, Socials, Contacts, Packprice, \
@@ -61,7 +62,22 @@ def index(request):
         ]
     )
 
+    try:
+        data = json.loads(request.COOKIES.get('cart'))
+    except:
+        data = []
+    ids = []
+    for cart_item in data:
+        try:
+            product = Product.objects.get(vendor_code=cart_item['id'])
+            weight = Packprice.objects.get(id=cart_item['weight'])
+            cost = weight.price * cart_item['qty']
+            ids.append({'product': product, 'qty': cart_item['qty'], 'weight': weight, 'cost': cost})
+        except:
+            pass
+
     disc = {
+        'cart_products': ids,
         'pagename': 'index',
         'allcategory': allcategory,
         'allsubcategory': allsubcategory,
@@ -111,7 +127,22 @@ def about(request):
     allcategory = Category.objects.all()
     allsubcategory = SubCategory.objects.all()
 
+    try:
+        data = json.loads(request.COOKIES.get('cart'))
+    except:
+        data = []
+    ids = []
+    for cart_item in data:
+        try:
+            product = Product.objects.get(vendor_code=cart_item['id'])
+            weight = Packprice.objects.get(id=cart_item['weight'])
+            cost = weight.price * cart_item['qty']
+            ids.append({'product': product, 'qty': cart_item['qty'], 'weight': weight, 'cost': cost})
+        except:
+            pass
+
     disc = {
+        'cart_products': ids,
         'pricelist': pricelist,
         'pagename': 'about',
         'allcategory': allcategory,
@@ -157,7 +188,22 @@ def contacts(request):
     allcategory = Category.objects.all()
     allsubcategory = SubCategory.objects.all()
 
+    try:
+        data = json.loads(request.COOKIES.get('cart'))
+    except:
+        data = []
+    ids = []
+    for cart_item in data:
+        try:
+            product = Product.objects.get(vendor_code=cart_item['id'])
+            weight = Packprice.objects.get(id=cart_item['weight'])
+            cost = weight.price * cart_item['qty']
+            ids.append({'product': product, 'qty': cart_item['qty'], 'weight': weight, 'cost': cost})
+        except:
+            pass
+
     disc = {
+        'cart_products': ids,
         'pagename': 'contacts',
         'allcategory': allcategory,
         'allsubcategory': allsubcategory,
@@ -201,7 +247,22 @@ def delivery(request):
     allcategory = Category.objects.all()
     allsubcategory = SubCategory.objects.all()
 
+    try:
+        data = json.loads(request.COOKIES.get('cart'))
+    except:
+        data = []
+    ids = []
+    for cart_item in data:
+        try:
+            product = Product.objects.get(vendor_code=cart_item['id'])
+            weight = Packprice.objects.get(id=cart_item['weight'])
+            cost = weight.price * cart_item['qty']
+            ids.append({'product': product, 'qty': cart_item['qty'], 'weight': weight, 'cost': cost})
+        except:
+            pass
+
     disc = {
+        'cart_products': ids,
         'pagename': 'delivery',
         'allcategory': allcategory,
         'allsubcategory': allsubcategory,
@@ -299,6 +360,10 @@ def services(request):
 
 
 def category(request, category):
+    try:
+        after_buy = request.GET.get('cart')
+    except:
+        after_buy = 0
     category = Category.objects.get(name=unquote(category))
     subcat_name = ''
     if request.GET.get('subcategory') is not None:
@@ -354,7 +419,24 @@ def category(request, category):
     for p in range(paginator.num_pages):
         pages.append(p+1)
     form = OrderForm
+    try:
+        data = json.loads(request.COOKIES.get('cart'))
+    except:
+        data = []
+    ids = []
+    for cart_item in data:
+        try:
+            product = Product.objects.get(vendor_code=cart_item['id'])
+            weight = Packprice.objects.get(id=cart_item['weight'])
+            cost = weight.price * cart_item['qty']
+            ids.append({'product': product, 'qty': cart_item['qty'], 'weight': weight, 'cost': cost})
+        except:
+            pass
+
     disc = {
+        'cart_products': ids,
+        "products_first": products_firstsubcat,
+        'after_buy': after_buy,
         'promoslider': promos,
         'pagename': 'category',
         'form': form,
@@ -362,7 +444,7 @@ def category(request, category):
         'page': page,
         'pages': pages,
         "products": products,
-        "products_first": products_firstsubcat,
+
         'socials': socials,
         'contacts': contacts[0],
 
@@ -453,7 +535,22 @@ def subcategory(request, category, subcategory, *args):
     for p in range(paginator.num_pages):
         pages.append(p+1)
     form = OrderForm
+    try:
+        data = json.loads(request.COOKIES.get('cart'))
+    except:
+        data = []
+    ids = []
+    for cart_item in data:
+        try:
+            product = Product.objects.get(vendor_code=cart_item['id'])
+            weight = Packprice.objects.get(id=cart_item['weight'])
+            cost = weight.price * cart_item['qty']
+            ids.append({'product': product, 'qty': cart_item['qty'], 'weight': weight, 'cost': cost})
+        except:
+            pass
+
     disc = {
+        'cart_products': ids,
         'form': form,
         'pageinput': pageinput,
         'page': page,
@@ -501,7 +598,22 @@ def thanks_page(request):
     allsubcategory = SubCategory.objects.all()
 
     form = OrderForm
+    try:
+        data = json.loads(request.COOKIES.get('cart'))
+    except:
+        data = []
+    ids = []
+    for cart_item in data:
+        try:
+            product = Product.objects.get(vendor_code=cart_item['id'])
+            weight = Packprice.objects.get(id=cart_item['weight'])
+            cost = weight.price * cart_item['qty']
+            ids.append({'product': product, 'qty': cart_item['qty'], 'weight': weight, 'cost': cost})
+        except:
+            pass
+
     disc = {
+        'cart_products': ids,
         'form': form,
         'allcategory': allcategory,
         'allsubcategory': allsubcategory,

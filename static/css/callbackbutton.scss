@@ -8,6 +8,13 @@
   //right: initial !important;
 }
 
+#cart_sticked {
+  position: fixed;
+  z-index: 99999;
+  top: 120px;
+  right: 20px;
+}
+
 .img-circle {
   background-color: #2a7b3e;
   box-sizing: content-box;

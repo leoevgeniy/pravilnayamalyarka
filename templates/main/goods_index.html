@@ -1,8 +1,8 @@
 {% load static %}
-<div id="goods" class="main_container text-center mx-auto">
+<div id="goods" class="main_container text-center mt-5 mx-auto">
     <span id="our_goods" class=" w-100">Наши товары</span>
     <div id="goods_line" class="mx-auto mb-3"></div>
-    <h3 class="tn-atom" style="line-height: 25px;">Широкий ассортимент продукции от
+    <h3 class="tn-atom" style="line-height: 31px; font-size: 20px; font-family: Circe-Regular, sans-serif">Широкий ассортимент продукции от
         различных брендов и лидеров рынка</h3></div>
 <div id="products_index" class="main_container row d-flex justify-content-center mx-auto">
     {% for category in categories %}
@@ -35,7 +35,10 @@
                 <div class="goods_index_products_item_description text-center my-3 element-animation" style="">
                         <span itemProp="name"
                               class=''
-                              style="   overflow: hidden;
+                              style="
+                              font-family: Circe-Regular, sans-serif;
+                              overflow: hidden;
+
                                display: -webkit-box;
                                -webkit-line-clamp: 6; /* number of lines to show */
                                        line-clamp: 6;

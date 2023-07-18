@@ -137,12 +137,14 @@
 
                     </div>
                 {% endif %}
-                <button id="buy_button" href="{% url 'product_view' pk=product.vendor_code %}"
-                   class="to_catalog_btn fw-bold d-flex align-items-center px-4 py-3 element-animation my-3"
-                   data-name="{{ product.name }}"
-                   data-price="{{ product.price }}"
-                   data-id="{{ product.vendor_code }}"
-                   data-weight="{{ product.packprices.first.id }}"
+                <button id="buy_button"
+                   class="to_catalog_btn fw-bold d-flex align-items-center px-4 py-3 element-animation my-3 add-to-cart-btn"
+                    data-categoryurl="{% url 'category' category=product.category %}"
+                    data-id="{{ product.vendor_code }}"
+                    data-name="{{ product.name }}"
+                    data-price="{{ product.packpricesprice }}"
+                    data-weight="{{ product.packprices.first.id }}"
+{#                    data-bs-toggle="modal" data-bs-target="#cartmodal" data-bs-dismiss="modal"#}
                    style="height: 12% "
                 >
                             <span type="button"

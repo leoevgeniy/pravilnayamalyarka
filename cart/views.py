@@ -68,6 +68,7 @@ def orderCreate(request):
         phone = request.POST['phone']
         if request.COOKIES.get('cart') and len(request.COOKIES.get('cart')) > 0:
             cart = json.loads(request.COOKIES.get('cart'))
+            print(cart)
             status = StatusCrm.objects.get(status_name__exact='Новая')
             order = Order.objects.create(
                 order_name=name,
@@ -113,7 +114,7 @@ def orderCreate(request):
         'contacts': contacts[0],
     }
 
-    response = render(request, 'main/thanks_page.html', content)
+    response = render(request, 'main/category.html', content)
     response.delete_cookie('cart')
 
     return response

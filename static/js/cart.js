@@ -7,15 +7,15 @@ function getCookie(name) {
 
 const updateQty = () => {
     let totalcost = 0
-    $('.price_info').each(function () {
+    $('.t706__cartwin-prodamount-price').each(function () {
         const weight = $(this).data('weight')
         const id = $(this).data('id')
         const sum = $(this).data('price') * Number(getQty(id,weight))
         totalcost += sum
         $(this).html('<strong>Стоимость: </strong></br> ' + sum + ' р.')
     })
-    $('.final_cost').html('<strong>' + String(totalcost) + ' р.' + '</strong>')
-    $('.cart-qty').each(function () {
+    $('.t706__cartwin-prodamount-total-price').text(String(totalcost))
+    $('.t706__product-quantity').each(function () {
         try {
             const weight = $(this).data('weight')
             const id = $(this).data('id')
@@ -26,62 +26,62 @@ const updateQty = () => {
         }
 
     })
-    $('.cart-amount').text(getAllQty())
-    $('.cart-amount-footer').text(getAllQty())
+    $('.js-carticon-counter').text(getAllQty())
+    // $('.cart-amount-footer').text(getAllQty())
     if (getAllQty() === 0 ) {
-        $('.cart-confirm-btn').addClass('disabled')
-        $('.cart-amount').addClass('d-none')
-        $('.cart-amount-footer').addClass('d-none')
+        // $('.cart-confirm-btn').addClass('disabled')
+        $('#cart_sticked').addClass('d-none')
+        // $('.cart-amount-footer').addClass('d-none')
     } else {
-        $('.cart-confirm-btn').removeClass('disabled')
-        $('.cart-amount').removeClass('d-none')
-        $('.cart-amount-footer').removeClass('d-none')
+        // $('.cart-confirm-btn').removeClass('disabled')
+        $('#cart_sticked').removeClass('d-none')
+        // $('.cart-amount-footer').removeClass('d-none')
 
     }
-    $('.footer_search').on("click touchend", function () {
-        $('.search_input').focus()
-    })
-    $('.add-to-cart-btn').each(function () {
-        const id = $(this).data('id')
-        let exist = false
-        if (getCookie('cart')) {
-            let index = 0
-            let cart = JSON.parse(getCookie('cart'))
-            for (let i in cart) {
-                if (cart[i].id === id) {
-                    exist = true
-                }
-                index++
-            }
-
-        }
-        if (exist) {
-            $(this).addClass('d-none')
-        } else {
-            $(this).removeClass('d-none')
-        }
-    })
-    $('.cart-qty-wrapper').each(function () {
-        const id = $(this).data('id')
-        let exist = false
-        if (getCookie('cart')) {
-            let index = 0
-            let cart = JSON.parse(getCookie('cart'))
-            for (let i in cart) {
-                if (cart[i].id === id) {
-                    exist = true
-                }
-                index++
-            }
-
-        }
-        if (exist) {
-            $(this).removeClass('d-none')
-
-        } else {
-            $(this).addClass('d-none')
-        }
-    })
+    // $('.footer_search').on("click touchend", function () {
+    //     $('.search_input').focus()
+    // })
+    // $('.add-to-cart-btn').each(function () {
+    //     const id = $(this).data('id')
+    //     let exist = false
+    //     if (getCookie('cart')) {
+    //         let index = 0
+    //         let cart = JSON.parse(getCookie('cart'))
+    //         for (let i in cart) {
+    //             if (cart[i].id === id) {
+    //                 exist = true
+    //             }
+    //             index++
+    //         }
+    //
+    //     }
+    //     if (exist) {
+    //         $(this).addClass('d-none')
+    //     } else {
+    //         $(this).removeClass('d-none')
+    //     }
+    // })
+    // $('.t706__product-quantity').each(function () {
+    //     const id = $(this).data('id')
+    //     let exist = false
+    //     if (getCookie('cart')) {
+    //         let index = 0
+    //         let cart = JSON.parse(getCookie('cart'))
+    //         for (let i in cart) {
+    //             if (cart[i].id === id) {
+    //                 exist = true
+    //             }
+    //             index++
+    //         }
+    //
+    //     }
+    //     if (exist) {
+    //         $(this).removeClass('d-none')
+    //
+    //     } else {
+    //         $(this).addClass('d-none')
+    //     }
+    // })
 }
 
 const addToStorage = (product) => {
@@ -192,7 +192,7 @@ const deleteFromStorage = (id) => {
 
 }
 
-$('.cart-minus').on("click touchend", function (e) {
+$('.t706__product-minus').on("click touchend", function (e) {
     e.preventDefault();
     let id = $(this).data('id')
     const weight = $(this).data('weight')
@@ -200,7 +200,7 @@ $('.cart-minus').on("click touchend", function (e) {
     updateQty()
 
 })
-$('.cart-plus').on("click touchend", function (e) {
+$('.t706__product-plus').on("click touchend", function (e) {
     e.preventDefault();
     const weight = $(this)[0].dataset['weight']
 
@@ -209,7 +209,7 @@ $('.cart-plus').on("click touchend", function (e) {
     updateQty()
 
 })
-$('.add-to-cart-btn').on("click touchend", function (event) {
+$('.add-to-cart-btn').on("click touchstart", function (event) {
     event.preventDefault();
     let weight = ''
     if ($(this)[0].dataset['weight']) {
@@ -217,13 +217,14 @@ $('.add-to-cart-btn').on("click touchend", function (event) {
     } else {
         weight = ''
     }
-
     const product = {'id': $(this).data('id'), 'name': $(this).data('name'), 'qty': 1, 'weight': weight}
     addToStorage(product);
+    location.replace($(this).data('categoryurl')+'?cart=1')
     updateQty()
+    // location.reload();
 });
 
-$('.remove-from-cart').on("click touchend", function (e) {
+$('.t706__product-del').on("click touchend", function (e) {
     e.preventDefault()
     deleteFromStorage($(this).data('id'))
     location.reload();
@@ -268,8 +269,8 @@ const getAllQty = () => {
 
 
 const clearcart = () => {
-    // document.cookie = 'cart=' + JSON.stringify([]) + ";path=/"
-    // localStorage.setItem('cart', JSON.stringify([]))
+    document.cookie = 'cart=' + JSON.stringify([]) + ";path=/"
+    localStorage.setItem('cart', JSON.stringify([]))
 }
 // const cartConfirm = (input, init) => {
 //     let cart = JSON.parse(localStorage.getItem('cart'))
