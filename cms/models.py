@@ -148,6 +148,19 @@ class WorkPhoto(models.Model):
         verbose_name_plural = 'Фото работ'
 
 
+class Services_files(models.Model):
+    name = models.CharField(max_length=256, blank=True, null=True, verbose_name='Наименование')
+    file = models.FileField(upload_to="images/pricelists", null=True, blank=True, verbose_name="Файл с прайс листом")
+
+    @property
+    def file_url(self):
+        if self.file and hasattr(self.file, 'url'):
+            return self.file.url
+    class Meta:
+        verbose_name = 'Прайс лист'
+        verbose_name_plural = 'Прайс листы'
+
+
 class Service(models.Model):
     name = models.CharField(max_length=256, blank=True, null=True, verbose_name='Наименование')
     service_pc = models.CharField(max_length=20, blank=True, null=True, verbose_name='Единица измерения')

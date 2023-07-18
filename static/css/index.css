@@ -589,10 +589,26 @@
     width: 40%;
     right: 40%; } }
 
+#carouselExampleIndicators {
+  width: 75%;
+  height: 400px; }
+
+#aboutas h3 {
+  line-height: 25px;
+  font-size: 20px;
+  font-family: Circe-Regular, sans-serif; }
+
 @media (max-width: 518px) {
+  #aboutas h3 {
+    line-height: 20px;
+    font-size: 14px;
+    font-family: Circe-Regular, sans-serif; }
   .inter_wrapper {
     width: 50%;
-    height: 170px; } }
+    height: 170px; }
+  #carouselExampleIndicators {
+    width: 75%;
+    height: 150px; } }
 
 .tn-img {
   transform: rotate(45deg);

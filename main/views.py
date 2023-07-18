@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from datetime import date
 from cms.forms import UploadFileForm, SearchForm
-from cms.models import Product, Service, PromoSlider, WorkPhoto, Logo, Introduction, Socials, Contacts, Packprice
+from cms.models import Product, Service, PromoSlider, WorkPhoto, Logo, Introduction, Socials, Contacts, Packprice, \
+    Services_files
 from crm.models import Order, StatusCrm
 from .models import Category, SubCategory, ServiceCategory
 from crm.forms import OrderForm
@@ -80,6 +81,7 @@ def index(request):
     }
     return render(request, 'main/index.html', disc)
 def about(request):
+    pricelist = Services_files.objects.all()[0]
     work = WorkPhoto.objects.all()
     work_landscape = []
     work_portrate = []
@@ -110,6 +112,7 @@ def about(request):
     allsubcategory = SubCategory.objects.all()
 
     disc = {
+        'pricelist': pricelist,
         'pagename': 'about',
         'allcategory': allcategory,
         'allsubcategory': allsubcategory,
@@ -117,6 +120,7 @@ def about(request):
         'socials': socials,
         'logo': logo,
         'intro': intro,
+        'work': work,
         'work_landscape': work_landscape,
         'work_portrate': work_portrate,
         'form': form,
@@ -252,6 +256,8 @@ def goods(request):
 
 
 def services(request):
+    work = WorkPhoto.objects.all()
+
     catalog = {}
     categories = ServiceCategory.objects.all()
     searchform = SearchForm
@@ -278,6 +284,7 @@ def services(request):
     allsubcategory = SubCategory.objects.all()
 
     disc = {
+        'work': work,
         'allcategory': allcategory,
         'allsubcategory': allsubcategory,
         'form': form,
