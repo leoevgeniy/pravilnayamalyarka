@@ -21,7 +21,6 @@ $('.weight-select-button').on(event, function (event) {
     event.preventDefault();
     $(this).parent().prev().find('.card-price')[0].innerText = $(this).data('price') + 'р.'
     $(this).parent().next()[0].dataset['weight'] = $(this).data('id').split('plus')[1]
-    console.log($(this).parent().prev().find('.card-price')[0].innerText)
 
     // $(this).parent().next().next().children('.cart-plus')[0].dataset['weight'] = $(this).data('id').split('plus')[1]
     // $(this).parent().next().next().children('.cart-minus')[0].dataset['weight'] = $(this).data('id').split('plus')[1]

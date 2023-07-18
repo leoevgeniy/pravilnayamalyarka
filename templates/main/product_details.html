@@ -137,7 +137,7 @@
 
                     </div>
                 {% endif %}
-                <button id="buy_button"
+                <button id="buy_button" onclick=''
                    class="to_catalog_btn fw-bold d-flex align-items-center px-4 py-3 element-animation my-3 add-to-cart-btn"
                     data-categoryurl="{% url 'category' category=product.category %}"
                     data-id="{{ product.vendor_code }}"
@@ -145,7 +145,7 @@
                     data-price="{{ product.packpricesprice }}"
                     data-weight="{{ product.packprices.first.id }}"
 {#                    data-bs-toggle="modal" data-bs-target="#cartmodal" data-bs-dismiss="modal"#}
-                   style="height: 12% "
+                   style="height: 12%; cursor: pointer; "
                 >
                             <span type="button"
                                   class="text-center mx-auto">Купить</span>

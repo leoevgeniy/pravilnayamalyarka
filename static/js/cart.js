@@ -216,12 +216,22 @@ $('.t706__product-plus').on(event, function (e) {
     updateQty()
 
 })
-$('.add-to-cart-btn').on(event, function (event) {
-    event.preventDefault();
+// function onBuyButton(weight, id, name, categoryurl) {
+//     // try {        weight = $(this)[0].dataset['weight']
+//     // } catch {
+//     //     weight = ''
+//     // }
+//     const product = {'id': id, 'name':name, 'qty': 1, 'weight': weight}
+//     addToStorage(product);
+//     location.replace(categoryurl +'?cart=1')
+//     updateQty()
+// }
+$('#buy_button').on(event, function (event) {
+    // event.preventDefault();
+    event.stopPropagation()
     let weight = ''
-    if ($(this)[0].dataset['weight']) {
-        weight = $(this)[0].dataset['weight']
-    } else {
+    try {        weight = $(this)[0].dataset['weight']
+    } catch {
         weight = ''
     }
     const product = {'id': $(this).data('id'), 'name': $(this).data('name'), 'qty': 1, 'weight': weight}
