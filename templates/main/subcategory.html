@@ -5,7 +5,7 @@
 {% endblock %}
 {% block subcategory %}
 
-    {% if products %}
+
         <div id="goods" class="main_container py-3 w-75 text-center" style="">
             <img src="{{ category.photo_url }} "
                  class="card-img-top img-thumbnail my-4" alt="{{ category.name }}"
@@ -22,22 +22,202 @@
                         color: black; font-size: 14px;
                     ">{{ category.description }}</span>
         </div>
-
-        <div class="main_container d-flex justify-content-center">
+    {% if this_subcategory|length > 4 %}
+{#        <div class="main_container w-100 my-5 row container px-0 justify-content-around d-none d-lg-flex">#}
+{##}
+{#            {% for subcat in this_subcategory %}#}
+{#                <div class="col-6 col-lg-3 d-flex flex-column justify-content-between align-items-center goods_index_products_item my-2 mx-auto">#}
+{#                    <a href="{% url 'subcategory' category=subcat.category subcategory=subcat %}"#}
+{#                       class="d-flex flex-column justify-content-center align-items-center"#}
+{#                       style="text-decoration: none; height: 90%"#}
+{#                    >#}
+{#                        {% if category.photo %}#}
+{#                            <img src="{{ category.photo_url }} "#}
+{#                                 class="card-img-top element-animation" alt="{{ subcat.name }}"#}
+{#                                 style="height: 20%; object-fit: contain;"#}
+{#                            >#}
+{#                        {% else %}#}
+{#                            <img src="{% static "images/no_image.svg" %}"#}
+{#                                 class="card-img-top w-100" alt="{{ subcat.name }}">#}
+{#                        {% endif %}#}
+{#                        <div class="goods_index_products_item_line element-animation" style="width: 35%"></div>#}
+{#                        <div class="goods_index_products_item_name element-animation text-center" style="">#}
+{#                                <span itemProp="name"#}
+{#                                      class=' text-wrap '#}
+{#                                      style="#}
+{#        overflow: hidden;#}
+{#         display: -webkit-box;#}
+{#         -webkit-line-clamp: 2; /* number of lines to show */#}
+{#                 line-clamp: 2;#}
+{#         -webkit-box-orient: vertical;#}
+{#                                              ">{{ subcat.name }}</span>#}
+{#                        </div>#}
+{#                        <div class="goods_index_products_item_description text-center my-3 element-animation"#}
+{#                             style="">#}
+{#                                <span itemProp="name"#}
+{#                                      class=''#}
+{#                                      style="   overflow: hidden;#}
+{#                                       display: -webkit-box;#}
+{#                                       -webkit-line-clamp: 6; /* number of lines to show */#}
+{#                                               line-clamp: 6;#}
+{#                                       -webkit-box-orient: vertical;#}
+{#                                ">{{ subcat.description }}</span>#}
+{#                        </div>#}
+{##}
+{##}
+{#                        <div class="to_catalog_btn align-self-center fw-bold d-flex align-items-center element-animation">#}
+{#                            <span type="button" data-bs-toggle="modal" data-bs-target="#headercallback"#}
+{#                                  class="">В каталог</span>#}
+{#                        </div>#}
+{#                    </a>#}
+{#                </div>#}
+{#            {% endfor %}#}
+{#        </div>#}
+        <div class="main_container d-flex justify-content-center w-75">
             {#                    <div class=" w-100" style="background: rgb(255, 255, 255);"></div>#}
-            <select class="w-75 t-name py-4 select_location" style="font-family: Circe, sans-serif; background: #1A4582; color: white" ">
-            {% if products %}
-                <option value="" class="px-3">Выберите категорию</option>
-            {% endif %}
-            {% for subcat in this_subcategory %}
-                {% if subcat == subcategory %}
-                    <option value="{% url 'subcategory' category=category subcategory=subcat %}" selected="selected" class="px-3">{{ subcat }}</option>
-                {% else %}
-                <option value="{% url 'subcategory' category=category subcategory=subcat %}" class="px-3">{{ subcat }}</option>
-                {% endif %}
-            {% endfor %}
-            </select>
+            <label class="w-100 t-name my-4">
+                <select class="select_location p-3 w-100"
+                        style="font-family: Circe, sans-serif; background: #1A4582; color: white; ">
+                    {% for subcat in this_subcategory %}
+                        <option value="{% url 'subcategory' category=category subcategory=subcat %}"
+                                {% if subcategory == subcat %}
+                                selected="selected"
+                                {% endif %}
+
+                                class="px-3">{{ subcat }}</option>
+                    {% endfor %}
+                </select>
+            </label>
         </div>
+
+    {% else %}
+
+        <div class="d-flex w-100">
+            <div class="d-none d-lg-flex justify-content-center w-100">
+                {% for subcat in this_subcategory %}
+
+                    {% if forloop.first %}
+                        <div class="px-3 py-3" style="
+
+                                {# width: 2px;#}
+                                {#top: -2px;#}
+                                {#right: -2px;#}
+                                {#bottom: -2px;#}
+                                border: 2px solid #1A4582;
+                                border-top-left-radius: 40px;
+                                border-bottom-left-radius: 40px;
+                                {% if subcategory == subcat %}
+                                    background-color: white !important;
+                                    border: 2px solid #1A4582;
+                                {% else %}
+                                    background-color: #1A4582 !important;
+                                {% endif %}
+                                cursor: pointer;
+
+                                "
+                             data-subcategory="{{ subcat }}"
+                        >
+                            <a class="text-center text-decoration-none px-4 py-2" href="{% url 'subcategory' category=category subcategory=subcat %}"
+                               style="
+                                       {% if subcategory == subcat %}
+                                           color:#1A4582; font-size:22px;font-weight:400;padding-top:10px;padding-bottom:10px;font-family:'Circe', sans-serif;"
+                                       {% else %}
+                               color:white; font-size:22px;font-weight:400;padding-top:10px;padding-bottom:10px; font-family:'Circe', sans-serif;"
+                                       {% endif %}
+
+                            >{{ subcat }}
+                            </a>
+                        </div>
+                    {% elif forloop.last %}
+                        <div class="t395__tab t395__tab_active t395__width_20 px-3 py-3" data-tab-rec-ids="214144879" style="
+                                {% if subcategory == subcat %}
+                                    background-color: white !important;
+                                    border: 2px solid #1A4582;
+                                {% else %}
+                                    background-color: #1A4582 !important;
+                                {% endif %}
+
+                                border-top-right-radius: 40px;
+                                                border-bottom-right-radius: 40px;
+                                                                                    cursor: pointer;
+
+            "
+                             data-subcategory="{{ subcat }}">
+                            <a href="{% url 'subcategory' category=category subcategory=subcat %}" class="text-center px-4 py-2 text-decoration-none "
+                               style="
+                                       {% if subcategory == subcat %}
+                                           color:#1A4582; font-size:22px;font-weight:400;padding-top:10px;padding-bottom:10px;font-family:'Circe', sans-serif;"
+                                       {% else %}
+                               color:white; font-size:22px;font-weight:400;padding-top:10px;padding-bottom:10px; font-family:'Circe', sans-serif;"
+                                       {% endif %}
+                               field="title">{{ subcat }}
+                            </a>
+                        </div>
+                    {% else %}
+                        <div class="t395__tab t395__tab_active t395__width_20 px-3 py-3" data-tab-rec-ids="214144879" style="
+                                                cursor: pointer;
+                                {% if subcategory == subcat %}
+                                    background-color: white !important;
+                                    border: 2px solid #1A4582;
+                                {% else %}
+                                    background-color: #1A4582 !important;
+                                {% endif %}
+
+            "
+                             data-subcategory="{{ subcat }}">
+                            <a class="text-center px-4 py-2 text-decoration-none " href="{% url 'subcategory' category=category subcategory=subcat %}"
+                               style="
+                                       {% if subcategory == subcat %}
+                                           color:#1A4582; font-size:22px;font-weight:400;padding-top:10px;padding-bottom:10px;font-family:'Circe', sans-serif;"
+                                       {% else %}
+                               color:white; font-size:22px;font-weight:400;padding-top:10px;padding-bottom:10px; font-family:'Circe', sans-serif;"
+                                       {% endif %}
+                               field="title">{{ subcat }}
+                            </a>
+                        </div>
+
+                    {% endif %}
+
+                {% endfor %}
+            </div>
+
+            {% if subcategory %}
+                <div class="main_container d-flex justify-content-center d-lg-none w-75">
+                    {#                    <div class=" w-100" style="background: rgb(255, 255, 255);"></div>#}
+                    <label class="t-name my-4 w-100">
+                        <select class="select_location p-3  w-100"
+                                style="font-family: Circe, sans-serif; background: #1A4582; color: white; ">
+                            {% for subcat in this_subcategory %}
+                                <option value="{% url 'subcategory' category=category subcategory=subcat %}"
+                                        {% if subcategory == subcat %}
+                                        selected="selected"
+                                        {% endif %}
+                                        class="px-3">{{ subcat }}</option>
+                            {% endfor %}
+                        </select>
+                    </label>
+                </div>
+            {% endif %}
+        </div>
+    {% endif %}
+
+{#    <div class="main_container d-flex justify-content-center">#}
+        {#                    <div class=" w-100" style="background: rgb(255, 255, 255);"></div>#}
+{#        <select class="w-75 t-name py-4 select_location" style="font-family: Circe, sans-serif; background: #1A4582; color: white">#}
+        {#            {% if products %}#}
+        {#                <option value="" class="px-3">Выберите категорию</option>#}
+        {#            {% endif %}#}
+{#        {% for subcat in this_subcategory %}#}
+{#            {% if subcat == subcategory %}#}
+{#                <option value="{% url 'subcategory' category=category subcategory=subcat %}" selected="selected" class="px-3">{{ subcat }}</option>#}
+{#            {% else %}#}
+{#                <option value="{% url 'subcategory' category=category subcategory=subcat %}" class="px-3">{{ subcat }}</option>#}
+{#            {% endif %}#}
+{#        {% endfor %}#}
+{#        </select>#}
+{#    </div>#}
+    {% if products %}
+
 
         {#        <div id="goods" class="main_container px-0 py-3 w-100 d-flex justify-content-center">#}
 {#            <h1 id="responsive_headline" class="fs-2 pe-3 mx-auto text-nowrap"#}
@@ -48,7 +228,7 @@
 {#        </div>#}
         <div class="main_container row d-flex justify-content-center mb-4">
             {% for product in products %}
-                <div class="col-6 col-lg-3 d-flex flex-column justify-content-between align-items-center goods_index_products_item my-2 mx-auto">
+                <div class="col-12 col-lg-3 d-flex flex-column justify-content-center align-items-center subcategory_index_products_item my-2 mx-auto">
                     <a href="{% url 'product_view' pk=product.vendor_code %}?weight={{ product.packprices.first.id }}"
                        class="d-flex flex-column justify-content-center align-items-center"
                        style="text-decoration: none; height: 70%"
@@ -72,7 +252,7 @@
                                        -webkit-line-clamp: 4; /* number of lines to show */
                                                line-clamp: 4;
                                        -webkit-box-orient: vertical;
-                                      ">{{ product.description }}</span>
+                                      ">{{ product.name }}</span>
                         </div>
                         {#                        <div class="goods_index_products_item_description text-center my-3 element-animation" style="">#}
                         {#                        <span itemProp="name"#}
@@ -215,7 +395,7 @@
                             {% if page == p %}
                                 <button class="page-num page-num-selected p-3">{{ p }}</button>
                             {% elif p >= page|add:-4 and p <= page|add:4 %}
-                                <a href="{% url 'category' category=category %}?page={{ p }}">
+                                <a href="{% url 'subcategory' category=category subcategory=subcategory%}?page={{ p }}">
                                     <button class="page-num p-3">
                                         {{ p }}
                                     </button>

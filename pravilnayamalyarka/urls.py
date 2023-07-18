@@ -35,6 +35,7 @@ urlpatterns = [
     path('services/', views.services, name='services'),
     path('about/', views.about, name='about'),
     path('delivery/', views.delivery, name='delivery'),
+    path('contacts/', views.contacts, name='contacts'),
     path('search/', cmsviews.search, name='search'),
     path('category/<str:category>/', views.category, name='category'),
     path('category/<str:category>', views.category, name='category'),

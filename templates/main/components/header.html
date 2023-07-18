@@ -157,7 +157,7 @@
                                 и оплата</a></li>
                         <li class="t229__list_item" role="none" style="padding:0 0 0 35px;">
                             <a class=""
-                               href="https://xn----8sbgf1bdbnft8n.xn--p1ai/contacts"
+                               href="{% url 'contacts' %}"
                                role="menuitem" tabindex="0"
                                data-menu-submenu-hook=""
                                style="color:#ffffff;font-size:13px;font-weight:600;text-transform:uppercase;{% if pagename == 'contacts' %} text-decoration: underline; {% else %} text-decorations: none; {% endif %}">Контакты</a>
@@ -576,17 +576,17 @@
                 </a></li>
             <li class="t229__list_item" role="none" style="">
                 <a class=""
-                   href="https://xn----8sbgf1bdbnft8n.xn--p1ai/delivery"
+                   href="{% url 'delivery' %}"
                    role="menuitem" tabindex="0"
                    data-menu-submenu-hook=""
                    style="color:#ffffff;font-weight:600;{% if pagename == 'delivery' %} opacity: .7;{% endif %}">Доставка
                     и оплата</a></li>
             <li class="t229__list_item" role="none" style="">
                 <a class=""
-                   href="https://xn----8sbgf1bdbnft8n.xn--p1ai/contacts"
+                   href="{% url 'contacts' %}"
                    role="menuitem" tabindex="0"
                    data-menu-submenu-hook=""
-                   style="color:#ffffff;font-weight:600;{% if pagename == 'contacts' %} text-decoration: underline; {% else %} text-decorations: none; {% endif %}">Контакты</a>
+                   style="color:#ffffff;font-weight:600;{% if pagename == 'contacts' %} opacity: .7; {% else %} text-decorations: none; {% endif %}">Контакты</a>
             </li>
         </ul>
 

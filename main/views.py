@@ -123,6 +123,50 @@ def about(request):
         'searchform': searchform,
     }
     return render(request, 'main/about.html', disc)
+def contacts(request):
+    work = WorkPhoto.objects.all()
+    work_landscape = []
+    work_portrate = []
+    for w in work:
+        with Image.open(BASE_DIR + w.photo_url) as img:
+            width, height = img.size
+            if width/height >= 1.77:
+                work_landscape.append(w)
+            elif width/height < 1:
+                work_portrate.append(w)
+    form = OrderForm
+    searchform = SearchForm
+    socials = Socials.objects.all()
+    try:
+        logo = Logo.objects.get(inuse=True)
+    except:
+        logo = ''
+    try:
+        intro = Introduction.objects.get(inuse=True)
+    except:
+        intro = ''
+    try:
+        contacts = Contacts.objects.all()
+    except:
+        contacts = ''
+
+    allcategory = Category.objects.all()
+    allsubcategory = SubCategory.objects.all()
+
+    disc = {
+        'pagename': 'contacts',
+        'allcategory': allcategory,
+        'allsubcategory': allsubcategory,
+        'contacts': contacts[0],
+        'socials': socials,
+        'logo': logo,
+        'intro': intro,
+        'work_landscape': work_landscape,
+        'work_portrate': work_portrate,
+        'form': form,
+        'searchform': searchform,
+    }
+    return render(request, 'main/contacts.html', disc)
 def delivery(request):
     work = WorkPhoto.objects.all()
     work_landscape = []
@@ -287,10 +331,13 @@ def category(request, category):
     paginator = Paginator(products, 12)
     try:
         products = paginator.page(page)
+        products_firstsubcat = paginator.page(page)
     except PageNotAnInteger:
         products = paginator.page(1)
+        products_firstsubcat = paginator.page(1)
     except EmptyPage:
         products = paginator.page(paginator.num_pages)
+        products_firstsubcat = paginator.page(paginator.num_pages)
 
     if page == None or page == 'undefined':
         page = 1
