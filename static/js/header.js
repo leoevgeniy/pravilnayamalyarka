@@ -3,7 +3,7 @@
 //
 // if(iOS != null)
 //     event = "touchstart";
-console.log(event)
+
 try {
     const catalog_small = document.getElementById('catalog_small')
     // catalog_small.addEventListener('click', () => {
@@ -19,7 +19,7 @@ try {
     //     }
     //
     //
-    // })
+    // }, passiveEvent)
     catalog_small.addEventListener(event, () => {
         const catalog_items_small = document.getElementById('catalog_items_small')
 
@@ -33,5 +33,5 @@ try {
         }
 
 
-    })}
+    }, passiveEvent)}
     catch {}

@@ -118,19 +118,43 @@
                                                    -webkit-line-clamp: 1; /* number of lines to show */
                                                            line-clamp: 1;
                                                    -webkit-box-orient: vertical;"
-                    > {{ product.packprices.first.price }} р.</span>
+                    >
+                        {% if defaultweight == '' %}
+                            {{ product.packprices.first.price }} р.
+                        {% else %}
+                            {% for weight in product.packprices.all %}
+                                {% if weight.id == defaultweight %}
+                                    {{ weight.price }} р.
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </span>
                 </div>
                 {% if product.packprices.all|length > 1 %}
 
                     <div class="d-flex text-center justify-content-around my-4 element-animation "
                          aria-label="{{ product.name }}">
                         {% for weight in product.packprices.all %}
+
                             <button type="button"
                                     data-id="{{ product.vendor_code }}plus{{ weight.id }}"
                                     data-price="{{ weight.price }}"
                                     class="btn btn-secondary product_details_weight-select-button"
-                                    style="font-size: 70%; {% if forloop.first %} background-color: blue {% else %} background-color: gray {% endif %}"
-                            >{{ weight.weight }}</button>
+                                    style="font-size: 18px; width: 60px; height: 60px;
+                                            {% if defaultweight == '' %}
+                                                {% if forloop.first %}
+                                                    background-color: blue
+                                                {% else %}
+                                                    background-color: gray
+                                                {% endif %}"
+                                            {% else %}
+                                                {% if weight.id == defaultweight %}
+                                                    background-color: blue
+                                                {% else %}
+                                                    background-color: gray
+                                                {% endif %}
+                                            {% endif %}
+                            ">{{ weight.weight }}</button>
 
                         {% endfor %}
 
@@ -138,7 +162,7 @@
                     </div>
                 {% endif %}
                 <button id="buy_button" onclick=''
-                   class="to_catalog_btn fw-bold d-flex align-items-center px-4 py-3 element-animation my-3 add-to-cart-btn"
+                   class="buy_button text-decoration-none to_catalog_btn fw-bold d-flex align-items-center px-4 py-3 element-animation my-3"
                     data-categoryurl="{% url 'category' category=product.category %}"
                     data-id="{{ product.vendor_code }}"
                     data-name="{{ product.name }}"

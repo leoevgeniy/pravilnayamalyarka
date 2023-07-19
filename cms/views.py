@@ -88,9 +88,12 @@ def legal(request):
 
 
 def product_view(request, pk):
+    try:
+        defaultweight = int(request.GET.get('weight'))
+    except:
+        defaultweight = ''
     searchform = SearchForm
     product = Product.objects.get(vendor_code=pk)
-    print(product.name)
     # session_key = request.session.session_key
     # if not session_key:
     #     request.session["session_key"] = 123
@@ -122,6 +125,7 @@ def product_view(request, pk):
             pass
 
     disc = {
+        'defaultweight': defaultweight,
         'cart_products': ids,
         'pagename': 'product_details',
         'socials': socials,

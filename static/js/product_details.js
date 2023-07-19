@@ -3,20 +3,22 @@
 //
 // if(iOS != null)
 //     event = "touchstart";
+try {
+    const product_details_weight_select_button = document.querySelectorAll('.product_details_weight-select-button')
+    product_details_weight_select_button.forEach(
 
-$('.product_details_weight-select-button').on(event, function (event) {
-    event.preventDefault();
-    console.log($(this).parent().prev().children('#price')[0].innerText)
+    function (elem) {
+        elem.addEventListener(event, function (event) {
+            // event.preventDefault();
+            elem.parentElement.previousElementSibling.children[0].innerText = elem.dataset['price'] + 'р.'
+            elem.parentElement.nextElementSibling.dataset['weight'] = elem.dataset['id'].split('plus')[1]
+            elem.parentElement.nextElementSibling.dataset['price'] = elem.dataset['price']
+            for (let weight=0; weight < elem.parentElement.children.length; weight++) {
+                elem.parentElement.children[weight].style.backgroundColor = 'gray'
+                elem.style.backgroundColor = 'blue'
+            }
+        }, passiveEvent);
 
-    $(this).parent().prev().children('#price')[0].innerText = $(this).data('price') + 'р.'
-    $(this).parent().next()[0].dataset['weight'] = $(this).data('id').split('plus')[1]
-    $(this).parent().next()[0].dataset['price'] = $(this).data('price')
+    })
 
-    // $(this).parent().next().next().children('.cart-plus')[0].dataset['weight'] = $(this).data('id').split('plus')[1]
-    // $(this).parent().next().next().children('.cart-minus')[0].dataset['weight'] = $(this).data('id').split('plus')[1]
-    $(this).parent().children().map((item, key) => {
-            key.style.backgroundColor = 'gray'
-        }
-    )
-    $(this)[0].style.backgroundColor = 'blue'
-});
+} catch {}

@@ -4,20 +4,20 @@
 // if(iOS != null)
 //     event = "touchstart";
 
-$(function() {
-    $(document).on(event, ".element_class", function(e) {
-        //действия
-    });
-});
-const urlParams = new URLSearchParams(window.location.search);
-const myParam = urlParams.get('cart');
-const myModal = new bootstrap.Modal('#cartmodal', {
-
-})
-
-if (myParam === '1') {
-    myModal.show()
-}
+// $(function() {
+//     $(document).on(event, ".element_class", function(e) {
+//         //действия
+//     });
+// });
+// const urlParams = new URLSearchParams(window.location.search);
+// const myParam = urlParams.get('cart');
+// const myModal = new bootstrap.Modal('#cartmodal', {
+//
+// })
+//
+// if (myParam === '1') {
+//     myModal.show()
+// }
 // myModal.onclose(e=> {
 //     location.replace('/category')
 // })
@@ -37,10 +37,12 @@ let elements = document.querySelectorAll('.element-animation');
 for (let elm of elements) {
     observer.observe(elm);
 }
-
-$('.select_location').on('change', function(){
-    window.location = $(this).val();
-});
+try {
+    const select_location = document.querySelectorAll('.select_location')[0]
+     select_location.addEventListener('change', function(){
+    window.location = select_location.value
+}, passiveEvent);
+} catch {}
 
 
 // $(document).ready(function() {

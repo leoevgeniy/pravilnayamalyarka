@@ -18,6 +18,9 @@ from meta.views import Meta
 # Create your views here.
 
 def index(request):
+    print(request.session.load())
+    print(request.session.items())
+
     today = date.today()
     promos = PromoSlider.objects.filter(start_date__lte=today).filter(expiration_date__gte=today)
     services_category = ServiceCategory.objects.all()

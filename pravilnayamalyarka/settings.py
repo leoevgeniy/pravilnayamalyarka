@@ -31,6 +31,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'leoevgrv.beget.tech']
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost",
+]
+
+
 AUTH_USER_MODEL = 'auth.User'
 
 
@@ -56,7 +61,7 @@ STATICFILES_FINDERS = [
     # 'compressor.finders.CompressorFinder',
 ]
 USE_DJANGO_JQUERY = True
-
+SECURE_CROSS_ORIGIN_OPENER_POLICY=None
 CMS_SEO_FIELDS=True
 
 INSTALLED_APPS = [
@@ -76,11 +81,15 @@ INSTALLED_APPS = [
     'django_webp',
     'smart_selects',
     'meta',
+    'corsheaders',
 ]
 FILE_UPLOAD_HANDLERS = (
     'django.core.files.uploadhandler.TemporaryFileUploadHandler',
 )
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -88,6 +97,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 
     # 'admin_reorder.middleware.ModelAdminReorder',
 ]
