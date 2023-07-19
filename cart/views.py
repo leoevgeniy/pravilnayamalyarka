@@ -92,7 +92,7 @@ def orderCreate(request):
                     cost=item['qty']*weightObject.price,
 
                 )
-        # send_telegram(name, phone)
+        send_telegram(name, phone)
     socials = Socials.objects.all()
     try:
         contacts = Contacts.objects.all()
