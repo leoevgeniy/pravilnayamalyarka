@@ -348,6 +348,7 @@ def services(request):
 
     disc = {
         'work': work,
+        'pagename': 'category',
         'allcategory': allcategory,
         'allsubcategory': allsubcategory,
         'form': form,

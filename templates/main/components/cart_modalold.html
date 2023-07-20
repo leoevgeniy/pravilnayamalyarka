@@ -15,8 +15,11 @@
 
             </div>
 
+            {% if cart_products %}
+
+
             <div class="modal-body">
-            <div >
+            <div>
                 <div class="t706__cartwin-products">
                     {% for cart_product in cart_products %}
 
@@ -127,6 +130,9 @@
             </div>
             </div>
 
+                {% else %}
+                <div class="mx-auto fs-3">Ваша корзина пуста</div>
+            {% endif %}
         </div>
     </div>
 </div>

@@ -5,6 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf_token" content="{{ csrf_token }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     {#    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' api-maps.yandex.ru ajax.googleapis.com cdn.jsdelivr.net">#}
     <link rel="shortcut icon" type="image/png" href="{% static 'images/logo.svg' %}">
@@ -81,7 +82,9 @@
 {#</script>#}
 <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 {#<script type="text/javascript" src="{% static 'lightslider/js/lightslider.js' %}"></script>#}
-
+<script>
+    const csrftoken = '{{ csrf_token }}';
+</script>
 
 <script src="{% static 'js/cart.js' %}"></script>
 <script src="{% static 'js/index.js' %}"></script>

@@ -119,7 +119,7 @@
                                                            line-clamp: 1;
                                                    -webkit-box-orient: vertical;"
                     >
-                        {% if defaultweight == '' %}
+                        {% if not defaultweight %}
                             {{ product.packprices.first.price }} р.
                         {% else %}
                             {% for weight in product.packprices.all %}

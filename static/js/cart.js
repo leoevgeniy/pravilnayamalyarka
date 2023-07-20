@@ -1,11 +1,13 @@
 let iOS = navigator.userAgent.match(/iPhone|iPad|iPod/i);
 let event = "click";
-
-if(iOS != null)
+let device = ''
+if(iOS != null) {
     event = "touchstart";
-    device = 'IOS'
+    device = 'IOS'}
 const urlParams = new URLSearchParams(window.location.search);
 const myParam = urlParams.get('cart');
+const current_url = window.location.pathname
+
 const myModal = new bootstrap.Modal('#cartmodal', {
 
 })
@@ -23,8 +25,65 @@ try {
 // passiveEvent =  false;
 passiveEvent = passiveEvent ? { capture: true, passive: true } : false;
 if (myParam === '1') {
+    // cart_generate()
     myModal.show()
 }
+// myModal.onShow(function () {
+//     console.log('показан')
+// })
+async function cart_generate() {
+    if (device === 'IOS') {
+        let local_cart = []
+        try {
+            local_cart = localStorage.getItem('cart')
+        } catch {
+        }
+        const csrfToken = document.head.querySelector("[name~=csrf_token][content]").content;
+        const response = await fetch("/getcart/",
+            {
+                method: 'POST',
+                body: JSON.stringify(local_cart),
+                cururl: current_url,
+
+                credentials: 'same-origin',
+                headers: {
+                    'X-CSRFToken': csrftoken,
+                    // "Content-Type": "application/json"
+                },
+
+            }
+        ).then((response) => response.json())
+            // .then((data) => data)
+        console.log(location)
+    }
+}
+
+// const myModalEl = document.getElementById('cartmodal')
+// console.log(myModalEl)
+// myModalEl.addEventListener('shown.bs.modal', async event => {
+//     let local_cart = []
+//     try {
+//         local_cart = localStorage.getItem('cart')
+//     } catch {
+//     }
+//     const csrfToken = document.head.querySelector("[name~=csrf_token][content]").content;
+//     console.log(local_cart)
+//     const response = await fetch("/getcart/",
+//         {
+//             method: 'POST',
+//             body: JSON.stringify(local_cart),
+//             credentials: 'same-origin',
+//             headers: { 'X-CSRFToken': csrftoken,
+//                 // "Content-Type": "application/json"
+//             },
+//
+//         }
+//         ).then((response) => response.json())
+//         .then((data) => data)
+//     console.log(response)
+// })
+
+
 
 
 const getAllQty = () => {
@@ -58,15 +117,15 @@ const addToStorage = (product) => {
             if (exist) {
                 // localStorage.removeItem('cart')
                 // localStorage.setItem('cart', JSON.stringify(cart))
-                document.cookie = 'cart=' + JSON.stringify(cart) + ";path=/"
+                document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=leoevgrv.beget.tech" + ";path=/"
             } else {
                 cart.push(product)
                 // localStorage.setItem('cart', JSON.stringify(cart))
-                document.cookie = 'cart=' + JSON.stringify(cart) + ";path=/"
+                document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=leoevgrv.beget.tech" + ";path=/"
             }
         } else {
             // localStorage.setItem('cart', JSON.stringify([product]))
-            document.cookie = 'cart=' + JSON.stringify([product]) + ";path=/"
+            document.cookie = 'cart=' + JSON.stringify([product]) + ";domain=leoevgrv.beget.tech" + ";path=/"
         }
         if (localStorage.getItem('cart')) {
             let cart = JSON.parse(localStorage.getItem('cart'))
@@ -114,7 +173,7 @@ const removeFromStorage = (id, weight) => {
                         cart.splice(index, 1)
                         // localStorage.setItem('cart', JSON.stringify(cart))
                         localStorage.setItem('cart', JSON.stringify(cart))
-                        document.cookie = 'cart=' + JSON.stringify(cart) + ";path=/"
+                        document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=leoevgrv.beget.tech" + ";path=/"
                         product_element = document.getElementById(id+'/'+ weight)
                         product_element.parentNode.removeChild(product_element)
                         try {
@@ -129,7 +188,7 @@ const removeFromStorage = (id, weight) => {
                         // localStorage.setItem('cart', JSON.stringify(cart))
                         localStorage.setItem('cart', JSON.stringify(cart))
 
-                        document.cookie = 'cart=' + JSON.stringify(cart) + ";path=/"
+                        document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=leoevgrv.beget.tech" + ";path=/"
                         // location.reload();
                     }
                 } else {
@@ -142,7 +201,7 @@ const removeFromStorage = (id, weight) => {
                         } else if (cart[index]['qty'] === 1) {
                             cart.splice(index, 1)
                             // localStorage.setItem('cart', JSON.stringify(cart))
-                            document.cookie = 'cart=' + JSON.stringify(cart) + ";path=/"
+                            document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=leoevgrv.beget.tech" + ";path=/"
                             localStorage.setItem('cart', JSON.stringify(cart))
                             try {
                                 if (getAllQty() === 0) {
@@ -157,7 +216,7 @@ const removeFromStorage = (id, weight) => {
                         } else {
                             cart.splice(index, 1)
                             // localStorage.setItem('cart', JSON.stringify(cart))
-                            document.cookie = 'cart=' + JSON.stringify(cart) + ";path=/"
+                            document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=leoevgrv.beget.tech" + ";path=/"
                             localStorage.setItem('cart', JSON.stringify(cart))
                             try {
                                 if (getAllQty() === 0) {
@@ -181,7 +240,7 @@ const removeFromStorage = (id, weight) => {
             // localStorage.setItem('cart', JSON.stringify(cart))
             localStorage.setItem('cart', JSON.stringify(cart))
 
-            document.cookie = 'cart=' + JSON.stringify(cart) + ";path=/"
+            document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=leoevgrv.beget.tech" + ";path=/"
 
 
         }
@@ -208,7 +267,7 @@ const deleteFromStorage = (id, weight) => {
             product_element.parentNode.removeChild(product_element)
             localStorage.setItem('cart', JSON.stringify(cart))
 
-            document.cookie = 'cart=' + JSON.stringify(cart) + ";path=/"
+            document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=leoevgrv.beget.tech" + ";path=/"
         }
     }
     try {

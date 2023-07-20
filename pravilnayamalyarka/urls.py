@@ -49,6 +49,7 @@ urlpatterns = [
     path('migrateservices/', cmsviews.services_import, name='migrateservices'),
     path('cart/', cart.views.cart, name='cart'),
     path('orderconfirm/', cart.views.orderCreate, name='orderconfirm'),
+    path('getcart/', cart.views.getcart, name='getcart'),
     path('order/<str:pk>', cart.views.orderView, name='orderView'),
     path('favicon.ico', RedirectView.as_view(url='/static/images/favicon.ico', permanent=True)),
     # path(r'^media/(?P<path>.*)$', 'django.views.static.serve',

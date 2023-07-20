@@ -1,8 +1,9 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 import json
 # Create your views here.
 # from networkx.generators.tests.test_small import null
-
+from django.http import JsonResponse
 from cart.forms import OrderConfirmForm
 from cms.forms import SearchForm
 from cms.models import Product, Logo, Packprice, Contacts, Socials
@@ -40,8 +41,6 @@ def cart(request):
     allcategory = Category.objects.all()
     allsubcategory = SubCategory.objects.all()
 
-
-
     content = {
         'allcategory': allcategory,
         'allsubcategory': allsubcategory,
@@ -54,6 +53,37 @@ def cart(request):
     }
 
     return render(request, 'main/cart.html', content)
+
+
+def getcart(request):
+    try:
+        cart = json.loads(request.body)
+    except:
+        cart = None
+    ids = []
+    if cart:
+
+        for cart_item in json.loads(cart):
+            try:
+
+                prod = Product.objects.get(vendor_code=cart_item['id'])
+
+                cart_product = {
+                    'name': prod.name,
+                    'vendor_code': prod.vendor_code,
+                    'photo_url': prod.photo_url,
+                }
+                wei = Packprice.objects.get(id=cart_item['weight'])
+                weight = {
+                    'id': wei.id,
+                    'weight': wei.weight,
+                    'price': wei.price
+                }
+                cost = wei.price * cart_item['qty']
+                ids.append({'product': cart_product, 'qty': cart_item['qty'], 'weight': weight, 'cost': cost})
+            except:
+                pass
+    return HttpResponse(JsonResponse(ids, safe=False), 'application/json')
 
 
 def orderCreate(request):
@@ -90,7 +120,7 @@ def orderCreate(request):
                     price=weightObject.price,
                     image=product.photo,
                     vendor_code=item['id'],
-                    cost=item['qty']*weightObject.price,
+                    cost=item['qty'] * weightObject.price,
 
                 )
             send_telegram(name, phone)
@@ -117,11 +147,10 @@ def orderCreate(request):
                     price=weightObject.price,
                     image=product.photo,
                     vendor_code=item['id'],
-                    cost=item['qty']*weightObject.price,
+                    cost=item['qty'] * weightObject.price,
 
                 )
             send_telegram(name, phone)
-
 
     socials = Socials.objects.all()
     try:
@@ -130,8 +159,6 @@ def orderCreate(request):
         contacts = ''
     allcategory = Category.objects.all()
     allsubcategory = SubCategory.objects.all()
-
-
 
     content = {
         'allcategory': allcategory,
