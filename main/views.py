@@ -13,14 +13,12 @@ from pravilnayamalyarka.settings import BASE_DIR
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from urllib.parse import unquote
 from meta.views import Meta
+import requests
 
 
 # Create your views here.
 
 def index(request):
-    print(request.session.load())
-    print(request.session.items())
-
     today = date.today()
     promos = PromoSlider.objects.filter(start_date__lte=today).filter(expiration_date__gte=today)
     services_category = ServiceCategory.objects.all()
@@ -64,7 +62,8 @@ def index(request):
             ('http-equiv', 'Content-Type', 'text/html; charset=UTF-8'),
         ]
     )
-
+    session = requests.session()
+    print(request.session.load())
     try:
         data = json.loads(request.COOKIES.get('cart'))
     except:

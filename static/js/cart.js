@@ -19,7 +19,6 @@ try {
     });
     window.addEventListener("test", null, opts);
 } catch (e) { }
-console.log(passiveEvent)
 // in my case I need both passive and capture set to true, change as you need it.
 // passiveEvent =  false;
 passiveEvent = passiveEvent ? { capture: true, passive: true } : false;
@@ -44,31 +43,57 @@ const addToStorage = (product) => {
     let exist = false
 
     try {
-    if (getCookie('cart')) {
-        let cart = JSON.parse(getCookie('cart'))
-        let index = 0
-        for (let i in cart) {
-            if (cart[i].id === product.id) {
-                if (cart[i].weight === product.weight) {
-                    exist = true
-                    cart[i]['qty'] += 1
+        if (getCookie('cart')) {
+            let cart = JSON.parse(getCookie('cart'))
+            let index = 0
+            for (let i in cart) {
+                if (cart[i].id === product.id) {
+                    if (cart[i].weight === product.weight) {
+                        exist = true
+                        cart[i]['qty'] += 1
+                    }
                 }
+                index++
             }
-            index++
-        }
-        if (exist) {
-            // localStorage.removeItem('cart')
-            // localStorage.setItem('cart', JSON.stringify(cart))
-            document.cookie = 'cart=' + JSON.stringify(cart) + ";path=/"
+            if (exist) {
+                // localStorage.removeItem('cart')
+                // localStorage.setItem('cart', JSON.stringify(cart))
+                document.cookie = 'cart=' + JSON.stringify(cart) + ";path=/"
+            } else {
+                cart.push(product)
+                // localStorage.setItem('cart', JSON.stringify(cart))
+                document.cookie = 'cart=' + JSON.stringify(cart) + ";path=/"
+            }
         } else {
-            cart.push(product)
-            // localStorage.setItem('cart', JSON.stringify(cart))
-            document.cookie = 'cart=' + JSON.stringify(cart) + ";path=/"
+            // localStorage.setItem('cart', JSON.stringify([product]))
+            document.cookie = 'cart=' + JSON.stringify([product]) + ";path=/"
         }
-    } else {
-        // localStorage.setItem('cart', JSON.stringify([product]))
-        document.cookie = 'cart=' + JSON.stringify([product]) + ";path=/"
-    }}
+        if (localStorage.getItem('cart')) {
+            let cart = JSON.parse(localStorage.getItem('cart'))
+            let index = 0
+            for (let i in cart) {
+                if (cart[i].id === product.id) {
+                    if (cart[i].weight === product.weight) {
+                        exist = true
+                        cart[i]['qty'] += 1
+                    }
+                }
+                index++
+            }
+            if (exist) {
+                // localStorage.removeItem('cart')
+                // localStorage.setItem('cart', JSON.stringify(cart))
+                localStorage.setItem('cart', JSON.stringify(cart))
+            } else {
+                cart.push(product)
+                // localStorage.setItem('cart', JSON.stringify(cart))
+                localStorage.setItem('cart', JSON.stringify(cart))
+            }
+
+        } else {
+            localStorage.setItem('cart', JSON.stringify([product]))
+        }
+    }
     catch {}
 
     updateQty()
@@ -88,13 +113,24 @@ const removeFromStorage = (id, weight) => {
                     } else if (cart[i]['qty'] === 1) {
                         cart.splice(index, 1)
                         // localStorage.setItem('cart', JSON.stringify(cart))
+                        localStorage.setItem('cart', JSON.stringify(cart))
                         document.cookie = 'cart=' + JSON.stringify(cart) + ";path=/"
-                        location.reload();
+                        product_element = document.getElementById(id+'/'+ weight)
+                        product_element.parentNode.removeChild(product_element)
+                        try {
+                            if (getAllQty() === 0) {
+                                myModal.close()
+                                console.log(getAllQty())
+                            } }catch {}
+
+                        // location.reload();
                     } else {
                         cart.splice(index, 1)
                         // localStorage.setItem('cart', JSON.stringify(cart))
+                        localStorage.setItem('cart', JSON.stringify(cart))
+
                         document.cookie = 'cart=' + JSON.stringify(cart) + ";path=/"
-                        location.reload();
+                        // location.reload();
                     }
                 } else {
                     if (cart[i].weight === String(weight)) {
@@ -107,12 +143,32 @@ const removeFromStorage = (id, weight) => {
                             cart.splice(index, 1)
                             // localStorage.setItem('cart', JSON.stringify(cart))
                             document.cookie = 'cart=' + JSON.stringify(cart) + ";path=/"
-                            location.reload();
+                            localStorage.setItem('cart', JSON.stringify(cart))
+                            try {
+                                if (getAllQty() === 0) {
+                                    myModal.close()
+                                    console.log(getAllQty())
+                                } }catch {}
+
+                            product_element = document.getElementById(id+'/'+ weight)
+                            product_element.parentNode.removeChild(product_element)
+
+                            // location.reload();
                         } else {
                             cart.splice(index, 1)
                             // localStorage.setItem('cart', JSON.stringify(cart))
                             document.cookie = 'cart=' + JSON.stringify(cart) + ";path=/"
-                            location.reload();
+                            localStorage.setItem('cart', JSON.stringify(cart))
+                            try {
+                                if (getAllQty() === 0) {
+                                    myModal.close()
+                                    console.log(getAllQty())
+                                } }catch {}
+
+                            product_element = document.getElementById(id+'/'+ weight)
+                            product_element.parentNode.removeChild(product_element)
+
+                            // location.reload();
                         }
                     }
                 }
@@ -123,19 +179,23 @@ const removeFromStorage = (id, weight) => {
         if (exist) {
             // localStorage.removeItem('cart')
             // localStorage.setItem('cart', JSON.stringify(cart))
+            localStorage.setItem('cart', JSON.stringify(cart))
+
             document.cookie = 'cart=' + JSON.stringify(cart) + ";path=/"
+
 
         }
     }
+    updateQty()
 }
 
-const deleteFromStorage = (id) => {
+const deleteFromStorage = (id, weight) => {
     let exist = false
     if (getCookie('cart')) {
         let cart = JSON.parse(getCookie('cart'))
         let index = 0
         for (let i in cart) {
-            if (cart[i].id === id) {
+            if (cart[i].id === id && cart[i].weight === weight) {
                 exist = true
                 cart.splice(index, 1)
             }
@@ -144,15 +204,23 @@ const deleteFromStorage = (id) => {
         if (exist) {
             // localStorage.removeItem('cart')
             // localStorage.setItem('cart', JSON.stringify(cart))
+            product_element = document.getElementById(id+'/'+ weight)
+            product_element.parentNode.removeChild(product_element)
+            localStorage.setItem('cart', JSON.stringify(cart))
+
             document.cookie = 'cart=' + JSON.stringify(cart) + ";path=/"
         }
     }
+    try {
+        if (getAllQty() === 0) {
+        myModal.close()
+        console.log(getAllQty())
+    } }catch {}
+
+updateQty()
 
 }
 
-    window.sessionStorage.setItem('cart', JSON.stringify([{"id":"2398476283","name":"Абразив 2","qty":1,"weight":"402"}]))
-let sessionstorage = JSON.parse(sessionStorage.getItem('cart'))
-console.log(sessionstorage)
     function getCookie(name) {
 
     let matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
@@ -185,6 +253,13 @@ const getQty = (id, weight) => {
 }
 const updateQty = () => {
     let totalcost = 0
+    try {
+        const local_cart = localStorage.getItem('cart')
+        const local_cart_element = document.getElementById('local_cart')
+        local_cart_element.value = JSON.stringify(local_cart)
+        sessionStorage.setItem('cart', local_cart)
+    }
+    catch {}
     try {
         const price = document.querySelectorAll('.t706__cartwin-prodamount-price')
         price.forEach(function (item) {
@@ -282,17 +357,8 @@ const updateQty = () => {
 try {
     const minusbtn = document.querySelectorAll('.t706__product-minus')
     minusbtn.forEach(item => {
-    //     item.addEventListener(touchEvent, function (e) {
-    //
-    //         // e.preventDefault();
-    //         let id = item.dataset['id']
-    //         const weight = item.dataset['weight']
-    //         removeFromStorage(id, weight)
-    //         updateQty()
-    //
-    //     })
-    // }, passiveEvent)
-        item.ontouchend = function () {
+        item.onclick = function (e) {
+
             // e.preventDefault();
             let id = item.dataset['id']
             const weight = item.dataset['weight']
@@ -301,30 +367,39 @@ try {
 
         }
 
+        // item.ontouchend = function () {
+        //     // e.preventDefault();
+        //     let id = item.dataset['id']
+        //     const weight = item.dataset['weight']
+        //     removeFromStorage(id, weight)
+        //     updateQty()
+        //
+        // }
     })
+
 } catch {}
 try {
     const plusbtn = document.querySelectorAll('.t706__product-plus')
     plusbtn.forEach(item => {
-        //     item.addEventListener(touchEvent, function (e) {
-        //         // e.preventDefault();
-        //         const weight = item.dataset['weight']
-        //
-        //         const product = {'id': item.dataset['id'], 'name': item.dataset['name'], 'qty': 1, 'weight': weight}
-        //         addToStorage(product);
-        //         updateQty()
-        //
-        //     }, passiveEvent)
-        // })
-        item.ontouchend = function () {
-            // e.preventDefault();
-            const weight = item.dataset['weight']
+            item.onclick = function (e) {
+                // e.preventDefault();
+                const weight = item.dataset['weight']
 
-            const product = {'id': item.dataset['id'], 'name': item.dataset['name'], 'qty': 1, 'weight': weight}
-            addToStorage(product);
-            updateQty()
+                const product = {'id': item.dataset['id'], 'name': item.dataset['name'], 'qty': 1, 'weight': weight}
+                addToStorage(product);
+                updateQty()
 
-        }
+            }
+
+        // item.ontouchend = function () {
+        //     // e.preventDefault();
+        //     const weight = item.dataset['weight']
+        //
+        //     const product = {'id': item.dataset['id'], 'name': item.dataset['name'], 'qty': 1, 'weight': weight}
+        //     addToStorage(product);
+        //     updateQty()
+        //
+        // }
     })
     } catch {}
 // function onBuyButton(weight, id, name, categoryurl) {
@@ -339,7 +414,7 @@ try {
 // }
 
 try {
-const buybtn = document.querySelector('.buy_button');
+const buybtn = document.getElementById('buy_button');
 // buybtn.addEventListener(touchEvent, function (event) {
 //     event.preventDefault();
 //     event.stopPropagation();
@@ -354,7 +429,21 @@ const buybtn = document.querySelector('.buy_button');
 //     window.location.href = document.referrer.split('?')[0] + '?cart=1'
 //     updateQty()
 // }, passiveEvent)
-buybtn.ontouchend = function () {
+// buybtn.ontouchend = function () {
+//     let weight = ''
+//     try {        weight = buybtn.dataset['weight']
+//     } catch {
+//         weight = ''
+//     }
+//     console.log('1', weight, '1')
+//     const product = {'id': buybtn.dataset['id'], 'name': buybtn.dataset['name'], 'qty': 1, 'weight': weight}
+//     addToStorage(product);
+//
+//     window.location.href = document.referrer.split('?')[0] + '?cart=1'
+//     updateQty()
+// }
+
+buybtn.onclick = function () {
     let weight = ''
     try {        weight = buybtn.dataset['weight']
     } catch {
@@ -365,6 +454,7 @@ buybtn.ontouchend = function () {
 
     window.location.href = document.referrer.split('?')[0] + '?cart=1'
     updateQty()
+
 }
 }
 catch {}
@@ -403,15 +493,15 @@ try {
     cart_remove.forEach(item => {
         item.addEventListener(touchEvent, function (e) {
             // e.preventDefault()
-            deleteFromStorage(item.dataset['id'])
-            location.reload();
+            deleteFromStorage(item.dataset['id'], item.dataset['weight'])
+            // location.reload();
         }, passiveEvent)
     })
 
 } catch {}
 
 const clearcart = () => {
-    document.cookie = 'cart=' + JSON.stringify([]) + ";path=/"
+    // document.cookie = 'cart=' + JSON.stringify([]) + ";path=/"
     localStorage.setItem('cart', JSON.stringify([]))
 }
 // const cartConfirm = (input, init) => {

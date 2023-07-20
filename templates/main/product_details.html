@@ -141,7 +141,7 @@
                                     data-price="{{ weight.price }}"
                                     class="btn btn-secondary product_details_weight-select-button"
                                     style="font-size: 18px; width: 60px; height: 60px;
-                                            {% if defaultweight == '' %}
+                                            {% if not defaultweight %}
                                                 {% if forloop.first %}
                                                     background-color: blue
                                                 {% else %}
@@ -167,7 +167,12 @@
                     data-id="{{ product.vendor_code }}"
                     data-name="{{ product.name }}"
                     data-price="{{ product.packpricesprice }}"
-                    data-weight="{{ product.packprices.first.id }}"
+                    data-weight=
+                            {% if defaultweight %}
+                                    "{{defaultweight}}"
+                            {% else %}
+                                "{{ product.packprices.first.id }}"
+                            {% endif %}
 {#                    data-bs-toggle="modal" data-bs-target="#cartmodal" data-bs-dismiss="modal"#}
                    style="height: 12%; cursor: pointer; "
                 >

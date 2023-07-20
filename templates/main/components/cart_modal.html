@@ -25,7 +25,7 @@
 
 
 
-                        <div class="t706__product">
+                        <div id="{{ cart_product.product.vendor_code }}/{{ cart_product.weight.id }}" class="t706__product ">
                             <div class="t706__product-thumb">
                                 <div class="t706__product-imgdiv"
                                 >
@@ -90,6 +90,7 @@
                                 <span
                                     class="t706__product-del"
                                     data-id="{{ cart_product.product.vendor_code }}"
+                                    data-weight="{{ cart_product.weight.id }}"
                                 >
                                     <img
                                     src="https://static.tildacdn.com/lib/linea/1bec3cd7-e9d1-2879-5880-19b597ef9f1a/arrows_circle_remove.svg"
@@ -115,12 +116,14 @@
                     </div>
                 </div>
 
-                <form action="{% url 'orderconfirm' %}" method="POST">
+                <form action="{% url 'orderconfirm' %}" method="POST" >
                     {% csrf_token %}
                     {{ form.as_p }}
+                    <label for="local_cart" class="hidden"></label>
+                    <input id="local_cart" type="text" name="local_cart" class="hidden invisible" value="">
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary"
-{#                                onclick={clearcart()}#}
+                                onclick={clearcart()}
                         >Отправить заявку</button>
                     </div>
                 </form>

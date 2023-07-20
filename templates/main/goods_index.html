@@ -9,7 +9,7 @@
         <div class="col-6 col-lg-3 d-flex flex-column justify-content-between align-items-center goods_index_products_item my-2">
             <a href="{% url 'category' category=category %}"
                class="d-flex flex-column justify-content-center align-items-center"
-               style="text-decoration: none; height: 90%"
+               style="text-decoration: none; height: 95%"
             >
                 {% if category.photo %}
                     <img src="{{ category.photo_url }} "
@@ -18,10 +18,10 @@
                     >
                 {% else %}
                     <img src="{% static "images/no_image.svg" %}"
-                         class="card-img-top w-100" alt="{{ category.name }}">
+                         class="card-img-top w-100" alt="{{ category.name }}" style="height: 20%; object-fit: contain;">
                 {% endif %}
-                <div class="goods_index_products_item_line element-animation" style="width: 35%"></div>
-                <div class="goods_index_products_item_name element-animation text-center" style="">
+                <div class="goods_index_products_item_line element-animation" style="width: 35%; height: 1%"></div>
+                <div class="goods_index_products_item_name element-animation text-center" style=" height: 19%">
                         <span itemProp="name"
                               class=' text-wrap '
                               style="
@@ -32,7 +32,7 @@
                                       {# -webkit-box-orient: vertical;#}
                                       ">{{ category.name }}</span>
                 </div>
-                <div class="goods_index_products_item_description text-center my-3 element-animation" style="">
+                <div class="goods_index_products_item_description text-center my-3 element-animation" style="height: 45%">
                         <span itemProp="name"
                               class=''
                               style="
@@ -47,7 +47,7 @@
                 </div>
 
 
-            <div class="to_catalog_btn align-self-center fw-bold d-flex align-items-center element-animation">
+            <div class="to_catalog_btn align-self-center fw-bold d-flex align-items-center element-animation" style="height: 15%">
                     <span type="button"
                           class="">В каталог</span>
             </div>

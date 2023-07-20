@@ -64,6 +64,20 @@
   }
 }
 
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+#t-header {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0; /* required */
+  z-index: 9999;
+  ;
+}
+#rec205655723 {
+  background-color: rgba(255,255,255,1);
+}
 .menu-content {
   font-family: 'Circe',Arial,sans-serif;
   background-color: #333333;

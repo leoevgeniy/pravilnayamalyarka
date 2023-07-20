@@ -1,6 +1,6 @@
 #popup__toggle {
   //bottom: 45px;
-  left: 150px;
+  right: -20px;
   position: fixed;
   z-index: 998;
   bottom: 20px !important;
@@ -11,12 +11,12 @@
 #cart_sticked {
   position: fixed;
   z-index: 99999;
-  top: 120px;
+  top: 180px;
   right: 20px;
 }
 
 .img-circle {
-  background-color: #2a7b3e;
+  background-color: #00ff40;
   box-sizing: content-box;
   -webkit-box-sizing: content-box;
 }
@@ -24,7 +24,7 @@
 .circlephone {
   box-sizing: content-box;
   -webkit-box-sizing: content-box;
-  border: 2px solid #2a7b3e;
+  border: 2px solid #00ff40;
   width: 120px;
   height: 120px;
   bottom: -17px;
@@ -48,7 +48,7 @@
 .circle-fill {
   box-sizing: content-box;
   -webkit-box-sizing: content-box;
-  background-color: #2a7b3e;
+  background-color: #00ff40;
   width: 80px;
   height: 80px;
   bottom: 3px;
@@ -295,10 +295,19 @@
 }
 
 .social_modal_content {
-  bottom: 38px;
-  left: 23px;
+  bottom: 36px;
+  right: 13px;
   position: fixed;
   z-index: 999;
 
+}
+
+@media screen and (max-width: 480px){
+  #cart_sticked {
+    position: fixed;
+    z-index: 99999;
+    top: 100px;
+    right: 15px;
+  }
 }
 

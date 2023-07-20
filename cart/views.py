@@ -66,6 +66,7 @@ def orderCreate(request):
     if request.POST:
         name = request.POST['name']
         phone = request.POST['phone']
+        # local_cart = request.POST['cart']
         if request.COOKIES.get('cart') and len(request.COOKIES.get('cart')) > 0:
             cart = json.loads(request.COOKIES.get('cart'))
             status = StatusCrm.objects.get(status_name__exact='Новая')
@@ -92,7 +93,36 @@ def orderCreate(request):
                     cost=item['qty']*weightObject.price,
 
                 )
-        send_telegram(name, phone)
+            send_telegram(name, phone)
+        elif request.POST['local_cart'] and len(request.POST['local_cart']) > 0:
+            cart = json.loads(request.POST['local_cart'])
+            status = StatusCrm.objects.get(status_name__exact='Новая')
+            order = Order.objects.create(
+                order_name=name,
+                order_phone=phone,
+                order_type='Заказ товара',
+                order_status=status,
+
+            )
+            for item in cart:
+                product = Product.objects.get(vendor_code=item['id'])
+                weight = int(item['weight'])
+                weightObject = Packprice.objects.get(id=weight)
+                orderItem = OrderItems.objects.create(
+                    product=product,
+                    order=order,
+                    name=product.name,
+                    qty=item['qty'],
+                    weight=weightObject,
+                    price=weightObject.price,
+                    image=product.photo,
+                    vendor_code=item['id'],
+                    cost=item['qty']*weightObject.price,
+
+                )
+            send_telegram(name, phone)
+
+
     socials = Socials.objects.all()
     try:
         contacts = Contacts.objects.all()
@@ -113,7 +143,7 @@ def orderCreate(request):
         'contacts': contacts[0],
     }
 
-    response = render(request, 'main/category.html', content)
+    response = render(request, 'main/index.html', content)
     response.delete_cookie('cart')
 
     return response
