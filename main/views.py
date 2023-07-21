@@ -62,8 +62,6 @@ def index(request):
             ('http-equiv', 'Content-Type', 'text/html; charset=UTF-8'),
         ]
     )
-    session = requests.session()
-    print(request.session.load())
     try:
         data = json.loads(request.COOKIES.get('cart'))
     except:
@@ -160,6 +158,8 @@ def about(request):
         'searchform': searchform,
     }
     return render(request, 'main/about.html', disc)
+
+
 def contacts(request):
     work = WorkPhoto.objects.all()
     work_landscape = []
@@ -219,6 +219,8 @@ def contacts(request):
         'searchform': searchform,
     }
     return render(request, 'main/contacts.html', disc)
+
+
 def delivery(request):
     work = WorkPhoto.objects.all()
     work_landscape = []
