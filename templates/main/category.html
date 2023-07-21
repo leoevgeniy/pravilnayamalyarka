@@ -46,10 +46,19 @@
                         color: black; font-size: 22px;
                     ">{{ category }}</br></br>
                     </span>
-                <span class="mx-auto py-4"
+                <span class="mx-auto my-4 text-wrap"
                       style="font-family: Circe_Regular,sans-serif;
                         color: black; font-size: 14px;
-                    ">{{ category.description }}</span>
+                        overflow: hidden;
+                         display: -webkit-box;
+                         -webkit-line-clamp: 3; /* number of lines to show */
+                                 line-clamp: 3;
+                         -webkit-box-orient: vertical;
+
+                    "
+                      data-bs-toggle="modal" data-bs-target="#categorydescription"
+{#                      onclick="{showdescr(category.description)}"#}
+                >{{ category.description }}</span>
             </div>
 
         {% if subcategory %}
@@ -58,43 +67,43 @@
                     <div class="col-6 col-lg-3 d-flex flex-column justify-content-between align-items-center goods_index_products_item my-2 mx-auto">
                         <a href="{% url 'subcategory' category=subcat.category subcategory=subcat %}"
                            class="d-flex flex-column justify-content-center align-items-center"
-                           style="text-decoration: none; height: 90%"
+                           style="text-decoration: none; height: 95%"
                         >
                             {% if category.photo %}
                                 <img src="{{ category.photo_url }} "
-                                     class="card-img-top element-animation" alt="{{ subcat.name }}"
-                                     style="height: 20%; object-fit: contain;"
+                                     class="card-img-top element-animation goods_index_image" alt="{{ subcat.name }}"
+                                     style="object-fit: contain;"
                                 >
                             {% else %}
                                 <img src="{% static "images/no_image.svg" %}"
-                                     class="card-img-top w-100" alt="{{ subcat.name }}">
+                                     class="card-img-top w-100 goods_index_image" alt="{{ subcat.name }}">
                             {% endif %}
-                            <div class="goods_index_products_item_line element-animation" style="width: 35%"></div>
-                            <div class="goods_index_products_item_name element-animation text-center" style="">
+                            <div class="goods_index_products_item_line element-animation" style="width: 35%; height: 2px"></div>
+                            <div class="goods_index_products_item_name element-animation text-center" style=" height: 19%">
                                 <span itemProp="name"
                                       class=' text-wrap '
                                       style="
-        overflow: hidden;
-         display: -webkit-box;
-         -webkit-line-clamp: 2; /* number of lines to show */
-                 line-clamp: 2;
-         -webkit-box-orient: vertical;
+                                        overflow: hidden;
+                                         display: -webkit-box;
+                                         -webkit-line-clamp: 2; /* number of lines to show */
+                                                 line-clamp: 2;
+                                         -webkit-box-orient: vertical;
                                               ">{{ subcat.name }}</span>
                             </div>
                             <div class="goods_index_products_item_description text-center my-3 element-animation"
-                                 style="">
+                                 style="height: 45%">
                                 <span itemProp="name"
                                       class=''
                                       style="   overflow: hidden;
                                        display: -webkit-box;
-                                       -webkit-line-clamp: 6; /* number of lines to show */
-                                               line-clamp: 6;
+                                       -webkit-line-clamp: 5; /* number of lines to show */
+                                               line-clamp: 5;
                                        -webkit-box-orient: vertical;
                                 ">{{ subcat.description }}</span>
                             </div>
 
 
-                            <div class="to_catalog_btn align-self-center fw-bold d-flex align-items-center element-animation">
+                            <div class="to_catalog_btn align-self-center fw-bold d-flex align-items-center element-animation" style="height: 15%">
                             <span type="button" data-bs-toggle="modal" data-bs-target="#headercallback"
                                   class="">В каталог</span>
                             </div>
@@ -110,16 +119,16 @@
                     <div class="col-12 col-lg-3 d-flex flex-column justify-content-center align-items-center subcategory_index_products_item my-2 mx-auto">
                         <a href="{% url 'product_view' pk=product.vendor_code %}"
                            class="d-flex flex-column justify-content-center align-items-center"
-                           style="text-decoration: none; height: 70%"
+                           style="text-decoration: none; height: 75%"
                         >
                             {% if product.photo %}
                                 <img src="{{ product.photo_url }} "
-                                     class="card-img-top element-animation" alt="{{ product.name }}"
-                                     style="height: 40%; object-fit: contain;"
+                                     class="card-img-top w-100 element-animation product_details_img" alt="{{ product.name }}"
+                                     style="object-fit: contain;"
                                 >
                             {% else %}
                                 <img src="{% static "images/no_image.svg" %}"
-                                     class="card-img-top w-100" alt="{{ product.name }}">
+                                     class="card-img-top w-100 product_details_img" alt="{{ product.name }}">
                             {% endif %}
                             {#                        <div class="goods_index_products_item_line element-animation" style="width: 35%"></div>#}
                             <div class="category_products_item_name element-animation text-center" style="">
@@ -156,8 +165,8 @@
                         </a>
                         {% if product.packprices.all|length > 1 %}
 
-                            <div class="d-flex text-center justify-content-around my-2 element-animation "
-                                 aria-label="{{ product.name }}">
+                            <div class="d-flex text-center justify-content-around element-animation my-2"
+                                 aria-label="{{ product.name }}" style="height: 10%">
                                 {% for weight in product.packprices.all %}
                                     <button type="button"
                                             data-id="{{ product.vendor_code }}plus{{ weight.id }}"
@@ -170,13 +179,16 @@
 
 
                             </div>
+                        {% else %}
+                            <div class="d-flex text-center justify-content-around element-animation my-2" style="height: 10%"></div>
+
                         {% endif %}
-                        <a href="{% url 'product_view' pk=product.vendor_code %}" class="to_catalog_btn align-self-center fw-bold d-flex align-items-center element-animation mb-3"
+                        <a href="{% url 'product_view' pk=product.vendor_code %}" class="to_catalog_btn align-self-center fw-bold d-flex align-items-center element-animation mb-1"
                            data-name="{{ product.name }}"
                            data-price="{{ product.price }}"
                            data-id="{{ product.vendor_code }}"
                            data-weight="{{ product.packprices.first.id }}"
-                           style="height: 12% "
+                           style="height: 15% "
                         >
                             <span type="button"
                                   class="">Подробнее</span>

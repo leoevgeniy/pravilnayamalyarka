@@ -103,7 +103,6 @@ const addToStorage = (product) => {
         try {
             if (getCookie('cart')) {
                 let cart = JSON.parse(decodeURIComponent(getCookie('cart')))
-                console.log(cart)
                 let index = 0
                 for (let i in cart) {
                     if (cart[i].id === product.id) {

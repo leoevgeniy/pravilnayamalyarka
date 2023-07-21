@@ -71,6 +71,19 @@
 {% include "main/components/footer.html" %}
 {% include 'main/components/cart_modal.html' %}
 
+<div class="modal fade" id="categorydescription" tabindex="-1" aria-labelledby="categorydescription" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <p>{{ category.description }}</p>
+            </div>
+        </div>
+    </div>
+</div>
 
 {#<a class="mobil_call_but">#}
 {#    <img src="https://prog-time.ru/wp-content/uploads/2019/11/phone.png" alt="Обратная связь"/>#}

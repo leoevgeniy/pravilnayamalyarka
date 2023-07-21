@@ -356,6 +356,10 @@
   font-family: 'Circe',sans-serif;
   color: #000; }
 
+.product_details_img {
+  height: 60%;
+  min-height: 60%; }
+
 .subcategory_index_products_item {
   height: 417px;
   width: 259px;
@@ -679,7 +683,8 @@
   position: fixed;
   z-index: 99999;
   top: 180px;
-  right: 20px; }
+  right: 20px;
+  float: right; }
 
 .img-circle {
   background-color: #00ff40;

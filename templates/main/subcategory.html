@@ -17,10 +17,20 @@
                         color: black; font-size: 22px;
                     ">{{ category }}</br></br>
                     </span>
-            <span class="mx-auto py-4"
+            <span class="mx-auto my-4"
                   style="font-family: Circe_Regular,sans-serif;
                         color: black; font-size: 14px;
-                    ">{{ category.description }}</span>
+                        overflow: hidden;
+                         display: -webkit-box;
+                         -webkit-line-clamp: 3; /* number of lines to show */
+                                 line-clamp: 3;
+                                  -webkit-box-orient: vertical;
+
+
+                    "
+                  data-bs-toggle="modal" data-bs-target="#categorydescription"
+
+            >{{ category.description }}</span>
         </div>
     {% if this_subcategory|length > 4 %}
 {#        <div class="main_container w-100 my-5 row container px-0 justify-content-around d-none d-lg-flex">#}
@@ -228,19 +238,19 @@
 {#        </div>#}
         <div class="main_container row d-flex justify-content-center mb-4">
             {% for product in products %}
-                <div class="col-12 col-lg-3 d-flex flex-column justify-content-center align-items-center subcategory_index_products_item my-2 mx-auto">
+                <div class="col-12 col-lg-3 d-flex flex-column justify-content-between align-items-center subcategory_index_products_item my-2 mx-auto">
                     <a href="{% url 'product_view' pk=product.vendor_code %}"
                        class="d-flex flex-column justify-content-center align-items-center"
-                       style="text-decoration: none; height: 70%"
+                       style="text-decoration: none; height: 75%"
                     >
                         {% if product.photo %}
                             <img src="{{ product.photo_url }} "
-                                 class="card-img-top element-animation" alt="{{ product.name }}"
-                                 style="height: 40%; object-fit: contain;"
+                                 class="card-img-top w-100 element-animation product_details_img" alt="{{ product.name }}"
+                                 style="object-fit: contain;"
                             >
                         {% else %}
                             <img src="{% static "images/no_image.svg" %}"
-                                 class="card-img-top w-100" alt="{{ product.name }}">
+                                 class="card-img-top w-100 product_details_img" alt="{{ product.name }}">
                         {% endif %}
                         {#                        <div class="goods_index_products_item_line element-animation" style="width: 35%"></div>#}
                         <div class="category_products_item_name element-animation text-center" style="">
@@ -277,8 +287,8 @@
                     </a>
                     {% if product.packprices.all|length > 1 %}
 
-                        <div class="d-flex text-center justify-content-around my-2 element-animation "
-                             aria-label="{{ product.name }}">
+                        <div class="d-flex text-center justify-content-around element-animation my-2"
+                             aria-label="{{ product.name }}" style="height: 10%">
                             {% for weight in product.packprices.all %}
                                 <button type="button"
                                         data-id="{{ product.vendor_code }}plus{{ weight.id }}"
@@ -291,13 +301,15 @@
 
 
                         </div>
+                    {% else %}
+                        <div class="d-flex text-center justify-content-around element-animation my-2" style="height: 10%"></div>
                     {% endif %}
-                    <a href="{% url 'product_view' pk=product.vendor_code %}" class="to_catalog_btn align-self-center fw-bold d-flex align-items-center element-animation mb-3"
+                    <a href="{% url 'product_view' pk=product.vendor_code %}" class="to_catalog_btn align-self-center fw-bold d-flex align-items-center element-animation mb-1"
                        data-name="{{ product.name }}"
                        data-price="{{ product.price }}"
                        data-id="{{ product.vendor_code }}"
                        data-weight="{{ product.packprices.first.id }}"
-                       style="height: 12% "
+                       style="height: 15% "
                     >
                             <span type="button"
                                   class="">Подробнее</span>
