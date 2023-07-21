@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url(reset.css);
 @import url(components/tilda-blocks-page11886414.min.css);
 @import url(components/tilda-grid-3.0.min.css);
 @import url(components/tilda-popup-1.1.min.css);
