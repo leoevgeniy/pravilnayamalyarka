@@ -489,7 +489,8 @@
     width: 150px; }
     .goods_index_products_item img {
       width: 80px;
-      height: 31px; }
+      min-height: 40px;
+      height: 40px; }
     .goods_index_products_item .goods_index_products_item_name {
       padding: 2px 0;
       font-size: 15px; }
@@ -6021,6 +6022,13 @@
 @font-face {
   font-family: Circe-Regular;
   src: url("fonts/Circe-Regular.woff2") format("woff2"); }
+
+.goods_index_image {
+  height: 60px; }
+
+@media screen and (max-width: 480px) {
+  .goods_index_image {
+    height: 40px; } }
 
 .main_container {
   max-width: 1200px;

@@ -1,4 +1,4 @@
-let iOS = navigator.userAgent.match(/iPhone|iPad|iPod/i);
+let iOS = navigator.userAgent.match(/iPhone|iPad|iPod|Mac OS/i);
 let event = "click";
 let device = ''
 if (iOS != null) {
@@ -33,32 +33,28 @@ if (myParam === '1') {
 // myModal.onShow(function () {
 //     console.log('показан')
 // })
-async function cart_generate() {
-    if (device === 'IOS') {
-        let local_cart = []
-        try {
-            local_cart = localStorage.getItem('cart')
-        } catch {
-        }
-        const csrfToken = document.head.querySelector("[name~=csrf_token][content]").content;
-        const response = await fetch("/getcart/",
-            {
-                method: 'POST',
-                body: JSON.stringify(local_cart),
-                cururl: current_url,
-
-                credentials: 'same-origin',
-                headers: {
-                    'X-CSRFToken': csrftoken,
-                    // "Content-Type": "application/json"
-                },
-
-            }
-        ).then((response) => response.json())
-        // .then((data) => data)
-        console.log(location)
-    }
-}
+// async function cart_generate() {
+//
+//
+//         const csrfToken = document.head.querySelector("[name~=csrf_token][content]").content;
+//         const response = await fetch("/getcart/",
+//             {
+//                 method: 'POST',
+//                 body: JSON.stringify(local_cart),
+//                 cururl: current_url,
+//
+//                 credentials: 'same-origin',
+//                 headers: {
+//                     'X-CSRFToken': csrftoken,
+//                     // "Content-Type": "application/json"
+//                 },
+//
+//             }
+//         ).then((response) => response.json())
+//         // .then((data) => data)
+//         console.log(location)
+//     }
+// }
 
 // const myModalEl = document.getElementById('cartmodal')
 // console.log(myModalEl)
@@ -90,7 +86,7 @@ const getAllQty = () => {
     if (getCookie('cart')) {
         let amount = 0
         // let cart = JSON.parse(localStorage.getItem('cart'))
-        let cart = JSON.parse(getCookie('cart'))
+        let cart = JSON.parse(decodeURIComponent(getCookie('cart')))
         for (let i in cart) {
             amount += cart[i]['qty']
         }
@@ -100,13 +96,14 @@ const getAllQty = () => {
 }
 const addToStorage = (product) => {
     let exist = false;
-
-    if (device !== 'IOS') {
+    // alert(device)
+    // if (device !== 'IOS') {
 
         // else {
         try {
             if (getCookie('cart')) {
-                let cart = JSON.parse(getCookie('cart'))
+                let cart = JSON.parse(decodeURIComponent(getCookie('cart')))
+                console.log(cart)
                 let index = 0
                 for (let i in cart) {
                     if (cart[i].id === product.id) {
@@ -120,15 +117,15 @@ const addToStorage = (product) => {
                 if (exist) {
                     // localStorage.removeItem('cart')
                     // localStorage.setItem('cart', JSON.stringify(cart))
-                    document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=" + hostname + ";path=/" + ";expires=" + date
+                    document.cookie = 'cart=' + encodeURIComponent(JSON.stringify(cart)) + ";domain=" + hostname + ";path=/" + ";expires=" + date
                 } else {
                     cart.push(product)
                     // localStorage.setItem('cart', JSON.stringify(cart))
-                    document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=" + hostname + ";path=/" + ";expires=" + date
+                    document.cookie = 'cart=' + encodeURIComponent(JSON.stringify(cart)) + ";domain=" + hostname + ";path=/" + ";expires=" + date
                 }
             } else {
                 // localStorage.setItem('cart', JSON.stringify([product]))
-                document.cookie = 'cart=' + JSON.stringify([product]) + ";domain=" + hostname + ";path=/" + ";expires=" + date
+                document.cookie = 'cart=' + encodeURIComponent(JSON.stringify([product])) + ";domain=" + hostname + ";path=/" + ";expires=" + date
             }
             // if (localStorage.getItem('cart')) {
             //     let cart = JSON.parse(localStorage.getItem('cart'))
@@ -157,37 +154,58 @@ const addToStorage = (product) => {
             // }
         } catch {
         }
-    } else {
-        try {
-            const ios_cart = getCookie('cart')
-            if  (ios_cart) {
-                let cart = JSON.parse(getCookie('cart'))
-                let index = 0
-                for (let i in cart) {
-                    if (cart[i].id === product.id) {
-                        if (cart[i].weight === product.weight) {
-                            exist = true
-                            cart[i]['qty'] += 1
-                        }
-                    }
-                    index++
-                }
-                if (exist) {
-                    // localStorage.removeItem('cart')
-                    // localStorage.setItem('cart', JSON.stringify(cart))
-                    document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=" + hostname + ";path=/" + ";expires=" + date
-                } else {
-                    cart.push(product)
-                    // localStorage.setItem('cart', JSON.stringify(cart))
-                    document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=" + hostname + ";path=/" + ";expires=" + date
-                }
-            }
-            alert(getCookie('cart'))
-        } catch {
-            document.cookie = 'cart=' + JSON.stringify([product]) + ";domain=" + hostname + ";path=/" + ";expires=" + date
-            alert(getCookie('cart'))
-        }
-    }
+    // } else {
+    //     let local_cart = []
+    //     try {
+    //         try {
+    //             local_cart = getCookie('cart')
+    //             alert('корзина' + local_cart)
+    //         } catch {
+    //             alert("Не смог прочитать куки")
+    //         }
+    //         try {
+    //             document.cookie = 'cart=' + encodeURIComponent(JSON.stringify([product])) + ";domain=" + hostname + ";path=/" + ";expires=" + date
+    //             alert(product)
+    //             alert([product])
+    //             alert('Записал куки  cart=' + encodeURIComponent(JSON.stringify([product])) + ";domain=" + hostname + ";path=/" + ";expires=" + date)
+    //             local_cart = getCookie('cart')
+    //             alert('Вот что в куки' + document.cookie)
+    //         } catch {
+    //             alert("не смог записать куки")
+    //         }
+    //     } catch {
+    //
+    //     }
+    //     try {
+    //         const ios_cart = getCookie('cart')
+    //         if  (ios_cart) {
+    //             let cart = JSON.parse(getCookie('cart'))
+    //             let index = 0
+    //             for (let i in cart) {
+    //                 if (cart[i].id === product.id) {
+    //                     if (cart[i].weight === product.weight) {
+    //                         exist = true
+    //                         cart[i]['qty'] += 1
+    //                     }
+    //                 }
+    //                 index++
+    //             }
+    //             if (exist) {
+    //                 // localStorage.removeItem('cart')
+    //                 // localStorage.setItem('cart', JSON.stringify(cart))
+    //                 document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=" + hostname + ";path=/" + ";expires=" + date
+    //             } else {
+    //                 cart.push(product)
+    //                 // localStorage.setItem('cart', JSON.stringify(cart))
+    //                 document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=" + hostname + ";path=/" + ";expires=" + date
+    //             }
+    //         }
+    //         alert(decodeURIComponent(getCookie('cart')))
+    //     } catch {
+    //         document.cookie = 'cart=' + JSON.stringify([product]) + ";domain=" + hostname + ";path=/" + ";expires=" + date
+    //         alert(decodeURIComponent(getCookie('cart')))
+    //     }
+    // }
 
 
     // }
@@ -198,7 +216,7 @@ const addToStorage = (product) => {
 const removeFromStorage = (id, weight) => {
     let exist = false
     if (getCookie('cart')) {
-        let cart = JSON.parse(getCookie('cart'))
+        let cart = JSON.parse(decodeURIComponent(getCookie('cart')))
         let index = 0
         for (let i in cart) {
             if (cart[i].id === id) {
@@ -211,7 +229,7 @@ const removeFromStorage = (id, weight) => {
                         cart.splice(index, 1)
                         // localStorage.setItem('cart', JSON.stringify(cart))
                         // localStorage.setItem('cart', JSON.stringify(cart))
-                        document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=" + hostname + ";path=/" + ";expires=" + date
+                        document.cookie = 'cart=' + encodeURIComponent(JSON.stringify(cart)) + ";domain=" + hostname + ";path=/" + ";expires=" + date
                         product_element = document.getElementById(id + '/' + weight)
                         product_element.parentNode.removeChild(product_element)
                         try {
@@ -228,7 +246,7 @@ const removeFromStorage = (id, weight) => {
                         // localStorage.setItem('cart', JSON.stringify(cart))
                         // localStorage.setItem('cart', JSON.stringify(cart))
 
-                        document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=" + hostname + ";path=/" + ";expires=" + date
+                        document.cookie = 'cart=' + encodeURIComponent(JSON.stringify(cart)) + ";domain=" + hostname + ";path=/" + ";expires=" + date
                         // location.reload();
                     }
                 } else {
@@ -241,7 +259,7 @@ const removeFromStorage = (id, weight) => {
                         } else if (cart[index]['qty'] === 1) {
                             cart.splice(index, 1)
                             // localStorage.setItem('cart', JSON.stringify(cart))
-                            document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=" + hostname + ";path=/" + ";expires=" + date
+                            document.cookie = 'cart=' + encodeURIComponent(JSON.stringify(cart)) + ";domain=" + hostname + ";path=/" + ";expires=" + date
                             // localStorage.setItem('cart', JSON.stringify(cart))
                             try {
                                 if (getAllQty() === 0) {
@@ -258,7 +276,7 @@ const removeFromStorage = (id, weight) => {
                         } else {
                             cart.splice(index, 1)
                             // localStorage.setItem('cart', JSON.stringify(cart))
-                            document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=" + hostname + ";path=/" + ";expires=" + date
+                            document.cookie = 'cart=' + encodeURIComponent(JSON.stringify(cart)) + ";domain=" + hostname + ";path=/" + ";expires=" + date
                             // localStorage.setItem('cart', JSON.stringify(cart))
                             try {
                                 if (getAllQty() === 0) {
@@ -284,7 +302,7 @@ const removeFromStorage = (id, weight) => {
             // localStorage.setItem('cart', JSON.stringify(cart))
             // localStorage.setItem('cart', JSON.stringify(cart))
 
-            document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=" + hostname + ";path=/" + ";expires=" + date
+            document.cookie = 'cart=' + encodeURIComponent(JSON.stringify(cart)) + ";domain=" + hostname + ";path=/" + ";expires=" + date
 
 
         }
@@ -294,7 +312,7 @@ const removeFromStorage = (id, weight) => {
 const deleteFromStorage = (id, weight) => {
     let exist = false
     if (getCookie('cart')) {
-        let cart = JSON.parse(getCookie('cart'))
+        let cart = JSON.parse(decodeURIComponent(getCookie('cart')))
         let index = 0
         for (let i in cart) {
             if (cart[i].id === id && cart[i].weight === weight) {
@@ -310,7 +328,7 @@ const deleteFromStorage = (id, weight) => {
             product_element.parentNode.removeChild(product_element)
             // localStorage.setItem('cart', JSON.stringify(cart))
 
-            document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=" + hostname + ";path=/" + ";expires=" + date
+            document.cookie = 'cart=' + encodeURIComponent(JSON.stringify(cart)) + ";domain=" + hostname + ";path=/" + ";expires=" + date
         }
     }
     try {
@@ -325,16 +343,23 @@ const deleteFromStorage = (id, weight) => {
 
 }
 
+// function getCookie(name) {
+//
+//     let matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
+//     return matches ? matches[1] : null;
+//
+// }
 function getCookie(name) {
+    let match = document.cookie
+        .split('; ')
+        .find(row => row.startsWith(`${name}=`));
 
-    let matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
-    return matches ? matches[1] : null;
-
+    return match ? match.split('=')[1] : undefined;
 }
 
 const getQty = (id, weight) => {
     if (getCookie('cart')) {
-        let cart = JSON.parse(getCookie('cart'))
+        let cart = JSON.parse(decodeURIComponent(getCookie('cart')))
         let qty = 0
         for (let i in cart) {
             if (cart[i]['id'] === id) {

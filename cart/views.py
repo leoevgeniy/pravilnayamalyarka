@@ -20,6 +20,7 @@ def cart(request):
     searchform = SearchForm
     try:
         data = json.loads(request.COOKIES.get('cart'))
+        print(request.COOKIES.get('cart'))
     except:
         data = []
     ids = []

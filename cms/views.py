@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 import openpyxl
 from openpyxl_image_loader import SheetImageLoader
-
+from urllib.parse import unquote
 # Create your views here.
 from cms.forms import UploadFileForm, SearchForm
 from cms.models import WorkPhoto, Product, Service, Vendor, Packprice, Logo, Contacts, Socials, Introduction, \
@@ -52,7 +52,7 @@ def legal(request):
     allsubcategory = SubCategory.objects.all()
 
     try:
-        data = json.loads(request.COOKIES.get('cart'))
+        data = json.loads(unquote(request.COOKIES.get('cart')))
     except:
         data = []
     ids = []
@@ -111,7 +111,7 @@ def product_view(request, pk):
 
     socials = Socials.objects.all()
     try:
-        data = json.loads(request.COOKIES.get('cart'))
+        data = json.loads(unquote(request.COOKIES.get('cart')))
     except:
         data = []
     ids = []

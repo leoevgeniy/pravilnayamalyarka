@@ -11,9 +11,8 @@ from telebot.sendmessage import send_telegram
 from PIL import Image
 from pravilnayamalyarka.settings import BASE_DIR
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from urllib.parse import unquote
 from meta.views import Meta
-import requests
+from urllib.parse import unquote
 
 
 # Create your views here.
@@ -63,11 +62,13 @@ def index(request):
         ]
     )
     try:
-        data = json.loads(request.COOKIES.get('cart'))
+        data = json.loads(unquote(request.COOKIES.get('cart')))
+
     except:
         data = []
     ids = []
     for cart_item in data:
+        print(cart_item)
         try:
             cart_product = Product.objects.get(vendor_code=cart_item['id'])
             weight = Packprice.objects.get(id=cart_item['weight'])
@@ -128,7 +129,7 @@ def about(request):
     allsubcategory = SubCategory.objects.all()
 
     try:
-        data = json.loads(request.COOKIES.get('cart'))
+        data = json.loads(unquote(request.COOKIES.get('cart')))
     except:
         data = []
     ids = []
@@ -191,7 +192,7 @@ def contacts(request):
     allsubcategory = SubCategory.objects.all()
 
     try:
-        data = json.loads(request.COOKIES.get('cart'))
+        data = json.loads(unquote(request.COOKIES.get('cart')))
     except:
         data = []
     ids = []
@@ -252,7 +253,7 @@ def delivery(request):
     allsubcategory = SubCategory.objects.all()
 
     try:
-        data = json.loads(request.COOKIES.get('cart'))
+        data = json.loads(unquote(request.COOKIES.get('cart')))
     except:
         data = []
     ids = []
@@ -425,7 +426,7 @@ def category(request, category):
         pages.append(p+1)
     form = OrderForm
     try:
-        data = json.loads(request.COOKIES.get('cart'))
+        data = json.loads(unquote(request.COOKIES.get('cart')))
     except:
         data = []
     ids = []
@@ -541,7 +542,7 @@ def subcategory(request, category, subcategory, *args):
         pages.append(p+1)
     form = OrderForm
     try:
-        data = json.loads(request.COOKIES.get('cart'))
+        data = json.loads(unquote(request.COOKIES.get('cart')))
     except:
         data = []
     ids = []
@@ -604,7 +605,7 @@ def thanks_page(request):
 
     form = OrderForm
     try:
-        data = json.loads(request.COOKIES.get('cart'))
+        data = json.loads(unquote(request.COOKIES.get('cart')))
     except:
         data = []
     ids = []

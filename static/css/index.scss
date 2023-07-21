@@ -26,7 +26,16 @@ $maincolor: #1A4582;
   font-family: Circe-Regular;
   src: url("fonts/Circe-Regular.woff2") format('woff2');
 }
+.goods_index_image {
+  height: 60px;
+}
 
+@media screen and (max-width: 480px) {
+  .goods_index_image {
+    height: 40px;
+  }
+
+}
 .main_container {
   max-width: 1200px;
   margin: 0 auto;
