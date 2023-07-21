@@ -163,6 +163,7 @@ class Services_files(models.Model):
 
 class Service(models.Model):
     name = models.CharField(max_length=256, blank=True, null=True, verbose_name='Наименование')
+    photo = models.ImageField(upload_to="images/donework", null=True, blank=True, verbose_name="Фото Вида работ")
     service_pc = models.CharField(max_length=20, blank=True, null=True, verbose_name='Единица измерения')
     service_price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена за единицу')
     service_category = models.ForeignKey(ServiceCategory, on_delete=models.CASCADE, verbose_name="Категория")
@@ -170,6 +171,12 @@ class Service(models.Model):
 
     def __str__(self):
         return self.name
+
+    @property
+    def photo_url(self):
+        if self.photo and hasattr(self.photo, 'url'):
+            return self.photo.url
+
 
     class Meta:
         verbose_name = 'Вид работ'

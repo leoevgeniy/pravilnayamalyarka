@@ -356,6 +356,15 @@
   font-family: 'Circe',sans-serif;
   color: #000; }
 
+.nazvblok {
+  margin: 5px 0 30px -20px;
+  background: url("../images/diamond.png") no-repeat 3px 0px;
+  background-size: 34px;
+  padding: 6px 18px;
+  font-size: 28px;
+  text-align: left;
+  font-weight: bold; }
+
 .product_details_img {
   height: 60%;
   min-height: 60%; }

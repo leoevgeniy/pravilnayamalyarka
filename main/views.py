@@ -348,8 +348,10 @@ def services(request):
 
     allcategory = Category.objects.all()
     allsubcategory = SubCategory.objects.all()
-
+    pricelist = Services_files.objects.all()[0]
     disc = {
+        'pricelist': pricelist,
+        'categories': categories,
         'work': work,
         'pagename': 'category',
         'allcategory': allcategory,
