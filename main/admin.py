@@ -11,7 +11,7 @@ from .models import Category, SubCategory, ServiceCategory
 class SubCategoryAdm(admin.ModelAdmin):
     list_display = ('id', 'get_img', 'name', 'category')
     list_display_links = ('name',)
-    search_fields = ('name', 'category',)
+    search_fields = ('name', )
     list_filter = ('category',)
     list_editable = ('category',)
     list_per_page = 10
