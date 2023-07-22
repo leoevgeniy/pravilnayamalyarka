@@ -68,7 +68,6 @@ def index(request):
         data = []
     ids = []
     for cart_item in data:
-        print(cart_item)
         try:
             cart_product = Product.objects.get(vendor_code=cart_item['id'])
             weight = Packprice.objects.get(id=cart_item['weight'])
@@ -585,6 +584,10 @@ def subcategory(request, category, subcategory, *args):
 
 def thanks_page(request):
     searchform = SearchForm
+    today = date.today()
+
+    promos = PromoSlider.objects.filter(start_date__lte=today).filter(expiration_date__gte=today)
+
     name = request.POST['name']
     phone = request.POST['phone']
     status = StatusCrm.objects.get(status_name__exact='Новая')
@@ -601,6 +604,7 @@ def thanks_page(request):
         contacts = ''
 
     socials = Socials.objects.all()
+    categories = Category.objects.all()
 
     allcategory = Category.objects.all()
     allsubcategory = SubCategory.objects.all()
@@ -621,6 +625,9 @@ def thanks_page(request):
             pass
 
     disc = {
+        'promoslider': promos,
+
+        'categories': categories,
         'cart_products': ids,
         'form': form,
         'allcategory': allcategory,
@@ -633,4 +640,4 @@ def thanks_page(request):
         'logo': logo,
     }
 
-    return render(request, 'main/thanks_page.html', disc)
+    return render(request, 'main/index.html', disc)

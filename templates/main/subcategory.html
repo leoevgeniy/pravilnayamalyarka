@@ -6,31 +6,34 @@
 {% block subcategory %}
 
 
-        <div id="goods" class="main_container py-3 w-75 text-center" style="">
-            <img src="{{ category.photo_url }} "
-                 class="card-img-top img-thumbnail my-4" alt="{{ category.name }}"
+        <div id="goods" class="main_container py-3 text-center" style="margin-top: 50px; width: 80%">
+            <img src="{{ subcategory.photo_url }} "
+                 class="card-img-top img-thumbnail" alt="{{ subcategory.name }}"
                  style="object-fit: contain; border: none; height: 100px"
             >
 
             <span class="mx-auto "
                   style="font-family: Circe,sans-serif;
                         color: black; font-size: 22px;
-                    ">{{ category }}</br></br>
+                    ">{{ subcategory }}</br></br>
                     </span>
-            <span class="mx-auto my-4"
+            <div class="inline-block position-relative"
+                 data-bs-toggle="modal" data-bs-target="#subcategorydescription"
+            >
+
+            <span class="text-wrap line-clamp"
                   style="font-family: Circe_Regular,sans-serif;
                         color: black; font-size: 14px;
-                        overflow: hidden;
-                         display: -webkit-box;
-                         -webkit-line-clamp: 3; /* number of lines to show */
-                                 line-clamp: 3;
-                                  -webkit-box-orient: vertical;
+                        {#overflow: hidden;#}
+                        {# display: -webkit-box;#}
+                        {# -webkit-line-clamp: 3; /* number of lines to show */#}
+                        {#         line-clamp: 3;#}
+                        {#          -webkit-box-orient: vertical;#}
 
 
                     "
-                  data-bs-toggle="modal" data-bs-target="#categorydescription"
-
-            >{{ category.description }}</span>
+            >{{ subcategory.description }}</span>
+            </div>
         </div>
     {% if this_subcategory|length > 4 %}
 {#        <div class="main_container w-100 my-5 row container px-0 justify-content-around d-none d-lg-flex">#}
@@ -259,8 +262,8 @@
                               style="
                                       overflow: hidden;
                                        display: -webkit-box;
-                                       -webkit-line-clamp: 4; /* number of lines to show */
-                                               line-clamp: 4;
+                                       -webkit-line-clamp: 3; /* number of lines to show */
+                                               line-clamp: 3;
                                        -webkit-box-orient: vertical;
                                       ">{{ product.name }}</span>
                         </div>

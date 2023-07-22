@@ -5,3 +5,35 @@
   font-family: 'Circe',sans-serif;
   color: #000;
 }
+
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  //text-overflow: -o-ellipsis-lastline "...еще";
+  //text-overflow: ellipsis "...еще";
+  hyphens: auto;
+  //overflow: hidden;
+  //line-height: 1.1;
+  //height: 3.4em;
+  //text-overflow: ellipsis;
+  //display: block;
+  //-webkit-box-orient: vertical;
+  //-webkit-line-clamp: 3;
+}
+
+
+
+@media screen and (max-width: 480px){
+  .line-clamp:after {
+    font-family: 'Circe',sans-serif;
+    font-weight: 400;
+    content: "еще";
+    position: absolute;
+    color: rgb(0,0,0);
+    bottom: -10px;
+    right: 10px;
+    z-index: 1;
+  }
+}

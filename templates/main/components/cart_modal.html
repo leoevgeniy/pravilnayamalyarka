@@ -101,12 +101,13 @@
                     <div>
 
                         <div class="t706__cartwin-bottom">
-                            <a href="{% url 'index' %}">
+                            <div >
                                 <button  class="btn btn-primary"
-                                        {#                                onclick={clearcart()}#}
+                                onclick="location.replace(location.pathname.split('?')[0])"
+{#                                         data-bs-dismiss="modal"#}
                                 >К товарам
                                 </button>
-                            </a>
+                            </div>
                             <div class="t706__cartwin-prodamount-wrap t-descr t-descr_sm" style="display: block;">
 
 

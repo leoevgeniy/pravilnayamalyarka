@@ -1,12 +1,15 @@
+from datetime import date
+
 from django.http import HttpResponse
 from django.shortcuts import render
 import json
+from urllib.parse import unquote
 # Create your views here.
 # from networkx.generators.tests.test_small import null
 from django.http import JsonResponse
 from cart.forms import OrderConfirmForm
 from cms.forms import SearchForm
-from cms.models import Product, Logo, Packprice, Contacts, Socials
+from cms.models import Product, Logo, Packprice, Contacts, Socials, PromoSlider
 from crm.models import Order, OrderItems, StatusCrm
 from main.models import Category, SubCategory
 from telebot.sendmessage import send_telegram
@@ -20,7 +23,6 @@ def cart(request):
     searchform = SearchForm
     try:
         data = json.loads(request.COOKIES.get('cart'))
-        print(request.COOKIES.get('cart'))
     except:
         data = []
     ids = []
@@ -88,6 +90,10 @@ def getcart(request):
 
 
 def orderCreate(request):
+    today = date.today()
+    promos = PromoSlider.objects.filter(start_date__lte=today).filter(expiration_date__gte=today)
+    categories = Category.objects.all()
+
     try:
         logo = Logo.objects.get(inuse=True)
     except:
@@ -99,7 +105,7 @@ def orderCreate(request):
         phone = request.POST['phone']
         # local_cart = request.POST['cart']
         if request.COOKIES.get('cart') and len(request.COOKIES.get('cart')) > 0:
-            cart = json.loads(request.COOKIES.get('cart'))
+            cart = json.loads(unquote(request.COOKIES.get('cart')))
             status = StatusCrm.objects.get(status_name__exact='Новая')
             order = Order.objects.create(
                 order_name=name,
@@ -124,34 +130,7 @@ def orderCreate(request):
                     cost=item['qty'] * weightObject.price,
 
                 )
-            send_telegram(name, phone)
-        elif request.POST['local_cart'] and len(request.POST['local_cart']) > 0:
-            cart = json.loads(request.POST['local_cart'])
-            status = StatusCrm.objects.get(status_name__exact='Новая')
-            order = Order.objects.create(
-                order_name=name,
-                order_phone=phone,
-                order_type='Заказ товара',
-                order_status=status,
-
-            )
-            for item in cart:
-                product = Product.objects.get(vendor_code=item['id'])
-                weight = int(item['weight'])
-                weightObject = Packprice.objects.get(id=weight)
-                orderItem = OrderItems.objects.create(
-                    product=product,
-                    order=order,
-                    name=product.name,
-                    qty=item['qty'],
-                    weight=weightObject,
-                    price=weightObject.price,
-                    image=product.photo,
-                    vendor_code=item['id'],
-                    cost=item['qty'] * weightObject.price,
-
-                )
-            send_telegram(name, phone)
+        send_telegram(name, phone)
 
     socials = Socials.objects.all()
     try:
@@ -162,6 +141,10 @@ def orderCreate(request):
     allsubcategory = SubCategory.objects.all()
 
     content = {
+        'categories': categories,
+        'promoslider': promos,
+
+        'pagename': 'index',
         'allcategory': allcategory,
         'allsubcategory': allsubcategory,
 

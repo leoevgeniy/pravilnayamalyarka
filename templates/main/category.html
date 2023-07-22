@@ -35,9 +35,9 @@
 
 
 
-            <div id="goods" class="main_container py-3 w-75 text-center" style="">
+            <div id="goods" class="main_container py-3 text-center" style="width: 80%; margin-top: 50px;">
                 <img src="{{ category.photo_url }} "
-                     class="card-img-top img-thumbnail my-4" alt="{{ category.name }}"
+                     class="card-img-top img-thumbnail mt-4" alt="{{ category.name }}"
                      style="object-fit: contain; border: none; height: 100px"
                 >
 
@@ -46,37 +46,51 @@
                         color: black; font-size: 22px;
                     ">{{ category }}</br></br>
                     </span>
-                <span class="mx-auto my-4 text-wrap"
-                      style="font-family: Circe_Regular,sans-serif;
+                <div class="inline-block position-relative"
+                     data-bs-toggle="modal" data-bs-target="#categorydescription"
+                >
+                <span class="text-wrap line-clamp"
+                      style="
+
+                      font-family: Circe_Regular,sans-serif;
                         color: black; font-size: 14px;
-                        overflow: hidden;
-                         display: -webkit-box;
-                         -webkit-line-clamp: 3; /* number of lines to show */
-                                 line-clamp: 3;
-                         -webkit-box-orient: vertical;
+                        {#overflow: hidden ;#}
+                        {#white-space: nowrap;#}
+                        {# display: -webkit-box;#}
+                        {# -webkit-line-clamp: 3; /* number of lines to show */#}
+                        {#         line-clamp: 3;#}
+                        {##}
+                        {# -webkit-box-orient: vertical;#}
 
                     "
-                      data-bs-toggle="modal" data-bs-target="#categorydescription"
+
 {#                      onclick="{showdescr(category.description)}"#}
                 >{{ category.description }}</span>
+{#                    <div class="" style="#}
+{#                        transform: tra;#}
+{#                    "#}
+{#                    >#}
+{#                        <span class="text-start" >еще</span>#}
+{#                    </div>#}
+{#                </div>#}
             </div>
 
         {% if subcategory %}
             <div class="main_container w-100 my-5 row container px-0 justify-content-around ">
                 {% for subcat in subcategory %}
-                    <div class="col-6 col-lg-3 d-flex flex-column justify-content-between align-items-center goods_index_products_item my-2 mx-auto">
+                    <div class="col-6 col-lg-3 d-flex flex-column justify-content-between align-items-center goods_index_products_item my-2">
                         <a href="{% url 'subcategory' category=subcat.category subcategory=subcat %}"
                            class="d-flex flex-column justify-content-center align-items-center"
                            style="text-decoration: none; height: 95%"
                         >
-                            {% if category.photo %}
-                                <img src="{{ category.photo_url }} "
-                                     class="card-img-top element-animation goods_index_image" alt="{{ subcat.name }}"
+                            {% if subcat.photo %}
+                                <img src="{{ subcat.photo_url }} "
+                                     class="card-img-top element-animation goods_index_image mt-2" alt="{{ subcat.name }}"
                                      style="object-fit: contain;"
                                 >
                             {% else %}
                                 <img src="{% static "images/no_image.svg" %}"
-                                     class="card-img-top w-100 goods_index_image" alt="{{ subcat.name }}">
+                                     class="card-img-top w-100 goods_index_image mt-2" alt="{{ subcat.name }}">
                             {% endif %}
                             <div class="goods_index_products_item_line element-animation" style="width: 35%; height: 2px"></div>
                             <div class="goods_index_products_item_name element-animation text-center" style=" height: 19%">
