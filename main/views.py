@@ -20,6 +20,8 @@ from urllib.parse import unquote
 def index(request):
     today = date.today()
     promos = PromoSlider.objects.filter(start_date__lte=today).filter(expiration_date__gte=today)
+    work = WorkPhoto.objects.all()
+
     services_category = ServiceCategory.objects.all()
     work = WorkPhoto.objects.all()
     work_landscape = []
@@ -81,7 +83,7 @@ def index(request):
         'pagename': 'index',
         'allcategory': allcategory,
         'allsubcategory': allsubcategory,
-
+        'work': work,
         'contacts': contacts[0],
         'socials': socials,
         'logo': logo,
@@ -352,7 +354,7 @@ def services(request):
         'pricelist': pricelist,
         'categories': categories,
         'work': work,
-        'pagename': 'category',
+        'pagename': 'services',
         'allcategory': allcategory,
         'allsubcategory': allsubcategory,
         'form': form,

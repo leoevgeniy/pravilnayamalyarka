@@ -1,12 +1,12 @@
 {% load static %}
-<div id="goods" class="main_container text-center mt-5 mx-auto">
+<div id="goods" class="main_container text-center mt-5 mx-auto position-relative">
     <span id="our_goods" class=" w-100">Наши товары</span>
     <div id="goods_line" class="mx-auto mb-3"></div>
     <h3 class="tn-atom" style="line-height: 31px; font-size: 20px; font-family: Circe-Regular, sans-serif">Широкий ассортимент продукции от
         различных брендов и лидеров рынка</h3></div>
 <div id="products_index" class="main_container row d-flex justify-content-center mx-auto">
     {% for category in categories %}
-        <div class="col-6 col-lg-3 shadow-lg d-flex flex-column justify-content-between align-items-center goods_index_products_item my-2 mx-auto">
+        <div id="goods_index" class="col-6 col-lg-3 shadow-lg d-flex flex-column justify-content-between align-items-center goods_index_products_item my-2 mx-auto">
             <a href="{% url 'category' category=category %}"
                class="d-flex flex-column justify-content-center align-items-center"
                style="text-decoration: none; height: 95%"

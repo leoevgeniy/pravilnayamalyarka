@@ -44,6 +44,12 @@
     border: 2px solid black;
     border-radius: 50px; }
 
+.my-dropdown-item {
+  color: white !important; }
+
+.my-dropdown-item:hover {
+  color: #1A4582 !important; }
+
 .offcanvas-body {
   padding: 42px 25px 25px;
   height: auto;
@@ -637,8 +643,7 @@
     right: 40%; } }
 
 #carouselExampleIndicators {
-  width: 75%;
-  height: 400px; }
+  height: 500px; }
 
 #aboutas h3 {
   line-height: 25px;
@@ -6067,5 +6072,9 @@
   max-width: 1200px;
   margin: 0 auto;
   width: 100%; }
+
+#our_goods {
+  padding-top: 160px;
+  margin-top: -160px; }
 
 /*# sourceMappingURL=index.css.map */

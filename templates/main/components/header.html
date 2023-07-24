@@ -117,8 +117,8 @@
                     <ul class="uppercase d-flex justify-content-evenly  align-items-center menu-list my-2 "
                         role="menubar"
                         aria-label="Основные разделы на странице">
-                        <li class="" role="none" style="padding:0 35px 0 0;">
-                            <a style="color:#ffffff;font-size:13px;font-weight:600;text-transform:uppercase;{% if pagename == 'index' %} opacity: .7;{% endif %}"
+                        <li  class="" role="none" style="padding:0 35px 0 0;">
+                            <a style="color:#ffffff;font-size:13px;font-weight:600;text-transform:uppercase; {% if pagename == 'index' %} opacity: .7;{% endif %}"
                                href="{% url 'index' %}"
                                tabindex="0"
                                data-menu-submenu-hook=""
@@ -126,13 +126,13 @@
                         </li>
                         <li class="dropdown" role="none" style="padding:0 35px;">
                             <a class="nav-link dropdown-toggle my-1"
-                               href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                               href="{% url 'index' %}#our_goods" role="button"
                                style="color:#ffffff;font-size:13px;font-weight:600;text-transform:uppercase;{% if pagename == 'category' %} opacity: .7;{% endif %}"
                                data-tooltip-menu-id="203552058">Каталог
                             </a>
                             <ul class="dropdown-menu">
                                 {% for category in allcategory %}
-                                    <li><a class="dropdown-item"
+                                    <li style="color: white; background-color: #1A4582;"><a class="dropdown-item my-dropdown-item"
                                            href="{% url 'category' category=category %}">{{ category }}</a></li>
                                 {% endfor %}
 
