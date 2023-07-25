@@ -5,44 +5,44 @@
 {% endblock %}
 
 {% block services %}
-    <div class="main_container w-75" style="margin-top: 90px">
-        <p class="nazvblok">Работы по видам</p>
-        <div class="row">
-            {% for category in categories %}
-                <div class="col-6 col-lg-3 d-flex justify-content-between align-content-center my-4">
-                    <div
+{#    <div class="main_container w-75" style="margin-top: 90px">#}
+{#        <p class="nazvblok">Работы по видам</p>#}
+{#        <div class="row">#}
+{#            {% for category in categories %}#}
+{#                <div class="col-6 col-lg-3 d-flex justify-content-between align-content-center my-4">#}
+{#                    <div#}
                             {#                        href="#{{ category }}" #}
-                            id="zvonok" class="d-flex justify-content-between small text-decoration-none">
-
-                        {% if category.photo %}
-                            <img src="{{ category.photo_url }} "
-                                 class="element-animation product_details_img" alt="{{ category.name }}"
-                                 style="object-fit: cover; width: 65px; height: 65px"
-                            >
-                        {% else %}
-                            <img src="{% static "images/no_image.svg" %}"
-                                 class="card-img-top w-100 product_details_img" alt="{{ category.name }}">
-                        {% endif %}
-
-                        <p class="ps-1 my-auto"
-                           style="
-                            text-decoration: none;
-                            display: inline-block;
-                            margin: 0;
-                            font-weight: bold;
-                            font-size: 16px;
-                            line-height: 24px;
-                            color: #333333;
-                            vertical-align: middle;
-                        "
-                        >{{ category.name }}</p>
-                    </div>
-                </div>
-
-            {% endfor %}
-        </div>
-    </div>
-    <div id="goods" class="main_container text-center mx-auto">
+{#                            id="zvonok" class="d-flex justify-content-between small text-decoration-none">#}
+{##}
+{#                        {% if category.photo %}#}
+{#                            <img src="{{ category.photo_url }} "#}
+{#                                 class="element-animation product_details_img" alt="{{ category.name }}"#}
+{#                                 style="object-fit: cover; width: 65px; height: 65px"#}
+{#                            >#}
+{#                        {% else %}#}
+{#                            <img src="{% static "images/no_image.svg" %}"#}
+{#                                 class="card-img-top w-100 product_details_img" alt="{{ category.name }}">#}
+{#                        {% endif %}#}
+{##}
+{#                        <p class="ps-1 my-auto"#}
+{#                           style="#}
+{#                            text-decoration: none;#}
+{#                            display: inline-block;#}
+{#                            margin: 0;#}
+{#                            font-weight: bold;#}
+{#                            font-size: 16px;#}
+{#                            line-height: 24px;#}
+{#                            color: #333333;#}
+{#                            vertical-align: middle;#}
+{#                        "#}
+{#                        >{{ category.name }}</p>#}
+{#                    </div>#}
+{#                </div>#}
+{##}
+{#            {% endfor %}#}
+{#        </div>#}
+{#    </div>#}
+    <div id="goods" class="main_container text-center mx-auto" style="margin-top: 90px">
 
         <span id="our_goods" class=" w-100">НАШИ РАБОТЫ</span>
 
