@@ -17,8 +17,8 @@ from pathlib import Path
 # import export as export
 
 import pravilnayamalyarka
+MEDIAS_DIR = '/home/l/leoevgrv/leoevgrv.beget.tech/public_html/'
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -28,6 +28,10 @@ SECRET_KEY = 'django-insecure-ax-+nm+jr&6lnzg39*&zr=9v(j3yc^!g^%8dk3plvrr8677dqm
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+if DEBUG:
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+else:
+    BASE_DIR = MEDIAS_DIR
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'leoevgrv.beget.tech', '192.168.88.191']
 

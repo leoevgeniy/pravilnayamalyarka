@@ -31,9 +31,21 @@ $maincolor: #1A4582;
   height: 60px;
 }
 
+form {
+  p {
+    padding-top: 10px;
+  }
+}
+.photo_slider {
+  height: 500px;
+}
+
 @media screen and (max-width: 480px) {
   .goods_index_image {
     height: 40px;
+  }
+  .photo_slider {
+    height: 250px;
   }
 
 }

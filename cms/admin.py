@@ -5,7 +5,7 @@ from django.utils.safestring import mark_safe
 # from import_export.admin import ImportExportActionModelAdmin
 from import_export import resources
 from .models import Product, WorkPhoto, Service, PromoSlider, Vendor, Packprice, Introduction, Logo, Socials, Contacts, \
-    Services_files
+    Services_files, OurPhoto, Services_calculation_cost
 from cms.forms import UploadFileForm
 
 
@@ -85,29 +85,50 @@ class WorkPhotoAdm(admin.ModelAdmin):
         except:
             return mark_safe(f'<img src="" width="80px"')
 
+@admin.register(OurPhoto)
+class OurPhotoAdm(admin.ModelAdmin):
+    list_display = ('get_img', 'name', )
+    list_editable = ('name',)
+    list_per_page = 20
+    list_max_show_all = 100
+
+    def get_img(self, obj):
+        try:
+            return mark_safe(f'<img src="{obj.photo.url}" width="80px"')
+        except:
+            return mark_safe(f'<img src="" width="80px"')
+
 
 admin.site.register(Product, ProductAdm)
 admin.site.register(WorkPhoto, WorkPhotoAdm)
 
+@admin.register(Services_calculation_cost)
+class Services_calculation_costAdm(admin.ModelAdmin):
+    list_display = ('house', 'apartment', 'plant', 'inuse', )
+    list_display_links = ('house', )
+    list_editable = ('apartment', 'plant', 'inuse', )
+
+
 @admin.register(Services_files)
 class Services_filesAdm(admin.ModelAdmin):
-    list_display = ('name',)
+    list_display = ('name', 'inuse', )
+    list_editable = ('inuse', )
     list_per_page = 20
     list_max_show_all = 100
     # list_filter = ('service_category',)
     # list_editable = ('service_price', 'service_category',)
-@admin.register(Service)
-class ServicesAdm(admin.ModelAdmin):
-    list_display = ('name', 'service_category', 'service_pc', 'service_price',)
-    list_per_page = 20
-    list_max_show_all = 100
-    list_filter = ('service_category',)
-    list_editable = ('service_price', 'service_category',)
-
-    def get_urls(self):
-        urls = super().get_urls()
-        new_url = [path('upload_services/', upload_services, name='upload_services')]
-        return new_url + urls
+# @admin.register(Service)
+# class ServicesAdm(admin.ModelAdmin):
+#     list_display = ('name', 'service_category', 'service_pc', 'service_price',)
+#     list_per_page = 20
+#     list_max_show_all = 100
+#     list_filter = ('service_category',)
+#     list_editable = ('service_price', 'service_category',)
+#
+#     def get_urls(self):
+#         urls = super().get_urls()
+#         new_url = [path('upload_services/', upload_services, name='upload_services')]
+#         return new_url + urls
 
 
 @admin.register(PromoSlider)

@@ -376,7 +376,7 @@
     font-weight: 400;
     content: "еще";
     position: absolute;
-    color: black;
+    color: #1A4582;
     bottom: -10px;
     right: 10px;
     z-index: 1; } }
@@ -389,6 +389,16 @@
   font-size: 28px;
   text-align: left;
   font-weight: bold; }
+
+.calc_title {
+  font-family: Circe,sans-serif;
+  font-size: 35px;
+  font-weight: 600; }
+
+.calc_info {
+  font-family: Circe-Regular,sans-serif;
+  font-size: 25px;
+  font-weight: 300; }
 
 .product_details_img {
   height: 60%;
@@ -487,6 +497,13 @@
     line-height: 25px;
     text-transform: none; }
 
+#questions_title {
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 65px;
+  color: #333333;
+  text-transform: uppercase; }
+
 #our_goods {
   font-size: 42px;
   font-weight: 700;
@@ -518,6 +535,8 @@
       border-style: solid;
       transform: translateZ(0); }
   #our_goods {
+    font-size: 24px; }
+  #questions_title {
     font-size: 24px; }
   .subcategory_index_products_item {
     height: 328px;
@@ -646,8 +665,8 @@
   height: 500px; }
 
 #aboutas h3 {
-  line-height: 25px;
-  font-size: 20px;
+  line-height: 30px;
+  font-size: 25px;
   font-family: Circe-Regular, sans-serif; }
 
 @media screen and (max-width: 518px) {
@@ -661,6 +680,41 @@
   #carouselExampleIndicators {
     width: 75%;
     height: 150px; } }
+
+.autoflash {
+  position: relative;
+  overflow: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0); }
+
+.flash {
+  content: "";
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 100%;
+  width: 3em;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -4.5em;
+  -webkit-transform: skewX(-45deg) translateX(0);
+  transform: skewX(-45deg) translateX(0);
+  -webkit-transition: none;
+  transition: none; }
+
+.lighting {
+  webkit-animation: moving 2s ease-in-out infinite;
+  -moz-animation: moving 2s ease-in-out infinite;
+  -ms-animation: moving 2s ease-in-out infinite;
+  -o-animation: moving 2s ease-in-out infinite;
+  animation: moving 2s ease-in-out infinite; }
+
+@keyframes moving {
+  30% {
+    webkit-transform: skewX(-45deg) translateX(20em);
+    transform: skewX(-45deg) translateX(20em); }
+  100% {
+    webkit-transform: skewX(-45deg) translateX(20em);
+    transform: skewX(-45deg) translateX(20em); } }
 
 .tn-img {
   transform: rotate(45deg);
@@ -6064,9 +6118,17 @@
 .goods_index_image {
   height: 60px; }
 
+form p {
+  padding-top: 10px; }
+
+.photo_slider {
+  height: 500px; }
+
 @media screen and (max-width: 480px) {
   .goods_index_image {
-    height: 40px; } }
+    height: 40px; }
+  .photo_slider {
+    height: 250px; } }
 
 .main_container {
   max-width: 1200px;

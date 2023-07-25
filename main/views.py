@@ -3,7 +3,7 @@ import json
 from datetime import date
 from cms.forms import UploadFileForm, SearchForm
 from cms.models import Product, Service, PromoSlider, WorkPhoto, Logo, Introduction, Socials, Contacts, Packprice, \
-    Services_files
+    Services_files, OurPhoto, Services_calculation_cost
 from crm.models import Order, StatusCrm
 from .models import Category, SubCategory, ServiceCategory
 from crm.forms import OrderForm
@@ -100,7 +100,7 @@ def index(request):
     return render(request, 'main/index.html', disc)
 def about(request):
     pricelist = Services_files.objects.all()[0]
-    work = WorkPhoto.objects.all()
+    work = OurPhoto.objects.all()
     work_landscape = []
     work_portrate = []
     for w in work:
@@ -341,6 +341,14 @@ def services(request):
     except:
         logo = ''
     try:
+        download = Services_files.objects.get(inuse=True)
+    except:
+        download = ''
+    try:
+        calc = Services_calculation_cost.objects.get(inuse=True)
+    except:
+        calc = ''
+    try:
         contacts = Contacts.objects.all()
     except:
         contacts = ''
@@ -349,9 +357,11 @@ def services(request):
 
     allcategory = Category.objects.all()
     allsubcategory = SubCategory.objects.all()
-    pricelist = Services_files.objects.all()[0]
+    # pricelist = Services_files.objects.all()[0]
     disc = {
-        'pricelist': pricelist,
+        'calc': calc,
+        'download': download,
+        # 'pricelist': pricelist,
         'categories': categories,
         'work': work,
         'pagename': 'services',

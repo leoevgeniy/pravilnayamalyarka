@@ -108,6 +108,14 @@ $maincolor: #1A4582;
   }
 
 }
+#questions_title {
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 65px;
+  color: #333333;
+  text-transform: uppercase;
+
+}
 #our_goods {
 
   font-size: 42px;
@@ -151,6 +159,10 @@ $maincolor: #1A4582;
   //}
   #our_goods {
     font-size: 24px;
+  }
+  #questions_title {
+    font-size: 24px;
+
   }
   .subcategory_index_products_item {
     height: 328px;

@@ -1,3 +1,49 @@
+
+.autoflash{
+  position: relative;
+  overflow: hidden;
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+
+.flash{
+  content: "";
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 100%;
+  width: 3em;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -4.5em;
+  -webkit-transform: skewX(-45deg) translateX(0);
+  transform: skewX(-45deg) translateX(0);
+  -webkit-transition: none;
+  transition: none;
+}
+
+.lighting {
+  webkit-animation: moving 2s ease-in-out infinite;
+  -moz-animation: moving 2s ease-in-out infinite;
+  -ms-animation: moving 2s ease-in-out infinite;
+  -o-animation: moving 2s ease-in-out infinite;
+  animation: moving 2s ease-in-out infinite;
+
+}
+
+@keyframes moving {
+  30% {  webkit-transform: skewX(-45deg) translateX(20em);
+    transform: skewX(-45deg) translateX(20em);
+
+  }
+
+  100% {  webkit-transform: skewX(-45deg) translateX(20em);
+    transform: skewX(-45deg) translateX(20em);
+
+  }
+}
+
+
+
 .tn-img {
   transform: rotate(45deg);
   background-position: center center;

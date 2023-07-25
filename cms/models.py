@@ -148,9 +148,37 @@ class WorkPhoto(models.Model):
         verbose_name_plural = 'Фото работ'
 
 
+class OurPhoto(models.Model):
+    name = models.CharField(max_length=256, blank=True, null=True, verbose_name='Наименование')
+    photo = models.ImageField(upload_to="images/ourteam", null=True, blank=True, verbose_name="Наши фото")
+
+    @property
+    def photo_url(self):
+        if self.photo and hasattr(self.photo, 'url'):
+            return self.photo.url
+
+    class Meta:
+        verbose_name = 'Наши фото'
+        verbose_name_plural = 'Наши фото'
+
+
 class Services_files(models.Model):
     name = models.CharField(max_length=256, blank=True, null=True, verbose_name='Наименование')
     file = models.FileField(upload_to="images/pricelists", null=True, blank=True, verbose_name="Файл с прайс листом")
+    inuse = models.BooleanField(null=True, blank=True, verbose_name='Использовать на сайте')
+
+    def save(self, *args, **kwargs):
+        if self.inuse:
+            try:
+                temp = Services_files.objects.get(inuse=True)
+                if self != temp:
+                    temp.inuse = False
+                    temp.save()
+            except Services_files.DoesNotExist:
+                pass
+        super(Services_files, self).save(*args, **kwargs)
+
+
 
     @property
     def file_url(self):
@@ -159,6 +187,30 @@ class Services_files(models.Model):
     class Meta:
         verbose_name = 'Прайс лист'
         verbose_name_plural = 'Прайс листы'
+
+
+class Services_calculation_cost(models.Model):
+    house = models.CharField(max_length=256, blank=True, null=True, verbose_name='Дом')
+    apartment = models.CharField(max_length=256, blank=True, null=True, verbose_name='Квартира')
+    plant = models.CharField(max_length=256, blank=True, null=True, verbose_name='Промышленное помещение')
+    inuse = models.BooleanField(null=True, blank=True, verbose_name='Использовать на сайте')
+
+    def save(self, *args, **kwargs):
+        if self.inuse:
+            try:
+                temp = Services_calculation_cost.objects.get(inuse=True)
+                if self != temp:
+                    temp.inuse = False
+                    temp.save()
+            except Services_calculation_cost.DoesNotExist:
+                pass
+        super(Services_calculation_cost, self).save(*args, **kwargs)
+
+
+
+    class Meta:
+        verbose_name = 'Стоимость работ для калькулятора'
+        verbose_name_plural = 'Стоимости работ для калькулятора'
 
 
 class Service(models.Model):

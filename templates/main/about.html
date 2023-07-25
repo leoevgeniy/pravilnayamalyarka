@@ -12,24 +12,27 @@
             <span id="our_goods" class=" w-100">О НАС</span>
             <div id="goods_line" class="mx-auto mb-3"></div>
 
-            <div
+            <div class="mb-3"
                     style="">
                 <h3 class="tn-atom w-75 mx-auto"
                     style="">
-                    «Правильная малярка» —
-                    это профессиональный малярный центр, включающий в себя: <br> - магазин, где вы сможете
-                    приобрести
-                    всё необходимое для качественной финишной отделки. Только популярные бренды лакокрасочной
-                    продукции:
-                    шпаклевки, краски, оборудование, ручной инструмент, расходные материалы; <br> - услуги
-                    колористики -
-                    при помощи высококлассного колеровочного оборудования мы создадим для вас краску любого на
-                    ваше
-                    усмотрение цвета и оттенка. <br> - услуги мастеров строительно-малярных работ с многолетним
-                    стажем.
-                    Консультация специалистов и сопровождение вашего проекта на протяжении всего срока ведения
-                    работ;
-                    <br> - разработку дизайн-проектов; <br> - мастер-классы для маляров. <br><br></h3></div>
+                    {{ intro.text }}
+{#                    «Правильная малярка» —#}
+{#                    это профессиональный малярный центр, включающий в себя: <br> - магазин, где вы сможете#}
+{#                    приобрести#}
+{#                    всё необходимое для качественной финишной отделки. Только популярные бренды лакокрасочной#}
+{#                    продукции:#}
+{#                    шпаклевки, краски, оборудование, ручной инструмент, расходные материалы; <br> - услуги#}
+{#                    колористики -#}
+{#                    при помощи высококлассного колеровочного оборудования мы создадим для вас краску любого на#}
+{#                    ваше#}
+{#                    усмотрение цвета и оттенка. <br> - услуги мастеров строительно-малярных работ с многолетним#}
+{#                    стажем.#}
+{#                    Консультация специалистов и сопровождение вашего проекта на протяжении всего срока ведения#}
+{#                    работ;#}
+{#                    <br> - разработку дизайн-проектов; <br> - мастер-классы для маляров. <br><br>#}
+                </h3>
+            </div>
 
         </div>
 
@@ -65,30 +68,30 @@
         {#            </div>#}
         {#        </div>#}
         <div class="">
-            <div id="goods" class="main_container text-center mx-auto">
-                <span id="our_goods" class=" w-100">НАШИ РАБОТЫ</span>
+            <div class="main_container text-center mx-auto">
+{#                <span id="our_goods" class=" w-100">НАШИ РАБОТЫ</span>#}
                 <div id="goods_line" class="mx-auto mb-3"></div>
 
-                <div
+                <div class="mb-3 photo_slider"
                         style="">
                     {% include 'main/components/services_category_clider.html' %}
                 </div>
 
 
             </div>
-            <div class="my-5 text-center">
-                {% if pricelist %}
-                    <a href="{{ pricelist.file_url }}"
-                       download="filename"
-
-                       class="text-decoration-none"
-                    >
-                        <button type="button" class="btn btn-primary p-3 fs-2">Скачать прайс-лист</button>
-
-
-                    </a>
-                {% endif %}
-            </div>
+{#            <div class="my-5 text-center">#}
+{#                {% if pricelist %}#}
+{#                    <a href="{{ pricelist.file_url }}"#}
+{#                       download="filename"#}
+{##}
+{#                       class="text-decoration-none"#}
+{#                    >#}
+{#                        <button type="button" class="btn btn-primary p-3 fs-2">Скачать прайс-лист</button>#}
+{##}
+{##}
+{#                    </a>#}
+{#                {% endif %}#}
+{#            </div>#}
 
             <div style="background-color: lightgrey;">
                 <div id="pluses" class="main_container text-center mx-auto pt-5">
@@ -226,7 +229,7 @@
                             {{ form.as_p }}
                             <div class="modal-footer">
                                 <button type="submit"
-                                        class="btn btn-primary"
+                                        class="btn btn-primary autoflash my-3"
                                         style="text-decoration: none; font-size: 14px;
                                        width: 190px;
                                        margin: auto auto;
@@ -235,7 +238,9 @@
                                         line-height: 1.55;
                                         font-weight: 600; "
                                 >
-                                    Позвоните мне
+                                    <div class="flash lighting" style="height: 60px;width: 40px;top: 0px;left: -80px;"></div>
+
+                                    Мы Вам перезвоним
                                 </button>
                             </div>
                         </form>
@@ -248,7 +253,7 @@ line-height: 1.55;
 font-weight: 400;
 background-position: center center;
 border-color: transparent;
-border-style: solid;">Нажимая кнопку "Позвоните мне" вы соглашаетесь с политикой конфиденциальности</span>
+border-style: solid;">Нажимая кнопку "Мы Вам перезвоним" вы соглашаетесь с политикой конфиденциальности</span>
                 </div>
                 {#    <div class="t396__elem tn-elem tn-elem__2056596141594812414867" data-elem-id="1594812414867" data-elem-type="image"#}
                 {#         data-field-top-value="400" data-field-left-value="-370" data-field-width-value="380"#}

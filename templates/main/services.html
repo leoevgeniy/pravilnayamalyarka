@@ -5,25 +5,27 @@
 {% endblock %}
 
 {% block services %}
-    <div class="main_container w-75"  style="margin-top: 90px">
+    <div class="main_container w-75" style="margin-top: 90px">
         <p class="nazvblok">Работы по видам</p>
         <div class="row">
             {% for category in categories %}
                 <div class="col-6 col-lg-3 d-flex justify-content-between align-content-center my-4">
-                <a href="#{{ category }}" id="zvonok" class="d-flex justify-content-between small text-decoration-none">
+                    <div
+                            {#                        href="#{{ category }}" #}
+                            id="zvonok" class="d-flex justify-content-between small text-decoration-none">
 
-                {% if category.photo %}
-                    <img src="{{ category.photo_url }} "
-                         class="element-animation product_details_img" alt="{{ category.name }}"
-                         style="object-fit: cover; width: 65px; height: 65px"
-                    >
-                {% else %}
-                    <img src="{% static "images/no_image.svg" %}"
-                         class="card-img-top w-100 product_details_img" alt="{{ category.name }}">
-                {% endif %}
+                        {% if category.photo %}
+                            <img src="{{ category.photo_url }} "
+                                 class="element-animation product_details_img" alt="{{ category.name }}"
+                                 style="object-fit: cover; width: 65px; height: 65px"
+                            >
+                        {% else %}
+                            <img src="{% static "images/no_image.svg" %}"
+                                 class="card-img-top w-100 product_details_img" alt="{{ category.name }}">
+                        {% endif %}
 
-                    <p class="ps-1 my-auto"
-                        style="
+                        <p class="ps-1 my-auto"
+                           style="
                             text-decoration: none;
                             display: inline-block;
                             margin: 0;
@@ -33,101 +35,214 @@
                             color: #333333;
                             vertical-align: middle;
                         "
-                    >{{ category.name }}</p>
-                </a>
+                        >{{ category.name }}</p>
+                    </div>
                 </div>
 
             {% endfor %}
         </div>
     </div>
-    <div id="goods_line" class="mx-auto mb-3"></div>
+    <div id="goods" class="main_container text-center mx-auto">
 
-    <div class="main_container mb-5"
-            style="">
+        <span id="our_goods" class=" w-100">НАШИ РАБОТЫ</span>
+
+        <div id="goods_line" class="mx-auto mb-3">
+        </div>
+    </div>
+
+    <div class="main_container mb-5 text-center photo_slider"
+         style="">
+
         {% include 'main/components/services_category_clider.html' %}
     </div>
 
-    <table class="main_container table table-striped-columns w-100 services_table">
-        <thead>
-        <tr style="background-color: #1A4582; color: white">
-            <th scope="col">
-                Наименование работ/материала
-            </th>
-            <th scope="col">
-                Единица измерения
-            </th>
-            <th scope="col">
-                Цена за единицу
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for cat, services in catalog.items %}
-            <tr id="{{ cat }}">
-                <th colspan="3" class="text-center" style="background-color: lightgrey;">{{ cat }}</th>
-            </tr>
-            {% for item in services %}
-
-                <tr>
-                    <th>{{ item.name }}</th>
-                    <th>{{ item.service_pc }}</th>
-                    <th>{{ item.service_price }}</th>
-                </tr>
-            {% endfor %}
-
-
-        {% endfor %}
-        </tbody>
-    </table>
-    <div class="my-5 text-center">
-        {% if pricelist %}
-            <a href="{{ pricelist.file_url }}"
-               download="filename"
-
-               class="text-decoration-none"
-            >
-                <button type="button" class="btn btn-primary p-3 fs-2">Скачать прайс-лист</button>
-
-
-            </a>
-        {% endif %}
-    </div>
-    <div class="main_container d-flex my-3 justify-content-between align-items-center w-100 position-relative">
-        {#    <div class="modal fade" id="headercallback" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">#}
-        {#        <div class="modal-dialog">#}
-        <div class="d-none d-lg-block w-50">
-            <img src="{% static 'images/fingerpointer 1.jpg' %}" alt="Рабочий" class="w-100">
+    <div class="t-container t-align_center d-flex flex-column main_container">
+        <div class="t-col t-col_10 t-prefix_1 my-3">
+            <h2 class="main_container calc_title" field="title" style="">Рассчитайте предварительную
+                стоимость покраски
+            </h2>
+            {#            <h2 class="main_container calc_info mt-3" field="title" style="">После расчета, мы вам перезвоним для уточнения#}
+            {#                стоимости</h2>#}
         </div>
-        <div class="mx-5">
-            <div class="">
-                <div id="" class="text-center mx-auto pt-5">
-                            <span id="our_goods" class=" w-100"
-                                  style="line-height: 1.3">У ВАС ЕЩЕ ОСТАЛИСЬ ВОПРОСЫ?</span>
-                    <div id="goods_line" class="mx-auto my-3"></div>
+        <div class="row d-flex justify-content-center align-items-start w-100">
+            <div class="col-12 col-lg-4 object_type d-flex flex-column" id="object_type">
+                <span class="mb-3 fw-bold fs-4">Вид объекта</span>
+                <div class="form-check" style="padding-left: 35%; width: 75%">
+                    <input class="form-check-input" type="radio"
+                           name="flexRadioDefault"
+                           id="flexRadioDefault1"
+                           data-cost={{ calc.house }}
+                                   checked>
+                    <label class="form-check-label float-start" for="flexRadioDefault1">
+                        Дом
+                    </label>
+                </div>
+                <div class="form-check" style="padding-left: 35%; width: 75%">
+                    <input class="form-check-input" type="radio" data-cost={{ calc.apartment }} name="flexRadioDefault"
+                           id="flexRadioDefault2">
+                    <label class="form-check-label float-start" for="flexRadioDefault2">
+                        Квартира
+                    </label>
+                </div>
+                <div class="form-check" style="padding-left: 35%; width: 75%">
+                    <input class="form-check-input" type="radio" data-cost={{ calc.plant }} name="flexRadioDefault"
+                           id="flexRadioDefault3">
+                    <label class="form-check-label float-start align-text-bottom" style="text-align: left"
+                           for="flexRadioDefault3">
+                        Промышленное помещение
+                    </label>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4 meters_amount d-flex flex-column align-items-center my-5">
+                <span class="mb-3 fw-bold fs-4">Площадь покраски</span>
+                <div class="t706__product-plusminus t-descr t-descr_sm w-75 px-0" style="">
+                            <span class="" id="meters-minus" style="cursor: pointer"
+                                    {#                                  data-id="{{ cart_product.product.vendor_code }}"#}
+                                    {#                                  data-weight="{{ cart_product.weight.id }}"#}
+                            >
+                            <img
+                                    src="https://static.tildacdn.com/lib/linea/c8eecd27-9482-6c4f-7896-3eb09f6a1091/arrows_circle_minus.svg"
+                                    style="width:16px;height:16px;border:0;">
+                            </span>
+                    <input
+                            class="text-center px-3" id="meters-quantity"
+                            value="1"
+                            placeholder="1"
+                            style="width: 80px"
+                            {#                            data-id="{{ cart_product.product.vendor_code }}"#}
+                            {#                            data-weight="{{ cart_product.weight.id }}"#}
+                    >
+
+                    <span class="" id="meters-plus" style="cursor: pointer"
+                            {#                          data-id="{{ cart_product.product.vendor_code }}"#}
+                            {#                          data-name="{{ cart_product.product.name }}"#}
+                            {#                          data-price="{{ cart_product.weight.price }}"#}
+                            {#                          data-weight="{{ cart_product.weight.id }}"#}
+                    >
+                            <img
+                                    src="https://static.tildacdn.com/lib/linea/c47d1e0c-6880-dc39-ae34-521197f7fba7/arrows_circle_plus.svg"
+                                    style="width:16px;height:16px;border:0;">
+                            </span>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4 d-flex flex-column align-items-center">
+                <span class="mb-3 fw-bold fs-4">Укрываемые работы</span>
+                <span class="mb-3 fs-6"
+                      style="width: 90%">Есть ли у вас окна, мебель и другие вещи которые нужно укрыть</span>
+                <div id="cover_type">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio"
+                               name="Default"
+                               id="Default1"
+                               data-cost="1.25"
+                        >
+                        <label class="form-check-label" for="Default1">
+                            Да
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" data-cost="1" name="Default"
+                               id="Default2" checked>
+                        <label class="form-check-label" for="Default2">
+                            Нет
+                        </label>
+                    </div>
 
                 </div>
             </div>
-            <div class="modal-body">
-                <form action="{% url 'thanks' %}" method="POST">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <div class="modal-footer">
-                        <button type="submit"
-                                class="btn btn-primary"
-                                style="text-decoration: none; font-size: 14px;
+        </div>
+        <h2 class="main_container calc_info mt-3 fs-6" field="title" style="">Окончательная стоимость может отличаться,
+            как в большую, так и в меньшую стоимость</h2>
+
+        <h2 class="main_container calc_info mt-3 fw-bold" field="title" style="">Стоимость: <span
+                id="total_cost"></span></h2>
+
+        {#    <table class="main_container table table-striped-columns w-100 services_table">#}
+        {#        <thead>#}
+        {#        <tr style="background-color: #1A4582; color: white">#}
+        {#            <th scope="col">#}
+        {#                Наименование работ/материала#}
+        {#            </th>#}
+        {#            <th scope="col">#}
+        {#                Единица измерения#}
+        {#            </th>#}
+        {#            <th scope="col">#}
+        {#                Цена за единицу#}
+        {#            </th>#}
+        {#        </tr>#}
+        {#        </thead>#}
+        {#        <tbody>#}
+        {#        {% for cat, services in catalog.items %}#}
+        {#            <tr id="{{ cat }}">#}
+        {#                <th colspan="3" class="text-center" style="background-color: lightgrey;">{{ cat }}</th>#}
+        {#            </tr>#}
+        {#            {% for item in services %}#}
+        {##}
+        {#                <tr>#}
+        {#                    <th>{{ item.name }}</th>#}
+        {#                    <th>{{ item.service_pc }}</th>#}
+        {#                    <th>{{ item.service_price }}</th>#}
+        {#                </tr>#}
+        {#            {% endfor %}#}
+        {##}
+        {##}
+        {#        {% endfor %}#}
+        {#        </tbody>#}
+        {#    </table>#}
+        {% if download %}
+
+
+            <div class="my-5 text-center">
+                <a href="{{ download.file_url }}"
+                   download="filename"
+
+                   class="text-decoration-none"
+                >
+                    <button type="button" class="btn btn-primary p-3 fs-2">Скачать прайс-лист</button>
+
+
+                </a>
+            </div>
+        {% endif %}
+        <div class="main_container d-flex my-3 justify-content-between align-items-center w-100 position-relative">
+            {#    <div class="modal fade" id="headercallback" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">#}
+            {#        <div class="modal-dialog">#}
+            <div class="d-none d-lg-block w-50">
+                <img src="{% static 'images/fingerpointer 1.jpg' %}" alt="Рабочий" class="w-100">
+            </div>
+            <div class="mx-5">
+                <div class="">
+                    <div id="" class="text-center mx-auto pt-3">
+                            <span id='questions_title' class=" w-100"
+                                  style="line-height: 1.3;
+                                    ">У ВАС ЕЩЕ ОСТАЛИСЬ ВОПРОСЫ?</span>
+                        <div id="goods_line" class="mx-auto my-3"></div>
+
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'thanks' %}" method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="modal-footer">
+                            <button type="submit"
+                                    class="btn btn-primary autoflash my-3"
+                                    style="text-decoration: none; font-size: 14px;
                                        width: 190px;
                                        margin: auto auto;
                                        border-radius: 50px;
                                         font-family: 'Arial',Arial,sans-serif;
                                         line-height: 1.55;
                                         font-weight: 600; "
-                        >
-                            Позвоните мне
-                        </button>
-                    </div>
-                </form>
-            </div>
-            <span class="" style="color: #000000;
+                            >
+                                <div class="flash lighting" style="height: 60px;width: 40px;top: 0px;left: -80px;"></div>
+
+                                Мы Вам перезвоним
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <span class="" style="color: #000000;
         width: 70%;
 font-size: 10px;
 font-family: 'Circe',Arial,sans-serif;
@@ -135,46 +250,46 @@ line-height: 1.55;
 font-weight: 400;
 background-position: center center;
 border-color: transparent;
-border-style: solid;">Нажимая кнопку "Позвоните мне" вы соглашаетесь с политикой конфиденциальности</span>
-        </div>
-        {#    <div class="t396__elem tn-elem tn-elem__2056596141594812414867" data-elem-id="1594812414867" data-elem-type="image"#}
-        {#         data-field-top-value="400" data-field-left-value="-370" data-field-width-value="380"#}
-        {#         data-field-axisy-value="top" data-field-axisx-value="left" data-field-container-value="grid"#}
-        {#         data-field-topunits-value="px" data-field-leftunits-value="px" data-field-heightunits-value=""#}
-        {#         data-field-widthunits-value="px" data-field-filewidth-value="356" data-field-fileheight-value="414"#}
-        {#         data-field-top-res-320-value="510" data-field-left-res-320-value="210" data-field-width-res-320-value="210"#}
-        {#         data-field-top-res-480-value="425" data-field-left-res-480-value="310" data-field-width-res-480-value="260"#}
-        {#         data-field-top-res-640-value="90" data-field-left-res-640-value="-120" data-field-width-res-640-value="210"#}
-        {#         data-field-top-res-960-value="450" data-field-left-res-960-value="-370"#}
-        {#         data-fields="img,width,filewidth,fileheight,top,left,container,axisx,axisy,widthunits,leftunits,topunits"#}
-        {#         style="left: -300px; top: 20px; width: 380px; z-index: -1; overflow: hidden">#}
-        {#        <div class="tn-img" ><img class="tn-atom__img t-img loaded"#}
-        {#                                  data-original="https://static.tildacdn.com/tild3633-6265-4438-b031-373766393036/68a350725371755beaf0.png"#}
-        {#                                  imgfield="tn_img_1594812414867"#}
-        {#                                  src="https://thumb.tildacdn.com/tild3633-6265-4438-b031-373766393036/-/resize/456x/-/format/webp/68a350725371755beaf0.png">#}
-        {#        </div>#}
-        {#    </div>#}
-        {#    <div class="t396__elem tn-elem tn-elem__2056596141594812386742" data-elem-id="1594812386742" data-elem-type="image"#}
-        {#         data-field-top-value="115" data-field-left-value="1290" data-field-width-value="400"#}
-        {#         data-field-axisy-value="top" data-field-axisx-value="left" data-field-container-value="grid"#}
-        {#         data-field-topunits-value="px" data-field-leftunits-value="px" data-field-heightunits-value=""#}
-        {#         data-field-widthunits-value="px" data-field-filewidth-value="362" data-field-fileheight-value="414"#}
-        {#         data-field-top-res-320-value="110" data-field-left-res-320-value="240" data-field-width-res-320-value="190"#}
-        {#         data-field-top-res-480-value="25" data-field-left-res-480-value="370" data-field-top-res-640-value="-10"#}
-        {#         data-field-left-res-640-value="500" data-field-width-res-640-value="290" data-field-top-res-960-value="-60"#}
-        {#         data-field-left-res-960-value="780"#}
-        {#         data-fields="img,width,filewidth,fileheight,top,left,container,axisx,axisy,widthunits,leftunits,topunits"#}
-        {#         style="right: -200px; top: 115px; width: 200px; z-index: -1; overflow: hidden">#}
-        {#        <div class="tn-img1"><img class="tn-atom__img t-img loaded"#}
-        {#                                  data-original="https://static.tildacdn.com/tild3464-6264-4632-a364-333630353336/photo.png"#}
-        {#                                  imgfield="tn_img_1594812386742"#}
-        {#                                  src="https://thumb.tildacdn.com/tild3464-6264-4632-a364-333630353336/-/resize/480x/-/format/webp/photo.png">#}
-        {#        </div>#}
-        {#    </div>#}
-        {#        </div>#}
-        {#    </div>#}
+border-style: solid;">Нажимая кнопку "Мы Вам перезвоним" вы соглашаетесь с политикой конфиденциальности</span>
+            </div>
+            {#    <div class="t396__elem tn-elem tn-elem__2056596141594812414867" data-elem-id="1594812414867" data-elem-type="image"#}
+            {#         data-field-top-value="400" data-field-left-value="-370" data-field-width-value="380"#}
+            {#         data-field-axisy-value="top" data-field-axisx-value="left" data-field-container-value="grid"#}
+            {#         data-field-topunits-value="px" data-field-leftunits-value="px" data-field-heightunits-value=""#}
+            {#         data-field-widthunits-value="px" data-field-filewidth-value="356" data-field-fileheight-value="414"#}
+            {#         data-field-top-res-320-value="510" data-field-left-res-320-value="210" data-field-width-res-320-value="210"#}
+            {#         data-field-top-res-480-value="425" data-field-left-res-480-value="310" data-field-width-res-480-value="260"#}
+            {#         data-field-top-res-640-value="90" data-field-left-res-640-value="-120" data-field-width-res-640-value="210"#}
+            {#         data-field-top-res-960-value="450" data-field-left-res-960-value="-370"#}
+            {#         data-fields="img,width,filewidth,fileheight,top,left,container,axisx,axisy,widthunits,leftunits,topunits"#}
+            {#         style="left: -300px; top: 20px; width: 380px; z-index: -1; overflow: hidden">#}
+            {#        <div class="tn-img" ><img class="tn-atom__img t-img loaded"#}
+            {#                                  data-original="https://static.tildacdn.com/tild3633-6265-4438-b031-373766393036/68a350725371755beaf0.png"#}
+            {#                                  imgfield="tn_img_1594812414867"#}
+            {#                                  src="https://thumb.tildacdn.com/tild3633-6265-4438-b031-373766393036/-/resize/456x/-/format/webp/68a350725371755beaf0.png">#}
+            {#        </div>#}
+            {#    </div>#}
+            {#    <div class="t396__elem tn-elem tn-elem__2056596141594812386742" data-elem-id="1594812386742" data-elem-type="image"#}
+            {#         data-field-top-value="115" data-field-left-value="1290" data-field-width-value="400"#}
+            {#         data-field-axisy-value="top" data-field-axisx-value="left" data-field-container-value="grid"#}
+            {#         data-field-topunits-value="px" data-field-leftunits-value="px" data-field-heightunits-value=""#}
+            {#         data-field-widthunits-value="px" data-field-filewidth-value="362" data-field-fileheight-value="414"#}
+            {#         data-field-top-res-320-value="110" data-field-left-res-320-value="240" data-field-width-res-320-value="190"#}
+            {#         data-field-top-res-480-value="25" data-field-left-res-480-value="370" data-field-top-res-640-value="-10"#}
+            {#         data-field-left-res-640-value="500" data-field-width-res-640-value="290" data-field-top-res-960-value="-60"#}
+            {#         data-field-left-res-960-value="780"#}
+            {#         data-fields="img,width,filewidth,fileheight,top,left,container,axisx,axisy,widthunits,leftunits,topunits"#}
+            {#         style="right: -200px; top: 115px; width: 200px; z-index: -1; overflow: hidden">#}
+            {#        <div class="tn-img1"><img class="tn-atom__img t-img loaded"#}
+            {#                                  data-original="https://static.tildacdn.com/tild3464-6264-4632-a364-333630353336/photo.png"#}
+            {#                                  imgfield="tn_img_1594812386742"#}
+            {#                                  src="https://thumb.tildacdn.com/tild3464-6264-4632-a364-333630353336/-/resize/480x/-/format/webp/photo.png">#}
+            {#        </div>#}
+            {#    </div>#}
+            {#        </div>#}
+            {#    </div>#}
 
-    </div>
+        </div>
 
 
 
