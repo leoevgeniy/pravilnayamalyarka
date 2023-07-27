@@ -33,7 +33,7 @@ if DEBUG:
 else:
     BASE_DIR = MEDIAS_DIR
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'leoevgrv.beget.tech', '192.168.88.191']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'leoevgrv.beget.tech', '192.168.88.191',  '10.195.122.51']
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost",

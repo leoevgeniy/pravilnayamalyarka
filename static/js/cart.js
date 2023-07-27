@@ -422,8 +422,8 @@ const updateQty = () => {
     } catch {
     }
     try {
-        const counter = document.getElementsByClassName('.js-carticon-counter')[0]
-        counter.text(getAllQty())
+        const counter = document.querySelector('.js-carticon-counter')
+        counter.innerHTML = String(getAllQty())
     } catch {
     }
     // $('.cart-amount-footer').text(getAllQty())
@@ -436,8 +436,8 @@ const updateQty = () => {
             // $('.cart-amount-footer').addClass('d-none')
         } else {
             // $('.cart-confirm-btn').removeClass('disabled')
-            cartstick.style.display = 'block'
-            cartstick.children[1].textContent = String(getAllQty())
+            cartstick.style.cssText = 'display: block;   position: fixed; z-index: 99999; top: 120px; right: 20px;'
+            // cartstick.children[1].textContent = String(getAllQty())
             // $('.cart-amount-footer').removeClass('d-none')
 
         }
@@ -651,3 +651,7 @@ const clearcart = () => {
 //         }, body: JSON.stringify(cart)
 //     }).then()
 // }
+
+// const small_cart = document.getElementById('cart_sticked')
+// console.log(window.ready)
+// alert(small_cart.style.position)
