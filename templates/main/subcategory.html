@@ -2,6 +2,17 @@
 {% load static %}
 {% block page-title %}
     <title>{{ subcategory }}</title>
+    <meta name="keywords"
+          content="краска, интерьерная краска, премиум краска, лакокрасочные материалы, лак, шпатлевка, лкм, ">
+    <meta property="og:title" content="{{ subcategory }}">
+    <meta property="og:description"
+          content="{{ subcategory.description }}">
+
+
+    <title>{{ subcategory }}</title>
+    <meta name="description" content="{{ subcategory.description }}">
+    <meta name="title" content="{{ subcategory }}">
+
 {% endblock %}
 {% block subcategory %}
 

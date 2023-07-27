@@ -2,6 +2,14 @@
 {% load static %}
 {% block page-title %}
     <title>{{ product.name }}</title>
+    <meta name="description"
+          content="{{ product.description }}">
+    <meta name="keywords"
+          content="доставка лакокрасочных материалов, безналичная оплата лакокрасочная компания">
+    <meta property="og:title" content="{{ product.name }}">
+    <meta property="og:description"
+          content="{{ product.description }}">
+
 {% endblock %}
 {% block product_details %}
     <nav class="main_container subcategory_menu navbar navbar bg-body-tertiary category_catalog">
