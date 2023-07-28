@@ -4,6 +4,9 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 import json
 from datetime import date
+
+from openpyxl.styles import Border, Side
+
 from cms.forms import UploadFileForm, SearchForm
 from cms.models import Product, Service, PromoSlider, WorkPhoto, Logo, Introduction, Socials, Contacts, Packprice, \
     Services_files, OurPhoto, Services_calculation_cost
@@ -667,18 +670,38 @@ def createbill(request):
     # workbook = xlrd.open_workbook(BASE_DIR + '/static/billtamplate.xlsx', on_demand=True)
     pxl_doc = openpyxl.load_workbook(BASE_DIR + '/static/billtamplate.xlsx')
     sheet = pxl_doc.active
-
+    thins = Side(border_style="medium", color="ffffff")
+    double = Side(border_style="dashDot", color="ff0000")
+    border = Border(
+        left=Side(border_style=None, color='FF000000'),
+        right=Side(border_style=None, color='FF000000'),
+        top=Side(border_style=None, color='FF000000'),
+        bottom=Side(border_style=None, color='FF000000'),
+        diagonal=Side(border_style=None, color='FF000000'),
+        diagonal_direction=0,
+        outline=Side(border_style=None, color='FF000000'),
+        vertical=Side(border_style=None, color='FF000000'),
+        horizontal=Side(border_style=None, color='FF000000')
+    )
     row = 18
-    sheet.insert_rows(19)
+    if len(orderitems) > 3:
+        for i in range(len(orderitems) - 3):
+            sheet.insert_rows(row)
     # sheet.append_rows(18)
+    count_row = 0
     for item in orderitems:
         for cell in ['A', 'B', 'C', 'D', 'E', 'F']:
+            if cell == 'A':
+                sheet[cell + str(row + count_row)].border = Border(left=thins)
+            elif cell == "F":
+                sheet[cell + str(row + count_row)].border = Border(right=thins)
 
-            print(sheet[cell+str(row)].value)
+            print(sheet[cell + str(row)].value)
+        count_row += 1
         row += 1
 
-    pxl_doc.save(BASE_DIR + '/media/order'+ request.GET.get('order_id') + '.xlsx')
-    data = open(BASE_DIR + '/media/order'+ request.GET.get('order_id') + '.xlsx', "br").read()
+    pxl_doc.save(BASE_DIR + '/media/order' + request.GET.get('order_id') + '.xlsx')
+    data = open(BASE_DIR + '/media/order' + request.GET.get('order_id') + '.xlsx', "br").read()
 
     response = HttpResponse(data, content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
     response['Content-Desposition'] = 'attachment; filename=bill.xlsx'
