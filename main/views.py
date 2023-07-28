@@ -1,10 +1,13 @@
+import openpyxl
+import xlrd
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 import json
 from datetime import date
 from cms.forms import UploadFileForm, SearchForm
 from cms.models import Product, Service, PromoSlider, WorkPhoto, Logo, Introduction, Socials, Contacts, Packprice, \
     Services_files, OurPhoto, Services_calculation_cost
-from crm.models import Order, StatusCrm
+from crm.models import Order, StatusCrm, OrderItems
 from .models import Category, SubCategory, ServiceCategory
 from crm.forms import OrderForm
 from telebot.sendmessage import send_telegram
@@ -13,6 +16,7 @@ from pravilnayamalyarka.settings import BASE_DIR
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from meta.views import Meta
 from urllib.parse import unquote
+import xlwt
 
 
 # Create your views here.
@@ -29,9 +33,9 @@ def index(request):
     for w in work:
         with Image.open(BASE_DIR + w.photo_url) as img:
             width, height = img.size
-            if width/height >= 1.77 and len(work_landscape) < 11:
+            if width / height >= 1.77 and len(work_landscape) < 11:
                 work_landscape.append(w)
-            elif width/height < 1 and len(work_portrate) < 11:
+            elif width / height < 1 and len(work_portrate) < 11:
                 work_portrate.append(w)
     categories = Category.objects.all()
     subcategories = SubCategory.objects.all()
@@ -56,7 +60,7 @@ def index(request):
         title="Правильная малярка",
         description='Только проверенные поставщики, занимающие лидирующие позиции на мировом рынке. Качество подтверждено мировыми гигантами.',
         keywords=['pony', 'ponies', 'awesome'],
-        extra_props = {
+        extra_props={
             'viewport': 'width=device-width, initial-scale=1.0, minimum-scale=1.0'
         },
         extra_custom_props=[
@@ -98,6 +102,8 @@ def index(request):
         'searchform': searchform,
     }
     return render(request, 'main/index.html', disc)
+
+
 def about(request):
     pricelist = Services_files.objects.all()[0]
     work = OurPhoto.objects.all()
@@ -106,9 +112,9 @@ def about(request):
     for w in work:
         with Image.open(BASE_DIR + w.photo_url) as img:
             width, height = img.size
-            if width/height >= 1.77:
+            if width / height >= 1.77:
                 work_landscape.append(w)
-            elif width/height < 1:
+            elif width / height < 1:
                 work_portrate.append(w)
     form = OrderForm
     searchform = SearchForm
@@ -169,9 +175,9 @@ def contacts(request):
     for w in work:
         with Image.open(BASE_DIR + w.photo_url) as img:
             width, height = img.size
-            if width/height >= 1.77:
+            if width / height >= 1.77:
                 work_landscape.append(w)
-            elif width/height < 1:
+            elif width / height < 1:
                 work_portrate.append(w)
     form = OrderForm
     searchform = SearchForm
@@ -230,9 +236,9 @@ def delivery(request):
     for w in work:
         with Image.open(BASE_DIR + w.photo_url) as img:
             width, height = img.size
-            if width/height >= 1.77:
+            if width / height >= 1.77:
                 work_landscape.append(w)
-            elif width/height < 1:
+            elif width / height < 1:
                 work_portrate.append(w)
     form = OrderForm
     searchform = SearchForm
@@ -394,7 +400,6 @@ def category(request, category):
     today = date.today()
     promos = PromoSlider.objects.filter(start_date__lte=today).filter(expiration_date__gte=today)
 
-
     subcategory = SubCategory.objects.filter(category=category)
     products = Product.objects.filter(category=category, subcategory__exact=None)
     try:
@@ -436,7 +441,7 @@ def category(request, category):
     page = int(page)
     pages = []
     for p in range(paginator.num_pages):
-        pages.append(p+1)
+        pages.append(p + 1)
     form = OrderForm
     try:
         data = json.loads(unquote(request.COOKIES.get('cart')))
@@ -500,7 +505,8 @@ def subcategory(request, category, subcategory, *args):
         this_subcategories = ''
     searchform = SearchForm
     if sortup:
-        prods1 = Product.objects.filter(subcategory=subCategory, vendor__name__icontains=vendor).order_by('packprices__price')
+        prods1 = Product.objects.filter(subcategory=subCategory, vendor__name__icontains=vendor).order_by(
+            'packprices__price')
         products = []
         vc = []
         for pr in prods1:
@@ -510,7 +516,8 @@ def subcategory(request, category, subcategory, *args):
                 # print(vc)
                 vc.append(pr.vendor_code)
     else:
-        prods1 = Product.objects.filter(subcategory=subCategory, vendor__name__icontains=vendor).order_by('-packprices__price')
+        prods1 = Product.objects.filter(subcategory=subCategory, vendor__name__icontains=vendor).order_by(
+            '-packprices__price')
         products = []
         vc = []
         for pr in prods1:
@@ -552,7 +559,7 @@ def subcategory(request, category, subcategory, *args):
     page = int(page)
     pages = []
     for p in range(paginator.num_pages):
-        pages.append(p+1)
+        pages.append(p + 1)
     form = OrderForm
     try:
         data = json.loads(unquote(request.COOKIES.get('cart')))
@@ -653,3 +660,27 @@ def thanks_page(request):
     }
 
     return render(request, 'main/index.html', disc)
+
+
+def createbill(request):
+    orderitems = OrderItems.objects.filter(order=int(request.GET.get('order_id')))
+    # workbook = xlrd.open_workbook(BASE_DIR + '/static/billtamplate.xlsx', on_demand=True)
+    pxl_doc = openpyxl.load_workbook(BASE_DIR + '/static/billtamplate.xlsx')
+    sheet = pxl_doc.active
+
+    row = 18
+    sheet.insert_rows(19)
+    # sheet.append_rows(18)
+    for item in orderitems:
+        for cell in ['A', 'B', 'C', 'D', 'E', 'F']:
+
+            print(sheet[cell+str(row)].value)
+        row += 1
+
+    pxl_doc.save(BASE_DIR + '/media/order'+ request.GET.get('order_id') + '.xlsx')
+    data = open(BASE_DIR + '/media/order'+ request.GET.get('order_id') + '.xlsx', "br").read()
+
+    response = HttpResponse(data, content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Desposition'] = 'attachment; filename=bill.xlsx'
+    return response
+    # return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

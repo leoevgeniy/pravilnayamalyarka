@@ -33,6 +33,7 @@ urlpatterns = [
     path('goods/', views.goods, name='goods'),
     path('legal/', cmsviews.legal, name='legal'),
     path('services/', views.services, name='services'),
+    path('createbill/', views.createbill, name='createbill'),
     path('about/', views.about, name='about'),
     path('delivery/', views.delivery, name='delivery'),
     path('contacts/', views.contacts, name='contacts'),

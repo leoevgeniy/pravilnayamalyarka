@@ -1,0 +1,16 @@
+{% extends "admin/change_form.html" %}
+{% load static %}
+{% block content %}
+
+    <button id="createbill" > Выгружить счет</button>
+
+    <script>
+
+        document.getElementById('createbill').onclick = (e) => {
+            console.log(location.pathname.split('order/')[1].split('/')[0])
+            location.href = {% url 'createbill' %} + '?order_id=' + location.pathname.split('order/')[1].split('/')[0]
+        }
+    </script>
+    {{ block.super }}
+
+{% endblock %}
