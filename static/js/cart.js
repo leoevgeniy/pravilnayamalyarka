@@ -436,7 +436,11 @@ const updateQty = () => {
             // $('.cart-amount-footer').addClass('d-none')
         } else {
             // $('.cart-confirm-btn').removeClass('disabled')
-            cartstick.style.cssText = 'display: block;   position: fixed; z-index: 99999; top: 120px; right: 20px;'
+            if (window.innerWidth < 480) {
+                cartstick.style.cssText = 'display: block;   position: fixed; z-index: 99999; top: 120px; right: 20px;'
+            } else {
+                cartstick.style.cssText = 'display: block;   position: fixed; z-index: 99999; top: 180px; right: 20px;'
+            }
             // cartstick.children[1].textContent = String(getAllQty())
             // $('.cart-amount-footer').removeClass('d-none')
 
