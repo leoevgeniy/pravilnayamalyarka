@@ -51,6 +51,21 @@ class OrderItems(models.Model):
     def get_cost(self, obj):
         return obj.weight.price * self.qty
 
+    @property
+    def product_name(self):
+        return self.product.name
+
+    def save(
+        self, force_insert=False, force_update=False, using=None, update_fields=None, *args, **kwargs
+    ):
+        if not self.name:
+            self.name = self.product.name
+        if self.weight:
+            self.price = self.weight.price
+        if self.qty and self.weight:
+            self.cost = self.qty * float(self.weight.price)
+        super(OrderItems, self).save(*args, **kwargs)
+
     def __str__(self):
         return str(self.name)
 

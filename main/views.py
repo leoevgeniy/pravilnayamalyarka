@@ -5,7 +5,7 @@ from django.shortcuts import render
 import json
 from datetime import date
 
-from openpyxl.styles import Border, Side
+from openpyxl.styles import Border, Side, Font, Alignment
 
 from cms.forms import UploadFileForm, SearchForm
 from cms.models import Product, Service, PromoSlider, WorkPhoto, Logo, Introduction, Socials, Contacts, Packprice, \
@@ -498,17 +498,22 @@ def subcategory(request, category, subcategory, *args):
 
     allcategory = Category.objects.all()
     allsubcategory = SubCategory.objects.all()
+
     try:
         category = Category.objects.get(name=unquote(category))
-        subCategory = SubCategory.objects.get(name=unquote(subcategory))
-        this_subcategories = SubCategory.objects.filter(category=category)
     except:
         category = ''
+    try:
+        subCategory = SubCategory.objects.get(category=category, name=unquote(subcategory))
+    except:
         subCategory = ''
+    try:
+        this_subcategories = SubCategory.objects.filter(category=category)
+    except:
         this_subcategories = ''
     searchform = SearchForm
     if sortup:
-        prods1 = Product.objects.filter(subcategory=subCategory, vendor__name__icontains=vendor).order_by(
+        prods1 = Product.objects.filter(category=category, subcategory=subCategory, vendor__name__icontains=vendor).order_by(
             'packprices__price')
         products = []
         vc = []
@@ -519,7 +524,7 @@ def subcategory(request, category, subcategory, *args):
                 # print(vc)
                 vc.append(pr.vendor_code)
     else:
-        prods1 = Product.objects.filter(subcategory=subCategory, vendor__name__icontains=vendor).order_by(
+        prods1 = Product.objects.filter(category=category, subcategory=subCategory, vendor__name__icontains=vendor).order_by(
             '-packprices__price')
         products = []
         vc = []
@@ -668,9 +673,10 @@ def thanks_page(request):
 def createbill(request):
     orderitems = OrderItems.objects.filter(order=int(request.GET.get('order_id')))
     # workbook = xlrd.open_workbook(BASE_DIR + '/static/billtamplate.xlsx', on_demand=True)
-    pxl_doc = openpyxl.load_workbook(BASE_DIR + '/static/billtamplate.xlsx')
+    pxl_doc = openpyxl.load_workbook(BASE_DIR + '/static/billtamplate.xlsx', data_only=True)
     sheet = pxl_doc.active
-    thins = Side(border_style="medium", color="ffffff")
+    thins = Side(border_style="thin", color="000000")
+    medium = Side(border_style="thick", color="000000")
     double = Side(border_style="dashDot", color="ff0000")
     border = Border(
         left=Side(border_style=None, color='FF000000'),
@@ -683,27 +689,112 @@ def createbill(request):
         vertical=Side(border_style=None, color='FF000000'),
         horizontal=Side(border_style=None, color='FF000000')
     )
+    alignment = Alignment(
+        horizontal='left',
+        wrap_text=True,
+        shrink_to_fit=True
+    )
+    alignmentNDS = Alignment(
+        horizontal='right',
+        wrap_text=True,
+        shrink_to_fit=True
+    )
+
+    font = Font(name='Calibri',
+        size = 11,
+        bold = False,
+        italic = False,
+        vertAlign = None,
+        underline = 'none',
+        strike = False,
+        color = 'FF000000')
     row = 18
-    if len(orderitems) > 3:
-        for i in range(len(orderitems) - 3):
-            sheet.insert_rows(row)
-    # sheet.append_rows(18)
+    sheet.insert_rows(row, len(orderitems))
     count_row = 0
+    total_cost = 0
     for item in orderitems:
+        total_cost += item.price * item.qty
+        try:
+            sheet.unmerge_cells('A' + str(row + count_row) + ':' + 'F' + str(row + count_row))
+        except:
+            pass
         for cell in ['A', 'B', 'C', 'D', 'E', 'F']:
             if cell == 'A':
-                sheet[cell + str(row + count_row)].border = Border(left=thins)
-            elif cell == "F":
-                sheet[cell + str(row + count_row)].border = Border(right=thins)
+                if count_row + 1 == len(orderitems):
+                    sheet[cell + str(row + count_row)].border = Border(left=medium, bottom=medium, right=thins)
+                else:
+                    sheet[cell + str(row + count_row)].border = Border(left=medium, right=thins)
+                sheet[cell + str(row + count_row)] = count_row + 1
+                sheet[cell + str(row + count_row)].font = font
 
-            print(sheet[cell + str(row)].value)
+            elif cell == 'B':
+                if count_row + 1 == len(orderitems):
+                    sheet[cell + str(row + count_row)].border = Border(bottom=medium, right=thins)
+                else:
+                    sheet[cell + str(row + count_row)].border = Border(right=thins)
+
+                sheet[cell + str(row + count_row)] = item.product.name
+                sheet[cell + str(row + count_row)].font = font
+                sheet[cell + str(row + count_row)].alignment = alignment
+            elif cell == 'C':
+                if count_row + 1 == len(orderitems):
+                    sheet[cell + str(row + count_row)].border = Border(bottom=medium, right=thins)
+                else:
+                    sheet[cell + str(row + count_row)].border = Border(right=thins)
+
+                sheet[cell + str(row + count_row)] = item.qty
+                sheet[cell + str(row + count_row)].font = font
+            elif cell == 'D':
+                if count_row + 1 == len(orderitems):
+                    sheet[cell + str(row + count_row)].border = Border(bottom=medium, right=thins)
+                else:
+                    sheet[cell + str(row + count_row)].border = Border(right=thins)
+
+                sheet[cell + str(row + count_row)] = item.product.unitofmeasure
+                sheet[cell + str(row + count_row)].font = font
+            elif cell == 'E':
+                if count_row + 1 == len(orderitems):
+                    sheet[cell + str(row + count_row)].border = Border(bottom=medium, right=thins)
+                else:
+                    sheet[cell + str(row + count_row)].border = Border(right=thins)
+
+                sheet[cell + str(row + count_row)] = item.price
+                sheet[cell + str(row + count_row)].font = font
+            elif cell == "F":
+                if count_row + 1 == len(orderitems):
+                    sheet[cell + str(row + count_row)].border = Border(bottom=medium, right=medium)
+                else:
+                    sheet[cell + str(row + count_row)].border = Border(right=medium)
+
+                sheet[cell + str(row + count_row)] = item.price * item.qty
+                sheet[cell + str(row + count_row)].font = font
         count_row += 1
-        row += 1
+        try:
+            sheet.unmerge_cells('A' + str(row + count_row) + ':' + 'F' + str(row + count_row))
+        except:
+            pass
+        try:
+            sheet.unmerge_cells('A' + str(row + count_row + 1) + ':' + 'F' + str(row + count_row + 1))
+        except:
+            pass
+
+        bold = Font(bold=True)
+        sheet['E' + str(row + count_row)] = 'Итого:'
+        # sheet['E' + str(row + count_row)].font.bold = True
+        sheet['F' + str(row + count_row)] = total_cost
+        sheet['F' + str(row + count_row)].font = bold
+        sheet['F' + str(row + count_row+1)] = 'Без налога(НДС)'
+        sheet['F' + str(row + count_row+1)].font = bold
+        sheet['F' + str(row + count_row+1)].alignment = alignmentNDS
+    # for i in range(len(list(sheet.rows))):
+    #     if sheet['E'+str(i+1)].value == 'Итого:':
+    #         sheet['F'+str(i+1)] = total_cost
+    #         break
 
     pxl_doc.save(BASE_DIR + '/media/order' + request.GET.get('order_id') + '.xlsx')
     data = open(BASE_DIR + '/media/order' + request.GET.get('order_id') + '.xlsx', "br").read()
 
     response = HttpResponse(data, content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-    response['Content-Desposition'] = 'attachment; filename=bill.xlsx'
+    response['Content-Disposition'] = 'attachment; filename=bill' + str(request.GET.get('order_id')) + '.xlsx'
     return response
     # return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

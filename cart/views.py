@@ -130,6 +130,7 @@ def orderCreate(request):
                     cost=item['qty'] * weightObject.price,
 
                 )
+                print(orderItem)
         send_telegram(name, phone)
 
     socials = Socials.objects.all()

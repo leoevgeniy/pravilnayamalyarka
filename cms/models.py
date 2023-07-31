@@ -65,6 +65,15 @@ class Product(models.Model):
         null=True,
         blank=True,
     )
+    pcs = 'шт'
+    liters = 'л'
+    pack = 'упаковка'
+    unit = [
+        (pcs, 'шт'),
+        (liters, 'л'),
+        (pack, 'упаковка'),
+    ]
+    unitofmeasure = models.CharField(max_length=30, choices=unit, verbose_name='Единица измерения', null=True, blank=True)
     name = models.CharField(max_length=256, verbose_name='Наименование', null=True, blank=True)
     description = models.TextField(verbose_name='Описание', null=True, blank=True)
     vendor_code = models.IntegerField(verbose_name='Код от производителя', null=True, blank=True)
