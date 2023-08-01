@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 import json
 from datetime import date
+from math import ceil
 
 from openpyxl.styles import Border, Side, Font, Alignment
 
@@ -752,6 +753,9 @@ def createbill(request):
                 sheet[cell + str(row + count_row)] = item.product.name
                 sheet[cell + str(row + count_row)].font = font
                 sheet[cell + str(row + count_row)].alignment = alignment
+                words_count_at_one_row = sheet.column_dimensions[cell].width / 1
+                lines = ceil(len(str(sheet[cell + str(row + count_row)].value)) / words_count_at_one_row)
+                sheet.row_dimensions[row + count_row].height = max(16, lines * 16)
             elif cell == 'C':
                 if count_row + 1 == len(orderitems):
                     sheet[cell + str(row + count_row)].border = Border(bottom=medium, right=thins)

@@ -121,8 +121,8 @@ class Packprice(models.Model):
                                 related_name='packprices')
     weight = models.CharField(max_length=256, verbose_name='Объем', null=True, blank=True)
     # pack = models.ImageField(upload_to="images/pack", verbose_name='Упаковка', null=True, blank=True)
-    price = models.DecimalField(decimal_places=0, max_digits=10, verbose_name='Цена', null=True, blank=True)
-    oldprice = models.DecimalField(decimal_places=0, max_digits=10, verbose_name='Старая цена', null=True, blank=True)
+    price = models.DecimalField(decimal_places=2, max_digits=10, verbose_name='Цена', null=True, blank=True)
+    oldprice = models.DecimalField(decimal_places=2, max_digits=10, verbose_name='Старая цена', null=True, blank=True)
 
     @property
     def firstprice(self):
