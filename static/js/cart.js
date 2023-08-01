@@ -593,7 +593,8 @@ try {
         const product = {'id': buybtn.dataset['id'], 'name': buybtn.dataset['name'], 'qty': 1, 'weight': weight}
         addToStorage(product);
 
-        window.location.href = document.referrer.split('?')[0] + '?cart=1'
+        window.location.href = document.referrer.split('?')[0]
+            // + '?cart=1'
         updateQty()
 
     }

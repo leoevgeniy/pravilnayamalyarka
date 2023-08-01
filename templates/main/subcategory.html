@@ -32,7 +32,7 @@
                  data-bs-toggle="modal" data-bs-target="#subcategorydescription"
             >
 
-            <span class="text-wrap line-clamp"
+            <span class="text-wrap line-clamp mb-3"
                   style="font-family: Circe_Regular,sans-serif;
                         color: black; font-size: 14px;
                         {#overflow: hidden;#}
@@ -45,8 +45,10 @@
                     "
             >{{ subcategory.description }}</span>
             </div>
+            <div id="goods_line" class="mx-auto mb-3"></div>
+
         </div>
-    {% if this_subcategory|length > 4 %}
+{#    {% if this_subcategory|length > 4 %}#}
 {#        <div class="main_container w-100 my-5 row container px-0 justify-content-around d-none d-lg-flex">#}
 {##}
 {#            {% for subcat in this_subcategory %}#}
@@ -97,133 +99,133 @@
 {#                </div>#}
 {#            {% endfor %}#}
 {#        </div>#}
-        <div class="main_container d-flex justify-content-center w-75">
+{#        <div class="main_container d-flex justify-content-center w-75">#}
             {#                    <div class=" w-100" style="background: rgb(255, 255, 255);"></div>#}
-            <label class="w-100 t-name my-4">
-                <select class="select_location p-3 w-100"
-                        style="font-family: Circe, sans-serif; background: #1A4582; color: white; ">
-                    {% for subcat in this_subcategory %}
-                        <option value="{% url 'subcategory' category=category subcategory=subcat %}"
-                                {% if subcategory == subcat %}
-                                selected="selected"
-                                {% endif %}
-
-                                class="px-3">{{ subcat }}</option>
-                    {% endfor %}
-                </select>
-            </label>
-        </div>
-
-    {% else %}
-
-        <div class="d-flex w-100">
-            <div class="d-none d-lg-flex justify-content-center w-100">
-                {% for subcat in this_subcategory %}
-
-                    {% if forloop.first %}
-                        <div class="px-3 py-3" style="
-
+{#            <label class="w-100 t-name my-4">#}
+{#                <select class="select_location p-3 w-100"#}
+{#                        style="font-family: Circe, sans-serif; background: #1A4582; color: white; ">#}
+{#                    {% for subcat in this_subcategory %}#}
+{#                        <option value="{% url 'subcategory' category=category subcategory=subcat %}"#}
+{#                                {% if subcategory == subcat %}#}
+{#                                selected="selected"#}
+{#                                {% endif %}#}
+{##}
+{#                                class="px-3">{{ subcat }}</option>#}
+{#                    {% endfor %}#}
+{#                </select>#}
+{#            </label>#}
+{#        </div>#}
+{##}
+{#    {% else %}#}
+{##}
+{#        <div class="d-flex w-100">#}
+{#            <div class="d-none d-lg-flex justify-content-center w-100">#}
+{#                {% for subcat in this_subcategory %}#}
+{##}
+{#                    {% if forloop.first %}#}
+{#                        <div class="px-3 py-3" style="#}
+{##}
                                 {# width: 2px;#}
                                 {#top: -2px;#}
                                 {#right: -2px;#}
                                 {#bottom: -2px;#}
-                                border: 2px solid #1A4582;
-                                border-top-left-radius: 40px;
-                                border-bottom-left-radius: 40px;
-                                {% if subcategory == subcat %}
-                                    background-color: white !important;
-                                    border: 2px solid #1A4582;
-                                {% else %}
-                                    background-color: #1A4582 !important;
-                                {% endif %}
-                                cursor: pointer;
-
-                                "
-                             data-subcategory="{{ subcat }}"
-                        >
-                            <a class="text-center text-decoration-none px-4 py-2" href="{% url 'subcategory' category=category subcategory=subcat %}"
-                               style="
-                                       {% if subcategory == subcat %}
-                                           color:#1A4582; font-size:22px;font-weight:400;padding-top:10px;padding-bottom:10px;font-family:'Circe', sans-serif;"
-                                       {% else %}
-                               color:white; font-size:22px;font-weight:400;padding-top:10px;padding-bottom:10px; font-family:'Circe', sans-serif;"
-                                       {% endif %}
-
-                            >{{ subcat }}
-                            </a>
-                        </div>
-                    {% elif forloop.last %}
-                        <div class="t395__tab t395__tab_active t395__width_20 px-3 py-3" data-tab-rec-ids="214144879" style="
-                                {% if subcategory == subcat %}
-                                    background-color: white !important;
-                                    border: 2px solid #1A4582;
-                                {% else %}
-                                    background-color: #1A4582 !important;
-                                {% endif %}
-
-                                border-top-right-radius: 40px;
-                                                border-bottom-right-radius: 40px;
-                                                                                    cursor: pointer;
-
-            "
-                             data-subcategory="{{ subcat }}">
-                            <a href="{% url 'subcategory' category=category subcategory=subcat %}" class="text-center px-4 py-2 text-decoration-none "
-                               style="
-                                       {% if subcategory == subcat %}
-                                           color:#1A4582; font-size:22px;font-weight:400;padding-top:10px;padding-bottom:10px;font-family:'Circe', sans-serif;"
-                                       {% else %}
-                               color:white; font-size:22px;font-weight:400;padding-top:10px;padding-bottom:10px; font-family:'Circe', sans-serif;"
-                                       {% endif %}
-                               field="title">{{ subcat }}
-                            </a>
-                        </div>
-                    {% else %}
-                        <div class="t395__tab t395__tab_active t395__width_20 px-3 py-3" data-tab-rec-ids="214144879" style="
-                                                cursor: pointer;
-                                {% if subcategory == subcat %}
-                                    background-color: white !important;
-                                    border: 2px solid #1A4582;
-                                {% else %}
-                                    background-color: #1A4582 !important;
-                                {% endif %}
-
-            "
-                             data-subcategory="{{ subcat }}">
-                            <a class="text-center px-4 py-2 text-decoration-none " href="{% url 'subcategory' category=category subcategory=subcat %}"
-                               style="
-                                       {% if subcategory == subcat %}
-                                           color:#1A4582; font-size:22px;font-weight:400;padding-top:10px;padding-bottom:10px;font-family:'Circe', sans-serif;"
-                                       {% else %}
-                               color:white; font-size:22px;font-weight:400;padding-top:10px;padding-bottom:10px; font-family:'Circe', sans-serif;"
-                                       {% endif %}
-                               field="title">{{ subcat }}
-                            </a>
-                        </div>
-
-                    {% endif %}
-
-                {% endfor %}
-            </div>
-
-            {% if subcategory %}
-                <div class="main_container d-flex justify-content-center d-lg-none w-75">
+{#                                border: 2px solid #1A4582;#}
+{#                                border-top-left-radius: 40px;#}
+{#                                border-bottom-left-radius: 40px;#}
+{#                                {% if subcategory == subcat %}#}
+{#                                    background-color: white !important;#}
+{#                                    border: 2px solid #1A4582;#}
+{#                                {% else %}#}
+{#                                    background-color: #1A4582 !important;#}
+{#                                {% endif %}#}
+{#                                cursor: pointer;#}
+{##}
+{#                                "#}
+{#                             data-subcategory="{{ subcat }}"#}
+{#                        >#}
+{#                            <a class="text-center text-decoration-none px-4 py-2" href="{% url 'subcategory' category=category subcategory=subcat %}"#}
+{#                               style="#}
+{#                                       {% if subcategory == subcat %}#}
+{#                                           color:#1A4582; font-size:22px;font-weight:400;padding-top:10px;padding-bottom:10px;font-family:'Circe', sans-serif;"#}
+{#                                       {% else %}#}
+{#                               color:white; font-size:22px;font-weight:400;padding-top:10px;padding-bottom:10px; font-family:'Circe', sans-serif;"#}
+{#                                       {% endif %}#}
+{##}
+{#                            >{{ subcat }}#}
+{#                            </a>#}
+{#                        </div>#}
+{#                    {% elif forloop.last %}#}
+{#                        <div class="t395__tab t395__tab_active t395__width_20 px-3 py-3" data-tab-rec-ids="214144879" style="#}
+{#                                {% if subcategory == subcat %}#}
+{#                                    background-color: white !important;#}
+{#                                    border: 2px solid #1A4582;#}
+{#                                {% else %}#}
+{#                                    background-color: #1A4582 !important;#}
+{#                                {% endif %}#}
+{##}
+{#                                border-top-right-radius: 40px;#}
+{#                                                border-bottom-right-radius: 40px;#}
+{#                                                                                    cursor: pointer;#}
+{##}
+{#            "#}
+{#                             data-subcategory="{{ subcat }}">#}
+{#                            <a href="{% url 'subcategory' category=category subcategory=subcat %}" class="text-center px-4 py-2 text-decoration-none "#}
+{#                               style="#}
+{#                                       {% if subcategory == subcat %}#}
+{#                                           color:#1A4582; font-size:22px;font-weight:400;padding-top:10px;padding-bottom:10px;font-family:'Circe', sans-serif;"#}
+{#                                       {% else %}#}
+{#                               color:white; font-size:22px;font-weight:400;padding-top:10px;padding-bottom:10px; font-family:'Circe', sans-serif;"#}
+{#                                       {% endif %}#}
+{#                               field="title">{{ subcat }}#}
+{#                            </a>#}
+{#                        </div>#}
+{#                    {% else %}#}
+{#                        <div class="t395__tab t395__tab_active t395__width_20 px-3 py-3" data-tab-rec-ids="214144879" style="#}
+{#                                                cursor: pointer;#}
+{#                                {% if subcategory == subcat %}#}
+{#                                    background-color: white !important;#}
+{#                                    border: 2px solid #1A4582;#}
+{#                                {% else %}#}
+{#                                    background-color: #1A4582 !important;#}
+{#                                {% endif %}#}
+{##}
+{#            "#}
+{#                             data-subcategory="{{ subcat }}">#}
+{#                            <a class="text-center px-4 py-2 text-decoration-none " href="{% url 'subcategory' category=category subcategory=subcat %}"#}
+{#                               style="#}
+{#                                       {% if subcategory == subcat %}#}
+{#                                           color:#1A4582; font-size:22px;font-weight:400;padding-top:10px;padding-bottom:10px;font-family:'Circe', sans-serif;"#}
+{#                                       {% else %}#}
+{#                               color:white; font-size:22px;font-weight:400;padding-top:10px;padding-bottom:10px; font-family:'Circe', sans-serif;"#}
+{#                                       {% endif %}#}
+{#                               field="title">{{ subcat }}#}
+{#                            </a>#}
+{#                        </div>#}
+{##}
+{#                    {% endif %}#}
+{##}
+{#                {% endfor %}#}
+{#            </div>#}
+{##}
+{#            {% if subcategory %}#}
+{#                <div class="main_container d-flex justify-content-center d-lg-none w-75">#}
                     {#                    <div class=" w-100" style="background: rgb(255, 255, 255);"></div>#}
-                    <label class="t-name my-4 w-100">
-                        <select class="select_location p-3  w-100"
-                                style="font-family: Circe, sans-serif; background: #1A4582; color: white; ">
-                            {% for subcat in this_subcategory %}
-                                <option value="{% url 'subcategory' category=category subcategory=subcat %}"
-                                        {% if subcategory == subcat %}
-                                        selected="selected"
-                                        {% endif %}
-                                        class="px-3">{{ subcat }}</option>
-                            {% endfor %}
-                        </select>
-                    </label>
-                </div>
-            {% endif %}
-        </div>
-    {% endif %}
+{#                    <label class="t-name my-4 w-100">#}
+{#                        <select class="select_location p-3  w-100"#}
+{#                                style="font-family: Circe, sans-serif; background: #1A4582; color: white; ">#}
+{#                            {% for subcat in this_subcategory %}#}
+{#                                <option value="{% url 'subcategory' category=category subcategory=subcat %}"#}
+{#                                        {% if subcategory == subcat %}#}
+{#                                        selected="selected"#}
+{#                                        {% endif %}#}
+{#                                        class="px-3">{{ subcat }}</option>#}
+{#                            {% endfor %}#}
+{#                        </select>#}
+{#                    </label>#}
+{#                </div>#}
+{#            {% endif %}#}
+{#        </div>#}
+{#    {% endif %}#}
 
 {#    <div class="main_container d-flex justify-content-center">#}
         {#                    <div class=" w-100" style="background: rgb(255, 255, 255);"></div>#}

@@ -6115,6 +6115,9 @@
   font-family: Circe-Regular;
   src: url("fonts/Circe-Regular.woff2") format("woff2"); }
 
+body {
+  font-family: Circe-Regular sans-serif; }
+
 .goods_index_image {
   height: 60px; }
 
