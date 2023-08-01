@@ -394,15 +394,17 @@ const updateQty = () => {
         price.forEach(function (item) {
             const weight = item.dataset['weight']
             const id = item.dataset['id']
-            const sum = Number(item.dataset['price']) * Number(getQty(id, weight))
+            const sum = parseFloat((parseFloat(item.dataset['price'].replace(',','.')) * Number(getQty(id, weight))).toFixed(2))
+
             totalcost += sum
-            item.innerHTML = '<strong>Стоимость: </strong></br> ' + sum + ' р.'
+            console.log(totalcost)
+            item.innerHTML = '<strong>Стоимость: </strong></br> ' + sum.toFixed(2) + ' р.'
         })
     } catch {
     }
     try {
         const totalprice = document.querySelectorAll('.t706__cartwin-prodamount-total-price')[0]
-        totalprice.innerHTML = String(totalcost)
+        totalprice.innerHTML = String(totalcost.toFixed(2))
     } catch {
     }
     try {
