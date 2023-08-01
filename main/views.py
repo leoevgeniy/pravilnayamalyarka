@@ -411,6 +411,8 @@ def category(request, category):
 
     subcategory = SubCategory.objects.filter(category=category)
     products = Product.objects.filter(category=category, subcategory__exact=None, name__iregex=query.lower())
+    productswithoutquery = Product.objects.filter(category=category, subcategory__exact=None)
+
     try:
         products_firstsubcat = Product.objects.filter(category=category, subcategory=subcat[0])
     except:
@@ -467,6 +469,7 @@ def category(request, category):
             pass
 
     disc = {
+        'productswithoutquery':productswithoutquery,
         'query': query,
         'cart_products': ids,
         "products_first": products_firstsubcat,
