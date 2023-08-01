@@ -18,7 +18,7 @@ class OrderItemsInline(admin.StackedInline):
     model = OrderItems
     # raw_id_fields = ('order',)
     extra = 0
-    fields = ('name', 'product', )
+    fields = (('name', 'qty'), 'product', )
     show_change_link = ('product', )
     readonly_fields = ('name', )
     verbose_name = 'Товар'

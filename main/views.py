@@ -781,7 +781,9 @@ def createbill(request):
 
                 sheet[cell + str(row + count_row)] = item.price * item.qty
                 sheet[cell + str(row + count_row)].font = font
+        # sheet.row_dimensions[row+count_row]
         count_row += 1
+
         try:
             sheet.unmerge_cells('A' + str(row + count_row) + ':' + 'F' + str(row + count_row))
         except:
