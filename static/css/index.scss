@@ -1,4 +1,6 @@
 $maincolor: #1A4582;
+$icon-size: 50px;
+$main-color: #e9f1f4;
 @import "reset.css";
 //@import "cart";
 @import "promo_slider";
@@ -18,6 +20,7 @@ $maincolor: #1A4582;
 @import "components/tilda-grid-3.0.min.css";
 @import "components/tilda-popup-1.1.min.css";
 @import "components/inline";
+@import "components/searchform";
 
 @font-face {
   font-family: Circe;
@@ -35,11 +38,11 @@ body {
   height: 60px;
 }
 
-form {
-  p {
-    padding-top: 10px;
-  }
-}
+//form {
+//  p {
+//    padding-top: 10px;
+//  }
+//}
 .photo_slider {
   height: 500px;
 }

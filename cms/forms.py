@@ -6,6 +6,5 @@ class UploadFileForm(forms.Form):
 
 
 class SearchForm(forms.Form):
-    text = forms.CharField(max_length=200, required=True, widget=forms.TextInput(attrs={'class': 'form-control, '
-                                                                                                 'search-input'}),
+    text = forms.CharField(max_length=200, required=True, widget=forms.TextInput(attrs={'class': 'input-search', 'id': 'search-input', 'type': 'text', 'placeholder': 'Поиск'}),
                            label='')

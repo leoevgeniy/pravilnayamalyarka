@@ -486,9 +486,15 @@ def category(request, category):
 
 
 def subcategory(request, category, subcategory, *args):
+
     vendor = ''
     sortup = ''
     sortdown = ''
+    query = ''
+
+    if request.GET.get('text') is not None:
+        print(request.GET.get('text'))
+        query = request.GET.get('text')
     if request.GET.get('vendor') is not None:
         vendor = (request.GET.get('vendor'))
     if request.GET.get('sortup') is not None:
@@ -513,8 +519,7 @@ def subcategory(request, category, subcategory, *args):
         this_subcategories = ''
     searchform = SearchForm
     if sortup:
-        prods1 = Product.objects.filter(category=category, subcategory=subCategory, vendor__name__icontains=vendor).order_by(
-            'packprices__price')
+        prods1 = Product.objects.filter(category=category, subcategory=subCategory, vendor__name__icontains=vendor)
         products = []
         vc = []
         for pr in prods1:
@@ -524,8 +529,7 @@ def subcategory(request, category, subcategory, *args):
                 # print(vc)
                 vc.append(pr.vendor_code)
     else:
-        prods1 = Product.objects.filter(category=category, subcategory=subCategory, vendor__name__icontains=vendor).order_by(
-            '-packprices__price')
+        prods1 = Product.objects.filter(category=category, subcategory=subCategory, name__iregex=query.lower())
         products = []
         vc = []
         for pr in prods1:
@@ -535,8 +539,9 @@ def subcategory(request, category, subcategory, *args):
                 # print(vc)
                 vc.append(pr.vendor_code)
 
+
     allbrend = []
-    for product in Product.objects.filter(subcategory=subCategory):
+    for product in Product.objects.filter(category=category, subcategory=subCategory):
         if product.vendor not in allbrend:
             allbrend.append(product.vendor)
     try:
@@ -584,6 +589,7 @@ def subcategory(request, category, subcategory, *args):
             pass
 
     disc = {
+        'query': query,
         'cart_products': ids,
         'form': form,
         'pageinput': pageinput,

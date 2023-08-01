@@ -49,3 +49,10 @@ try {
 //     )
 //     $(this)[0].style.backgroundColor = '#FF0000'
 // });
+try {
+    const search_close = document.getElementById('close')
+    search_close.onclick = (e) => {
+        location.href = location.pathname.split('?')[0]
+    }
+}
+catch {}
