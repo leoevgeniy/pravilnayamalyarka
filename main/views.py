@@ -388,6 +388,12 @@ def services(request):
 
 
 def category(request, category):
+    query = ''
+
+    if request.GET.get('text') is not None:
+        print(request.GET.get('text'))
+        query = request.GET.get('text')
+
     try:
         after_buy = request.GET.get('cart')
     except:
@@ -404,7 +410,7 @@ def category(request, category):
     promos = PromoSlider.objects.filter(start_date__lte=today).filter(expiration_date__gte=today)
 
     subcategory = SubCategory.objects.filter(category=category)
-    products = Product.objects.filter(category=category, subcategory__exact=None)
+    products = Product.objects.filter(category=category, subcategory__exact=None, name__iregex=query.lower())
     try:
         products_firstsubcat = Product.objects.filter(category=category, subcategory=subcat[0])
     except:
@@ -461,6 +467,7 @@ def category(request, category):
             pass
 
     disc = {
+        'query': query,
         'cart_products': ids,
         "products_first": products_firstsubcat,
         'after_buy': after_buy,

@@ -112,7 +112,29 @@
                 {% endfor %}
             </div>
         {% endif %}
+        {% if query %}
+            <div class="main_container d-flex justify-content-start"><span class="badge rounded-pill text-bg-light ms-5"><button id='close'>close</button> {{ query }}</span>
+            </div>
+        {% else %}
+
+        {% endif %}
         {% if products %}
+            <div class="main_container d-flex justify-content-between align-items-center flex-nowrap overflow-hidden position-relative">
+                <div></div>
+                <div id="wrap" class=" me-3" style="max-width: 100%">
+                    <form action="{% url 'category' category=category %}" class="search-box">
+                        <button id="search-btn" class=" btn-search" type="submit">
+                            <i class="bi bi-search"></i>
+                        </button>
+                        {#            <div class="search__wrapper">#}
+                        {{ searchform.as_p }}
+                        {#            input(type="text" , placeholder=" " )#}
+
+                        {#            </div>#}
+                    </form>
+                </div>
+
+            </div>
             <div id="goods_line" class="mx-auto my-3"></div>
             <div class="main_container row d-flex justify-content-center mb-4">
                 {% for product in products %}
