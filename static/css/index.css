@@ -6127,9 +6127,9 @@
   font-family: Circe-Regular sans-serif !important;
   font-size: 12px;
   outline: none;
-  border-radius: 25px;
+  border-radius: 0px;
   transition: all .5s ease-in-out;
-  background-color: #d4d4da;
+  background-color: transparent;
   padding-right: 40px;
   color: #000000; }
 
@@ -6168,7 +6168,7 @@
     font-family: Circe-Regular sans-serif !important;
     font-size: 12px;
     outline: none;
-    border-radius: 25px;
+    border-radius: 0px;
     transition: all .5s ease-in-out;
     background-color: transparent;
     padding-right: 40px;
