@@ -1,4 +1,60 @@
 //
+
+.dws {
+  display: inline-block;
+  vertical-align: middle;
+  .text {
+    opacity: 0;
+  }
+}
+.pulse {
+  position: relative; // Нужно будет в будущем, для позиционирования эффекта
+  text-align: center;
+  //padding: 20px; // Отступ можете подобрать свой.
+  border-radius: 50%; // Делаем икноку круглой
+  //background: #3D64FF;
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  vertical-align: middle;
+  img {
+    width: 40px;
+    height: 40px;
+
+      vertical-align: middle;
+  }
+}
+.pulse::after,
+.pulse::before {
+  content: '';
+  position: absolute;
+  border: 1px solid #6174c2;
+  left: -5px;
+  opacity: 0;
+  right: -5px;
+  top: -5px;
+  bottom: -5px;
+  border-radius: 50%;
+  animation: pulse 2.5s linear infinite;
+}
+
+.pulse::after {
+  animation-delay: 1.25s;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
 .header_container {
   font-family: 'Circe',Arial,sans-serif;
   font-size: 14px;
@@ -74,13 +130,13 @@
   display: block;
 }
 
-#t-header {
-  position: sticky;
-  position: -webkit-sticky;
-  top: 0; /* required */
-  z-index: 9999;
-  ;
-}
+//#t-header {
+//  position: sticky;
+//  position: -webkit-sticky;
+//  top: 0; /* required */
+//  z-index: 1049;
+//  ;
+//}
 #rec205655723 {
   background-color: rgba(255,255,255,1);
 }

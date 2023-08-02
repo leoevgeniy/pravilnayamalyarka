@@ -22,7 +22,7 @@
     cursor: pointer;
     padding: 0 20px;
     background-color: rgba(0, 0, 0, .6);
-    z-index: 9999999;
+    z-index: 1000;
     display: none;
     outline: 0
 }
