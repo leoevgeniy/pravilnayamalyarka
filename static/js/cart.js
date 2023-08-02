@@ -397,7 +397,6 @@ const updateQty = () => {
             const sum = parseFloat((parseFloat(item.dataset['price'].replace(',','.')) * Number(getQty(id, weight))).toFixed(2))
 
             totalcost += sum
-            console.log(totalcost)
             item.innerHTML = '<strong>Стоимость: </strong></br> ' + sum.toFixed(2) + ' р.'
         })
     } catch {
@@ -594,15 +593,28 @@ try {
         }
         const product = {'id': buybtn.dataset['id'], 'name': buybtn.dataset['name'], 'qty': 1, 'weight': weight}
         addToStorage(product);
-
-        window.location.href = document.referrer.split('?')[0]
+        let query = ''
+        try {
+            if (location.href.split('text=')[1])
+            query = '?text=' + location.href.split('text=')[1]
+        }
+        catch {}
+        window.location.href = document.referrer.split('?')[0]+query
             // + '?cart=1'
         updateQty()
 
     }
 } catch {
 }
-
+const toproducts = () => {
+    let query = ''
+    try {
+        if (location.href.split('text=')[1])
+        query = '?text='+location.href.split('text=')[1]
+    }
+    catch {}
+    location.replace(location.pathname.split('?')[0]+query)
+}
 // $('#buy_button').bind(event, null, function (event) {
 //     event.preventDefault();
 //     event.stopPropagation()

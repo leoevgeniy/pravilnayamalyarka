@@ -1,0 +1,20 @@
+
+.page-num {
+  background-color: gray;
+  border-radius: 30px;
+  border: 0;
+  box-shadow: none;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+
+}
+
+.page-num-selected {
+  background-color: $maincolor;
+  color: white;
+  border-radius: 30px;
+  border: 0;
+  box-shadow: none;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+}

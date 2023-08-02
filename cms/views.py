@@ -3,6 +3,7 @@ import os
 from datetime import date
 from PIL import Image
 import xlrd
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 import openpyxl
@@ -273,39 +274,102 @@ def services_import(request):
 
 
 def search(request):
+    # today = date.today()
+    # promos = PromoSlider.objects.filter(start_date__lte=today).filter(expiration_date__gte=today)
+    # work = WorkPhoto.objects.all()
+
+    # services_category = ServiceCategory.objects.all()
+    # work = WorkPhoto.objects.all()
+    # work_landscape = []
+    # work_portrate = []
+    # for w in work:
+    #     with Image.open(BASE_DIR + w.photo_url) as img:
+    #         width, height = img.size
+    #         if width / height >= 1.77 and len(work_landscape) < 11:
+    #             work_landscape.append(w)
+    #         elif width / height < 1 and len(work_portrate) < 11:
+    #             work_portrate.append(w)
+    categories = Category.objects.all()
+    subcategories = SubCategory.objects.all()
+    form = OrderForm
     searchform = SearchForm
-    services_category = []
-    products_category = []
-    services = []
-    products = []
-    if request.POST['text']:
-        keyword = request.POST['text']
-        services = Service.objects.filter(name__iregex=keyword).distinct()
-        products = Product.objects.filter(name__iregex=keyword).distinct()
-        for service in services:
-            if service.service_category not in services_category:
-                services_category.append(service.service_category)
-        for product in products:
-            if product.category not in products_category:
-                products_category.append(product.category)
+    socials = Socials.objects.all()
     try:
         logo = Logo.objects.get(inuse=True)
     except:
         logo = ''
-
+    try:
+        intro = Introduction.objects.get(inuse=True)
+    except:
+        intro = ''
     try:
         contacts = Contacts.objects.all()
     except:
         contacts = ''
-    socials = Socials.objects.all()
+    allcategory = Category.objects.all()
+    allsubcategory = SubCategory.objects.all()
+
+    try:
+        data = json.loads(unquote(request.COOKIES.get('cart')))
+
+    except:
+        data = []
+    ids = []
+    for cart_item in data:
+        try:
+            cart_product = Product.objects.get(vendor_code=cart_item['id'])
+            weight = Packprice.objects.get(id=cart_item['weight'])
+            cost = weight.price * cart_item['qty']
+            ids.append({'product': cart_product, 'qty': cart_item['qty'], 'weight': weight, 'cost': cost})
+        except:
+            pass
+    query = ''
+    try:
+        query = request.GET.get('text')
+    except:
+        pass
+    search_products = Product.objects.filter(name__iregex=query.lower())
+    pageinput = request.GET.get('page')
+    page = request.GET.get('page')
+
+    paginator = Paginator(search_products, 12)
+    try:
+        search_products = paginator.page(page)
+    except PageNotAnInteger:
+        search_products = paginator.page(1)
+    except EmptyPage:
+        search_products = paginator.page(paginator.num_pages)
+
+    if page == None or page == 'undefined':
+        page = 1
+
+    page = int(page)
+    pages = []
+    for p in range(paginator.num_pages):
+        pages.append(p + 1)
     disc = {
-        'socials': socials,
+        'pageinput': pageinput,
+        'page': page,
+        'pages': pages,
+
+        'query': query,
+        'search_products': search_products,
+        'cart_products': ids,
+        'pagename': 'search',
+        'allcategory': allcategory,
+        'allsubcategory': allsubcategory,
+        # 'work': work,
         'contacts': contacts[0],
+        'socials': socials,
         'logo': logo,
+        'intro': intro,
+        # 'work_landscape': work_landscape,
+        # 'work_portrate': work_portrate,
+        'categories': categories,
+        'subcategories': subcategories,
+        # 'promoslider': promos,
+        # 'services_category': services_category,
+        'form': form,
         'searchform': searchform,
-        'services_category': services_category,
-        'products_category': products_category,
-        'services': services,
-        'products': products,
     }
     return render(request, 'main/search.html', disc)
