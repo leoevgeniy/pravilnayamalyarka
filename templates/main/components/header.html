@@ -454,14 +454,14 @@
             <div class="offcanvas-body p-0" >
 
                 <ul class="uppercase d-flex flex-column justify-content-start menu-list my-2 ps-0"
-                    style="font-family: 'Circe', Arial, sans-serif; color: black"
+                    style="font-family: 'Circe', Arial, sans-serif; color: black; letter-spacing: -0.05em"
                     aria-label="Основные разделы на странице">
                     <div class=" my-auto">
                         {#                    <div id="wrap" class=" me-3">#}
                         <form action="{% url 'search' %}" class="" id="search-form-header">
                             <button id="" class=" btn-search-header" type="submit"
                                     style="">
-                                <i class="bi bi-search"></i>
+                                <i class="bi bi-search" style="padding-right: 3px"></i>
                             </button>
                             {#            <div class="search__wrapper">#}
                             {{ searchform }}

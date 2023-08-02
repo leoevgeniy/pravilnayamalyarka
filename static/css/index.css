@@ -104,9 +104,11 @@
     list-style-type: none; }
     .offcanvas-body .menu-list li {
       padding-left: 30px;
+      line-height: 16px;
       margin: 10px 0; }
     .offcanvas-body .menu-list a {
       font-size: 24px;
+      line-height: 16px;
       text-decoration: none; }
 
 .dropdown:hover .dropdown-menu {
@@ -6256,14 +6258,12 @@
   #search-form-header .btn-search-header {
     width: 40px;
     height: 40px;
-    border-style: groove;
     font-size: 18px;
     font-weight: bold;
     outline: none;
     cursor: pointer;
     border-radius: 50%;
     position: absolute;
-    right: 0px;
     color: #232121;
     background-color: inherit;
     pointer-events: painted; }

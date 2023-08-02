@@ -139,14 +139,14 @@
   .btn-search-header {
     width: 40px;
     height: 40px;
-    border-style: groove;
+    //border-style: none;
     font-size: 18px;
     font-weight: bold;
     outline: none;
     cursor: pointer;
     border-radius: 50%;
     position: absolute;
-    right: 0px;
+    //right: 0px;
     color: #232121;
     background-color: inherit;
     pointer-events: painted;
