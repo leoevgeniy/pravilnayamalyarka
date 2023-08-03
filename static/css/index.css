@@ -6258,15 +6258,24 @@
   #search-form-header .btn-search-header {
     width: 40px;
     height: 40px;
+    border-style: none;
     font-size: 18px;
     font-weight: bold;
     outline: none;
     cursor: pointer;
     border-radius: 50%;
     position: absolute;
+    right: 0;
     color: #232121;
     background-color: inherit;
     pointer-events: painted; }
+    #search-form-header .btn-search-header i {
+      margin: auto; }
+  #search-form-header .btn-search-header:focus, #search-form-header ~ .input-search {
+    width: 250px;
+    border-radius: 25px;
+    border-style: none;
+    background-color: transparent; }
   #search-form-header .input-search:focus {
     width: 200px;
     border-radius: 25px;
