@@ -454,7 +454,7 @@
             <div class="offcanvas-body p-0" >
 
                 <ul class="uppercase d-flex flex-column justify-content-start menu-list my-2 ps-0"
-                    style="font-family: 'Circe', Arial, sans-serif; color: black; letter-spacing: -0.05em"
+                    style="font-family: 'Circe', Arial, sans-serif; color: black; font-size: 15px"
                     aria-label="Основные разделы на странице">
                     <div class=" my-auto">
                         {#                    <div id="wrap" class=" me-3">#}
@@ -473,8 +473,8 @@
 
                     </div>
 
-                    <li class="" role="none" style="">
-                        <a style="color:#000;font-weight:300;{% if pagename == 'index' %} opacity: .7;{% endif %}"
+                    <li class="" role="none" style="margin-top: 60px">
+                        <a style="color:#000;font-weight:100;{% if pagename == 'index' %} opacity: .7;{% endif %}"
                            href="{% url 'index' %}"
                            tabindex="0"
                            data-menu-submenu-hook=""
@@ -483,7 +483,7 @@
                     <li class="" style="">
                         <a id="catalog_small" data-clecked='false' class=" my-1"
                            role="button"
-                           style="color:#000;font-weight:300; cursor: pointer; {% if pagename == 'category' %} opacity: .7;{% endif %}"
+                           style="color:#000;font-weight:100; cursor: pointer; {% if pagename == 'category' %} opacity: .7;{% endif %}"
                            data-tooltip-menu-id="203552058">Каталог
                         </a>
                         <ul class="d-none" id="catalog_items_small"
@@ -505,14 +505,14 @@
                            href="{% url 'services' %}"
                            role="menuitem" tabindex="0"
                            data-menu-submenu-hook=""
-                           style="color:#000;font-weight:300;{% if pagename == 'services' %} opacity: .7;{% endif %}">Услуги
+                           style="color:#000;font-weight:100;{% if pagename == 'services' %} opacity: .7;{% endif %}">Услуги
                         </a></li>
                     <li class="t229__list_item" role="none" style="">
                         <a class=""
                            href="{% url 'about' %}"
                            role="menuitem" tabindex="0"
                            data-menu-submenu-hook=""
-                           style="color:#000;font-weight:600;{% if pagename == 'about' %} opacity: .7;{% endif %}">О
+                           style="color:#000;font-weight:100;{% if pagename == 'about' %} opacity: .7;{% endif %}">О
                             нас
                         </a></li>
                     <li class="t229__list_item" role="none" style="">
@@ -520,14 +520,14 @@
                            href="{% url 'delivery' %}"
                            role="menuitem" tabindex="0"
                            data-menu-submenu-hook=""
-                           style="color:#000;font-weight:300;{% if pagename == 'delivery' %} opacity: .7;{% endif %}">Доставка
+                           style="color:#000;font-weight:100;{% if pagename == 'delivery' %} opacity: .7;{% endif %}">Доставка
                             и оплата</a></li>
                     <li class="t229__list_item" role="none" style="">
                         <a class=""
                            href="{% url 'contacts' %}"
                            role="menuitem" tabindex="0"
                            data-menu-submenu-hook=""
-                           style="color:#000;font-weight:300;{% if pagename == 'contacts' %} opacity: .7; {% else %} text-decorations: none; {% endif %}">Контакты</a>
+                           style="color:#000;font-weight:100;{% if pagename == 'contacts' %} opacity: .7; {% else %} text-decorations: none; {% endif %}">Контакты</a>
                     </li>
                 </ul>
 
