@@ -408,7 +408,7 @@
 
         </div>
         <div class="t450__menu__content d-block d-lg-none" style="top:20px; " data-menu="yes" data-appearoffset=""
-             data-hideoffset="">
+             data-hideoffset="" id="burgermenu">
             <div class="t450__burger_container t450__small " type="button" data-bs-toggle="offcanvas"
                  data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                 <div class="t450__burger_bg t450__burger_cirqle" style="opacity:0.50;"></div>
@@ -459,7 +459,7 @@
                     <div class=" my-auto">
                         {#                    <div id="wrap" class=" me-3">#}
                         <form action="{% url 'search' %}" class="" id="search-form-header">
-                            <button id="" class=" btn-search-header" type="submit"
+                            <button id="offcanvassearchbutton" class=" btn-search-header" type="submit"
                                     style="">
                                 <i class="bi bi-search" style="padding-right: 3px"></i>
                             </button>
@@ -474,7 +474,7 @@
                     </div>
 
                     <li class="" role="none" style="">
-                        <a style="color:#000;font-weight:600;{% if pagename == 'index' %} opacity: .7;{% endif %}"
+                        <a style="color:#000;font-weight:300;{% if pagename == 'index' %} opacity: .7;{% endif %}"
                            href="{% url 'index' %}"
                            tabindex="0"
                            data-menu-submenu-hook=""
@@ -483,7 +483,7 @@
                     <li class="" style="">
                         <a id="catalog_small" data-clecked='false' class=" my-1"
                            role="button"
-                           style="color:#000;font-weight:600; cursor: pointer; {% if pagename == 'category' %} opacity: .7;{% endif %}"
+                           style="color:#000;font-weight:300; cursor: pointer; {% if pagename == 'category' %} opacity: .7;{% endif %}"
                            data-tooltip-menu-id="203552058">Каталог
                         </a>
                         <ul class="d-none" id="catalog_items_small"
@@ -505,7 +505,7 @@
                            href="{% url 'services' %}"
                            role="menuitem" tabindex="0"
                            data-menu-submenu-hook=""
-                           style="color:#000;font-weight:600;{% if pagename == 'services' %} opacity: .7;{% endif %}">Услуги
+                           style="color:#000;font-weight:300;{% if pagename == 'services' %} opacity: .7;{% endif %}">Услуги
                         </a></li>
                     <li class="t229__list_item" role="none" style="">
                         <a class=""
@@ -520,14 +520,14 @@
                            href="{% url 'delivery' %}"
                            role="menuitem" tabindex="0"
                            data-menu-submenu-hook=""
-                           style="color:#000;font-weight:600;{% if pagename == 'delivery' %} opacity: .7;{% endif %}">Доставка
+                           style="color:#000;font-weight:300;{% if pagename == 'delivery' %} opacity: .7;{% endif %}">Доставка
                             и оплата</a></li>
                     <li class="t229__list_item" role="none" style="">
                         <a class=""
                            href="{% url 'contacts' %}"
                            role="menuitem" tabindex="0"
                            data-menu-submenu-hook=""
-                           style="color:#000;font-weight:600;{% if pagename == 'contacts' %} opacity: .7; {% else %} text-decorations: none; {% endif %}">Контакты</a>
+                           style="color:#000;font-weight:300;{% if pagename == 'contacts' %} opacity: .7; {% else %} text-decorations: none; {% endif %}">Контакты</a>
                     </li>
                 </ul>
 
