@@ -1,9 +1,11 @@
 {% load static %}
 {% load sass_tags %}
-
+{% load analytical %}
+{% load yandex_metrica %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -23,12 +25,13 @@
               content="Только проверенные поставщики, занимающие лидирующие позиции на мировом рынке. Качество подтверждено мировыми гигантами.">
         <meta name="keywords"
               content="краска, интерьерная краска, премиум краска, лакокрасочные материалы, лак, шпатлевка, лкм, ">
-        <meta property="og:title" content="Дом маляров. Лакокрасочные и строительные материалы.">
+        <meta property="og:title" content="Правильная Малярка. Лакокрасочные и строительные материалы.">
         <meta property="og:description"
               content="Только проверенные поставщики, занимающие лидирующие позиции на мировом рынке. Качество подтверждено мировыми гигантами.">
 
 
     {% endblock %}
+    {% yandex_metrica %}
     <head>
         <meta property="og:url" content="https://правильная-малярка.рф">
         <meta property="og:type" content="website">

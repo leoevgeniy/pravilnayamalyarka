@@ -62,6 +62,9 @@ STATICFILES_FINDERS = [
     'sass_processor.finders.CssFinder',
     # 'compressor.finders.CompressorFinder',
 ]
+YANDEX_METRICA_COUNTER_ID = '94533051'
+YANDEX_METRICA_WEBVISOR =True
+
 USE_DJANGO_JQUERY = True
 SECURE_CROSS_ORIGIN_OPENER_POLICY = None
 CMS_SEO_FIELDS = True
@@ -84,6 +87,8 @@ INSTALLED_APPS = [
     'smart_selects',
     'meta',
     'corsheaders',
+
+    'analytical',
 ]
 FILE_UPLOAD_HANDLERS = (
     'django.core.files.uploadhandler.TemporaryFileUploadHandler',
