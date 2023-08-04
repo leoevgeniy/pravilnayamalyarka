@@ -21,9 +21,14 @@ try {
     weight_select.forEach(function (elem) {
 
         elem.addEventListener('click', function (event) {
+            if (location.pathname.includes('/search')) {
+                elem.parentElement.nextElementSibling.href =elem.parentElement.nextElementSibling.href.split('&weight=')[0] + '&weight='+ elem.dataset['id'].split('plus')[1]
+            }
+            else {
+                elem.parentElement.nextElementSibling.href = elem.parentElement.nextElementSibling.href.split('?weight=')[0] + '?weight=' + elem.dataset['id'].split('plus')[1]
+            }
 
-            // event.preventDefault();
-            elem.parentElement.nextElementSibling.href = elem.parentElement.nextElementSibling.href.split('?weight=')[0] + '?weight=' + elem.dataset['id'].split('plus')[1]
+
             elem.parentElement.previousElementSibling.children[2].textContent = elem.dataset['price'] + 'p'
             elem.parentElement.nextElementSibling.dataset['weight'] = elem.dataset['id'].split('plus')[1]
             for (let weight=0; weight < elem.parentElement.children.length; weight++) {

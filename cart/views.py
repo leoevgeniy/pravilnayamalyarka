@@ -10,6 +10,7 @@ from django.http import JsonResponse
 from cart.forms import OrderConfirmForm
 from cms.forms import SearchForm
 from cms.models import Product, Logo, Packprice, Contacts, Socials, PromoSlider
+from crm.forms import OrderForm
 from crm.models import Order, OrderItems, StatusCrm
 from main.models import Category, SubCategory
 from telebot.sendmessage import send_telegram
@@ -130,7 +131,6 @@ def orderCreate(request):
                     cost=item['qty'] * weightObject.price,
 
                 )
-                print(orderItem)
         send_telegram(name, phone)
 
     socials = Socials.objects.all()
@@ -140,11 +140,11 @@ def orderCreate(request):
         contacts = ''
     allcategory = Category.objects.all()
     allsubcategory = SubCategory.objects.all()
-
+    form = OrderForm
     content = {
         'categories': categories,
         'promoslider': promos,
-
+        'form': form,
         'pagename': 'index',
         'allcategory': allcategory,
         'allsubcategory': allsubcategory,

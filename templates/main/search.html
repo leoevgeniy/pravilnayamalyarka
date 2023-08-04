@@ -97,7 +97,9 @@
                     {% else %}
                         <div class="d-flex text-center justify-content-around element-animation my-2" style="height: 10%"></div>
                     {% endif %}
-                    <a href="{% url 'product_view' pk=product.vendor_code %}?text={{ query }}" class="to_catalog_btn align-self-center fw-bold d-flex align-items-center element-animation mb-1"
+                    <a href="{% url 'product_view' pk=product.vendor_code %}?text={{ query }}
+                        " class="to_catalog_btn align-self-center fw-bold d-flex align-items-center element-animation mb-1"
+                       id="searchhref"
                        data-name="{{ product.name }}"
                        data-price="{{ product.price }}"
                        data-id="{{ product.vendor_code }}"
