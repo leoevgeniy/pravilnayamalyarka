@@ -29,14 +29,19 @@
 
 
 
+
                                     {% if slide.photo %}{{ slide.photo.url }}{% else %}{% static 'images/no_image.svg' %}{% endif %}"
                                  class="d-block w-100 object-fit-cover h-100" alt="{{ slide.name }}">
                             <div class="main_container promo_table">
                                 <div class="t734__wrapper t-width t-width_12 t-margin_left">
                                     <div class="t734__textwrapper t-align_left">
-                                        <div class="t734__title t-title t-title_sm" field="li_title__1618817738730"
-                                             style="color:#333333;font-size:56px;font-weight:700;padding-top:85px;font-family:'Circe', sans-serif;">
-                                            {{ slide.name }}</div>
+                                        {% if slide.name %}
+
+                                            <div class="t734__title t-title t-title_sm" field="li_title__1618817738730"
+                                                 style="color:#333333;font-size:56px;font-weight:700;padding-top:85px;font-family:'Circe', sans-serif;">
+
+                                                {{ slide.name }}</div>
+                                        {% endif %}
                                         {% if slide.description %}
 
 
@@ -44,14 +49,18 @@
                                                  style="color:#333333;">{{ slide.description }}
                                             </div>
                                         {% endif %}
-                                        {% if slide.vendor or slide.category %}
+                                        {% if slide.promoproduct or slide.category %}
                                             <div class="t734__button">
                                                 <a href="
-                                                {% if slide.category %}
-                                                    {% if slide.subcategory %}
-                                                        {% url 'subcategory' category=slide.category subcategory=slide.subcategory%}
-                                                    {% else %}
-                                                        {% url 'category' category=slide.category%}
+                                                {% if slide.promoproduct %}
+                                                    {% url 'product_view' pk=slide.promoproduct.vendor_code %}
+                                                {% else %}
+                                                    {% if slide.category %}
+                                                        {% if slide.subcategory %}
+                                                            {% url 'subcategory' category=slide.category subcategory=slide.subcategory %}
+                                                        {% else %}
+                                                            {% url 'category' category=slide.category %}
+                                                        {% endif %}
                                                     {% endif %}
                                                 {% endif %}
                                                 " target="" class="t-btn t-btn_md"
@@ -84,15 +93,19 @@
 
 
 
+
                                     {% if slide.photo %}{{ slide.photo.url }}{% else %}{% static 'images/no_image.svg' %}{% endif %}"
                                  class="d-block w-100 object-fit-cover  h-100" alt="{{ slide.name }}">
 
                             <div class="main_container promo_table">
                                 <div class="t734__wrapper t-width t-width_12 t-margin_left">
                                     <div class="t734__textwrapper t-align_left">
-                                        <div class="t734__title t-title t-title_sm" field="li_title__1618817738730"
-                                             style="color:#333333;font-size:56px;font-weight:700;padding-top:85px;font-family:'Circe', sans-serif;">
-                                            {{ slide.name }}<br></div>
+                                        {% if slide.name %}
+                                            <div class="t734__title t-title t-title_sm" field="li_title__1618817738730"
+                                                 style="color:#333333;font-size:56px;font-weight:700;padding-top:85px;font-family:'Circe', sans-serif;">
+
+                                                {{ slide.name }}<br></div>
+                                        {% endif %}
                                         {% if slide.description %}
 
 
@@ -100,16 +113,21 @@
                                                  style="color:#333333;">{{ slide.description }}
                                             </div>
                                         {% endif %}
-                                        {% if slide.vendor or slide.category %}
+                                        {% if slide.promoproduct or slide.category %}
                                             <div class="t734__button">
                                                 <a href="
-                                                {% if slide.category %}
-                                                    {% if slide.subcategory %}
-                                                        {% url 'subcategory' category=slide.category subcategory=slide.subcategory%}
-                                                    {% else %}
-                                                        {% url 'category' category=slide.category%}
+                                                {% if slide.promoproduct %}
+                                                    {% url 'product_view' pk=slide.promoproduct.vendor_code %}
+                                                {% else %}
+                                                    {% if slide.category %}
+                                                        {% if slide.subcategory %}
+                                                            {% url 'subcategory' category=slide.category subcategory=slide.subcategory %}
+                                                        {% else %}
+                                                            {% url 'category' category=slide.category %}
+                                                        {% endif %}
                                                     {% endif %}
                                                 {% endif %}
+
                                                 " target="" class="t-btn t-btn_md"
                                                    style="color:lightgray;border:0px solid #ffffff;
                                                  background-color:#1A4582;border-radius:30px; -moz-border-radius:30px;

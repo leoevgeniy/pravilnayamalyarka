@@ -16,41 +16,6 @@ class Vendor(models.Model):
 
 
 # Create your models here.
-class PromoSlider(models.Model):
-    name = models.CharField(max_length=256, verbose_name='Наименование', null=True, blank=True)
-    description = models.CharField(max_length=256, verbose_name='Описание', null=True, blank=True)
-    photo = models.ImageField(upload_to="images/slider", verbose_name="Фото", null=True, blank=True)
-    vendor = models.ForeignKey(Vendor, on_delete=models.CASCADE, verbose_name='Производитель', null=True, blank=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='promos',
-                                       verbose_name='Категория', null=True, blank=True)
-    subcategory = ChainedForeignKey(
-        SubCategory,
-        chained_field="category",
-        chained_model_field="category",
-        show_all=False,
-        auto_choose=True,
-        sort=True,
-        null=True,
-        blank=True,
-
-    )
-    start_date = models.DateField(verbose_name='Дата начала акции', null=True, blank=True)
-    expiration_date = models.DateField(verbose_name='Дата окончания акции', null=True, blank=True)
-
-    @property
-    def photo_url(self):
-        if self.photo and hasattr(self.photo, 'url'):
-            return self.photo.url
-
-    # def __str__(self):
-    #     return self.name
-
-    class Meta:
-        ordering = ('expiration_date',)
-        # index_together = (('id', 'slug'),)
-        verbose_name = 'Промо акция'
-        verbose_name_plural = 'Промо акции'
-
 
 class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='categoryproducts',
@@ -114,6 +79,42 @@ class Product(models.Model):
 
     # def get_absolute_url(self):
     #     return reverse('product_detail', args=[self.id, self.slug])
+
+class PromoSlider(models.Model):
+    name = models.CharField(max_length=256, verbose_name='Наименование', null=True, blank=True)
+    description = models.CharField(max_length=256, verbose_name='Описание', null=True, blank=True)
+    photo = models.ImageField(upload_to="images/slider", verbose_name="Фото", null=True, blank=True)
+    vendor = models.ForeignKey(Vendor, on_delete=models.CASCADE, verbose_name='Производитель', null=True, blank=True)
+    promoproduct = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Акционный товар', null=True, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='promos',
+                                 verbose_name='Категория', null=True, blank=True)
+    subcategory = ChainedForeignKey(
+        SubCategory,
+        chained_field="category",
+        chained_model_field="category",
+        show_all=False,
+        auto_choose=True,
+        sort=True,
+        null=True,
+        blank=True,
+
+    )
+    start_date = models.DateField(verbose_name='Дата начала акции', null=True, blank=True)
+    expiration_date = models.DateField(verbose_name='Дата окончания акции', null=True, blank=True)
+
+    @property
+    def photo_url(self):
+        if self.photo and hasattr(self.photo, 'url'):
+            return self.photo.url
+
+    # def __str__(self):
+    #     return self.name
+
+    class Meta:
+        ordering = ('expiration_date',)
+        # index_together = (('id', 'slug'),)
+        verbose_name = 'Промо акция'
+        verbose_name_plural = 'Промо акции'
 
 
 class Packprice(models.Model):
