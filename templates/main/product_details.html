@@ -96,14 +96,12 @@
             </div>
         </div>
         <div class="row main_container details_content" style="font-family: 'Circe',Arial,sans-serif;">
-            <div class="col-12 col-lg-6 text-right wow fadeInUp delay-02s">
-                <a href="{{ product.photo_url }}" class="w-100">
+            <div class="col-12 col-lg-6 text-right d-flex flex-column justify-content-center wow fadeInUp delay-02s">
+                <a href="{{ product.photo_url }}" class="w-100 mx-auto">
                     <img class="w-100" src="{{ product.photo_url }}" alt="{{ product.name }}"
                          style="object-fit: contain; max-height: 200px">
                 </a>
-            </div>
-            <div class="col-12 col-lg-6 d-flex flex-column justify-content-around align-items-start">
-                <div class="w-100 ">
+                <div class="w-100 d-flex justify-content-center">
                     <h1
                             style="   overflow: hidden;
                                                                                display: -webkit-box;
@@ -114,8 +112,8 @@
                     ><strong>{% if product.vendor %}{{ product.vendor }} ® {% endif %}{{ product.name }}</strong></h1>
                 </div>
                 <div
-                   class="d-flex flex-column justify-content-center align-items-center"
-                   style=""
+                        class="d-flex flex-column justify-content-center align-items-center"
+                        style=""
                 >
                     <span itemProp="price" id="price"
                           data-id="{{ product.vendor_code }}"
@@ -140,7 +138,7 @@
                 </div>
                 {% if product.packprices.all|length > 1 %}
 
-                    <div class="d-flex text-center justify-content-around my-4 element-animation "
+                    <div class="d-flex text-center justify-content-center my-4 element-animation "
                          aria-label="{{ product.name }}">
                         {% for weight in product.packprices.all %}
 
@@ -157,9 +155,9 @@
                                                 {% endif %}"
                                             {% else %}
                                                 {% if weight.id == defaultweight %}
-                                                    background-color: blue
+                                    background-color: blue
                                                 {% else %}
-                                                    background-color: gray
+                                    background-color: gray
                                                 {% endif %}
                                             {% endif %}
                             ">{{ weight.weight }}</button>
@@ -169,27 +167,32 @@
 
                     </div>
                 {% endif %}
+            <div class="w-100 d-flex justify-content-center mt-4">
                 <button id="buy_button" onclick=''
-                   class="buy_button text-decoration-none to_catalog_btn fw-bold d-flex align-items-center px-4 py-3 element-animation my-3"
-                    data-categoryurl="{% url 'category' category=product.category %}"
-                    data-id="{{ product.vendor_code }}"
-                    data-name="{{ product.name }}"
-                    data-price="{{ product.packpricesprice }}"
-                    data-weight=
-                            {% if defaultweight %}
+                        class="buy_button w-75 text-decoration-none to_catalog_btn fw-bold d-flex align-items-center py-4 element-animation"
+                        data-categoryurl="{% url 'category' category=product.category %}"
+                        data-id="{{ product.vendor_code }}"
+                        data-name="{{ product.name }}"
+                        data-price="{{ product.packpricesprice }}"
+                        data-weight=
+                                {% if defaultweight %}
                                     "{{defaultweight}}"
-                            {% else %}
-                                "{{ product.packprices.first.id }}"
-                            {% endif %}
-{#                    data-bs-toggle="modal" data-bs-target="#cartmodal" data-bs-dismiss="modal"#}
-                   style="height: 12%; cursor: pointer; "
+                                {% else %}
+                                    "{{ product.packprices.first.id }}"
+                                {% endif %}
+                {#                    data-bs-toggle="modal" data-bs-target="#cartmodal" data-bs-dismiss="modal"#}
+                style="height: 15%; cursor: pointer"
                 >
-                            <span type="button"
-                                  class="text-center mx-auto">Купить</span>
+                <span type="button"
+                      class="text-center mx-auto fs-4">Купить</span>
                 </button>
-                <div class="category_products_item element-animation" style="">
+            </div>
+            </div>
+            <div class="col-12 col-lg-6 d-flex flex-column justify-content-around align-items-start mt-4">
+
+                <div class="category_products_item" style="">
                         <span itemProp="description"
-                              class=' text-wrap element-animation '
+                              class=' text-wrap'
                               style=" font-family: Circe-Regular, sans-serif;
                                       {#overflow: hidden;#}
                                       {# display: -webkit-box;#}
