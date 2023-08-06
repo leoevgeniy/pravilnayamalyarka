@@ -53,6 +53,7 @@ class ProductAdm(admin.ModelAdmin):
     list_display = ('get_img', 'name', 'vendor', 'category', 'subcategory')
     list_editable = ('category', 'subcategory',)
     list_filter = ('vendor', 'category', 'subcategory',)
+    list_display_links = ('get_img', 'name',)
     exclude = ('rrc', 'availability', 'pack', )
     list_per_page = 20
     list_max_show_all = 100
