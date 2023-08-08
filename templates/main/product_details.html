@@ -168,45 +168,54 @@
 
                     </div>
                 {% endif %}
-            <div class="w-100 d-flex justify-content-center mt-4">
-                <button id="buy_button" onclick=''
-                        class="buy_button w-75 text-decoration-none to_catalog_btn fw-bold d-flex align-items-center py-4 element-animation"
-                        data-categoryurl="{% url 'category' category=product.category %}"
-                        data-id="{{ product.vendor_code }}"
-                        data-name="{{ product.name }}"
-                        data-price="{{ product.packpricesprice }}"
-                        data-weight=
-                                {% if defaultweight %}
-                                    "{{defaultweight}}"
-                                {% else %}
-                                    "{{ product.packprices.first.id }}"
-                                {% endif %}
-                {#                    data-bs-toggle="modal" data-bs-target="#cartmodal" data-bs-dismiss="modal"#}
-                style="height: 15%; cursor: pointer"
-                >
-                <span type="button"
-                      class="text-center mx-auto fs-4">Купить</span>
-                </button>
-            </div>
+                <div class="w-100 d-flex justify-content-center mt-4">
+                    <button id="buy_button" onclick=''
+                            class="buy_button w-75 text-decoration-none to_catalog_btn fw-bold d-flex align-items-center py-4 element-animation"
+                            data-categoryurl="{% url 'category' category=product.category %}"
+                            data-id="{{ product.vendor_code }}"
+                            data-name="{{ product.name }}"
+                            data-price="{{ product.packpricesprice }}"
+                            data-weight=
+                                    {% if defaultweight %}
+                                        "{{ defaultweight }}"
+                                    {% else %}
+                                        "{{ product.packprices.first.id }}"
+                                    {% endif %}
+                    {#                    data-bs-toggle="modal" data-bs-target="#cartmodal" data-bs-dismiss="modal"#}
+                    style="height: 15%; cursor: pointer"
+                    >
+                    <span type="button"
+                          class="text-center mx-auto fs-4">Купить</span>
+                    </button>
+                </div>
             </div>
             <div class="col-12 col-lg-6 d-flex flex-column justify-content-around align-items-start mt-4">
 
                 <div class="category_products_item" style="">
-                        <span itemProp="description"
-                              class=' text-wrap'
-                              style=" font-family: Circe-Regular, sans-serif;
-                                      {#overflow: hidden;#}
-                                      {# display: -webkit-box;#}
-                                      {# -webkit-line-clamp: 4; /* number of lines to show */#}
-                                      {#         line-clamp: 4;#}
-                                      {# -webkit-box-orient: vertical;#}
-                                      ">{{ product.description }}</span>
+                    <span itemProp="description"
+                          class=' text-wrap element-animation '
+                          style=" font-family: Circe-Regular, sans-serif; font-weight: 600;
+                                  {#overflow: hidden;#}
+                                  {# display: -webkit-box;#}
+                                  {# -webkit-line-clamp: 4; /* number of lines to show */#}
+                                  {#         line-clamp: 4;#}
+                                  {# -webkit-box-orient: vertical;#}
+                                  ">Описание:</span>
+                    <span itemProp="description"
+                          class=' text-wrap'
+                          style=" font-family: Circe-Regular, sans-serif;
+                                  {#overflow: hidden;#}
+                                  {# display: -webkit-box;#}
+                                  {# -webkit-line-clamp: 4; /* number of lines to show */#}
+                                  {#         line-clamp: 4;#}
+                                  {# -webkit-box-orient: vertical;#}
+                                  ">{{ product.description }}</span>
                 </div>
                 {% if product.composition %}
                     <div class="category_products_item element-animation d-flex flex-column py-4" style="">
                         <span itemProp="description"
                               class=' text-wrap element-animation '
-                              style=" font-family: Circe-Regular, sans-serif;
+                              style=" font-family: Circe-Regular, sans-serif; font-weight: 600;
                                       {#overflow: hidden;#}
                                       {# display: -webkit-box;#}
                                       {# -webkit-line-clamp: 4; /* number of lines to show */#}
@@ -226,10 +235,11 @@
 
                 {% endif %}
                 {% if product.comments %}
-                    <div class="main_container category_products_item element-animation d-flex flex-column py-4" style="">
+                    <div class="main_container category_products_item element-animation d-flex flex-column py-4"
+                         style="">
                         <span itemProp="description"
                               class=' text-wrap element-animation '
-                              style=" font-family: Circe-Regular, sans-serif;;
+                              style=" font-family: Circe-Regular, sans-serif; font-weight: 600;
                                       {#overflow: hidden;#}
                                       {# display: -webkit-box;#}
                                       {# -webkit-line-clamp: 4; /* number of lines to show */#}
@@ -252,7 +262,7 @@
                     <div class="category_products_item element-animation d-flex flex-column py-4" style="">
                         <span itemProp="description"
                               class=' text-wrap element-animation '
-                              style=" font-family: Circe-Regular, sans-serif;;
+                              style=" font-family: Circe-Regular, sans-serif; font-weight: 600ж
                                       {#overflow: hidden;#}
                                       {# display: -webkit-box;#}
                                       {# -webkit-line-clamp: 4; /* number of lines to show */#}
