@@ -11,11 +11,11 @@ try {
         elem.addEventListener(event, function (event) {
             // event.preventDefault();
             elem.parentElement.previousElementSibling.children[0].innerText = elem.dataset['price'] + 'р.'
-            elem.parentElement.nextElementSibling.dataset['weight'] = elem.dataset['id'].split('plus')[1]
-            elem.parentElement.nextElementSibling.dataset['price'] = elem.dataset['price']
+            elem.parentElement.nextElementSibling.firstElementChild.dataset['weight'] = elem.dataset['id'].split('plus')[1]
+            elem.parentElement.nextElementSibling.firstElementChild.dataset['price'] = elem.dataset['price']
             for (let weight=0; weight < elem.parentElement.children.length; weight++) {
-                elem.parentElement.children[weight].style.backgroundColor = 'gray'
-                elem.style.backgroundColor = 'blue'
+                elem.parentElement.children[weight].style.borderWidth = '1px'
+                elem.style.borderWidth = '2px'
             }
         }, passiveEvent);
 

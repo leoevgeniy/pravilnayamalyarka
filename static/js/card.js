@@ -31,9 +31,10 @@ try {
 
             elem.parentElement.previousElementSibling.children[2].textContent = elem.dataset['price'] + 'p'
             elem.parentElement.nextElementSibling.dataset['weight'] = elem.dataset['id'].split('plus')[1]
+            elem.parentElement.nextElementSibling.nextElementSibling.dataset['weight'] = elem.dataset['id'].split('plus')[1]
             for (let weight=0; weight < elem.parentElement.children.length; weight++) {
-                elem.parentElement.children[weight].style.backgroundColor = 'gray'
-                elem.style.backgroundColor = 'blue'
+                elem.parentElement.children[weight].style.borderWidth = '1px'
+                elem.style.borderWidth = '2px'
             }
         })
 
@@ -42,6 +43,32 @@ try {
 
     // $(this).parent().prev().find('.card-price')[0].innerText = $(this).data('price') + 'р.'
     } catch {}
+try {
+    const buybtncard = document.querySelectorAll('.buy_button_card');
+    buybtncard.forEach(function (elem) {
+        elem.addEventListener('click', function (event) {
+            try {
+                const carticon = document.getElementById('cart_sticked')
+                // carticon.classList.remove('cart_icon_animation')
+
+                carticon.classList.add('cart_icon_animation')
+                setTimeout(() => {carticon.classList.remove('cart_icon_animation')}, 1000)
+            }catch {}
+            let weight = ''
+            try {
+                weight = elem.dataset['weight']
+            } catch {
+                weight = ''
+            }
+            const product = {'id': elem.dataset['id'], 'name': elem.dataset['name'], 'qty': 1, 'weight': weight}
+            addToStorage(product);
+            updateQty()
+
+        })
+    }, passiveEvent)
+}
+catch {
+}
 // $('.weight-select-product-details-button').on("click touchstart", function (event) {
 //     event.preventDefault();
 //     $(this).parent().parent().next().children('.price').text($(this).data('price') + ' р.')

@@ -74,7 +74,7 @@
         {#            ">{% if product.subcategory %}{{ product.subcategory }} {% else%} {{ product.category }}{% endif %} </span>#}
         {#            <div class="category_line p-0 d-table-cell h-100 w-100"></div>#}
         {#        </div>#}
-        <div onClick="javascript:history.go(-1);" class="main_container"
+        <div onClick="javascript:history.go(-1);updateQty();" class="main_container"
              style="cursor: pointer; background-color: rgba(255,255,255,1)">
             <div class="position-absolute" style="right: 20px; top: 20px">
                 {#                <svg class="t-popup__close-icon t-popup__close-icon_arrow" width="26px" height="26px"#}
@@ -145,19 +145,20 @@
                             <button type="button"
                                     data-id="{{ product.vendor_code }}plus{{ weight.id }}"
                                     data-price="{{ weight.price }}"
-                                    class="btn btn-secondary product_details_weight-select-button"
+                                    class="btn btn-secondary product_details_weight-select-button text-black"
                                     style="font-size: 18px; width: 60px; height: 60px;
+                                            background-color: transparent;
                                             {% if not defaultweight %}
                                                 {% if forloop.first %}
-                                                    background-color: blue
+                                                    border-width: 2px;
                                                 {% else %}
-                                                    background-color: gray
+                                                    border-width: 1px;
                                                 {% endif %}"
                                             {% else %}
                                                 {% if weight.id == defaultweight %}
-                                    background-color: blue
+                                    border-width: 2px;
                                                 {% else %}
-                                    background-color: gray
+                                    border-width: 1px;
                                                 {% endif %}
                                             {% endif %}
                             ">{{ weight.weight }}</button>

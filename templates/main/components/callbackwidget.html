@@ -127,7 +127,7 @@
         </div>
     </div>
 </div>
-{% if pagename != 'product_details' %}
+{#{% if pagename != 'product_details' %}#}
     {% if pagename == 'search' %}
         <div id="cart_sticked" class="t706__carticon-wrapper" style="display: none">
             <a role="button" class="" href="{{ request.path }}?cart=1&text={{ query }}">
@@ -153,8 +153,8 @@
 
 
     {% endif %}
-{% else %}
-
-{% endif %}
+{#{% else %}#}
+{##}
+{#{% endif %}#}
 
 

@@ -23,6 +23,12 @@ try {
     window.addEventListener("test", null, opts);
 } catch (e) {
 }
+try {
+    document.getElementById('cartmodal').addEventListener('hidden.bs.modal', function () {
+        toproducts()
+    })
+} catch {}
+
 // in my case I need both passive and capture set to true, change as you need it.
 // passiveEvent =  false;
 passiveEvent = passiveEvent ? {capture: true, passive: true} : false;
@@ -592,14 +598,22 @@ try {
             weight = ''
         }
         const product = {'id': buybtn.dataset['id'], 'name': buybtn.dataset['name'], 'qty': 1, 'weight': weight}
-        addToStorage(product);
-        let query = ''
         try {
-            if (location.href.split('text=')[1])
-            query = '?text=' + location.href.split('text=')[1]
-        }
-        catch {}
-        window.location.href = document.referrer.split('?')[0]+query
+            const carticon = document.getElementById('cart_sticked')
+            // carticon.classList.remove('cart_icon_animation')
+
+            carticon.classList.add('cart_icon_animation')
+            setTimeout(() => {carticon.classList.remove('cart_icon_animation')}, 1000)
+        }catch {}
+
+        addToStorage(product);
+        // let query = ''
+        // try {
+        //     if (location.href.split('text=')[1])
+        //     query = '?text=' + location.href.split('text=')[1]
+        // }
+        // catch {}
+        // window.location.href = document.referrer.split('?')[0]+query
             // + '?cart=1'
         updateQty()
 
@@ -661,6 +675,9 @@ const clearcart = () => {
     // document.cookie = 'cart=' + JSON.stringify([]) + ";path=/"
     localStorage.setItem('cart', JSON.stringify([]))
 }
+try {
+
+} catch {}
 // const cartConfirm = (input, init) => {
 //     let cart = JSON.parse(localStorage.getItem('cart'))
 //     const csrf_token = document.getElementsByName('csrfmiddlewaretoken')[0].value

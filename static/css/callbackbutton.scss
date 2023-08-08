@@ -18,6 +18,30 @@
   float: right;
 }
 
+.cart_icon_animation {
+  animation: animate_grow 1s
+}
+@keyframes animate_grow {
+
+  0% {
+
+    transform: scale3d(1, 1, 1);
+
+  }
+
+  50% {
+
+    transform: scale3d(1.4, 1.4, 1.4);
+
+  }
+
+  100% {
+
+    transform: scale3d(1, 1, 1);
+
+  }
+
+}
 .img-circle {
   background-color: #00ff40;
   box-sizing: content-box;
