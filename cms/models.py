@@ -44,7 +44,7 @@ class Product(models.Model):
     vendor_code = models.IntegerField(verbose_name='Код от производителя', null=True, blank=True)
     vendor = models.ForeignKey(Vendor, on_delete=models.CASCADE, verbose_name='Производитель', null=True, blank=True)
     composition = models.CharField(max_length=256, verbose_name='Состав', null=True, blank=True)
-    comments = models.TextField(verbose_name='Примечание', null=True, blank=True)
+    comments = models.TextField(verbose_name='Характеристики', null=True, blank=True)
     agelimit = models.DateField(max_length=256, verbose_name='Срок годности', null=True, blank=True)
     consimption = models.TextField(max_length=256, verbose_name='Расход', null=True, blank=True)
     photo = models.ImageField(upload_to="images/", verbose_name="Фото", null=True, blank=True)
@@ -67,6 +67,8 @@ class Product(models.Model):
         return self.name
 
     class Meta:
+        app_label = 'main'
+        db_table = 'cms_Product'
         ordering = ('name',)
         # index_together = (('id', 'slug'),)
         verbose_name = 'Товар'

@@ -4,10 +4,6 @@ from django.utils.safestring import mark_safe
 from .models import Category, SubCategory, ServiceCategory
 
 
-
-
-# Register your models here.
-
 class SubCategoryAdm(admin.ModelAdmin):
     list_display = ('id', 'get_img', 'name', 'category')
     list_display_links = ('name',)
