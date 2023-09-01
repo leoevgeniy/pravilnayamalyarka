@@ -38,7 +38,8 @@ class Product(models.Model):
         (liters, 'л.'),
         (pack, 'уп.'),
     ]
-    unitofmeasure = models.CharField(max_length=30, choices=unit, verbose_name='Единица измерения', null=True, blank=True)
+    unitofmeasure = models.CharField(max_length=30, choices=unit, verbose_name='Единица измерения', null=True,
+                                     blank=True)
     name = models.CharField(max_length=256, verbose_name='Наименование', null=True, blank=True)
     description = models.TextField(verbose_name='Описание', null=True, blank=True)
     vendor_code = models.IntegerField(verbose_name='Код от производителя', null=True, blank=True)
@@ -47,7 +48,16 @@ class Product(models.Model):
     comments = models.TextField(verbose_name='Характеристики', null=True, blank=True)
     agelimit = models.DateField(max_length=256, verbose_name='Срок годности', null=True, blank=True)
     consimption = models.TextField(max_length=256, verbose_name='Расход', null=True, blank=True)
+    youtubelink = models.CharField(max_length=512, verbose_name='Ссылка на видео', null=True, blank=True)
     photo = models.ImageField(upload_to="images/", verbose_name="Фото", null=True, blank=True)
+    photo1 = models.ImageField(upload_to="images/", verbose_name="Фото", null=True, blank=True)
+    photo2 = models.ImageField(upload_to="images/", verbose_name="Фото", null=True, blank=True)
+    photo3 = models.ImageField(upload_to="images/", verbose_name="Фото", null=True, blank=True)
+    photo4 = models.ImageField(upload_to="images/", verbose_name="Фото", null=True, blank=True)
+    photo5 = models.ImageField(upload_to="images/", verbose_name="Фото", null=True, blank=True)
+    photo6 = models.ImageField(upload_to="images/", verbose_name="Фото", null=True, blank=True)
+    photo7 = models.ImageField(upload_to="images/", verbose_name="Фото", null=True, blank=True)
+    photo8 = models.ImageField(upload_to="images/", verbose_name="Фото", null=True, blank=True)
     time_create = models.DateTimeField(auto_now_add=True, verbose_name="Создано", null=True, blank=True)
     time_update = models.DateTimeField(auto_now=True, verbose_name="Обновлено", null=True, blank=True)
     rrc = models.DecimalField(decimal_places=0, max_digits=10, verbose_name='РРЦ', null=True, blank=True)
@@ -62,13 +72,10 @@ class Product(models.Model):
         packprice = self.packprices.all()[0].price
         return packprice
 
-
     def __str__(self):
         return self.name
 
     class Meta:
-        app_label = 'main'
-        db_table = 'cms_Product'
         ordering = ('name',)
         # index_together = (('id', 'slug'),)
         verbose_name = 'Товар'
@@ -79,15 +86,57 @@ class Product(models.Model):
         if self.photo and hasattr(self.photo, 'url'):
             return self.photo.url
 
+    @property
+    def photo1_url(self):
+        if self.photo1 and hasattr(self.photo1, 'url'):
+            return self.photo1.url
+
+    @property
+    def photo2_url(self):
+        if self.photo2 and hasattr(self.photo2, 'url'):
+            return self.photo2.url
+
+    @property
+    def photo3_url(self):
+        if self.photo3 and hasattr(self.photo3, 'url'):
+            return self.photo3.url
+
+    @property
+    def photo4_url(self):
+        if self.photo4 and hasattr(self.photo4, 'url'):
+            return self.photo4.url
+
+    @property
+    def photo5_url(self):
+        if self.photo5 and hasattr(self.photo5, 'url'):
+            return self.photo5.url
+
+    @property
+    def photo6_url(self):
+        if self.photo6 and hasattr(self.photo6, 'url'):
+            return self.photo6.url
+
+    @property
+    def photo7_url(self):
+        if self.photo7 and hasattr(self.photo7, 'url'):
+            return self.photo7.url
+
+    @property
+    def photo8_url(self):
+        if self.photo8 and hasattr(self.photo8, 'url'):
+            return self.photo8.url
+
     # def get_absolute_url(self):
     #     return reverse('product_detail', args=[self.id, self.slug])
+
 
 class PromoSlider(models.Model):
     name = models.CharField(max_length=256, verbose_name='Наименование', null=True, blank=True)
     description = models.CharField(max_length=256, verbose_name='Описание', null=True, blank=True)
     photo = models.ImageField(upload_to="images/slider", verbose_name="Фото", null=True, blank=True)
     vendor = models.ForeignKey(Vendor, on_delete=models.CASCADE, verbose_name='Производитель', null=True, blank=True)
-    promoproduct = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Акционный товар', null=True, blank=True)
+    promoproduct = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Акционный товар', null=True,
+                                     blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='promos',
                                  verbose_name='Категория', null=True, blank=True)
     subcategory = ChainedForeignKey(
@@ -190,12 +239,11 @@ class Services_files(models.Model):
                 pass
         super(Services_files, self).save(*args, **kwargs)
 
-
-
     @property
     def file_url(self):
         if self.file and hasattr(self.file, 'url'):
             return self.file.url
+
     class Meta:
         verbose_name = 'Прайс лист'
         verbose_name_plural = 'Прайс листы'
@@ -218,8 +266,6 @@ class Services_calculation_cost(models.Model):
                 pass
         super(Services_calculation_cost, self).save(*args, **kwargs)
 
-
-
     class Meta:
         verbose_name = 'Стоимость работ для калькулятора'
         verbose_name_plural = 'Стоимости работ для калькулятора'
@@ -240,7 +286,6 @@ class Service(models.Model):
     def photo_url(self):
         if self.photo and hasattr(self.photo, 'url'):
             return self.photo.url
-
 
     class Meta:
         verbose_name = 'Вид работ'
@@ -263,8 +308,8 @@ class Introduction(models.Model):
         super(Introduction, self).save(*args, **kwargs)
 
     class Meta:
-            verbose_name = 'О компании'
-            verbose_name_plural = 'О компании'
+        verbose_name = 'О компании'
+        verbose_name_plural = 'О компании'
 
 
 class Logo(models.Model):
@@ -287,6 +332,7 @@ class Logo(models.Model):
     def image_url(self):
         if self.image and hasattr(self.image, 'url'):
             return self.image.url
+
     @property
     def image_light_url(self):
         if self.image_light and hasattr(self.image_light, 'url'):
@@ -313,7 +359,7 @@ class Socials(models.Model):
         (Whatsapp, 'Whatsapp'),
         (Viber, 'Viber'),
         (YouTube, 'YouTube'),
-        ]
+    ]
     social_network = models.CharField(max_length=30, choices=social_network_choices, verbose_name='Соцсеть')
     link = models.CharField(max_length=250, verbose_name='Ссылка на социальную сеть')
     image = models.FileField(upload_to="images/socials", null=True, blank=True, verbose_name="Логотип Соцсети")
@@ -328,6 +374,7 @@ class Socials(models.Model):
     class Meta:
         verbose_name = 'Социальная сеть'
         verbose_name_plural = 'Социальные сети'
+
 
 class Contacts(models.Model):
     phone1 = models.CharField(max_length=250, null=True, blank=True, verbose_name='Номер телефона для контактов')

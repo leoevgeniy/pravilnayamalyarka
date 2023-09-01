@@ -74,9 +74,9 @@
         {#            ">{% if product.subcategory %}{{ product.subcategory }} {% else%} {{ product.category }}{% endif %} </span>#}
         {#            <div class="category_line p-0 d-table-cell h-100 w-100"></div>#}
         {#        </div>#}
-        <div onClick="javascript:history.go(-1);updateQty();" class="main_container"
-             style="cursor: pointer; background-color: rgba(255,255,255,1)">
-            <div class="position-absolute" style="right: 20px; top: 20px">
+        <div onClick="javascript:location.replace(document.referrer)" class="main_container"
+             style="cursor: pointer; background-color: rgba(255,255,255,1); ">
+            <div class="position-absolute" style="right: 20px; top: 20px; z-index: 101">
                 {#                <svg class="t-popup__close-icon t-popup__close-icon_arrow" width="26px" height="26px"#}
                 {#                     viewBox="0 0 26 26" version="1.1" xmlns="http://www.w3.org/2000/svg"#}
                 {#                     xmlns:xlink="http://www.w3.org/1999/xlink">#}
@@ -97,33 +97,70 @@
         </div>
         <div class="row main_container details_content" style="font-family: 'Circe',Arial,sans-serif;">
             <div class="col-12 col-lg-6 text-right d-flex flex-column justify-content-center wow fadeInUp delay-02s">
-                <a href="{{ product.photo_url }}" class="w-100 mx-auto">
-                    <img class="w-100" src="{{ product.photo_url }}" alt="{{ product.name }}"
-                         style="object-fit: contain; max-height: 200px">
-                </a>
-                <div class="w-100 d-flex justify-content-center">
-                    <h1
-                            style="   overflow: hidden;
-                                                                               display: -webkit-box;
-                                                                               -webkit-line-clamp: 2; /* number of lines to show */
-                                                                                       line-clamp: 2;
-                                                                               -webkit-box-orient: vertical;"
+                {#                <a href="{{ product.photo_url }}" class="w-100 mx-auto">#}
+                {#                    <img class="w-100" src="{{ product.photo_url }}" alt="{{ product.name }}"#}
+                {#                         style="object-fit: contain; max-height: 200px">#}
+                {#                </a>#}
+                <div class="container-thumbnail">
+                    {% if youtube %}
+                        <div class="mySlides flex-video widescreen ">
+                            <iframe class="product_details_img" src="https://www.youtube.com/embed/{{ youtube }}"
+                                    frameborder="0"></iframe>
+                        </div>
+                    {% endif %}
+                    {% for image in productImages %}
+                        {% if image %}
+                            <div class="mySlides w-100">
+                                <img src="{{ image }}" class="img-fluid w-100 product_details_img"
+                                     alt="{{ product.name }}">
+                            </div>
+                        {% endif %}
+                    {% endfor %}
 
-                    ><strong>{% if product.vendor %}{{ product.vendor }} ® {% endif %}{{ product.name }}</strong></h1>
+                    <a class="thumbnail_prev" onclick="plusSlides(-1)">❮</a>
+                    <a class="thumbnail_next" onclick="plusSlides(1)">❯</a>
+                    <div class="row justify-content-center">
+                        {% if youtube %}
+                            <div class="column">
+                                <img class="demo cursor" onclick="currentSlide(1)" style="width:100%"
+                                     src="{% static 'images/youtube-circle-logo-svgrepo-com.svg' %}">
+                            </div>
+                        {% endif %}
+                        {% for image in productImages %}
+                            {% if image %}
+                                <div class=" column">
+                                    <img src="{{ image }}" class="demo cursor" style="width:100%"
+                                            {% if youtube %}
+                                         onclick="currentSlide({{ forloop.counter }}+1)"
+                                            {% else %}
+                                         onclick="currentSlide({{ forloop.counter }})"
+
+                                            {% endif %}
+                                         alt="{{ product.name }}">
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 d-flex flex-column justify-content-start align-items-start mt-4">
+                <div class="w-100">
+                    <h1
+                            style=""
+
+                    >{{ product.name }}</h1>
+                    {% if product.vendor %}
+                        <span class="vendor_name">{{ product.vendor }} </span>
+                    {% endif %}
                 </div>
                 <div
-                        class="d-flex flex-column justify-content-center align-items-center"
+                        class="d-flex flex-column justify-content-center align-items-center  my-4"
                         style=""
                 >
                     <span itemProp="price" id="price"
                           data-id="{{ product.vendor_code }}"
                           class='text-left text-dark mb-0 mt-2 element-animation price'
-                          style=" font-weight: 400; font-size: 22px;
-                              overflow: hidden;
-                                                   display: -webkit-box;
-                                                   -webkit-line-clamp: 1; /* number of lines to show */
-                                                           line-clamp: 1;
-                                                   -webkit-box-orient: vertical;"
+                          style=""
                     >
                         {% if not defaultweight %}
                             {{ product.packprices.first.price }} р.
@@ -168,9 +205,14 @@
 
                     </div>
                 {% endif %}
-                <div class="w-100 d-flex justify-content-center mt-4">
+                <div class="w-100 d-flex justify-content-start">
                     <button id="buy_button" onclick=''
-                            class="buy_button w-75 text-decoration-none to_catalog_btn fw-bold d-flex align-items-center py-4 element-animation"
+                            class="buy_button text-decoration-none to_catalog_btn fw-bold d-flex align-items-center element-animation"
+                            style="height: 45px;
+                                font-size: 14px;
+                                padding-left: 30px;
+                                padding-right: 30px;
+                                background-color: white"
                             data-categoryurl="{% url 'category' category=product.category %}"
                             data-id="{{ product.vendor_code }}"
                             data-name="{{ product.name }}"
@@ -182,105 +224,108 @@
                                         "{{ product.packprices.first.id }}"
                                     {% endif %}
                     {#                    data-bs-toggle="modal" data-bs-target="#cartmodal" data-bs-dismiss="modal"#}
-                    style="height: 15%; cursor: pointer"
+
                     >
-                    <span type="button"
-                          class="text-center mx-auto fs-4">Купить</span>
+                    <span type="button" style=" font-family: Roboto-Bold, Roboto-Bold,sans-serif; color: rgb(64, 64, 64);
+                            font-size: 14px;
+                          text-align: center;
+                          white-space: nowrap;
+                          font-weight: 700;
+                          cursor: pointer;"
+                          class="text-center mx-auto">В корзину</span>
                     </button>
                 </div>
-            </div>
-            <div class="col-12 col-lg-6 d-flex flex-column justify-content-around align-items-start mt-4">
 
-                <div class="category_products_item" style="">
-                    <span itemProp="description"
-                          class=' text-wrap element-animation '
-                          style=" font-family: Circe-Regular, sans-serif; font-weight: 600;
-                                  {#overflow: hidden;#}
-                                  {# display: -webkit-box;#}
-                                  {# -webkit-line-clamp: 4; /* number of lines to show */#}
-                                  {#         line-clamp: 4;#}
-                                  {# -webkit-box-orient: vertical;#}
-                                  ">Описание:</span>
-                    <span itemProp="description"
-                          class=' text-wrap'
-                          style=" font-family: Circe-Regular, sans-serif;
-                                  {#overflow: hidden;#}
-                                  {# display: -webkit-box;#}
-                                  {# -webkit-line-clamp: 4; /* number of lines to show */#}
-                                  {#         line-clamp: 4;#}
-                                  {# -webkit-box-orient: vertical;#}
-                                  ">{{ product.description }}</span>
-                </div>
-                {% if product.composition %}
-                    <div class="category_products_item element-animation d-flex flex-column py-4" style="">
-                        <span itemProp="description"
-                              class=' text-wrap element-animation '
-                              style=" font-family: Circe-Regular, sans-serif; font-weight: 600;
-                                      {#overflow: hidden;#}
-                                      {# display: -webkit-box;#}
-                                      {# -webkit-line-clamp: 4; /* number of lines to show */#}
-                                      {#         line-clamp: 4;#}
-                                      {# -webkit-box-orient: vertical;#}
-                                      ">Состав:</span>
-                        <span itemProp="description"
-                              class=' text-wrap element-animation '
-                              style=" font-family: Circe-Regular, sans-serif;
-                                      {#overflow: hidden;#}
-                                      {# display: -webkit-box;#}
-                                      {# -webkit-line-clamp: 4; /* number of lines to show */#}
-                                      {#         line-clamp: 4;#}
-                                      {# -webkit-box-orient: vertical;#}
-                                      ">{{ product.composition }}</span>
-                    </div>
-
-                {% endif %}
-                {% if product.comments %}
-                    <div class="main_container category_products_item element-animation d-flex flex-column py-4"
-                         style="">
-                        <span itemProp="description"
-                              class=' text-wrap element-animation '
-                              style=" font-family: Circe-Regular, sans-serif; font-weight: 600;
-                                      {#overflow: hidden;#}
-                                      {# display: -webkit-box;#}
-                                      {# -webkit-line-clamp: 4; /* number of lines to show */#}
-                                      {#         line-clamp: 4;#}
-                                      {# -webkit-box-orient: vertical;#}
-                                      ">Примечание:</span>
-                        <span itemProp="description"
-                              class=' text-wrap element-animation '
-                              style=" font-family: Circe-Regular, sans-serif;;
-                                      {#overflow: hidden;#}
-                                      {# display: -webkit-box;#}
-                                      {# -webkit-line-clamp: 4; /* number of lines to show */#}
-                                      {#         line-clamp: 4;#}
-                                      {# -webkit-box-orient: vertical;#}
-                                      ">{{ product.comments }}</span>
-                    </div>
-
-                {% endif %}
-                {% if product.consimption %}
-                    <div class="category_products_item element-animation d-flex flex-column py-4" style="">
-                        <span itemProp="description"
-                              class=' text-wrap element-animation '
-                              style=" font-family: Circe-Regular, sans-serif; font-weight: 600ж
-                                      {#overflow: hidden;#}
-                                      {# display: -webkit-box;#}
-                                      {# -webkit-line-clamp: 4; /* number of lines to show */#}
-                                      {#         line-clamp: 4;#}
-                                      {# -webkit-box-orient: vertical;#}
-                                      ">Расход:</span>
-                        <span itemProp="description"
-                              class=' text-wrap element-animation '
-                              style=" font-family: Circe-Regular, sans-serif;;
-                                      {#overflow: hidden;#}
-                                      {# display: -webkit-box;#}
-                                      {# -webkit-line-clamp: 4; /* number of lines to show */#}
-                                      {#         line-clamp: 4;#}
-                                      {# -webkit-box-orient: vertical;#}
-                                      ">{{ product.consimption }}</span>
-                    </div>
-
-                {% endif %}
+                {#                <div class="category_products_item" style="">#}
+                {#                    <span itemProp="description"#}
+                {#                          class=' text-wrap element-animation '#}
+                {#                          style=" font-family: Circe-Regular, sans-serif; font-weight: 600;#}
+                {#overflow: hidden;#}
+                {# display: -webkit-box;#}
+                {# -webkit-line-clamp: 4; /* number of lines to show */#}
+                {#         line-clamp: 4;#}
+                {# -webkit-box-orient: vertical;#}
+                {#                                  ">Описание:</span>#}
+                {#                    <span itemProp="description"#}
+                {#                          class=' text-wrap'#}
+                {#                          style=" font-family: Circe-Regular, sans-serif;#}
+                {#overflow: hidden;#}
+                {# display: -webkit-box;#}
+                {# -webkit-line-clamp: 4; /* number of lines to show */#}
+                {#         line-clamp: 4;#}
+                {# -webkit-box-orient: vertical;#}
+                {#                                  ">{{ product.description }}</span>#}
+                {#                </div>#}
+                {#                {% if product.composition %}#}
+                {#                    <div class="category_products_item element-animation d-flex flex-column py-4" style="">#}
+                {#                        <span itemProp="description"#}
+                {#                              class=' text-wrap element-animation '#}
+                {#                              style=" font-family: Circe-Regular, sans-serif; font-weight: 600;#}
+                {#overflow: hidden;#}
+                {# display: -webkit-box;#}
+                {# -webkit-line-clamp: 4; /* number of lines to show */#}
+                {#         line-clamp: 4;#}
+                {# -webkit-box-orient: vertical;#}
+                {#                                      ">Состав:</span>#}
+                {#                        <span itemProp="description"#}
+                {#                              class=' text-wrap element-animation '#}
+                {#                              style=" font-family: Circe-Regular, sans-serif;#}
+                {#overflow: hidden;#}
+                {# display: -webkit-box;#}
+                {# -webkit-line-clamp: 4; /* number of lines to show */#}
+                {#         line-clamp: 4;#}
+                {# -webkit-box-orient: vertical;#}
+                {#                                      ">{{ product.composition }}</span>#}
+                {#                    </div>#}
+                {##}
+                {#                {% endif %}#}
+                {#                {% if product.comments %}#}
+                {#                    <div class="main_container category_products_item element-animation d-flex flex-column py-4"#}
+                {#                         style="">#}
+                {#                        <span itemProp="description"#}
+                {#                              class=' text-wrap element-animation '#}
+                {#                              style=" font-family: Circe-Regular, sans-serif; font-weight: 600;#}
+                {#overflow: hidden;#}
+                {# display: -webkit-box;#}
+                {# -webkit-line-clamp: 4; /* number of lines to show */#}
+                {#         line-clamp: 4;#}
+                {# -webkit-box-orient: vertical;#}
+                {#                                      ">Примечание:</span>#}
+                {#                        <span itemProp="description"#}
+                {#                              class=' text-wrap element-animation '#}
+                {#                              style=" font-family: Circe-Regular, sans-serif;;#}
+                {#overflow: hidden;#}
+                {# display: -webkit-box;#}
+                {# -webkit-line-clamp: 4; /* number of lines to show */#}
+                {#         line-clamp: 4;#}
+                {# -webkit-box-orient: vertical;#}
+                {#                                      ">{{ product.comments }}</span>#}
+                {#                    </div>#}
+                {##}
+                {#                {% endif %}#}
+                {#                {% if product.consimption %}#}
+                {#                    <div class="category_products_item element-animation d-flex flex-column py-4" style="">#}
+                {#                        <span itemProp="description"#}
+                {#                              class=' text-wrap element-animation '#}
+                {#                              style=" font-family: Circe-Regular, sans-serif; font-weight: 600ж#}
+                {#overflow: hidden;#}
+                {# display: -webkit-box;#}
+                {# -webkit-line-clamp: 4; /* number of lines to show */#}
+                {#         line-clamp: 4;#}
+                {# -webkit-box-orient: vertical;#}
+                {#                                      ">Расход:</span>#}
+                {#                        <span itemProp="description"#}
+                {#                              class=' text-wrap element-animation '#}
+                {#                              style=" font-family: Circe-Regular, sans-serif;;#}
+                {#overflow: hidden;#}
+                {# display: -webkit-box;#}
+                {# -webkit-line-clamp: 4; /* number of lines to show */#}
+                {#         line-clamp: 4;#}
+                {# -webkit-box-orient: vertical;#}
+                {#                                      ">{{ product.consimption }}</span>#}
+                {#                    </div>#}
+                {##}
+                {#                {% endif %}#}
                 {#                    <div class="row">#}
                 {#                        <div class="col-12 col-md-9 d-flex flex-column align-items-center">#}
                 {#                            <h4>{{ product.description }}</h4>#}
@@ -341,6 +386,29 @@
                 {#                        </div>#}
                 {##}
                 {#                    </div>#}
+            </div>
+
+        </div>
+        <script type="text/javascript">
+            const descr = "{{product.description|linebreaks|escape}}";
+            const charact = "{{ product.comments|linebreaks|escape }}";
+        </script>
+
+        <div class="row main_container d-flex justify-content-center mt-4 folders">
+            <div class="col-6 text-center" onclick=description_change(descr)>
+                <span class="text-center py-3 description cursor">Описание</span>
+            </div>
+            <div class="col-6 text-center" onclick=characteristics_change(charact)>
+                <span class="text-center py-3 characteristics cursor">
+                    Характеристики
+                </span>
+            </div>
+        </div>
+        <div class="row main_container d-flex justify-content-center my-4 text_area px-3">
+            <div class="text-start">
+                <span class="text-start py-3 text_area_text ">
+                        {{ product.description|linebreaks|escape }}
+                    </span>
             </div>
         </div>
 

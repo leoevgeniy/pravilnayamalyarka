@@ -10,6 +10,7 @@ $maincolor: #1A4582;
   padding: 0;
   border: 0;
 }
+
 .goods_index_products_item {
   height: 417px;
   width: 259px;
@@ -32,6 +33,7 @@ $maincolor: #1A4582;
   vertical-align: middle;
   margin: 20px 0px;
 }
+
 .goods_index_products_item_name {
   color: #333333;
   font-size: 22px;
@@ -41,17 +43,20 @@ $maincolor: #1A4582;
   text-decoration: none;
   padding: 10px 0;
 }
+
 .goods_index_products_item_description {
   span {
     text-decoration: none;
     color: #000000;
     font-size: 16px;
-    font-family: 'Circe',sans-serif;
+    font-family: 'Circe', sans-serif;
     line-height: 1.55;
     font-weight: 400;
   }
+
   padding: 0 10px;
 }
+
 .to_catalog_btn {
   height: 45px;
   background-color: $maincolor;
@@ -63,6 +68,7 @@ $maincolor: #1A4582;
   cursor: pointer;
   //border: 2px solid black;
   border-radius: 50px;
+
   span {
     text-decoration: none;
   }
@@ -76,18 +82,20 @@ $maincolor: #1A4582;
   opacity: 0;
   transform: translateY(20px);
 }
+
 .element-animation.element-show {
   opacity: 1;
   transition: all 1.5s;
   transform: translateY(0%);
 }
+
 #products_index:before {
-  z-index:-1;
-  position:absolute;
-  left:0;
+  z-index: -1;
+  position: absolute;
+  left: 0;
   //background: no-repeat left  url('../images/kisspng-architecture.webp');
   //background-size: contain;
-  top:0;
+  top: 0;
   content: url('../images/kisspng-architecture.webp');
   width: 100vw;
   //object-fit: contain;
@@ -108,6 +116,7 @@ $maincolor: #1A4582;
   }
 
 }
+
 #questions_title {
   font-size: 42px;
   font-weight: 700;
@@ -116,6 +125,7 @@ $maincolor: #1A4582;
   text-transform: uppercase;
 
 }
+
 #our_goods {
 
   font-size: 42px;
@@ -124,12 +134,39 @@ $maincolor: #1A4582;
   color: #333333;
   text-transform: uppercase;
 }
+
 #goods_line {
   width: 100px;
   height: 3px;
   background-color: $maincolor;
 }
+
 .details_content {
+  #price {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.35;
+    font-family: Roboto, RobotoR, sans-serif;
+    color: #404040;
+  }
+
+  h1 {
+    font-family: Roboto-Medium, Roboto-MediumR, sans-serif;
+    font-weight: 500;
+    color: #404040;
+    font-size: 22px;
+    line-height: 1.35;
+
+
+
+  }
+  .vendor_name {
+    color: #777;
+    font-size: 12px;
+    line-height: 1.55;
+    font-family: Roboto-Light, Roboto-LightR, sans-serif;
+  }
+
   .category_products_item {
     span {
       font-size: 18px;
@@ -137,22 +174,44 @@ $maincolor: #1A4582;
     }
   }
 }
+.folders {
+  font-family: Roboto-Medium, Roboto-MediumR, sans-serif;
+  font-size: 10px;
+  padding-bottom: 17px;
+  border-bottom: 1px solid #e3e3e3;
+  .description {
+    border-bottom: 1px solid black;
+  }
+  .characteristics {
+    border-bottom: 1px none black;
+  }
+}
+.text_area {
+  .text_area_text {
+    font-family: Roboto-Light, Roboto-LightR, sans-serif;
+    font-weight: 300;
+    line-height: 1.55;
+    font-size: 10px;
+  }
+}
+
 @media screen and (max-width: 480px) {
-  #products_index{
+  #products_index {
     width: 80%;
   }
-    #goods {
+  #goods {
     width: 80%;
-      h3 {
-        font-size: 16px;
-        color: #000000;
-        font-family: 'Circe',Arial,sans-serif;
-        font-weight: 400;
-        background-position: center center;
-        border-color: transparent;
-        border-style: solid;
-        transform: translateZ(0);
-      }
+
+    h3 {
+      font-size: 16px;
+      color: #000000;
+      font-family: 'Circe', Arial, sans-serif;
+      font-weight: 400;
+      background-position: center center;
+      border-color: transparent;
+      border-style: solid;
+      transform: translateZ(0);
+    }
   }
   //#goods:before {
   //  width: 300px;
@@ -171,24 +230,29 @@ $maincolor: #1A4582;
   .goods_index_products_item {
     height: 328px;
     width: 150px;
+
     img {
       width: 80px;
       min-height: 40px;
       height: 40px;
     }
+
     .goods_index_products_item_name {
       padding: 2px 0;
 
       font-size: 15px;
     }
+
     .goods_index_products_item_description {
       span {
         font-size: 12px;
         line-height: 14px;
         font-weight: 400;
       }
+
       padding: 0 10px;
     }
+
     .to_catalog_btn {
       font-size: 12px;
       height: 25px;
@@ -196,22 +260,68 @@ $maincolor: #1A4582;
     }
 
   }
-#buy_button {
-  font-size: 12px;
-  height: 25px;
-  width: 100%;
-  cursor: pointer;
-  span {
-    font-size: 20px;
-  }
+  #buy_button {
+    font-size: 12px;
+    height: 25px;
+    width: 100%;
+    cursor: pointer;
 
-}
+    span {
+      font-size: 20px;
+    }
+
+  }
   .details_content {
+    #price {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 1.35;
+      font-family: Roboto, RobotoR, sans-serif;
+      color: #404040;
+    }
+
+    h1 {
+      font-family: Roboto-Medium, Roboto-MediumR, sans-serif;
+      font-weight: 500;
+      color: #404040;
+      font-size: 18px;
+      line-height: 1.35;
+
+
+
+    }
+    .vendor_name {
+      color: #777;
+      font-size: 10px;
+      line-height: 1.55;
+      font-family: Roboto-Light, Roboto-LightR, sans-serif;
+    }
     .category_products_item {
       span {
-      font-size: 15px;
-      font-weight: 300;
+        font-size: 15px;
+        font-weight: 300;
       }
+    }
+  }
+
+  .folders {
+    font-family: Roboto-Medium, Roboto-MediumR, sans-serif;
+    font-size: 10px;
+    padding-bottom: 17px;
+    border-bottom: 1px solid #e3e3e3;
+    .description {
+      border-bottom: 1px solid black;
+    }
+    .characteristics {
+      border-bottom: 1px none black;
+    }
+  }
+  .text_area {
+    .text_area_text {
+      font-family: Roboto-Light, Roboto-LightR, sans-serif;
+      font-weight: 300;
+      line-height: 1.55;
+      font-size: 10px;
     }
   }
 

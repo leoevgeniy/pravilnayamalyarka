@@ -411,7 +411,15 @@ def category(request, category):
     promos = PromoSlider.objects.filter(start_date__lte=today).filter(expiration_date__gte=today)
 
     subcategory = SubCategory.objects.filter(category=category)
-    products = Product.objects.filter(category=category, subcategory__exact=None, name__iregex=query.lower())
+    prods2 = Product.objects.filter(category=category, subcategory__exact=None, name__iregex=query.lower())
+    products = []
+    for pr in prods2:
+        products.append(pr)
+    for i in range(0, len(products)):
+        for j in range(i+1, len(products)):
+            if Packprice.objects.filter(product=products[j])[0].price > Packprice.objects.filter(product=products[i])[0].price:
+                products[j], products[i] = products[i], products[j]
+
     productswithoutquery = Product.objects.filter(category=category, subcategory__exact=None)
 
     try:
@@ -436,7 +444,7 @@ def category(request, category):
     pageinput = request.GET.get('page')
     page = request.GET.get('page')
 
-    paginator = Paginator(products, 12)
+    paginator = Paginator(products, 10000)
     try:
         products = paginator.page(page)
         products_firstsubcat = paginator.page(page)
@@ -504,7 +512,6 @@ def subcategory(request, category, subcategory, *args):
     query = ''
 
     if request.GET.get('text') is not None:
-        print(request.GET.get('text'))
         query = request.GET.get('text')
     if request.GET.get('vendor') is not None:
         vendor = (request.GET.get('vendor'))
@@ -530,17 +537,35 @@ def subcategory(request, category, subcategory, *args):
         this_subcategories = ''
     searchform = SearchForm
     if sortup:
-        prods1 = Product.objects.filter(category=category, subcategory=subCategory, vendor__name__icontains=vendor)
+        prods2 = Product.objects.filter(category=category, subcategory=subCategory, name__iregex=query.lower())
         products = []
         vc = []
+        prods1 = []
+        for pr in prods2:
+            prods1.append(pr)
+        for i in range(0, len(prods1)):
+            for j in range(i+1, len(prods1)):
+                if Packprice.objects.filter(product=prods1[j])[0].price < Packprice.objects.filter(product=prods1[i])[0].price:
+                    prods1[j], prods1[i] = prods1[i], prods1[j]
+
         for pr in prods1:
-            # vc = pr.vendor_code
-            if pr.vendor_code not in vc:
-                products.append(pr)
-                # print(vc)
-                vc.append(pr.vendor_code)
+                # vc = pr.vendor_code
+                if pr.vendor_code not in vc:
+                    products.append(pr)
+                    # print(vc)
+                    vc.append(pr.vendor_code)
     else:
-        prods1 = Product.objects.filter(category=category, subcategory=subCategory, name__iregex=query.lower())
+        prods2 = Product.objects.filter(category=category, subcategory=subCategory, name__iregex=query.lower())
+        prods1 = []
+        for pr in prods2:
+            prods1.append(pr)
+        for i in range(0, len(prods1)):
+            for j in range(i+1, len(prods1)):
+                if Packprice.objects.filter(product=prods1[j])[0].price > Packprice.objects.filter(product=prods1[i])[0].price:
+                    prods1[j], prods1[i] = prods1[i], prods1[j]
+
+
+
         products = []
         vc = []
         for pr in prods1:
@@ -569,7 +594,7 @@ def subcategory(request, category, subcategory, *args):
     pageinput = request.GET.get('page')
     page = request.GET.get('page')
 
-    paginator = Paginator(products, 12)
+    paginator = Paginator(products, 10000)
     try:
         products = paginator.page(page)
     except PageNotAnInteger:

@@ -698,3 +698,45 @@ try {
 // const small_cart = document.getElementById('cart_sticked')
 // console.log(window.ready)
 // alert(small_cart.style.position)
+
+
+let slideIndex = 1;
+let flex_video = document.getElementsByClassName("flex-video")
+if (flex_video) {
+   slideIndex = 2; }
+try {
+    showSlides(slideIndex);
+}
+catch {}
+// Next/previous controls
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("mySlides");
+    if (slides.length <= 1) {
+        document.getElementsByClassName("thumbnail_prev")[0].style.display = "none";
+        document.getElementsByClassName("thumbnail_next")[0].style.display = "none";
+
+    }
+    let dots = document.getElementsByClassName("demo");
+    // let captionText = document.getElementById("caption");
+    if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";
+    dots[slideIndex-1].className += " active";
+    // captionText.innerHTML = dots[slideIndex-1].alt;
+}

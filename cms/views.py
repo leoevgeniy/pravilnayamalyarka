@@ -124,8 +124,31 @@ def product_view(request, pk):
             ids.append({'product': cart_product, 'qty': cart_item['qty'], 'weight': weight, 'cost': cost})
         except:
             pass
-
+    productImages = []
+    if product.photo:
+        productImages.append(product.photo_url)
+    if product.photo1:
+        productImages.append(product.photo1_url)
+    if product.photo2:
+        productImages.append(product.photo2_url)
+    if product.photo3:
+        productImages.append(product.photo3_url)
+    if product.photo4:
+        productImages.append(product.photo4_url)
+    if product.photo5:
+        productImages.append(product.photo5_url)
+    if product.photo6:
+        productImages.append(product.photo6_url)
+    if product.photo7:
+        productImages.append(product.photo7_url)
+    if product.photo8:
+        productImages.append(product.photo8_url)
+    youtube = ''
+    if product.youtubelink:
+        youtube = product.youtubelink
     disc = {
+        'youtube': youtube,
+        'productImages': productImages,
         'defaultweight': defaultweight,
         'cart_products': ids,
         'pagename': 'product_details',

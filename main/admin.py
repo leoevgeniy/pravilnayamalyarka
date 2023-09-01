@@ -1,8 +1,10 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
+from django.urls import path
 
+from cms.admin import PackPriceAdm, upload_products
+from cms.models import Product
 from .models import Category, SubCategory, ServiceCategory
-
 
 class SubCategoryAdm(admin.ModelAdmin):
     list_display = ('id', 'get_img', 'name', 'category')
@@ -47,3 +49,5 @@ class CategoryAdm(admin.ModelAdmin):
             return mark_safe(f'<img src="{obj.photo.url}" width="80px"')
         except:
             return mark_safe(f'<img src="" width="80px"')
+
+

@@ -444,6 +444,104 @@
   height: 60%;
   min-height: 60%; }
 
+.flex-video {
+  position: relative;
+  padding-top: 25px;
+  padding-bottom: 67.5%;
+  height: 0;
+  margin-bottom: 16px;
+  overflow: hidden; }
+
+.flex-video.widescreen {
+  padding-bottom: 57.25%; }
+
+.flex-video.vimeo {
+  padding-top: 0; }
+
+.flex-video iframe,
+.flex-video object,
+.flex-video embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; }
+
+@media only screen and (max-device-width: 800px), only screen and (device-width: 1024px) and (device-height: 600px), only screen and (width: 1280px) and (orientation: landscape), only screen and (device-width: 800px), only screen and (max-width: 767px) {
+  .flex-video {
+    padding-top: 0; } }
+
+/* Position the image container (needed to position the left and right arrows) */
+.container-thumbnail {
+  position: relative; }
+
+/* Hide the images by default */
+.mySlides {
+  display: none; }
+
+/* Add a pointer when hovering over the thumbnail images */
+.cursor {
+  cursor: pointer; }
+
+/* Next & previous buttons */
+.thumbnail_prev,
+.thumbnail_next {
+  cursor: pointer;
+  position: absolute;
+  top: 40%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: gray;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none; }
+
+/* Position the "next button" to the right */
+.thumbnail_next {
+  right: 0;
+  border-radius: 3px 0 0 3px; }
+
+/* On hover, add a black background color with a little bit see-through */
+.thumbnail_prev:hover,
+.thumbnail_next:hover {
+  background-color: rgba(0, 0, 0, 0.8); }
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0; }
+
+/* Container for image text */
+.caption-container {
+  text-align: center;
+  background-color: #222;
+  padding: 2px 16px;
+  color: white; }
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both; }
+
+/* Six columns side by side */
+.column {
+  float: left;
+  width: 16.66%; }
+
+/* Add a transparency effect for thumnbail images */
+.demo {
+  opacity: 0.6; }
+
+.active,
+.demo:hover {
+  opacity: 1; }
+
 .subcategory_index_products_item {
   height: 500px;
   width: 259px;
@@ -491,7 +589,7 @@
     text-decoration: none;
     color: #000000;
     font-size: 16px;
-    font-family: 'Circe',sans-serif;
+    font-family: 'Circe', sans-serif;
     line-height: 1.55;
     font-weight: 400; }
 
@@ -556,9 +654,45 @@
   height: 3px;
   background-color: #1A4582; }
 
+.details_content #price {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.35;
+  font-family: Roboto, RobotoR, sans-serif;
+  color: #404040; }
+
+.details_content h1 {
+  font-family: Roboto-Medium, Roboto-MediumR, sans-serif;
+  font-weight: 500;
+  color: #404040;
+  font-size: 22px;
+  line-height: 1.35; }
+
+.details_content .vendor_name {
+  color: #777;
+  font-size: 12px;
+  line-height: 1.55;
+  font-family: Roboto-Light, Roboto-LightR, sans-serif; }
+
 .details_content .category_products_item span {
   font-size: 18px;
   font-weight: 300; }
+
+.folders {
+  font-family: Roboto-Medium, Roboto-MediumR, sans-serif;
+  font-size: 10px;
+  padding-bottom: 17px;
+  border-bottom: 1px solid #e3e3e3; }
+  .folders .description {
+    border-bottom: 1px solid black; }
+  .folders .characteristics {
+    border-bottom: 1px none black; }
+
+.text_area .text_area_text {
+  font-family: Roboto-Light, Roboto-LightR, sans-serif;
+  font-weight: 300;
+  line-height: 1.55;
+  font-size: 10px; }
 
 @media screen and (max-width: 480px) {
   #products_index {
@@ -568,7 +702,7 @@
     #goods h3 {
       font-size: 16px;
       color: #000000;
-      font-family: 'Circe',Arial,sans-serif;
+      font-family: 'Circe', Arial, sans-serif;
       font-weight: 400;
       background-position: center center;
       border-color: transparent;
@@ -608,9 +742,40 @@
     cursor: pointer; }
     #buy_button span {
       font-size: 20px; }
+  .details_content #price {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.35;
+    font-family: Roboto, RobotoR, sans-serif;
+    color: #404040; }
+  .details_content h1 {
+    font-family: Roboto-Medium, Roboto-MediumR, sans-serif;
+    font-weight: 500;
+    color: #404040;
+    font-size: 18px;
+    line-height: 1.35; }
+  .details_content .vendor_name {
+    color: #777;
+    font-size: 10px;
+    line-height: 1.55;
+    font-family: Roboto-Light, Roboto-LightR, sans-serif; }
   .details_content .category_products_item span {
     font-size: 15px;
-    font-weight: 300; } }
+    font-weight: 300; }
+  .folders {
+    font-family: Roboto-Medium, Roboto-MediumR, sans-serif;
+    font-size: 10px;
+    padding-bottom: 17px;
+    border-bottom: 1px solid #e3e3e3; }
+    .folders .description {
+      border-bottom: 1px solid black; }
+    .folders .characteristics {
+      border-bottom: 1px none black; }
+  .text_area .text_area_text {
+    font-family: Roboto-Light, Roboto-LightR, sans-serif;
+    font-weight: 300;
+    line-height: 1.55;
+    font-size: 10px; } }
 
 #delivery_decr {
   text-transform: uppercase;
@@ -6350,6 +6515,37 @@
 @font-face {
   font-family: Circe-Regular;
   src: url("fonts/Circe-Regular.woff2") format("woff2"); }
+
+@font-face {
+  font-family: Roboto-Medium;
+  src: url("fonts/Roboto-Medium.woff2") format("woff2"); }
+
+@font-face {
+  font-family: Roboto-MediumR;
+  src: url("fonts/Roboto-Mediumr.woff2") format("woff2"); }
+
+@font-face {
+  font-family: Roboto-Light;
+  src: url("fonts/Roboto-Light.woff2") format("woff2"); }
+
+@font-face {
+  font-family: Roboto-LightR;
+  src: url("fonts/Roboto-Lightr.woff2") format("woff2"); }
+
+@font-face {
+  font-family: Roboto;
+  src: url("fonts/Roboto.woff2") format("woff2"); }
+
+@font-face {
+  font-family: RobotoR;
+  src: url("fonts/Robotor.woff2") format("woff2"); }
+
+@font-face {
+  font-family: Roboto-Bold;
+  src: url("https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmEU9fABc4EsA.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+  unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116; }
 
 body {
   font-family: Circe-Regular sans-serif; }
