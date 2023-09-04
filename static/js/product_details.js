@@ -3,6 +3,10 @@
 //
 // if(iOS != null)
 //     event = "touchstart";
+let fullmyModal = ''
+try {
+    fullmyModal = new bootstrap.Modal('#fullimg', {})
+} catch {}
 try {
     const product_details_weight_select_button = document.querySelectorAll('.product_details_weight-select-button')
     product_details_weight_select_button.forEach(
@@ -42,5 +46,25 @@ function description_change(charact) {
     caracteristics.style.borderBottom = "1px none black"
     if ( charact) {
         text_area_text.innerHTML = charact}
+
+}
+try {
+    item_photo = document.querySelectorAll('.item_photo')
+    item_photo.forEach(function (item) {
+        item.addEventListener(event, function (event) {
+            event.preventDefault()
+            fullmyModal.show()
+        }, passiveEvent)
+
+    })
+} catch {}
+function close_product_view() {
+    const referer = document.referrer
+    if (referer.includes('?cart=1')) {
+        history.go(-2)
+    }
+    else {
+        document.location.replace(referer)
+    }
 
 }

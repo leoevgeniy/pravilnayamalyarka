@@ -3,6 +3,15 @@
   height: 60%;
   min-height: 60%;
 }
+.full_product_details_img {
+  height: 80vh;
+  //max-height: 60%;
+  object-fit: contain;
+}
+.nails {
+  height: 10vh;
+  object-fit: contain;
+}
 .flex-video {
   position: relative;
   padding-top: 25px;
@@ -44,6 +53,9 @@ and (device-width: 800px), only screen and (max-width: 767px) {
 .mySlides {
   display: none;
 }
+.full_mySlides {
+  display: none;
+}
 
 /* Add a pointer when hovering over the thumbnail images */
 .cursor {
@@ -66,9 +78,29 @@ and (device-width: 800px), only screen and (max-width: 767px) {
   user-select: none;
   -webkit-user-select: none;
 }
+/* Next & previous buttons */
+.full_thumbnail_prev,
+.full_thumbnail_next {
+  cursor: pointer;
+  position: absolute;
+  top: 40%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: gray;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
 
 /* Position the "next button" to the right */
 .thumbnail_next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+.full_thumbnail_next {
   right: 0;
   border-radius: 3px 0 0 3px;
 }
@@ -76,6 +108,10 @@ and (device-width: 800px), only screen and (max-width: 767px) {
 /* On hover, add a black background color with a little bit see-through */
 .thumbnail_prev:hover,
 .thumbnail_next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.full_thumbnail_prev:hover,
+.full_thumbnail_next:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
@@ -112,8 +148,15 @@ and (device-width: 800px), only screen and (max-width: 767px) {
 .demo {
   opacity: 0.6;
 }
+.full_demo {
+  opacity: 0.6;
+}
 
 .active,
 .demo:hover {
+  opacity: 1;
+}
+.active,
+.full_demo:hover {
   opacity: 1;
 }

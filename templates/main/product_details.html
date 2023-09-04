@@ -74,7 +74,7 @@
         {#            ">{% if product.subcategory %}{{ product.subcategory }} {% else%} {{ product.category }}{% endif %} </span>#}
         {#            <div class="category_line p-0 d-table-cell h-100 w-100"></div>#}
         {#        </div>#}
-        <div onClick="javascript:location.replace(document.referrer)" class="main_container"
+        <div onclick=close_product_view() class="main_container"
              style="cursor: pointer; background-color: rgba(255,255,255,1); ">
             <div class="position-absolute" style="right: 20px; top: 20px; z-index: 101">
                 {#                <svg class="t-popup__close-icon t-popup__close-icon_arrow" width="26px" height="26px"#}
@@ -110,7 +110,7 @@
                     {% endif %}
                     {% for image in productImages %}
                         {% if image %}
-                            <div class="mySlides w-100">
+                            <div class="mySlides w-100 cursor item_photo">
                                 <img src="{{ image }}" class="img-fluid w-100 product_details_img"
                                      alt="{{ product.name }}">
                             </div>
@@ -123,13 +123,13 @@
                         {% if youtube %}
                             <div class="column">
                                 <img class="demo cursor" onclick="currentSlide(1)" style="width:100%"
-                                     src="{% static 'images/youtube-circle-logo-svgrepo-com.svg' %}">
+                                     src="{% static 'images/youtube-circle-logo-svgrepo-com.svg' %}" alt="Видео">
                             </div>
                         {% endif %}
                         {% for image in productImages %}
                             {% if image %}
                                 <div class=" column">
-                                    <img src="{{ image }}" class="demo cursor" style="width:100%"
+                                    <img src="{{ image }}" class="demo cursor " style="width:100%"
                                             {% if youtube %}
                                          onclick="currentSlide({{ forloop.counter }}+1)"
                                             {% else %}
@@ -390,8 +390,8 @@
 
         </div>
         <script type="text/javascript">
-            const descr = "{{product.description|linebreaks|escape}}";
-            const charact = "{{ product.comments|linebreaks|escape }}";
+            const descr = "{{ product.description|linebreaks }}";
+            const charact = "{{ product.comments|linebreaks }}";
         </script>
 
         <div class="row main_container d-flex justify-content-center mt-4 folders">
@@ -553,4 +553,59 @@
         {##}
         {#        </div>#}
     {% endif %}
+    <!-- Full screen modal -->
+    <div class="modal fade" id="fullimg" tabindex="-10" data-bs-backdrop="static" aria-labelledby="fullimg" aria-hidden="true">
+
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-thumbnail">
+                    {% if youtube %}
+                        <div class="full_mySlides flex-video widescreen ">
+                            <iframe class="full_product_details_img" src="https://www.youtube.com/embed/{{ youtube }}"
+                                    frameborder="0"></iframe>
+                        </div>
+                    {% endif %}
+                    {% for image in productImages %}
+                        {% if image %}
+                            <div class="full_mySlides w-100">
+                                <img src="{{ image }}" class="img-fluid w-100 full_product_details_img"
+                                     alt="{{ product.name }}">
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+
+                    <a class="full_thumbnail_prev cursor" onclick="plusfullSlides(-1)">❮</a>
+                    <a class="full_thumbnail_next cursor" onclick="plusfullSlides(1)">❯</a>
+                    <div class="row justify-content-center ">
+                        {% if youtube %}
+                            <div class="column nails">
+                                <img class="full_demo cursor nails" onclick="currentfullSlide(1)" style="width:100%"
+                                     src="{% static 'images/youtube-circle-logo-svgrepo-com.svg' %}" alt="Видео">
+                            </div>
+                        {% endif %}
+                        {% for image in productImages %}
+                            {% if image %}
+                                <div class=" column nails">
+                                    <img src="{{ image }}" class="demo cursor full_item_photo nails" style="width:100%"
+                                            {% if youtube %}
+                                         onclick="currentfullSlide({{ forloop.counter }}+1)"
+                                            {% else %}
+                                         onclick="currentfullSlide({{ forloop.counter }})"
+
+                                            {% endif %}
+                                         alt="{{ product.name }}">
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            </div>
+
+        </div>
+    </div>
 {% endblock %}
