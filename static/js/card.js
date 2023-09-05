@@ -28,13 +28,39 @@ try {
             }
 
 
-            elem.parentElement.previousElementSibling.children[2].textContent = elem.dataset['price'] + 'p'
+            elem.parentElement.previousElementSibling.children[2].textContent = elem.dataset['price'] + ' p.'
             elem.parentElement.nextElementSibling.dataset['weight'] = elem.dataset['id'].split('plus')[1]
             elem.parentElement.nextElementSibling.nextElementSibling.dataset['weight'] = elem.dataset['id'].split('plus')[1]
             for (let weight = 0; weight < elem.parentElement.children.length; weight++) {
                 elem.parentElement.children[weight].style.borderWidth = '1px'
                 elem.style.borderWidth = '2px'
             }
+        })
+
+    }, passiveEvent)
+    // .on(event, function (event) {
+
+    // $(this).parent().prev().find('.card-price')[0].innerText = $(this).data('price') + 'р.'
+} catch {
+}
+try {
+    const dropdown_weight_select = document.querySelectorAll('.dropdown-weight-select-button')
+    dropdown_weight_select.forEach(function (elem) {
+
+        elem.addEventListener('click', function (event) {
+            if (location.pathname.includes('/search')) {
+                elem.parentElement.parentElement.parentElement.parentElement.nextElementSibling.href = elem.parentElement.parentElement.parentElement.parentElement.nextElementSibling.href.split('&weight=')[0] + '&weight=' + elem.dataset['id'].split('plus')[1]
+            } else {
+                elem.parentElement.parentElement.parentElement.parentElement.nextElementSibling.href = elem.parentElement.parentElement.parentElement.parentElement.nextElementSibling.href.split('?weight=')[0] + '?weight=' + elem.dataset['id'].split('plus')[1]
+            }
+            elem.parentElement.parentElement.previousElementSibling.innerText = elem.dataset['weight']
+            elem.parentElement.parentElement.parentElement.parentElement.previousElementSibling.children[2].textContent = elem.dataset['price'] + ' p.'
+            elem.parentElement.parentElement.parentElement.parentElement.nextElementSibling.dataset['weight'] = elem.dataset['id'].split('plus')[1]
+            elem.parentElement.parentElement.parentElement.parentElement.nextElementSibling.nextElementSibling.dataset['weight'] = elem.dataset['id'].split('plus')[1]
+            // for (let weight = 0; weight < elem.parentElement.parentElement.parentElement.children.length; weight++) {
+            //     elem.parentElement.parentElement.parentElement.children[weight].style.borderWidth = '1px'
+            //     elem.style.borderWidth = '2px'
+            // }
         })
 
     }, passiveEvent)
@@ -95,11 +121,13 @@ try {
     let nail_selected = false
     service_nail.forEach((item, index) => {
         if (categories.length > 4) {
-            item.style.width = String((item.parentElement.offsetWidth - categories.length * 16) / categories.length) + 'px'
-            item.style.objectfit = 'contain'
+            item.style.width = String((item.parentElement.parentElement.offsetWidth - categories.length * 16) / categories.length) + 'px'
+            item.style.height = '150px'
+            item.style.objectfit = 'fill'
         } else {
             item.style.width = '220px'
-            item.style.objectfit = 'contain'
+            item.style.height = '150px'
+            item.style.objectfit = 'fill'
         }
         item.addEventListener(touchEvent, ev => {
             nail_selected = true

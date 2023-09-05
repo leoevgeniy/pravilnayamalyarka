@@ -201,24 +201,56 @@
                             {% if product.packprices.all|length > 1 %}
 
                                 <div class="d-flex text-center justify-content-around element-animation my-2"
-                                     aria-label="{{ product.name }}" style="height: 10%">
-                                    {% for weight in product.packprices.all %}
-                                        <button type="button"
-                                                data-id="{{ product.vendor_code }}plus{{ weight.id }}"
-                                                data-price="{{ weight.price }}"
-                                                class="btn btn-secondary weight-select-button text-black"
-                                                style="font-size: 70%; background-color: transparent;
-                                                        {% if forloop.first %} border-width: 2px {% else %} border-width: 1px {% endif %}"
-                                        >{{ weight.weight }}</button>
+                                     aria-label="{{ product.name }}" style="height: 10%; z-index: 101">
+                                    {% if product.packprices.all|length < 4 %}
 
-                                    {% endfor %}
+
+                                        {% for weight in product.packprices.all %}
+                                            <button type="button"
+                                                    data-id="{{ product.vendor_code }}plus{{ weight.id }}"
+                                                    data-price="{{ weight.price }}"
+                                                    class="btn btn-secondary weight-select-button text-black h-100"
+                                                    style="font-size: 70%; background-color: transparent;
+                                                            {% if forloop.first %} border-width: 2px {% else %} border-width: 1px {% endif %}"
+                                            >{{ weight.weight }}</button>
+
+                                        {% endfor %}
+                                    {% else %}
+                                        <div class="dropdown-center" >
+                                            {% for weight in product.packprices.all %}
+                                                {% if forloop.first %}
+                                                    <button id="dropdown_button_toggle" data-bs-toggle="dropdown"
+                                                            data-id="{{ product.vendor_code }}plus{{ weight.id }}"
+                                                            data-price="{{ weight.price }}"
+                                                            aria-expanded="false"
+                                                            class="btn btn-secondary text-black dropdown-toggle h-100"
+                                                            style="font-size: 70%; background-color: transparent;"
+                                                    >{{ weight.weight }}</button>
+                                                {% endif %}
+                                            {% endfor %}
+
+                                            <ul class="dropdown-menu">
+                                                {% for weight in product.packprices.all %}
+
+                                                    <li><button
+                                                            data-id="{{ product.vendor_code }}plus{{ weight.id }}"
+                                                            data-price="{{ weight.price }}"
+                                                            data-weight = "{{ weight.weight }}"
+                                                            class="btn btn-secondary dropdown-item dropdown-weight-select-button text-black"
+                                                            style="font-size: 70%;"
+                                                    >{{ weight.weight }}</button></li>
+                                                {% endfor %}
+                                            </ul>
+
+
+                                        </div>
+                                    {% endif %}
 
 
                                 </div>
                             {% else %}
                                 <div class="d-flex text-center justify-content-around element-animation my-2"
                                      style="height: 10%"></div>
-
                             {% endif %}
                             <a href="{% url 'product_view' pk=product.vendor_code %}"
                                class="w-75 to_catalog_btn align-self-center fw-bold d-flex align-items-center element-animation mb-1"

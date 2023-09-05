@@ -26,6 +26,26 @@ try {
     })
 
 } catch {}
+try {
+    const dropdown_product_details_weight_select_button = document.querySelectorAll('.dropdown-product-details-weight-select-button')
+    dropdown_product_details_weight_select_button.forEach(
+
+    function (elem) {
+        elem.addEventListener(event, function (event) {
+            // event.preventDefault();
+            elem.parentElement.parentElement.previousElementSibling.innerHTML = elem.dataset['weight']
+            elem.parentElement.parentElement.parentElement.parentElement.previousElementSibling.children[0].innerText = elem.dataset['price'] + 'р.'
+            elem.parentElement.parentElement.parentElement.parentElement.nextElementSibling.firstElementChild.dataset['weight'] = elem.dataset['id'].split('plus')[1]
+            elem.parentElement.parentElement.parentElement.parentElement.nextElementSibling.firstElementChild.dataset['price'] = elem.dataset['price']
+            // for (let weight=0; weight < elem.parentElement.children.length; weight++) {
+            //     elem.parentElement.children[weight].style.borderWidth = '1px'
+            //     elem.style.borderWidth = '2px'
+            // }
+        }, passiveEvent);
+
+    })
+
+} catch {}
 
 function characteristics_change(charact) {
     const caracteristics = document.getElementsByClassName('characteristics')[0]

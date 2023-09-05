@@ -18,20 +18,22 @@
 {#                            src="{% if service.photo %}{{ service.photo.url }}{% else %}{% static 'images/no_image.svg' %}{% endif %}" class="d-block w-100" alt="...">#}
 {#                </div>#}
 {#            {% else %}#}
-                <div class="d-none service_big_photo ">
+                <div class="d-none service_big_photo h-100 w-100">
                     <img data-category="{{ service.service_category }}"
-                            src="{% if service.photo %}{{ service.photo.url }}{% else %}{% static 'images/no_image.svg' %}{% endif %}" class="d-block w-100" alt="...">
+                         class="h-100 w-100"
+                         style="object-fit: contain"
+                            src="{% if service.photo %}{{ service.photo.url }}{% else %}{% static 'images/no_image.svg' %}{% endif %}" alt=service.name>
                 </div>
 
 {#            {% endif %}#}
         {% endfor %}
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <button class="carousel-control-prev" style="fill: #6c757d" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true" style="filter: invert(1) grayscale(100);"></span>
         <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <button class="carousel-control-next" style="fill: #6c757d" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true" style="filter: invert(1) grayscale(100);" ></span>
         <span class="visually-hidden">Next</span>
     </button>
 

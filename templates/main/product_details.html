@@ -176,31 +176,65 @@
                 {% if product.packprices.all|length > 1 %}
 
                     <div class="d-flex text-center justify-content-center my-4 element-animation "
-                         aria-label="{{ product.name }}">
-                        {% for weight in product.packprices.all %}
+                         aria-label="{{ product.name }}" style=" z-index: 100">
+                            {% if product.packprices.all|length < 5 %}
+                                {% for weight in product.packprices.all %}
 
-                            <button type="button"
-                                    data-id="{{ product.vendor_code }}plus{{ weight.id }}"
-                                    data-price="{{ weight.price }}"
-                                    class="btn btn-secondary product_details_weight-select-button text-black"
-                                    style="font-size: 18px; width: 60px; height: 60px;
-                                            background-color: transparent;
-                                            {% if not defaultweight %}
-                                                {% if forloop.first %}
-                                                    border-width: 2px;
+                                <button type="button"
+                                        data-id="{{ product.vendor_code }}plus{{ weight.id }}"
+                                        data-price="{{ weight.price }}"
+                                        class="btn btn-secondary product_details_weight-select-button text-black"
+                                        style="font-size: 18px; width: 60px; height: 60px;
+                                                background-color: transparent;
+                                                {% if not defaultweight %}
+                                                    {% if forloop.first %}
+                                                        border-width: 2px;
+                                                    {% else %}
+                                                        border-width: 1px;
+                                                    {% endif %}"
                                                 {% else %}
-                                                    border-width: 1px;
-                                                {% endif %}"
-                                            {% else %}
-                                                {% if weight.id == defaultweight %}
-                                    border-width: 2px;
-                                                {% else %}
-                                    border-width: 1px;
+                                                    {% if weight.id == defaultweight %}
+                                        border-width: 2px;
+                                                    {% else %}
+                                        border-width: 1px;
+                                                    {% endif %}
                                                 {% endif %}
-                                            {% endif %}
-                            ">{{ weight.weight }}</button>
+                                ">{{ weight.weight }}</button>
+                                {% endfor %}
 
-                        {% endfor %}
+                            {% else %}
+                                <div class="dropdown-center">
+                                    {% for weight in product.packprices.all %}
+                                        {% if forloop.first %}
+                                            <button id="dropdown_button_toggle" data-bs-toggle="dropdown"
+                                                    data-id="{{ product.vendor_code }}plus{{ weight.id }}"
+                                                    data-price="{{ weight.price }}"
+                                                    aria-expanded="false"
+                                                    class="btn btn-secondary text-black dropdown-toggle "
+                                                    style="font-size: 18px; background-color: transparent;"
+                                            >{{ weight.weight }}</button>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    <ul class="dropdown-menu">
+                                        {% for weight in product.packprices.all %}
+
+                                            <li>
+                                                <button
+                                                        data-id="{{ product.vendor_code }}plus{{ weight.id }}"
+                                                        data-price="{{ weight.price }}"
+                                                        data-weight="{{ weight.weight }}"
+                                                        class="btn btn-secondary dropdown-item dropdown-product-details-weight-select-button text-black"
+                                                        style="font-size: 16px%;"
+                                                >{{ weight.weight }}</button>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+
+
+                                </div>
+
+                            {% endif %}
 
 
                     </div>
@@ -554,56 +588,59 @@
         {#        </div>#}
     {% endif %}
     <!-- Full screen modal -->
-    <div class="modal fade" id="fullimg" tabindex="-10" data-bs-backdrop="static" aria-labelledby="fullimg" aria-hidden="true">
+    <div class="modal fade" id="fullimg" tabindex="-10" data-bs-backdrop="static" aria-labelledby="fullimg"
+         aria-hidden="true">
 
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="container-thumbnail">
-                    {% if youtube %}
-                        <div class="full_mySlides flex-video widescreen ">
-                            <iframe class="full_product_details_img" src="https://www.youtube.com/embed/{{ youtube }}"
-                                    frameborder="0"></iframe>
-                        </div>
-                    {% endif %}
-                    {% for image in productImages %}
-                        {% if image %}
-                            <div class="full_mySlides w-100">
-                                <img src="{{ image }}" class="img-fluid w-100 full_product_details_img"
-                                     alt="{{ product.name }}">
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-
-                    <a class="full_thumbnail_prev cursor" onclick="plusfullSlides(-1)">❮</a>
-                    <a class="full_thumbnail_next cursor" onclick="plusfullSlides(1)">❯</a>
-                    <div class="row justify-content-center ">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-thumbnail">
                         {% if youtube %}
-                            <div class="column nails">
-                                <img class="full_demo cursor nails" onclick="currentfullSlide(1)" style="width:100%"
-                                     src="{% static 'images/youtube-circle-logo-svgrepo-com.svg' %}" alt="Видео">
+                            <div class="full_mySlides flex-video widescreen ">
+                                <iframe class="full_product_details_img"
+                                        src="https://www.youtube.com/embed/{{ youtube }}"
+                                        frameborder="0"></iframe>
                             </div>
                         {% endif %}
                         {% for image in productImages %}
                             {% if image %}
-                                <div class=" column nails">
-                                    <img src="{{ image }}" class="demo cursor full_item_photo nails" style="width:100%"
-                                            {% if youtube %}
-                                         onclick="currentfullSlide({{ forloop.counter }}+1)"
-                                            {% else %}
-                                         onclick="currentfullSlide({{ forloop.counter }})"
-
-                                            {% endif %}
+                                <div class="full_mySlides w-100">
+                                    <img src="{{ image }}" class="img-fluid w-100 full_product_details_img"
                                          alt="{{ product.name }}">
                                 </div>
                             {% endif %}
                         {% endfor %}
+
+                        <a class="full_thumbnail_prev cursor" onclick="plusfullSlides(-1)">❮</a>
+                        <a class="full_thumbnail_next cursor" onclick="plusfullSlides(1)">❯</a>
+                        <div class="row justify-content-center ">
+                            {% if youtube %}
+                                <div class="column nails">
+                                    <img class="full_demo cursor nails" onclick="currentfullSlide(1)" style="width:100%"
+                                         src="{% static 'images/youtube-circle-logo-svgrepo-com.svg' %}" alt="Видео">
+                                </div>
+                            {% endif %}
+                            {% for image in productImages %}
+                                {% if image %}
+                                    <div class=" column nails">
+                                        <img src="{{ image }}" class="demo cursor full_item_photo nails"
+                                             style="width:100%"
+                                                {% if youtube %}
+                                             onclick="currentfullSlide({{ forloop.counter }}+1)"
+                                                {% else %}
+                                             onclick="currentfullSlide({{ forloop.counter }})"
+
+                                                {% endif %}
+                                             alt="{{ product.name }}">
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
-            </div>
             </div>
 
         </div>

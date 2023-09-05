@@ -561,9 +561,11 @@ def subcategory(request, category, subcategory, *args):
             prods1.append(pr)
         for i in range(0, len(prods1)):
             for j in range(i+1, len(prods1)):
-                if Packprice.objects.filter(product=prods1[j])[0].price > Packprice.objects.filter(product=prods1[i])[0].price:
-                    prods1[j], prods1[i] = prods1[i], prods1[j]
-
+                try:
+                    if Packprice.objects.filter(product=prods1[j])[0].price > Packprice.objects.filter(product=prods1[i])[0].price:
+                        prods1[j], prods1[i] = prods1[i], prods1[j]
+                except:
+                    pass
 
 
         products = []

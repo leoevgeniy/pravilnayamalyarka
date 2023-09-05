@@ -58,82 +58,82 @@
         <img src="{% static 'images/terminal.webp' %}" alt="Фургон" class="d-none pb-lg-5 d-lg-flex col-12 col-lg-6 text-center" style="width: 30%">
 
     </div>
-    <div class="contacts main_container" xmlns="http://www.w3.org/1999/html">
-        <div id="" class="text-center mx-auto pt-5">
-            <span id="our_goods" class=" w-100" style="line-height: 1.3">Наши контакты</span>
-            <div id="goods_line" class="mx-auto my-3"></div>
+{#    <div class="contacts main_container" xmlns="http://www.w3.org/1999/html">#}
+{#        <div id="" class="text-center mx-auto pt-5">#}
+{#            <span id="our_goods" class=" w-100" style="line-height: 1.3">Наши контакты</span>#}
+{#            <div id="goods_line" class="mx-auto my-3"></div>#}
+{##}
+{#        </div>#}
+{#        <div class="row d-flex justify-content-around w-100">#}
+{#            <div class="col-12 col-lg-3 d-flex flex-column align-content-center text-center my-3">#}
+{#                <div class="d-flex justify-content-center align-content-center mx-auto">#}
+{#                    <img src="{% static 'images/phone.png' %}" alt="Телефон">#}
+{#                </div>#}
+{#                <span class="fw-bold my-4 contact_name" style="">Телефон</span>#}
+{#                {% if contacts %}#}
+{#                    {% if contacts.phone1 %}#}
+{#                        <a class="text-decoration-none text-black"#}
+{#                           href="tel:{{ contacts.phone1 }}">{{ contacts.phone1 }}</a>#}
+{#                    {% endif %}#}
+{#                    {% if contacts.phone2 %}#}
+{#                        <a class="text-decoration-none text-black"#}
+{#                           href="tel:{{ contacts.phone2 }}">{{ contacts.phone2 }}</a>#}
+{#                    {% endif %}#}
+{#                    {% if contacts.phone3 %}#}
+{#                        <a class="text-decoration-none text-black"#}
+{#                           href="tel:{{ contacts.phone3 }}">{{ contacts.phone3 }}</a>#}
+{#                    {% endif %}#}
+{#                {% endif %}#}
+{#            </div>#}
+{#            <div class="col-12 col-lg-3 d-flex flex-column align-content-center text-center">#}
+{#                <div class="d-flex justify-content-center align-content-center my-3 mx-auto">#}
+{#                    <img src="{% static 'images/e-mail.png' %}" alt="e-mail">#}
+{#                </div>#}
+{#                <span class="fw-bold my-4 contact_name">E-mail</span>#}
+{#                {% if contacts %}#}
+{#                    {% if contacts.email1 %}#}
+{#                        <a class="text-decoration-none text-black"#}
+{#                           href="tel:{{ contacts.email1 }}">{{ contacts.email1 }}</a>#}
+{#                    {% endif %}#}
+{#                    {% if contacts.email2 %}#}
+{#                        <a class="text-decoration-none text-black"#}
+{#                           href="tel:{{ contacts.email2 }}">{{ contacts.email2 }}</a>#}
+{#                    {% endif %}#}
+{#                    {% if contacts.email3 %}#}
+{#                        <a class="text-decoration-none text-black fw-normal"#}
+{#                           href="mailto:{{ contacts.email3 }}">{{ contacts.email3 }}</a>#}
+{#                    {% endif %}#}
+{#                {% endif %}#}
+{#            </div>#}
+{#            <div class="col-12 col-lg-3 d-flex flex-column align-content-center text-center my-3">#}
+{#                <div class="d-flex justify-content-center align-content-center  mx-auto">#}
+{#                    <img src="{% static 'images/location_index.png' %}" alt="Адрес">#}
+{#                </div>#}
+{#                <span class="fw-bold my-4 contact_name">Адрес</span>#}
+{#                <span class="d-flex flex-column">#}
+{##}
+{#                        {% if contacts %}#}
+{#                            <span class="fw-bolder">Ульяновск</span>#}
+{#                            {% if contacts.address1 %}#}
+{#                                <span class="text-decoration-none text-black">{{ contacts.address1 }}</span>#}
+{#                            {% endif %}#}
+{#                            {% if contacts.address2 %}#}
+{#                                <span class="text-decoration-none text-black">{{ contacts.address2 }}</span>#}
+{#                            {% endif %}#}
+{#                            {% if contacts.address3 %}#}
+{#                                <span class="text-decoration-none text-black">{{ contacts.address3 }}</span>#}
+{#                            {% endif %}#}
+{#                        {% endif %}#}
+{##}
+{#                    </span>#}
+{#            </div>#}
+{##}
+{##}
+{#        </div>#}
+{#        <div class="main_container" id="yamap">#}
+{#            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Ac8b1775553a8b10d87dbf136fbace9a9c2c7e914718c887ca09c4d83b166b9c9&amp;source=constructor" width="100%" height="292" frameborder="0"></iframe>        </div>#}
 
-        </div>
-        <div class="row d-flex justify-content-around w-100">
-            <div class="col-12 col-lg-3 d-flex flex-column align-content-center text-center my-3">
-                <div class="d-flex justify-content-center align-content-center mx-auto">
-                    <img src="{% static 'images/phone.png' %}" alt="Телефон">
-                </div>
-                <span class="fw-bold my-4 contact_name" style="">Телефон</span>
-                {% if contacts %}
-                    {% if contacts.phone1 %}
-                        <a class="text-decoration-none text-black"
-                           href="tel:{{ contacts.phone1 }}">{{ contacts.phone1 }}</a>
-                    {% endif %}
-                    {% if contacts.phone2 %}
-                        <a class="text-decoration-none text-black"
-                           href="tel:{{ contacts.phone2 }}">{{ contacts.phone2 }}</a>
-                    {% endif %}
-                    {% if contacts.phone3 %}
-                        <a class="text-decoration-none text-black"
-                           href="tel:{{ contacts.phone3 }}">{{ contacts.phone3 }}</a>
-                    {% endif %}
-                {% endif %}
-            </div>
-            <div class="col-12 col-lg-3 d-flex flex-column align-content-center text-center">
-                <div class="d-flex justify-content-center align-content-center my-3 mx-auto">
-                    <img src="{% static 'images/e-mail.png' %}" alt="e-mail">
-                </div>
-                <span class="fw-bold my-4 contact_name">E-mail</span>
-                {% if contacts %}
-                    {% if contacts.email1 %}
-                        <a class="text-decoration-none text-black"
-                           href="tel:{{ contacts.email1 }}">{{ contacts.email1 }}</a>
-                    {% endif %}
-                    {% if contacts.email2 %}
-                        <a class="text-decoration-none text-black"
-                           href="tel:{{ contacts.email2 }}">{{ contacts.email2 }}</a>
-                    {% endif %}
-                    {% if contacts.email3 %}
-                        <a class="text-decoration-none text-black fw-normal"
-                           href="mailto:{{ contacts.email3 }}">{{ contacts.email3 }}</a>
-                    {% endif %}
-                {% endif %}
-            </div>
-            <div class="col-12 col-lg-3 d-flex flex-column align-content-center text-center my-3">
-                <div class="d-flex justify-content-center align-content-center  mx-auto">
-                    <img src="{% static 'images/location_index.png' %}" alt="Адрес">
-                </div>
-                <span class="fw-bold my-4 contact_name">Адрес</span>
-                <span class="d-flex flex-column">
-
-                        {% if contacts %}
-                            <span class="fw-bolder">Ульяновск</span>
-                            {% if contacts.address1 %}
-                                <span class="text-decoration-none text-black">{{ contacts.address1 }}</span>
-                            {% endif %}
-                            {% if contacts.address2 %}
-                                <span class="text-decoration-none text-black">{{ contacts.address2 }}</span>
-                            {% endif %}
-                            {% if contacts.address3 %}
-                                <span class="text-decoration-none text-black">{{ contacts.address3 }}</span>
-                            {% endif %}
-                        {% endif %}
-
-                    </span>
-            </div>
-
-
-        </div>
-        <div class="main_container" id="yamap">
-            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Ac8b1775553a8b10d87dbf136fbace9a9c2c7e914718c887ca09c4d83b166b9c9&amp;source=constructor" width="100%" height="292" frameborder="0"></iframe>        </div>
-
-    </div>
+{#    </div>#}
     <div class="main_container d-flex my-3 justify-content-between align-items-center w-100 position-relative">
         {#    <div class="modal fade" id="headercallback" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">#}
         {#        <div class="modal-dialog">#}

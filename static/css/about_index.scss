@@ -71,8 +71,10 @@
 
   }
 }
+$carousel-dark-control-icon-filter:  invert(1) grayscale(100);
+
 #carouselExampleIndicators {
-  //width: 90%;
+  width: 90%;
   height: 500px;
 }
 #aboutas {

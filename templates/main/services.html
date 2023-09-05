@@ -63,7 +63,7 @@
 
         {% include 'main/components/services_category_clider.html' %}
     </div>
-    <div class="main_container mb-5 d-flex justify-content-center" style="height: 100px">
+    <div class="main_container mb-5 d-flex justify-content-center">
         <script>
             let categories = []
             let category = ''
@@ -73,9 +73,11 @@
                 categories.push("{{cat}}")
             </script>
 
-            <img class="service_nail mx-2 mt-3" data-category="{{ cat }}" style="object-fit: cover"
-                 src="{{ cat.photo_url }}" alt="{{ cat.name }}">
-
+            <div class="mx-2 mt-3 d-flex flex-column">
+                <img class="service_nail" data-category="{{ cat }}" style="object-fit: cover"
+                     src="{{ cat.photo_url }}" alt="{{ cat.name }}">
+                <span style="font-size: 25px" class="text-center">{{ cat.name }}</span>
+            </div>
         {% endfor %}
     </div>
 

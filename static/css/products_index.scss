@@ -1,7 +1,7 @@
 $maincolor: #1A4582;
 .subcategory_index_products_item {
   height: 500px;
-  width: 259px;
+  //width: 259px;
   background-color: #ffffff;
   background-position: center center;
   border-color: transparent;
@@ -80,6 +80,7 @@ $maincolor: #1A4582;
 
   /* Скроем элемент в начальном состоянии */
   opacity: 0;
+
   transform: translateY(20px);
 }
 
@@ -102,7 +103,9 @@ $maincolor: #1A4582;
   opacity: 0.3;
   overflow: hidden;
 }
-
+.buy_button_card .span, .prompt {
+  z-index: 10;
+}
 #goods {
 
   font-family: Circe, Sans-Serif, sans-serif;
@@ -176,7 +179,7 @@ $maincolor: #1A4582;
 }
 .folders {
   font-family: Roboto-Medium, Roboto-MediumR, sans-serif;
-  font-size: 10px;
+  font-size: 12px;
   padding-bottom: 17px;
   border-bottom: 1px solid #e3e3e3;
   .description {
@@ -191,7 +194,7 @@ $maincolor: #1A4582;
     font-family: Roboto-Light, Roboto-LightR, sans-serif;
     font-weight: 300;
     line-height: 1.55;
-    font-size: 10px;
+    font-size: 12px;
   }
 }
 
@@ -225,7 +228,7 @@ $maincolor: #1A4582;
   }
   .subcategory_index_products_item {
     height: 450px;
-    width: 100%;
+    //width: 100%;
   }
   .goods_index_products_item {
     height: 328px;
