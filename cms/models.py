@@ -76,6 +76,8 @@ class Product(models.Model):
         return self.name
 
     class Meta:
+        app_label = 'main'
+        db_table = 'cms_product'
         ordering = ('name',)
         # index_together = (('id', 'slug'),)
         verbose_name = 'Товар'

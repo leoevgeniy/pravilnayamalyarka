@@ -6598,6 +6598,9 @@ body {
 .photo_slider {
   height: 500px; }
 
+.unvisible {
+  visibility: hidden; }
+
 @media screen and (max-width: 480px) {
   .goods_index_image {
     height: 40px; }

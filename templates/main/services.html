@@ -3,59 +3,53 @@
 {% block page-title %}
     <title>Малярные работы и услуги</title>
     <meta name="description"
-          content="услуги колористики - при помощи высококлассного колеровочного оборудования мы создадим для вас краску любого на ваше усмотрение цвета и оттенка.
-- услуги мастеров строительно-малярных работ с многолетним стажем. Консультация специалистов и сопровождение вашего проекта на протяжении всего срока ведения работ;
-- разработку дизайн-проектов;
-- мастер-классы для маляров.">
+          content="услуги колористики - при помощи высококлассного колеровочного оборудования мы создадим для вас краску любого на ваше усмотрение цвета и оттенка. - услуги мастеров строительно-малярных работ с многолетним стажем. Консультация специалистов и сопровождение вашего проекта на протяжении всего срока ведения работ; - разработку дизайн-проектов;- мастер-классы для маляров.">
     <meta name="keywords"
           content="доставка лакокрасочных материалов, безналичная оплата лакокрасочная компания">
     <meta property="og:title" content="Малярные работы и услуги">
     <meta property="og:description"
-          content="услуги колористики - при помощи высококлассного колеровочного оборудования мы создадим для вас краску любого на ваше усмотрение цвета и оттенка.
-- услуги мастеров строительно-малярных работ с многолетним стажем. Консультация специалистов и сопровождение вашего проекта на протяжении всего срока ведения работ;
-- разработку дизайн-проектов;
-- мастер-классы для маляров.">
+          content="услуги колористики - при помощи высококлассного колеровочного оборудования мы создадим для вас краску любого на ваше усмотрение цвета и оттенка. - услуги мастеров строительно-малярных работ с многолетним стажем. Консультация специалистов и сопровождение вашего проекта на протяжении всего срока ведения работ; - разработку дизайн-проектов;- мастер-классы для маляров.">
 
 {% endblock %}
 
 {% block services %}
-{#    <div class="main_container w-75" style="margin-top: 90px">#}
-{#        <p class="nazvblok">Работы по видам</p>#}
-{#        <div class="row">#}
-{#            {% for category in categories %}#}
-{#                <div class="col-6 col-lg-3 d-flex justify-content-between align-content-center my-4">#}
-{#                    <div#}
-                            {#                        href="#{{ category }}" #}
-{#                            id="zvonok" class="d-flex justify-content-between small text-decoration-none">#}
-{##}
-{#                        {% if category.photo %}#}
-{#                            <img src="{{ category.photo_url }} "#}
-{#                                 class="element-animation product_details_img" alt="{{ category.name }}"#}
-{#                                 style="object-fit: cover; width: 65px; height: 65px"#}
-{#                            >#}
-{#                        {% else %}#}
-{#                            <img src="{% static "images/no_image.svg" %}"#}
-{#                                 class="card-img-top w-100 product_details_img" alt="{{ category.name }}">#}
-{#                        {% endif %}#}
-{##}
-{#                        <p class="ps-1 my-auto"#}
-{#                           style="#}
-{#                            text-decoration: none;#}
-{#                            display: inline-block;#}
-{#                            margin: 0;#}
-{#                            font-weight: bold;#}
-{#                            font-size: 16px;#}
-{#                            line-height: 24px;#}
-{#                            color: #333333;#}
-{#                            vertical-align: middle;#}
-{#                        "#}
-{#                        >{{ category.name }}</p>#}
-{#                    </div>#}
-{#                </div>#}
-{##}
-{#            {% endfor %}#}
-{#        </div>#}
-{#    </div>#}
+    {#    <div class="main_container w-75" style="margin-top: 90px">#}
+    {#        <p class="nazvblok">Работы по видам</p>#}
+    {#        <div class="row">#}
+    {#            {% for category in categories %}#}
+    {#                <div class="col-6 col-lg-3 d-flex justify-content-between align-content-center my-4">#}
+    {#                    <div#}
+    {#                        href="#{{ category }}" #}
+    {#                            id="zvonok" class="d-flex justify-content-between small text-decoration-none">#}
+    {##}
+    {#                        {% if category.photo %}#}
+    {#                            <img src="{{ category.photo_url }} "#}
+    {#                                 class="element-animation product_details_img" alt="{{ category.name }}"#}
+    {#                                 style="object-fit: cover; width: 65px; height: 65px"#}
+    {#                            >#}
+    {#                        {% else %}#}
+    {#                            <img src="{% static "images/no_image.svg" %}"#}
+    {#                                 class="card-img-top w-100 product_details_img" alt="{{ category.name }}">#}
+    {#                        {% endif %}#}
+    {##}
+    {#                        <p class="ps-1 my-auto"#}
+    {#                           style="#}
+    {#                            text-decoration: none;#}
+    {#                            display: inline-block;#}
+    {#                            margin: 0;#}
+    {#                            font-weight: bold;#}
+    {#                            font-size: 16px;#}
+    {#                            line-height: 24px;#}
+    {#                            color: #333333;#}
+    {#                            vertical-align: middle;#}
+    {#                        "#}
+    {#                        >{{ category.name }}</p>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {##}
+    {#            {% endfor %}#}
+    {#        </div>#}
+    {#    </div>#}
     <div id="goods" class="main_container text-center mx-auto" style="margin-top: 90px">
 
         <span id="our_goods" class=" w-100">НАШИ РАБОТЫ</span>
@@ -64,11 +58,27 @@
         </div>
     </div>
 
-    <div class="main_container mb-5 text-center photo_slider"
+    <div class="main_container  text-center photo_slider"
          style="">
 
         {% include 'main/components/services_category_clider.html' %}
     </div>
+    <div class="main_container mb-5 d-flex justify-content-center" style="height: 100px">
+        <script>
+            let categories = []
+            let category = ''
+        </script>
+        {% for cat in categories %}
+            <script>
+                categories.push("{{cat}}")
+            </script>
+
+            <img class="service_nail mx-2 mt-3" data-category="{{ cat }}" style="object-fit: cover"
+                 src="{{ cat.photo_url }}" alt="{{ cat.name }}">
+
+        {% endfor %}
+    </div>
+
 
     <div class="t-container t-align_center d-flex flex-column main_container">
         <div class="t-col t-col_10 t-prefix_1 my-3">
@@ -249,7 +259,8 @@
                                         line-height: 1.55;
                                         font-weight: 600; "
                             >
-                                <div class="flash lighting" style="height: 60px;width: 40px;top: 0px;left: -80px;"></div>
+                                <div class="flash lighting"
+                                     style="height: 60px;width: 40px;top: 0px;left: -80px;"></div>
 
                                 Мы Вам перезвоним
                             </button>

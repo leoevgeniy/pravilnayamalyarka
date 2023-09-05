@@ -66,6 +66,23 @@
     <div  class="photo_slider"
             style="">
         {% include 'main/components/services_category_clider.html' %}
+
+
+    </div>
+    <div class="main_container mb-5 d-flex justify-content-center" style="height: 100px">
+        <script>
+            let categories = []
+            let category = ''
+        </script>
+        {% for cat in services_category %}
+            <script>
+                categories.push("{{cat}}")
+            </script>
+
+            <img class="service_nail mx-2 mt-3" data-category="{{ cat }}" style="object-fit: cover"
+                 src="{{ cat.photo_url }}" alt="{{ cat.name }}">
+
+        {% endfor %}
     </div>
             <a href="{% url 'services' %}"
                class="to_catalog_btn align-self-center fw-bold d-flex mx-auto my-4 align-items-center element-animation"

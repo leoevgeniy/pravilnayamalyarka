@@ -29,15 +29,15 @@ class SubCategoryAdm(admin.ModelAdmin):
 admin.site.register(SubCategory, SubCategoryAdm)
 
 
-# @admin.register(ServiceCategory)
-# class ServiceCategoryAdm(admin.ModelAdmin):
-#     list_display = ('name', 'get_img',)
-#
-#     def get_img(self, obj):
-#         try:
-#             return mark_safe(f'<img src="{obj.photo.url}" width="80px"')
-#         except:
-#             return mark_safe(f'<img src="" width="80px"')
+@admin.register(ServiceCategory)
+class ServiceCategoryAdm(admin.ModelAdmin):
+    list_display = ('name', 'get_img',)
+
+    def get_img(self, obj):
+        try:
+            return mark_safe(f'<img src="{obj.photo.url}" width="80px"')
+        except:
+            return mark_safe(f'<img src="" width="80px"')
 
 
 @admin.register(Category)
