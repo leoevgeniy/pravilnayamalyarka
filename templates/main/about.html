@@ -22,9 +22,9 @@
 
             <div class="mb-3"
                  style="">
-                <h3 class="tn-atom w-75 mx-auto"
-                    style="font-style: italic">
-                    {{ intro.text }}
+                <h3 class="text-start"
+                    style="font-style: italic;">
+                    {{ intro.text|escape|linebreaks|safe }}
                     {#                    «Правильная малярка» —#}
                     {#                    это профессиональный малярный центр, включающий в себя: <br> - магазин, где вы сможете#}
                     {#                    приобрести#}

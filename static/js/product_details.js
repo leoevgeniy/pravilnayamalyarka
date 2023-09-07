@@ -47,27 +47,6 @@ try {
 
 } catch {}
 
-function characteristics_change(charact) {
-    const caracteristics = document.getElementsByClassName('characteristics')[0]
-    const description = document.getElementsByClassName('description')[0]
-    const text_area_text = document.getElementsByClassName('text_area_text')[0]
-    description.style.borderBottom = "1px none black"
-    caracteristics.style.borderBottom = "1px solid black"
-    if ( charact) {
-    text_area_text.innerHTML = charact}
-
-}
-function description_change(charact) {
-    const caracteristics = document.getElementsByClassName('characteristics')[0]
-    const description = document.getElementsByClassName('description')[0]
-    const text_area_text = document.getElementsByClassName('text_area_text')[0]
-
-    description.style.borderBottom = "1px solid black"
-    caracteristics.style.borderBottom = "1px none black"
-    if ( charact) {
-        text_area_text.innerHTML = charact}
-
-}
 try {
     item_photo = document.querySelectorAll('.item_photo')
     item_photo.forEach(function (item) {

@@ -177,8 +177,8 @@
 
                     <div class="d-flex text-center justify-content-center my-4 element-animation "
                          aria-label="{{ product.name }}" style=" z-index: 100">
-                            {% if product.packprices.all|length < 5 %}
-                                {% for weight in product.packprices.all %}
+                        {% if product.packprices.all|length < 5 %}
+                            {% for weight in product.packprices.all %}
 
                                 <button type="button"
                                         data-id="{{ product.vendor_code }}plus{{ weight.id }}"
@@ -200,41 +200,41 @@
                                                     {% endif %}
                                                 {% endif %}
                                 ">{{ weight.weight }}</button>
+                            {% endfor %}
+
+                        {% else %}
+                            <div class="dropdown-center">
+                                {% for weight in product.packprices.all %}
+                                    {% if forloop.first %}
+                                        <button id="dropdown_button_toggle" data-bs-toggle="dropdown"
+                                                data-id="{{ product.vendor_code }}plus{{ weight.id }}"
+                                                data-price="{{ weight.price }}"
+                                                aria-expanded="false"
+                                                class="btn btn-secondary text-black dropdown-toggle "
+                                                style="font-size: 18px; background-color: transparent;"
+                                        >{{ weight.weight }}</button>
+                                    {% endif %}
                                 {% endfor %}
 
-                            {% else %}
-                                <div class="dropdown-center">
+                                <ul class="dropdown-menu">
                                     {% for weight in product.packprices.all %}
-                                        {% if forloop.first %}
-                                            <button id="dropdown_button_toggle" data-bs-toggle="dropdown"
+
+                                        <li>
+                                            <button
                                                     data-id="{{ product.vendor_code }}plus{{ weight.id }}"
                                                     data-price="{{ weight.price }}"
-                                                    aria-expanded="false"
-                                                    class="btn btn-secondary text-black dropdown-toggle "
-                                                    style="font-size: 18px; background-color: transparent;"
+                                                    data-weight="{{ weight.weight }}"
+                                                    class="btn btn-secondary dropdown-item dropdown-product-details-weight-select-button text-black"
+                                                    style="font-size: 16px%;"
                                             >{{ weight.weight }}</button>
-                                        {% endif %}
+                                        </li>
                                     {% endfor %}
-
-                                    <ul class="dropdown-menu">
-                                        {% for weight in product.packprices.all %}
-
-                                            <li>
-                                                <button
-                                                        data-id="{{ product.vendor_code }}plus{{ weight.id }}"
-                                                        data-price="{{ weight.price }}"
-                                                        data-weight="{{ weight.weight }}"
-                                                        class="btn btn-secondary dropdown-item dropdown-product-details-weight-select-button text-black"
-                                                        style="font-size: 16px%;"
-                                                >{{ weight.weight }}</button>
-                                            </li>
-                                        {% endfor %}
-                                    </ul>
+                                </ul>
 
 
-                                </div>
+                            </div>
 
-                            {% endif %}
+                        {% endif %}
 
 
                     </div>
@@ -423,28 +423,39 @@
             </div>
 
         </div>
-        <script type="text/javascript">
-            const descr = "{{ product.description|linebreaks }}";
-            const charact = "{{ product.comments|linebreaks }}";
-        </script>
-
+{#        <script>#}
+{#            let descr = '';#}
+{#            try {#}
+{#                descr = "{{ product.description|escape|linebreaks|safe }}";#}
+{#            } catch {}#}
+{#            let charact = '';#}
+{#            try {#}
+{#                charact = "{{ product.comments|escape|linebreaks|safe }}";#}
+{#            } catch {}#}
+{#        </script>#}
         <div class="row main_container d-flex justify-content-center mt-4 folders">
-            <div class="col-6 text-center" onclick=description_change(descr)>
-                <span class="text-center py-3 description cursor">Описание</span>
+            <div class="col-6 text-center">
+                <span id="description" class="text-center py-3 description cursor">Описание</span>
             </div>
-            <div class="col-6 text-center" onclick=characteristics_change(charact)>
-                <span class="text-center py-3 characteristics cursor">
+            {% if product.comments %}
+                <div class="col-6 text-center">
+                <span id="characteristics" class="text-center py-3 characteristics cursor">
                     Характеристики
                 </span>
-            </div>
+                </div>
+            {% endif %}
         </div>
         <div class="row main_container d-flex justify-content-center my-4 text_area px-3">
             <div class="text-start">
-                <span class="text-start py-3 text_area_text ">
+                <span class="text-start py-3 text_area_text " id="text_area_text" style="white-space: pre-line;">
                         {{ product.description|linebreaks|escape }}
                     </span>
             </div>
         </div>
+        <input type="hidden" id="descr" class="hidden d-none" value="{{ product.description|escape|linebreaks|safe }}" />
+        <input type="hidden" id="charact" class="hidden d-none" value="{{ product.comments|escape|linebreaks|safe }}" />
+
+
 
         {#        <section class="main-section" id="service">#}
         {#            <div class="container">#}

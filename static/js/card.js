@@ -162,6 +162,30 @@ try {
 } catch {
 }
 
+try {
+    const description = document.getElementById('description')
+    const descr = document.getElementById('descr')
+    const characteristics = document.getElementById('characteristics')
+    const charact = document.getElementById('charact')
+
+    description.addEventListener(touchEvent, e => {
+        e.preventDefault()
+        const text_area_text = document.getElementById('text_area_text')
+        text_area_text.innerHTML = descr.value
+        description.style.borderBottom = "1px solid black"
+        characteristics.style.borderBottom = "1px none black"
+
+    })
+
+    characteristics.addEventListener(touchEvent, e => {
+        e.preventDefault()
+        const text_area_text = document.getElementById('text_area_text')
+        text_area_text.innerHTML = charact.value
+        description.style.borderBottom = "1px none black"
+        characteristics.style.borderBottom = "1px solid black"
+
+    })
+} catch {}
 function changeworkcategory(item) {
     const service_big_photo = document.querySelectorAll(".service_big_photo")
     let first = 0
