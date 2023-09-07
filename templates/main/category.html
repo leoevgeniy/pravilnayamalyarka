@@ -20,45 +20,24 @@
 
 
         <div id="goods" class="main_container py-3 text-center" style="margin-top: 50px;">
-        <img src="{{ category.photo_url }} "
-             class="card-img-top img-thumbnail mt-4" alt="{{ category.name }}"
-             style="object-fit: contain; border: none; height: 200px"
-        >
+            <img src="{{ category.photo_url }} "
+                 class="card-img-top img-thumbnail mt-4" alt="{{ category.name }}"
+                 style="object-fit: contain; border: none; height: 200px"
+            >
 
-        <span class="mx-auto "
-              style="font-family: Circe,sans-serif;
+            <span class="mx-auto "
+                  style="font-family: Circe,sans-serif;
                         color: black; font-size: 22px;
-                    ">{{ category }}</br></br>
+                    ">{{ category }}<br><br>
                     </span>
-        <div class="inline-block position-relative"
-             data-bs-toggle="modal" data-bs-target="#categorydescription"
-        >
+            <div class="inline-block position-relative"
+                 data-bs-toggle="modal" data-bs-target="#categorydescription"
+            >
                 <span class="text-wrap line-clamp mb-3"
-                      style="
-
-                              font-family: Circe_Regular,sans-serif;
-                              color: black; font-size: 14px;
-                              {#overflow: hidden ;#}
-                              {#white-space: nowrap;#}
-                              {# display: -webkit-box;#}
-                              {# -webkit-line-clamp: 3; /* number of lines to show */#}
-                              {#         line-clamp: 3;#}
-                              {##}
-                              {# -webkit-box-orient: vertical;#}
-
-                              "
-
-                        {#                      onclick="{showdescr(category.description)}"#}
+                      style=" font-family: Circe_Regular,sans-serif;
+                              color: black; font-size: 14px;"
                 >{{ category.description }}</span>
-            {#                    <div class="" style="#}
-            {#                        transform: tra;#}
-            {#                    "#}
-            {#                    >#}
-            {#                        <span class="text-start" >еще</span>#}
-            {#                    </div>#}
-            {#                </div>#}
-
-        </div>
+            </div>
         </div>
 
         {% if subcategory %}
@@ -149,12 +128,14 @@
             {% if products %}
 
                 <div id="goods_line" class="mx-auto my-3"></div>
-                <div class="main_container row d-flex justify-content-center mb-4">
+                <div class="main_container row d-flex justify-content-center mb-4" style="flex-shrink: 0;">
                     {% for product in products %}
-                        <div class="col-6 col-lg-3 d-flex flex-column justify-content-center align-items-center subcategory_index_products_item my-2">
+                        <div class="col-6 col-lg-3 d-flex flex-column justify-content-between align-items-center subcategory_index_products_item my-2"
+                            style="flex-shrink: 0;"
+                        >
                             <a href="{% url 'product_view' pk=product.vendor_code %}"
-                               class="d-flex flex-column justify-content-center align-items-center"
-                               style="text-decoration: none; height: 70%"
+                               class="d-flex flex-column justify-content-start align-items-center"
+                               style="text-decoration: none; min-height: 70%; height: 70%"
                             >
                                 {% if product.photo %}
                                     <img src="{{ product.photo_url }} "
@@ -167,28 +148,19 @@
                                          class="card-img-top w-100 product_details_img" alt="{{ product.name }}">
                                 {% endif %}
                                 {#                        <div class="goods_index_products_item_line element-animation" style="width: 35%"></div>#}
-                                <div class="category_products_item_name element-animation text-center" style="height: 25%">
-                        <span itemProp="name"
-                              class=' text-wrap element-animation  align-text-top'
-                              style="
-                                      overflow: hidden;
-                                       display: -webkit-box;
-                                       -webkit-line-clamp: 3; /* number of lines to show */
-                                               line-clamp: 3;
-                                       -webkit-box-orient: vertical;
-                                      ">{{ product.name }}</span>
-                                </div>
-                                {#                        <div class="goods_index_products_item_description text-center my-3 element-animation" style="">#}
-                                {#                        <span itemProp="name"#}
-                                {#                              class=''#}
-                                {#                              style="   overflow: hidden;#}
-                                {#                               display: -webkit-box;#}
-                                {#                               -webkit-line-clamp: 4; /* number of lines to show */#}
-                                {#                                       line-clamp: 5;#}
-                                {#                               -webkit-box-orient: vertical;#}
-                                {#                        ">{{ product.description }}</span>#}
-                                {#                        </div>#}
-                                <span itemProp="price"
+                                <div class="category_products_item_name element-animation text-center"
+                                     style="height: 25%">
+                                <span itemProp="name"
+                                      class=' text-wrap element-animation '
+                                      style="
+                                              overflow: hidden;
+                                               display: -webkit-box;
+                                               -webkit-line-clamp: 3; /* number of lines to show */
+                                                       line-clamp: 3;
+                                               -webkit-box-orient: vertical;
+                                              ">{{ product.name }}</span>
+                                        </div>
+                                <span itemProp="price" id="price"
                                       data-id="{{ product.vendor_code }}"
                                       class='card-price text-dark mb-0 mt-2 element-animation '
                                       style=" font-weight: 400; font-size: 16px;
@@ -217,7 +189,7 @@
 
                                         {% endfor %}
                                     {% else %}
-                                        <div class="dropdown-center" >
+                                        <div class="dropdown-center">
                                             {% for weight in product.packprices.all %}
                                                 {% if forloop.first %}
                                                     <button id="dropdown_button_toggle" data-bs-toggle="dropdown"
@@ -225,7 +197,7 @@
                                                             data-price="{{ weight.price }}"
                                                             aria-expanded="false"
                                                             class="btn btn-secondary text-black dropdown-toggle h-100"
-                                                            style="font-size: 70%; background-color: transparent;"
+                                                            style="font-size: 70%; background-color: transparent; border-width: 1px"
                                                     >{{ weight.weight }}</button>
                                                 {% endif %}
                                             {% endfor %}
@@ -233,13 +205,15 @@
                                             <ul class="dropdown-menu">
                                                 {% for weight in product.packprices.all %}
 
-                                                    <li><button
-                                                            data-id="{{ product.vendor_code }}plus{{ weight.id }}"
-                                                            data-price="{{ weight.price }}"
-                                                            data-weight = "{{ weight.weight }}"
-                                                            class="btn btn-secondary dropdown-item dropdown-weight-select-button text-black"
-                                                            style="font-size: 70%;"
-                                                    >{{ weight.weight }}</button></li>
+                                                    <li>
+                                                        <button
+                                                                data-id="{{ product.vendor_code }}plus{{ weight.id }}"
+                                                                data-price="{{ weight.price }}"
+                                                                data-weight="{{ weight.weight }}"
+                                                                class="btn btn-secondary dropdown-item dropdown-weight-select-button text-black"
+                                                                style="font-size: 70%;"
+                                                        >{{ weight.weight }}</button>
+                                                    </li>
                                                 {% endfor %}
                                             </ul>
 
@@ -261,101 +235,22 @@
                                data-weight="{{ product.packprices.first.id }}"
                                style="height: 10%; text-decoration: none; background-color: transparent; border: 1px black; border-style: groove; overflow: visible !important;"
                             >
-                            <span type="button"
-                                  class="text-center mx-auto text-black">Подробнее</span>
+                                <span type="button"
+                                      class="text-center mx-auto text-black prompt">Подробнее</span>
                             </a>
                             <button id="" onclick=''
-                                    class="buy_button_card w-75  py-3 text-decoration-none to_catalog_btn fw-bold d-flex align-items-center mb-1 element-animation"
+                                    class="buy_button_card w-75 text-decoration-none to_catalog_btn fw-bold d-flex align-items-center mb-1 element-animation"
                                     data-categoryurl="{% url 'category' category=product.category %}"
                                     data-id="{{ product.vendor_code }}"
                                     data-name="{{ product.name }}"
                                     data-price="{{ product.price }}"
                                     data-weight="{{ product.packprices.first.id }}"
-                                    style="height: 10%; cursor: pointer"
+                                    style="height: 10%; cursor: pointer;  z-index: 100"
                             >
-                            <span type="button"
-                                class="text-center mx-auto">Купить</span>
+                                <span type="button"
+                                      class="text-center mx-auto">Купить</span>
                             </button>
-
-
-                            {#                        <button#}
-                            {#                                data-name="{{ product.name }}"#}
-                            {#                                data-price="{{ product.price }}"#}
-                            {#                                data-id="{{ product.vendor_code }}"#}
-                            {#                                data-weight="{{ product.packprices.first.id }}"#}
-                            {#                                class="add-to-cart-btn w-100 py-3 mb-1 to_cart_button"#}
-                            {#                                style="cursor: pointer"#}
-                            {#                        >Подробнее#}
-                            {#                        </button>#}
-                            {#                        <div class="to_catalog_btn align-self-center fw-bold d-flex align-items-center element-animation">#}
-                            {#                    <span type="button" data-bs-toggle="modal" data-bs-target="#headercallback"#}
-                            {#                          class="">Подробнее</span>#}
-                            {#                        </div>#}
-
                         </div>
-                        {#                <div class="item category_product_item mb-1 mb-sm-0 px-1">#}
-                        {#                    <div class="card subcategory_menu d-flex flex-column h-100">#}
-                        {#                        <a href="{% url 'product_view' pk=product.vendor_code %}" class=" category_product_image">#}
-                        {#                            {% if product.photo %}#}
-                        {##}
-                        {#                                <img src="{{ product.photo_url }} "#}
-                        {#                                     class="card-img-top img-thumbnail h-100" alt="{{ product.name }}"#}
-                        {#                                     style="object-fit: contain"#}
-                        {#                                >#}
-                        {##}
-                        {#                            {% else %}#}
-                        {#                                <img src="{% static "images/no_image.svg" %}"#}
-                        {#                                     class="card-img-top img-responsive" alt="{{ product.name }}">#}
-                        {#                            {% endif %}#}
-                        {#                        </a>#}
-                        {#                        <div class="card-body text-center d-flex flex-column justify-content-between"#}
-                        {#                             style="object-fit: contain">#}
-                        {#                            <a href="{% url 'product_view' pk=product.vendor_code %}">#}
-                        {##}
-                        {#                                            <span class='fw-bold card-name d-inline-block text-start py-0 mb-0'#}
-                        {#                                                  style="">#}
-                        {#                                                <span itemProp="name"#}
-                        {#                                                      class='card-name fw-bold text-dark mb-3'#}
-                        {#                                                      style="   overflow: hidden;#}
-                        {#                                                       display: -webkit-box;#}
-                        {#                                                       -webkit-line-clamp: 2; /* number of lines to show */#}
-                        {#                                                               line-clamp: 2;#}
-                        {#                                                       -webkit-box-orient: vertical;"#}
-                        {#                                                >{{ product.name }}</span>#}
-                        {#                                            </span>#}
-                        {#                            </a>#}
-                        {##}
-                        {##}
-                        {##}
-                        {##}
-                        {#                            <div id="cart-wrap" class="text-center justify-item-end cart-qty-wrapper mb-1"#}
-                        {#                                 data-id="{{ product.vendor_code }}">#}
-                        {#                                <button class="cart-minus to_cart_button"#}
-                        {#                                        data-id="{{ product.vendor_code }}"#}
-                        {#                                        data-weight=""#}
-                        {#                                        style="cursor: pointer"#}
-                        {#                                >-#}
-                        {#                                </button>#}
-                        {#                                <i class="bi bi-basket"></i>#}
-                        {#                                <span#}
-                        {#                                        class="cart-qty"#}
-                        {#                                        data-id="{{ product.vendor_code }}"#}
-                        {#                                        data-weight="{{ product.packprices.first.id }}"#}
-                        {#                                >0</span>#}
-                        {#                                <button class="cart-plus  to_cart_button"#}
-                        {#                                        data-id="{{ product.vendor_code }}"#}
-                        {#                                        data-name="{{ product.name }}"#}
-                        {#                                        data-price="{{ product.price }}"#}
-                        {#                                        data-weight="{{ product.packprices.first.id }}"#}
-                        {#                                        style="cursor: pointer"#}
-                        {#                                >+#}
-                        {#                                </button>#}
-                        {##}
-                        {#                            </div>#}
-                        {##}
-                        {#                        </div>#}
-                        {#                    </div>#}
-                        {#                </div>#}
                     {% endfor %}
                 </div>
             {% else %}
@@ -364,7 +259,6 @@
                         style="font-family: 'Gotham Pro Medium',sans-serif;
                 color: #1A4582;
             ">Товары не найдены</h1>
-                    {#            <div class="service_index_line p-0 d-table-cell h-100 w-100"></div>#}
                 </div>
 
             {% endif %}

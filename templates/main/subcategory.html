@@ -26,7 +26,7 @@
         <span class="mx-auto "
               style="font-family: Circe,sans-serif;
                         color: black; font-size: 22px;
-                    ">{{ subcategory }}</br></br>
+                    ">{{ subcategory }}<br><br>
                     </span>
         <div class="inline-block position-relative"
              data-bs-toggle="modal" data-bs-target="#subcategorydescription"
@@ -257,7 +257,7 @@
                 <div class="col-6 col-lg-3 d-flex flex-column justify-content-between align-items-center subcategory_index_products_item my-2">
                     <a href="{% url 'product_view' pk=product.vendor_code %}"
                        class="d-flex flex-column justify-content-start align-items-center"
-                       style="text-decoration: none; height: 70%"
+                       style="text-decoration: none; min-height: 70%; height: 70%"
                     >
                         {% if product.photo %}
                             <img src="{{ product.photo_url }} "
@@ -281,16 +281,6 @@
                                        -webkit-box-orient: vertical;
                                       ">{{ product.name }}</span>
                         </div>
-                        {#                        <div class="goods_index_products_item_description text-center my-3 element-animation" style="">#}
-                        {#                        <span itemProp="name"#}
-                        {#                              class=''#}
-                        {#                              style="   overflow: hidden;#}
-                        {#                               display: -webkit-box;#}
-                        {#                               -webkit-line-clamp: 4; /* number of lines to show */#}
-                        {#                                       line-clamp: 5;#}
-                        {#                               -webkit-box-orient: vertical;#}
-                        {#                        ">{{ product.description }}</span>#}
-                        {#                        </div>#}
                         <span itemProp="price" id="price"
                               data-id="{{ product.vendor_code }}"
                               class='card-price text-dark mb-0 mt-2 element-animation '

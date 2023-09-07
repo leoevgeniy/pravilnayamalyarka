@@ -1,6 +1,4 @@
 
-
-
 @media screen and (min-width: 992px) {
   .contacts {
     .contact_name {
@@ -73,19 +71,20 @@
 }
 $carousel-dark-control-icon-filter:  invert(1) grayscale(100);
 
+
 #carouselExampleIndicators {
   width: 90%;
   height: 500px;
 }
 #aboutas {
   h3 {
-    line-height: 30px; font-size: 25px; font-family: Circe-Regular, sans-serif
+    line-height: 20px; font-size: 18px; font-family: Circe-Regular, sans-serif
   }
 }
 @media screen and (max-width: 518px) {
   #aboutas {
     h3 {
-      line-height: 20px; font-size: 14px; font-family: Circe-Regular, sans-serif
+      line-height: 20px; font-size: 16px; font-family: Circe-Regular, sans-serif
     }
   }
   .inter_wrapper {

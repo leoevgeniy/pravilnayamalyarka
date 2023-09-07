@@ -428,6 +428,9 @@
 .nail_caption {
   font-size: 25px; }
 
+.intro {
+  font-size: 18px; }
+
 .nazvblok {
   margin: 5px 0 30px -20px;
   background: url("../images/diamond.png") no-repeat 3px 0px;
@@ -927,14 +930,14 @@
   height: 500px; }
 
 #aboutas h3 {
-  line-height: 30px;
-  font-size: 25px;
+  line-height: 20px;
+  font-size: 18px;
   font-family: Circe-Regular, sans-serif; }
 
 @media screen and (max-width: 518px) {
   #aboutas h3 {
     line-height: 20px;
-    font-size: 14px;
+    font-size: 16px;
     font-family: Circe-Regular, sans-serif; }
   .inter_wrapper {
     width: 50%;
