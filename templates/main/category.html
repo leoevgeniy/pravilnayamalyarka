@@ -19,7 +19,7 @@
 
 
 
-        <div id="goods" class="main_container py-3 text-center" style="width: 80%; margin-top: 50px;">
+        <div id="goods" class="main_container py-3 text-center" style="margin-top: 50px;">
         <img src="{{ category.photo_url }} "
              class="card-img-top img-thumbnail mt-4" alt="{{ category.name }}"
              style="object-fit: contain; border: none; height: 200px"
@@ -58,6 +58,7 @@
             {#                    </div>#}
             {#                </div>#}
 
+        </div>
         </div>
 
         {% if subcategory %}
@@ -150,7 +151,7 @@
                 <div id="goods_line" class="mx-auto my-3"></div>
                 <div class="main_container row d-flex justify-content-center mb-4">
                     {% for product in products %}
-                        <div class="col-12 col-lg-3 d-flex flex-column justify-content-center align-items-center subcategory_index_products_item my-2 mx-auto">
+                        <div class="col-6 col-lg-3 d-flex flex-column justify-content-center align-items-center subcategory_index_products_item my-2">
                             <a href="{% url 'product_view' pk=product.vendor_code %}"
                                class="d-flex flex-column justify-content-center align-items-center"
                                style="text-decoration: none; height: 70%"
@@ -166,14 +167,14 @@
                                          class="card-img-top w-100 product_details_img" alt="{{ product.name }}">
                                 {% endif %}
                                 {#                        <div class="goods_index_products_item_line element-animation" style="width: 35%"></div>#}
-                                <div class="category_products_item_name element-animation text-center" style="">
+                                <div class="category_products_item_name element-animation text-center" style="height: 25%">
                         <span itemProp="name"
-                              class=' text-wrap element-animation '
+                              class=' text-wrap element-animation  align-text-top'
                               style="
                                       overflow: hidden;
                                        display: -webkit-box;
-                                       -webkit-line-clamp: 4; /* number of lines to show */
-                                               line-clamp: 4;
+                                       -webkit-line-clamp: 3; /* number of lines to show */
+                                               line-clamp: 3;
                                        -webkit-box-orient: vertical;
                                       ">{{ product.name }}</span>
                                 </div>
@@ -258,10 +259,10 @@
                                data-price="{{ product.price }}"
                                data-id="{{ product.vendor_code }}"
                                data-weight="{{ product.packprices.first.id }}"
-                               style="height: 10%; text-decoration: none; background-color: transparent; border: 1px black; border-style: groove"
+                               style="height: 10%; text-decoration: none; background-color: transparent; border: 1px black; border-style: groove; overflow: visible !important;"
                             >
                             <span type="button"
-                                  class="text-center mx-auto text-black py-3">Подробнее</span>
+                                  class="text-center mx-auto text-black">Подробнее</span>
                             </a>
                             <button id="" onclick=''
                                     class="buy_button_card w-75  py-3 text-decoration-none to_catalog_btn fw-bold d-flex align-items-center mb-1 element-animation"
