@@ -1,6 +1,14 @@
 .lSSlideOuter .lSPager {
   display: none;
 }
+.service_nail {
+  height: 150px;
+
+  object-fit: fill;
+}
+.nail_caption {
+  font-size: 25px;
+}
 
 @media screen and (max-width: 320px) {
   .subcategory_menu_about {
@@ -30,7 +38,12 @@
       font-size: 20px;
     }
   }
-
+  .nail_caption {
+    font-size: 10px;
+  }
+  .service_nail {
+    height: 100px;
+  }
 }
 @media screen and (max-width: 320px) {
 

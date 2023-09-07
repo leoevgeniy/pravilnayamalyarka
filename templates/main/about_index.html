@@ -59,7 +59,7 @@
 {#        </div>#}
 {#    </div>#}
 {#</div>#}
-<div id="goods" class="main_container text-center mx-auto">
+<div class="main_container text-center mx-auto">
     <span id="our_goods" class=" w-100">НАШИ РАБОТЫ</span>
     <div id="goods_line" class="mx-auto mb-3"></div>
 
@@ -78,10 +78,10 @@
             <script>
                 categories.push("{{cat}}")
             </script>
-            <div class="mx-2 mt-3 d-flex flex-column">
-            <img class="service_nail" data-category="{{ cat }}" style="object-fit: cover"
+            <div class="mt-3 d-flex flex-column nail_div">
+            <img class="service_nail" data-category="{{ cat }}"
                  src="{{ cat.photo_url }}" alt="{{ cat.name }}">
-            <span style="font-size: 25px">{{ cat.name }}</span>
+            <span class="nail_caption text-center">{{ cat.name }}</span>
             </div>
 
         {% endfor %}

@@ -121,8 +121,13 @@ try {
     let nail_selected = false
     service_nail.forEach((item, index) => {
         if (categories.length > 4) {
-            item.style.width = String((item.parentElement.parentElement.offsetWidth - categories.length * 16) / categories.length) + 'px'
-            item.style.height = '150px'
+                item.parentElement.style.width = String((item.parentElement.parentElement.offsetWidth) / categories.length) + 'px'
+            if (window.innerWidth > 470) {
+                item.style.height = '150px'
+            }
+            else {
+                item.style.height = '100px'
+            }
             item.style.objectfit = 'fill'
         } else {
             item.style.width = '220px'

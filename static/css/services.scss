@@ -1,4 +1,11 @@
+.service_nail {
+  height: 150px;
 
+  object-fit: fill;
+}
+.nail_caption {
+  font-size: 25px;
+}
 .nazvblok {
   margin: 5px 0 30px -20px;
   background: url('../images/diamond.png') no-repeat 3px 0px ;
@@ -19,4 +26,13 @@
   font-size: 25px;
   font-weight: 300;
 
+}
+@media screen and (max-width: 576px) {
+
+  .nail_caption {
+    font-size: 10px;
+  }
+  .service_nail {
+    height: 100px;
+  }
 }
