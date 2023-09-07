@@ -130,7 +130,8 @@ try {
             }
             item.style.objectfit = 'fill'
         } else {
-            item.style.width = '220px'
+            item.parentElement.style.width = String((item.parentElement.parentElement.offsetWidth) / categories.length) + 'px'
+            // item.style.width = '220px'
             item.style.height = '150px'
             item.style.objectfit = 'fill'
         }
