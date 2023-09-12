@@ -687,6 +687,7 @@
   z-index: 10; }
 
 #goods {
+  margin-top: 60px;
   font-family: Circe, Sans-Serif, sans-serif; }
   #goods #decr {
     width: 50%;
@@ -758,6 +759,7 @@
   #products_index {
     width: 80%; }
   #goods {
+    margin-top: 60px;
     width: 80%; }
     #goods h3 {
       font-size: 16px;
