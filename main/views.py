@@ -5,9 +5,8 @@ from django.shortcuts import render
 import json
 from datetime import date
 from math import ceil
-
 from openpyxl.styles import Border, Side, Font, Alignment
-
+from rest_framework.response import Response
 from cms.forms import UploadFileForm, SearchForm
 from cms.models import Product, Service, PromoSlider, WorkPhoto, Logo, Introduction, Socials, Contacts, Packprice, \
     Services_files, OurPhoto, Services_calculation_cost
@@ -21,9 +20,19 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from meta.views import Meta
 from urllib.parse import unquote
 import xlwt
+from cms.serializer import PromoSlidesSerializer
+from rest_framework.decorators import api_view
 
 
 # Create your views here.
+@api_view(['GET'])
+def indexAPI(request):
+    today = date.today()
+    promos = PromoSlider.objects.filter(start_date__lte=today).filter(expiration_date__gte=today)
+    print(promos)
+    serializer = PromoSlidesSerializer(promos, context={'request': request}, many=True)
+    print(serializer.data)
+    return Response(serializer.data)
 
 def index(request):
     today = date.today()

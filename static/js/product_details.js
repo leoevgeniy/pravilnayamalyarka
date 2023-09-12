@@ -63,7 +63,8 @@ function close_product_view() {
         history.go(-2)
     }
     else {
-        document.location.replace(referer)
+        history.back()
+        // document.location.replace(referer)
     }
 
 }

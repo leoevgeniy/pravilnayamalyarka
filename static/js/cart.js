@@ -1,10 +1,10 @@
-window.addEventListener( "pageshow", function ( event ) {
-    let historyTraversal = event.persisted || ( typeof window.performance != "undefined" && window.performance.navigation.type === 2 );
-    if ( historyTraversal ) {
-        // Handle page restore.
-        window.location.replace(location.pathname);
-    }
-});
+// window.addEventListener( "pageshow", function ( event ) {
+//     let historyTraversal = event.persisted || ( typeof window.performance != "undefined" && window.performance.navigation.type === 2 );
+//     if ( historyTraversal ) {
+//         // Handle page restore.
+//         window.location.replace(location.pathname);
+//     }
+// });
 let iOS = navigator.userAgent.match(/iPhone|iPad|iPod|Mac OS/i);
 let event = "click";
 let device = ''

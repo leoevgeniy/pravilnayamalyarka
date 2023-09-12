@@ -30,6 +30,8 @@ SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
+    path('indexAPI/', views.indexAPI, name='indexAPI'),
+
     path('goods/', views.goods, name='goods'),
     path('legal/', cmsviews.legal, name='legal'),
     path('services/', views.services, name='services'),
