@@ -10,16 +10,16 @@
                         <a href="{% url 'index' %}">
                             {% if logo.image %}
                                 <img src="{{ logo.image_light_url }} "
-                                     class="" alt="Логотип"
+                                     class="t821__imglogo" alt="Логотип"
                                 >
                             {% else %}
                                 <img src="{% static "images/no_image.svg" %}"
-                                     class="" alt="Логотип">
+                                     class="t821__imglogo t821__imglogomobile" alt="Логотип">
                             {% endif %}
                         </a>
                     </div>
                 </div>
-                <div class="d-flex flex-column">
+                <div class="d-flex flex-column mb-3">
                     <span>© Все права защищены</span>
                     <a href="{% url 'legal' %}">Политика конфиденциальности</a>
                 </div>

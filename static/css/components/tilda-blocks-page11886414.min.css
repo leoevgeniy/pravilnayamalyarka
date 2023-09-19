@@ -1423,7 +1423,7 @@ img:not([src]) {
 }
 
 .t821__imglogo {
-    max-width: 300px
+    max-width: 200px
 }
 
 .t821__img-wrap {
@@ -1581,7 +1581,7 @@ img:not([src]) {
         width: auto !important;
         box-sizing: border-box;
         padding: 0;
-        margin: 0 auto
+        /*margin: 0 auto*/
     }
 
     .t821__imglogomobile.t821__imglogo {

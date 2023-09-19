@@ -17,12 +17,12 @@
                  data-bgopacity="1" data-menu="yes" data-bgcolor-setbyscript="yes">
                 <div class="t821__maincontainer t821__c12collumns" style="">
                     <div class="t821__leftwrapper" style="padding-left:20px;">
-                        <div class="t821__logo-wrapper t821__logo-wrapper_inlineblock">
+                        <div class="t821__logo-wrapper">
                             <a href="/">
                                 {% if logo.image %}
                                     <img src="{{ logo.image_url }} "
                                          class="t821__imglogo t821__imglogomobile" alt="Логотип"
-                                         style="max-width: 160px; width: 160px;"
+                                         style="max-width: 200px; width: 200px;"
                                     >
                                 {% else %}
                                     <img src="{% static "images/no_image.svg" %}"
@@ -376,11 +376,11 @@
             {#    </div>#}
         </div>
 
-        <div id="rec305826014" class="r t-rec t-screenmax-980px  d-block d-lg-none" style="
+        <div id="rec305826014" class="r t-rec t-screenmax-980px d-lg-none" style="
         position: fixed;
         top: 20px;
         left: 20px;
-        max-width: 160px;
+        max-width: 180px;
         right: 15px;
         z-index: 1000;
         display: -webkit-flex;
@@ -399,10 +399,10 @@
     " data-record-type="145"
              data-screen-max="980px" data-bg-color="#ffffff" data-animationappear="off"><!-- T135 -->
             <div class="t135">
-                <a href="{% url 'index' %}"><img class="t135__img"
+                <a href="{% url 'index' %}"><img class=""
                                                  src="{{ logo.image_url }}"
                                                  imgfield="img"
-                                                 style="max-width: 160px; width: 100%; display: inline-block;"
+                                                 style="width: 100%; display: inline-block;"
                                                  alt="Логотип"></a>
             </div>
 
