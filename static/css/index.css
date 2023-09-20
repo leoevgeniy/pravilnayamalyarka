@@ -6609,6 +6609,10 @@
   font-weight: 500;
   unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116; }
 
+@font-face {
+  font-family: 'Cormac-Black';
+  src: url("fonts/Cormac-Black.woff2") format("woff2"); }
+
 body {
   font-family: Circe-Regular sans-serif; }
 

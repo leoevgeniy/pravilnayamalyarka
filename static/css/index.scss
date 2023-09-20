@@ -54,6 +54,11 @@ $main-color: #e9f1f4;
   font-family: RobotoR;
   src: url("fonts/Robotor.woff2") format("woff2")};
 @font-face { font-family: Roboto-Bold; src: url("https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmEU9fABc4EsA.woff2") format("woff2"); font-style: normal; font-weight: 500; unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116; }
+
+@font-face {
+  font-family: 'Cormac-Black';
+  src: url('fonts/Cormac-Black.woff2') format("woff2");
+}
 body {
   font-family: Circe-Regular sans-serif;
 }
