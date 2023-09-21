@@ -20,8 +20,9 @@
 {#            {% else %}#}
                 <div class="d-none service_big_photo h-100 w-100">
                     <img data-category="{{ service.service_category }}"
-                         class="h-100 w-100"
-                         style="object-fit: contain"
+
+                         class="h-100 w-auto service_big_photo_img"
+                         style="object-fit: contain; image-orientation: from-image"
                             src="{% if service.photo %}{{ service.photo.url }}{% else %}{% static 'images/no_image.svg' %}{% endif %}" alt=service.name>
                 </div>
 

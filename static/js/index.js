@@ -164,6 +164,32 @@ try {
 
 
 updateQty()
+
+// try {
+//     window.onload = getExif;
+// }
+// catch {}
+// function getExif() {
+//
+//     const imgs = document.querySelectorAll(".service_big_photo_img");
+//     imgs.forEach(img1 => {
+//     EXIF.getData(img1, function () {
+//         let MetaData = EXIF.getAllTags(this)['Orientation'];
+//         // if (iOS) {
+//             if (MetaData && MetaData === 6) {
+//
+//                 img1.style.transform = 'rotate(-90deg)'
+//                 console.log(img1.style.transform)
+//
+//             }
+//         // }
+//         // img1.style.transform = 'rotate(270deg)'
+//
+//         // console.log(JSON.stringify(MetaData, null, "\t"));
+//     });
+//     })
+// }
+// getExif()
 //
 //
 //
